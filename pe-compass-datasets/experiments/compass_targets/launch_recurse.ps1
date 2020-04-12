@@ -7,8 +7,8 @@
 
 function launch
 {
-    $_targets = "C:\Users\cyballistic\Desktop\pe-compass-datasets\experiments\compass_targets\";
-    $_dumps = "C:\Users\cyballistic\Desktop\pe-compass-datasets\experiments\compass_dumps\";
+    $_targets = "C:\Users\{{ ENTER USERNAME HERE }}\Desktop\pe-compass-datasets\experiments\compass_targets\";
+    $_dumps = "C:\Users\{{ ENTER USERNAME HERE }}\Desktop\pe-compass-datasets\experiments\compass_dumps\";
 
     $_formats = @("json", "csv");
 
