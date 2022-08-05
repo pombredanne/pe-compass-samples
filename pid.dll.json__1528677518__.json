@@ -1,0 +1,171 @@
+{
+  "pe_name": "pid.dll",
+  "pe_type": 523,
+  "pe_size": 46592,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-directx-directinput_31bf3856ad364e35_10.0.19041.1_none_d38927bfab0c4442\\pid.dll",
+  "pe_timedate_stamp": 4085632851,
+  "pe_timedate_human": "2099-06-20T10:00:51.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 9,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "_vsnwprintf",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 48,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateFileMappingW",
+        "CreateFileW",
+        "CreateMutexW",
+        "CreateThread",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FreeLibrary",
+        "FreeLibraryAndExitThread",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersion",
+        "GetVersionExW",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "LocalReAlloc",
+        "MapViewOfFile",
+        "MulDiv",
+        "QueryPerformanceCounter",
+        "ReadFileEx",
+        "ReleaseMutex",
+        "ResetEvent",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject",
+        "WriteFile",
+        "WriteFileEx",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 11,
+      "functions": [
+        "AllocateAndInitializeSid",
+        "BuildTrusteeWithSidW",
+        "FreeSid",
+        "InitializeSecurityDescriptor",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "SetEntriesInAclW",
+        "SetSecurityDescriptorDacl"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 5,
+      "functions": [
+        "DispatchMessageW",
+        "MsgWaitForMultipleObjectsEx",
+        "PeekMessageW",
+        "PostThreadMessageW",
+        "TranslateMessage"
+      ]
+    },
+    {
+      "name": "hid.dll",
+      "imports": 16,
+      "functions": [
+        "HidD_FreePreparsedData",
+        "HidD_GetAttributes",
+        "HidD_GetFeature",
+        "HidD_GetPreparsedData",
+        "HidD_SetFeature",
+        "HidP_GetCaps",
+        "HidP_GetLinkCollectionNodes",
+        "HidP_GetScaledUsageValue",
+        "HidP_GetSpecificButtonCaps",
+        "HidP_GetSpecificValueCaps",
+        "HidP_GetUsages",
+        "HidP_InitializeReportForID",
+        "HidP_SetScaledUsageValue",
+        "HidP_SetUsageValue",
+        "HidP_SetUsageValueArray",
+        "HidP_SetUsages"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "PID_GetFFEffectSettingsFromMemory",
+      "PID_WriteFFEffectSettingsToMemory"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "03f3481453cdd985200c09fb9c43dae8773e3cb3c4abe015c60e6637b5131b73"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

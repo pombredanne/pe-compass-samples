@@ -1,0 +1,226 @@
+{
+  "pe_name": "msctfmig.dll",
+  "pe_type": 523,
+  "pe_size": 200000,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\migwiz\\replacementmanifests\\Microsoft-Windows-TextServicesFramework-Migration\\msctfmig.dll",
+  "pe_timedate_stamp": 3793167796,
+  "pe_timedate_human": "2090-03-14T09:43:16.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "kernel32.dll",
+      "imports": 92,
+      "functions": [
+        "CloseHandle",
+        "CompareStringW",
+        "CreateFileW",
+        "DecodePointer",
+        "DeleteCriticalSection",
+        "EncodePointer",
+        "EnterCriticalSection",
+        "ExitProcess",
+        "ExpandEnvironmentStringsW",
+        "FindResourceExW",
+        "FlsAlloc",
+        "FlsFree",
+        "FlsGetValue",
+        "FlsSetValue",
+        "FlushFileBuffers",
+        "FreeEnvironmentStringsW",
+        "FreeLibrary",
+        "GetACP",
+        "GetCPInfo",
+        "GetCommandLineA",
+        "GetConsoleCP",
+        "GetConsoleMode",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetEnvironmentStringsW",
+        "GetFileSize",
+        "GetFileType",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleFileNameW",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetOEMCP",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetStdHandle",
+        "GetStringTypeW",
+        "GetSystemDirectoryW",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetThreadLocale",
+        "GetTickCount",
+        "GetVersionExW",
+        "HeapAlloc",
+        "HeapCreate",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSetInformation",
+        "HeapSize",
+        "InitializeCriticalSection",
+        "InitializeCriticalSectionAndSpinCount",
+        "IsValidCodePage",
+        "LCMapStringW",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadLibraryW",
+        "LoadResource",
+        "LocalAlloc",
+        "LocalFree",
+        "LocalReAlloc",
+        "LockResource",
+        "MultiByteToWideChar",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReadFile",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlPcToFileHeader",
+        "RtlUnwindEx",
+        "RtlVirtualUnwind",
+        "SetFilePointer",
+        "SetLastError",
+        "SetStdHandle",
+        "SetThreadLocale",
+        "SetThreadStackGuarantee",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "WriteFile",
+        "lstrcmpiW"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 6,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc",
+        "StringFromCLSID",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "CharNextW",
+        "UnregisterClassA"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 10,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegEnumValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 1,
+      "functions": [
+        "SHGetFileInfoW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 8,
+    "functions": [
+      "LoadBinFromEnabledLayoutOrTipFile",
+      "LoadRegFromFile",
+      "LogMessageLayoutOrTip",
+      "SaveKeysToFile",
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "0f356ae6f15d3a73058e77da4023c7e0cdd3d030869fab5ab8b5fa1972d43927"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 10,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

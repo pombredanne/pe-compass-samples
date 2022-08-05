@@ -1,0 +1,226 @@
+{
+  "pe_name": "mscorpehost.dll",
+  "pe_type": 523,
+  "pe_size": 194320,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_netfx4-mscorpehost_dll_b03f5f7f11d50a3a_4.0.15805.0_none_bc03f73d2aea5745\\mscorpehost.dll",
+  "pe_timedate_stamp": 1574584960,
+  "pe_timedate_human": "2019-11-24T08:42:40.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "DeregisterEventSource",
+        "EventWrite",
+        "OpenThreadToken",
+        "RegisterEventSourceW",
+        "ReportEventW",
+        "RevertToSelf",
+        "SetThreadToken"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 63,
+      "functions": [
+        "ActivateActCtx",
+        "CloseHandle",
+        "CreateActCtxW",
+        "CreateFileMappingW",
+        "CreateFileW",
+        "CreateProcessW",
+        "DeactivateActCtx",
+        "DebugBreak",
+        "DeleteFileW",
+        "DisableThreadLibraryCalls",
+        "FlushInstructionCache",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetACP",
+        "GetCPInfo",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetEnvironmentVariableA",
+        "GetEnvironmentVariableW",
+        "GetExitCodeProcess",
+        "GetFileSize",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameW",
+        "GetTempPathW",
+        "GetWindowsDirectoryW",
+        "InitializeSListHead",
+        "IsDebuggerPresent",
+        "IsProcessorFeaturePresent",
+        "LoadLibraryExA",
+        "LoadLibraryExW",
+        "LocalFree",
+        "MapViewOfFile",
+        "MultiByteToWideChar",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReadFile",
+        "ReleaseActCtx",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetErrorMode",
+        "SetFilePointer",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "VerSetConditionMask",
+        "VerifyVersionInfoW",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WaitForSingleObject",
+        "WideCharToMultiByte",
+        "WriteFile",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "vcruntime140_clr0400.dll",
+      "imports": 10,
+      "functions": [
+        "_CxxThrowException",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__std_type_info_destroy_list",
+        "_purecall",
+        "memcmp",
+        "memcpy",
+        "memmove",
+        "memset",
+        "wcsrchr"
+      ]
+    },
+    {
+      "name": "ucrtbase_clr0400.dll",
+      "imports": 32,
+      "functions": [
+        "__acrt_iob_func",
+        "__stdio_common_vfprintf",
+        "__stdio_common_vfwprintf",
+        "__stdio_common_vsnprintf_s",
+        "__stdio_common_vsnwprintf_s",
+        "__stdio_common_vsprintf_s",
+        "_cexit",
+        "_configure_narrow_argv",
+        "_errno",
+        "_execute_onexit_table",
+        "_initialize_narrow_environment",
+        "_initialize_onexit_table",
+        "_initterm",
+        "_initterm_e",
+        "_seh_filter_dll",
+        "_time64",
+        "fclose",
+        "fflush",
+        "fopen_s",
+        "fwrite",
+        "isdigit",
+        "qsort",
+        "strcat_s",
+        "strcmp",
+        "strcpy_s",
+        "strncmp",
+        "strncpy_s",
+        "terminate",
+        "wcscat_s",
+        "wcscmp",
+        "wcscpy_s",
+        "wcsncpy_s"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "user32.dll",
+      "imports": 3,
+      "functions": [
+        "GetProcessWindowStation",
+        "GetUserObjectInformationW",
+        "LoadStringW"
+      ]
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 1,
+      "functions": [
+        "PathFindExtensionW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 3,
+    "functions": [
+      "CreateICeeFileGen",
+      "DestroyICeeFileGen",
+      "InitializeSxS"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "76652dcc5a6b5afc28bb83c4ed10dbc35549aa35917118c598730de791a8c521"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Create Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      }
+    ]
+  }
+}

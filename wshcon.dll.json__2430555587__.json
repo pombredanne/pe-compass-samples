@@ -1,0 +1,131 @@
+{
+  "pe_name": "wshcon.dll",
+  "pe_type": 523,
+  "pe_size": 25088,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\wshcon.dll",
+  "pe_timedate_stamp": 1923495294,
+  "pe_timedate_human": "2030-12-14T16:14:54.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 14,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_vsnprintf",
+        "free",
+        "malloc",
+        "memmove",
+        "sprintf_s",
+        "strcmp",
+        "strcpy_s",
+        "wcscat_s",
+        "wcscpy_s"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 22,
+      "functions": [
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFullPathNameA",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleA",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "LoadLibraryExW",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 4,
+      "functions": [
+        "CoCreateInstanceEx",
+        "CoGetMalloc",
+        "CreateFileMoniker",
+        "StringFromCLSID"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyA",
+        "RegDeleteKeyA",
+        "RegOpenKeyA",
+        "RegQueryValueA",
+        "RegSetValueA",
+        "RegSetValueExA"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 5,
+    "functions": [
+      "DLLGetDocumentation",
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "7e2f590e58a32873864f44ccb5d43547970a7ee8437667736e00460ead96a23f"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyA",
+          "RegDeleteKeyA",
+          "RegOpenKeyA",
+          "RegSetValueA",
+          "RegSetValueExA"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueA"
+        ]
+      }
+    ]
+  }
+}

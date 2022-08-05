@@ -1,0 +1,227 @@
+{
+  "pe_name": "bcryptprimitives.dll",
+  "pe_type": 523,
+  "pe_size": 526848,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\bcryptprimitives.dll",
+  "pe_timedate_stamp": 3922973719,
+  "pe_timedate_human": "2094-04-24T18:55:19.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "ntdll.dll",
+      "imports": 33,
+      "functions": [
+        "EtwGetTraceEnableFlags",
+        "EtwGetTraceEnableLevel",
+        "EtwGetTraceLoggerHandle",
+        "EtwRegisterTraceGuidsW",
+        "EtwTraceMessage",
+        "EtwUnregisterTraceGuids",
+        "NtClose",
+        "NtOpenFile",
+        "NtOpenKey",
+        "NtQueryInformationProcess",
+        "NtQueryValueKey",
+        "NtTerminateProcess",
+        "RtlAllocateHeap",
+        "RtlCaptureContext",
+        "RtlFreeHeap",
+        "RtlGetCurrentProcessorNumberEx",
+        "RtlImageNtHeader",
+        "RtlInitUnicodeString",
+        "RtlLookupFunctionEntry",
+        "RtlUnhandledExceptionFilter",
+        "RtlVirtualUnwind",
+        "__C_specific_handler",
+        "__chkstk",
+        "_local_unwind",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "memcmp",
+        "memcpy",
+        "memmove",
+        "memset",
+        "qsort",
+        "wcscmp",
+        "wcscpy_s"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "GetLastError",
+        "SetLastError"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-libraryloader-l1-2-0.dll",
+      "imports": 4,
+      "functions": [
+        "DisableThreadLibraryCalls",
+        "GetModuleFileNameW",
+        "GetModuleHandleExW",
+        "GetProcAddress"
+      ]
+    },
+    {
+      "name": "api-ms-win-eventing-provider-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "EventRegister",
+        "EventSetInformation",
+        "EventUnregister",
+        "EventWriteTransfer"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "QueryPerformanceCounter",
+        "QueryPerformanceFrequency"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-libraryloader-l1-2-1.dll",
+      "imports": 1,
+      "functions": [
+        "LoadLibraryW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-io-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "DeviceIoControl"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-handle-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CloseHandle"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 5,
+      "functions": [
+        "RegCloseKey",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "SetThreadStackGuarantee",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-memory-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "GetSystemInfo"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-xstate-l2-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "GetEnabledXStateFeatures"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 10,
+    "functions": [
+      "GetAsymmetricEncryptionInterface",
+      "GetCipherInterface",
+      "GetHashInterface",
+      "GetKeyDerivationInterface",
+      "GetRngInterface",
+      "GetSecretAgreementInterface",
+      "GetSignatureInterface",
+      "MSCryptConvertRsaPrivateBlobToFullRsaBlob",
+      "ProcessPrng",
+      "ProcessPrngGuid"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "2ae5378430807a84fd862e30a1305426a8d016080a1a248c6b4b5f5cda198ee4"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      }
+    ]
+  }
+}

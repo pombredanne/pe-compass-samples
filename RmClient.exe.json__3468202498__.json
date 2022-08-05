@@ -1,0 +1,141 @@
+{
+  "pe_name": "RmClient.exe",
+  "pe_type": 267,
+  "pe_size": 15360,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\RmClient.exe",
+  "pe_timedate_stamp": 2199022538,
+  "pe_timedate_human": "2039-09-07T15:35:38.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 10,
+      "functions": [
+        "CreateProcessAsUserW",
+        "GetTokenInformation",
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "LookupAccountSidW",
+        "OpenProcessToken",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 23,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateFileW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetOverlappedResult",
+        "GetSystemTimeAsFileTime",
+        "GetSystemWindowsDirectoryW",
+        "GetTickCount",
+        "HeapSetInformation",
+        "QueryPerformanceCounter",
+        "ReadFile",
+        "ResetEvent",
+        "SetNamedPipeHandleState",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObjectEx",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 17,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "exit",
+        "memcpy",
+        "memset",
+        "wprintf"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 2,
+      "functions": [
+        "RtlAllocateHeap",
+        "RtlFreeHeap"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "b115961ea25ec6960c7ba788f5c206b1e604748fb26c5eb443fbca02497ab743"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Implement Features To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 12,
+        "matches": 1,
+        "apis": [
+          "SetNamedPipeHandleState"
+        ]
+      },
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

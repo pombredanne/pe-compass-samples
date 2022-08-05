@@ -1,0 +1,211 @@
+{
+  "pe_name": "scripto.dll",
+  "pe_type": 523,
+  "pe_size": 89600,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-scripto_31bf3856ad364e35_10.0.19041.746_none_1fdbd050306bcce3\\scripto.dll",
+  "pe_timedate_stamp": 2661196930,
+  "pe_timedate_human": "2054-04-30T21:22:10.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 42,
+      "functions": [
+        "??0exception@@QEAA@AEBQEBD@Z",
+        "??0exception@@QEAA@AEBQEBDH@Z",
+        "??0exception@@QEAA@AEBV0@@Z",
+        "??1exception@@UEAA@XZ",
+        "??1type_info@@UEAA@XZ",
+        "??3@YAXPEAX@Z",
+        "??_V@YAXPEAX@Z",
+        "?terminate@@YAXXZ",
+        "?what@exception@@UEBAPEBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_beginthreadex",
+        "_callnewh",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_strdup",
+        "_unlock",
+        "_vsnwprintf",
+        "_wcsdup",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "mbstowcs",
+        "memcmp",
+        "memcpy",
+        "memmove",
+        "memset",
+        "realloc",
+        "strchr",
+        "strncmp",
+        "strstr",
+        "time",
+        "tolower",
+        "toupper",
+        "wcscat_s",
+        "wcscpy_s"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 45,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FindResourceExW",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetUserDefaultLCID",
+        "GetUserDefaultLangID",
+        "HeapDestroy",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadResource",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WaitForSingleObject",
+        "lstrcmpiW",
+        "lstrcpyW",
+        "lstrcpynW",
+        "lstrlenA"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 8,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegEnumValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "CharNextW",
+        "CharPrevW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 5,
+      "functions": [
+        "CLSIDFromProgID",
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "e1ae49d7390e3b74a0775c095dff42c031642b3553fe81e91fe187e0a0444043"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryInfoKeyW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      }
+    ]
+  }
+}

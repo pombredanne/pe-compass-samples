@@ -1,0 +1,145 @@
+{
+  "pe_name": "odbcbcp.dll",
+  "pe_type": 523,
+  "pe_size": 48128,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\odbcbcp.dll",
+  "pe_timedate_stamp": 907594963,
+  "pe_timedate_human": "1998-10-05T13:42:43.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 9,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "_ultow_s",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "wcsncpy_s"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 32,
+      "functions": [
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetDriveTypeW",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetProcAddress",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "MultiByteToWideChar",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SearchPathW",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualQuery",
+        "WideCharToMultiByte"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 6,
+      "functions": [
+        "RegCloseKey",
+        "RegGetValueW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegisterTraceGuidsW",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "odbc32.dll",
+      "imports": 0,
+      "functions": []
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 28,
+    "functions": [
+      "LibMain",
+      "SQLCloseEnumServers",
+      "SQLGetNextEnumeration",
+      "SQLInitEnumServers",
+      "SQLLinkedCatalogsA",
+      "SQLLinkedCatalogsW",
+      "SQLLinkedServers",
+      "bcp_batch",
+      "bcp_bind",
+      "bcp_colfmt",
+      "bcp_collen",
+      "bcp_colptr",
+      "bcp_columns",
+      "bcp_control",
+      "bcp_done",
+      "bcp_exec",
+      "bcp_getcolfmt",
+      "bcp_initA",
+      "bcp_initW",
+      "bcp_moretext",
+      "bcp_readfmtA",
+      "bcp_readfmtW",
+      "bcp_sendrow",
+      "bcp_setcolfmt",
+      "bcp_writefmtA",
+      "bcp_writefmtW",
+      "dbprtypeA",
+      "dbprtypeW"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "97c46b51787a5244764f72739ada8b69ec6ce74a151304eb1356aa0d9b61a175"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

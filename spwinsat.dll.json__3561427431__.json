@@ -1,0 +1,141 @@
+{
+  "pe_name": "spwinsat.dll",
+  "pe_type": 267,
+  "pe_size": 12288,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\spwinsat.dll",
+  "pe_timedate_stamp": 2381760271,
+  "pe_timedate_human": "2045-06-22T16:04:31.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 9,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "memset"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "RegCloseKey",
+        "RegDeleteValueW",
+        "RegEnumValueW",
+        "RegFlushKey",
+        "RegGetValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 19,
+      "functions": [
+        "DeleteFileW",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetWindowsDirectoryW",
+        "HeapAlloc",
+        "HeapFree",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "wdscore.dll",
+      "imports": 3,
+      "functions": [
+        "ConstructPartialMsgVW",
+        "CurrentIP",
+        "WdsSetupLogMessageW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 1,
+    "functions": [
+      "Sysprep_Clean_WinSAT"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "f631112628b188d463df4aade21d7047af9bddbf712e0065a41561d8f3f4bb1b"
+  },
+  "scan": {
+    "intentions": 5,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegDeleteValueW",
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryInfoKeyW"
+        ]
+      }
+    ]
+  }
+}

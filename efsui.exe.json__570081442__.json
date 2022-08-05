@@ -1,0 +1,190 @@
+{
+  "pe_name": "efsui.exe",
+  "pe_type": 523,
+  "pe_size": 14848,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-efs-ui_31bf3856ad364e35_10.0.19041.1_none_ac65d58626f4027c\\efsui.exe",
+  "pe_timedate_stamp": 296359494,
+  "pe_timedate_human": "1979-05-24T02:04:54.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 3,
+      "functions": [
+        "ConvertSidToStringSidW",
+        "GetTokenInformation",
+        "OpenProcessToken"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 7,
+      "functions": [
+        "CloseHandle",
+        "CreateMutexW",
+        "GetCommandLineW",
+        "GetCurrentProcess",
+        "GetLastError",
+        "LocalAlloc",
+        "LocalFree"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 17,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ismbblead",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "exit"
+      ]
+    },
+    {
+      "name": "efsadu.dll",
+      "imports": 7,
+      "functions": [
+        "EfsUIUtilEncryptMyDocuments",
+        "EfsUIUtilEnrollEfsCertificate",
+        "EfsUIUtilInstallDra",
+        "EfsUIUtilKeyBackup",
+        "EfsUIUtilPromptForPin",
+        "EfsUIUtilSelectCard",
+        "EfsUIUtilShowBalloonAndWait"
+      ]
+    },
+    {
+      "name": "crypt32.dll",
+      "imports": 3,
+      "functions": [
+        "CertFreeCertificateContext",
+        "CryptBinaryToStringW",
+        "CryptStringToBinaryW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetStartupInfoW",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-libraryloader-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "GetModuleHandleW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "GetSystemTimeAsFileTime",
+        "GetTickCount"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-rtlsupport-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "efsutil.dll",
+      "imports": 1,
+      "functions": [
+        "EfsUtilGetCurrentKey"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 1,
+      "functions": [
+        "RtlImageNtHeader"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 1,
+      "functions": [
+        "CommandLineToArgvW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "ec1dc1a2ee200da0c787328df4fb91a2b978fd09ca1f83f3e55994c0f9ba1d11"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "CommandLineToArgvW",
+          "__getmainargs"
+        ]
+      }
+    ]
+  }
+}

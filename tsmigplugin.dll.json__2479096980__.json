@@ -1,0 +1,201 @@
+{
+  "pe_name": "tsmigplugin.dll",
+  "pe_type": 523,
+  "pe_size": 102200,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\migwiz\\replacementmanifests\\Microsoft-Windows-TerminalServices-AppServer-Licensing\\tsmigplugin.dll",
+  "pe_timedate_stamp": 1268304701,
+  "pe_timedate_human": "2010-03-11T10:51:41.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 34,
+      "functions": [
+        "??0exception@@QEAA@AEBQEBD@Z",
+        "??0exception@@QEAA@AEBQEBDH@Z",
+        "??0exception@@QEAA@AEBV0@@Z",
+        "??1exception@@UEAA@XZ",
+        "??1type_info@@UEAA@XZ",
+        "??3@YAXPEAX@Z",
+        "??_V@YAXPEAX@Z",
+        "?terminate@@YAXXZ",
+        "?what@exception@@UEBAPEBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_errno",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memcpy_s",
+        "memmove",
+        "memmove_s",
+        "memset",
+        "realloc",
+        "wcscat_s",
+        "wcscpy_s",
+        "wcsncpy_s"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 42,
+      "functions": [
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "FindResourceExW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetThreadLocale",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSize",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadResource",
+        "LocalAlloc",
+        "LocalFree",
+        "LocalReAlloc",
+        "LockResource",
+        "MultiByteToWideChar",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetThreadLocale",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "lstrcmpiW"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 6,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc",
+        "StringFromCLSID",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "CharNextW",
+        "UnregisterClassA"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 9,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 1,
+      "functions": [
+        "SHGetFileInfoW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 5,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllMain",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "28e2b0702346dcb04e0bac9f61a6c97fe95e00241be6936d4b65259866bf206b"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      }
+    ]
+  }
+}

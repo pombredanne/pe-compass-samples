@@ -1,0 +1,136 @@
+{
+  "pe_name": "printui.exe",
+  "pe_type": 267,
+  "pe_size": 62464,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\printui.exe",
+  "pe_timedate_stamp": 834296534,
+  "pe_timedate_human": "1996-06-09T05:02:14.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyExW",
+        "RegDeleteValueW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 18,
+      "functions": [
+        "FreeLibrary",
+        "GetCommandLineW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "gdi32.dll",
+      "imports": 1,
+      "functions": [
+        "GetStockObject"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 5,
+      "functions": [
+        "CreateWindowExW",
+        "DefWindowProcW",
+        "DestroyWindow",
+        "LoadCursorW",
+        "RegisterClassW"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 16,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "_wcmdln",
+        "exit",
+        "iswspace"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "085968c1b3f71fec8ee78ed5905e487c0f0bf6110f27397684b9cc66f6578583"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "pe_name": "sdiagschd.dll",
+  "pe_type": 523,
+  "pe_size": 53248,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-s..icsclient-scheduled_31bf3856ad364e35_10.0.19041.1_none_baa4e03a66bc0eae\\sdiagschd.dll",
+  "pe_timedate_stamp": 3786895395,
+  "pe_timedate_human": "2089-12-31T19:23:15.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 18,
+      "functions": [
+        "??0exception@@QEAA@AEBQEBDH@Z",
+        "??0exception@@QEAA@AEBV0@@Z",
+        "??1exception@@UEAA@XZ",
+        "??1type_info@@UEAA@XZ",
+        "?what@exception@@UEBAPEBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_vsnprintf",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wtoi",
+        "free",
+        "malloc",
+        "memset"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 13,
+      "functions": [
+        "DbgPrintEx",
+        "RtlCaptureContext",
+        "RtlCreateEnvironment",
+        "RtlDestroyEnvironment",
+        "RtlExpandEnvironmentStrings",
+        "RtlInitUnicodeStringEx",
+        "RtlLookupFunctionEntry",
+        "RtlNtStatusToDosError",
+        "RtlSetEnvironmentVariable",
+        "RtlVirtualUnwind",
+        "WinSqmAddToStream",
+        "WinSqmEndSession",
+        "WinSqmStartSession"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 27,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "CloseHandle",
+        "CreateThread",
+        "DisableThreadLibraryCalls",
+        "ExpandEnvironmentStringsW",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FreeLibraryAndExitThread",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleExW",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "InitializeSRWLock",
+        "QueryPerformanceCounter",
+        "ReleaseSRWLockExclusive",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 8,
+      "functions": [
+        "EventRegister",
+        "EventUnregister",
+        "EventWrite",
+        "EventWriteTransfer",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CoCreateInstance"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "EnableScheduledDiagnostics",
+      "GetScheduledDiagnosticsExecutionLevel"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "c7479cc00600c963e3eed1ecc717f5581ec93fc2797b1907e70a3f6585b6a77e"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

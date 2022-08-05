@@ -1,0 +1,194 @@
+{
+  "pe_name": "d3dref9.dll",
+  "pe_type": 523,
+  "pe_size": 459776,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\d3dref9.dll",
+  "pe_timedate_stamp": 2248899975,
+  "pe_timedate_human": "2041-04-06T22:26:15.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 45,
+      "functions": [
+        "??0exception@@QEAA@AEBV0@@Z",
+        "??0exception@@QEAA@XZ",
+        "??1exception@@UEAA@XZ",
+        "??1type_info@@UEAA@XZ",
+        "?terminate@@YAXXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "__iscsym",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnprintf",
+        "_vsnprintf_s",
+        "_vsnwprintf",
+        "atanf",
+        "ceilf",
+        "cos",
+        "cosf",
+        "expf",
+        "floor",
+        "floorf",
+        "free",
+        "log10f",
+        "logf",
+        "malloc",
+        "memcpy",
+        "memcpy_s",
+        "memmove",
+        "memset",
+        "pow",
+        "powf",
+        "printf",
+        "realloc",
+        "sinf",
+        "sqrt",
+        "sqrtf",
+        "sscanf_s",
+        "strstr"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "IntersectRect",
+        "PtInRect"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 6,
+      "functions": [
+        "RegCloseKey",
+        "RegDeleteValueA",
+        "RegEnumValueA",
+        "RegOpenKeyExA",
+        "RegQueryInfoKeyA",
+        "RegQueryValueExA"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 42,
+      "functions": [
+        "CloseHandle",
+        "ConnectNamedPipe",
+        "CreateFileA",
+        "CreateNamedPipeA",
+        "DebugBreak",
+        "DisconnectNamedPipe",
+        "FlushFileBuffers",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetPrivateProfileStringA",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "IsDebuggerPresent",
+        "LoadLibraryA",
+        "OutputDebugStringA",
+        "OutputDebugStringW",
+        "PeekNamedPipe",
+        "QueryPerformanceCounter",
+        "QueryPerformanceFrequency",
+        "ReadFile",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetNamedPipeHandleState",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "TransactNamedPipe",
+        "UnhandledExceptionFilter",
+        "WaitNamedPipeA",
+        "WriteFile"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "D3D9GetSWInfo",
+      "D3D9GetSWInfoEx"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "84594b55de6aade045dda820e79646d27d779256c92f6c8cc6a8cd9a53e0ce6c"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 11,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyA",
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Implement Features To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 12,
+        "matches": 6,
+        "apis": [
+          "ConnectNamedPipe",
+          "CreateNamedPipeA",
+          "DisconnectNamedPipe",
+          "PeekNamedPipe",
+          "SetNamedPipeHandleState",
+          "TransactNamedPipe"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegDeleteValueA",
+          "RegOpenKeyExA"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueA"
+        ]
+      }
+    ]
+  }
+}

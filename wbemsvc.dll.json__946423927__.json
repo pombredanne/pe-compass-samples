@@ -1,0 +1,166 @@
+{
+  "pe_name": "wbemsvc.dll",
+  "pe_type": 267,
+  "pe_size": 48640,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\wbem\\wbemsvc.dll",
+  "pe_timedate_stamp": 1435830624,
+  "pe_timedate_human": "2015-07-02T09:50:24.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 9,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "_vsnprintf",
+        "free",
+        "malloc",
+        "memcmp",
+        "memset"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 22,
+      "functions": [
+        "CStdStubBuffer_AddRef",
+        "CStdStubBuffer_Connect",
+        "CStdStubBuffer_CountRefs",
+        "CStdStubBuffer_DebugServerQueryInterface",
+        "CStdStubBuffer_DebugServerRelease",
+        "CStdStubBuffer_Disconnect",
+        "CStdStubBuffer_Invoke",
+        "CStdStubBuffer_IsIIDSupported",
+        "CStdStubBuffer_QueryInterface",
+        "IUnknown_AddRef_Proxy",
+        "IUnknown_QueryInterface_Proxy",
+        "IUnknown_Release_Proxy",
+        "NdrCStdStubBuffer2_Release",
+        "NdrCStdStubBuffer_Release",
+        "NdrDllCanUnloadNow",
+        "NdrDllGetClassObject",
+        "NdrDllRegisterProxy",
+        "NdrDllUnregisterProxy",
+        "NdrOleAllocate",
+        "NdrOleFree",
+        "NdrStubCall2",
+        "NdrStubForwardingFunction"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "RegQueryValueExA",
+        "RegSetValueExA"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "GetSystemTimeAsFileTime",
+        "GetTickCount"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-delayload-l1-1-1.dll",
+      "imports": 1,
+      "functions": [
+        "ResolveDelayLoadedAPI"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-delayload-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "DelayLoadFailureHook"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "2428a8f7322dd439ffb11e1a85797232f37f8e6f1eb44fc8d527c5c6e2a4bf86"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegSetValueExA"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Implements Delayed Loads of DLL Resources",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      }
+    ]
+  }
+}

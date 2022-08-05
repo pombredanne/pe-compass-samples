@@ -1,0 +1,148 @@
+{
+  "pe_name": "ktmutil.exe",
+  "pe_type": 267,
+  "pe_size": 15360,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-ktmutil_31bf3856ad364e35_10.0.19041.1_none_48cfaff3d4e720e6\\ktmutil.exe",
+  "pe_timedate_stamp": 2307544474,
+  "pe_timedate_human": "2043-02-14T16:34:34.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 3,
+      "functions": [
+        "AllocateAndInitializeSid",
+        "CheckTokenMembership",
+        "FreeSid"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 25,
+      "functions": [
+        "CloseHandle",
+        "FormatMessageW",
+        "GetConsoleMode",
+        "GetConsoleOutputCP",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "HeapSetInformation",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 19,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "_wcsicmp",
+        "exit",
+        "free",
+        "malloc",
+        "setlocale",
+        "wprintf"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 12,
+      "functions": [
+        "NtEnumerateTransactionObject",
+        "NtOpenEnlistment",
+        "NtOpenResourceManager",
+        "NtOpenTransaction",
+        "NtOpenTransactionManager",
+        "NtQueryInformationEnlistment",
+        "NtQueryInformationTransaction",
+        "NtQueryInformationTransactionManager",
+        "RtlCompareMemory",
+        "RtlFreeUnicodeString",
+        "RtlNtStatusToDosError",
+        "RtlStringFromGUID"
+      ]
+    },
+    {
+      "name": "ktmw32.dll",
+      "imports": 7,
+      "functions": [
+        "CommitComplete",
+        "CommitEnlistment",
+        "OpenEnlistment",
+        "OpenResourceManager",
+        "OpenTransactionManagerById",
+        "RecoverEnlistment",
+        "RollbackEnlistment"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "IIDFromString"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "180305260da3dd77215dca061c10b869cd69307e9d0cfffcafa27ccec0af71b3"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 2,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "CheckTokenMembership"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

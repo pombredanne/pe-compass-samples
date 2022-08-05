@@ -1,0 +1,146 @@
+{
+  "pe_name": "streamci.dll",
+  "pe_type": 523,
+  "pe_size": 27448,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\streamci.dll",
+  "pe_timedate_stamp": 2924054287,
+  "pe_timedate_human": "2062-08-29T05:18:07.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 10,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "free",
+        "malloc",
+        "memset",
+        "wcschr",
+        "wcsstr",
+        "wcstok"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "DuplicateTokenEx",
+        "LookupPrivilegeValueW",
+        "OpenProcessToken",
+        "OpenThreadToken",
+        "RegCloseKey",
+        "SetThreadToken"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 23,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateFileW",
+        "DeviceIoControl",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetOverlappedResult",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "setupapi.dll",
+      "imports": 11,
+      "functions": [
+        "SetupCloseInfFile",
+        "SetupDiCreateDeviceInterfaceRegKeyW",
+        "SetupDiDestroyDeviceInfoList",
+        "SetupDiEnumDeviceInterfaces",
+        "SetupDiGetClassDevsW",
+        "SetupDiGetClassInstallParamsW",
+        "SetupDiGetDeviceInterfaceDetailW",
+        "SetupDiInstallDevice",
+        "SetupDiRemoveDeviceInterface",
+        "SetupDiSetClassInstallParamsW",
+        "SetupOpenInfFileW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 1,
+      "functions": [
+        "CharLowerW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "IIDFromString",
+        "StringFromGUID2"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 8,
+    "functions": [
+      "StreamingDeviceClassInstaller",
+      "StreamingDeviceRemove",
+      "StreamingDeviceRemoveA",
+      "StreamingDeviceRemoveW",
+      "StreamingDeviceSetup",
+      "StreamingDeviceSetupA",
+      "StreamingDeviceSetupW",
+      "SwEnumCoInstaller"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "21406ebfb9f68e56b75045a0b9c78a6b5c5a843f3ca22ee56cacd561f721913a"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Create Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 3,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "pe_name": "sdbinst.exe",
+  "pe_type": 267,
+  "pe_size": 20992,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-a..ence-infrastructure_31bf3856ad364e35_10.0.19041.1320_none_541d393236570bb6\\sdbinst.exe",
+  "pe_timedate_stamp": 3975671918,
+  "pe_timedate_human": "2095-12-25T17:18:38.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 10,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegEnumValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 28,
+      "functions": [
+        "CopyFileW",
+        "DeleteFileW",
+        "FreeLibrary",
+        "GetConsoleMode",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFileType",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetStdHandle",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "SetFileAttributesW",
+        "SetThreadPreferredUILanguages",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 24,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__iob_func",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wfullpath",
+        "exit",
+        "fgetwc",
+        "memcpy",
+        "memset",
+        "tolower",
+        "towupper",
+        "wcsrchr"
+      ]
+    },
+    {
+      "name": "apphelp.dll",
+      "imports": 13,
+      "functions": [
+        "SdbCloseDatabase",
+        "SdbFindFirstTag",
+        "SdbFindNextTag",
+        "SdbGetBinaryTagData",
+        "SdbGetDatabaseInformation",
+        "SdbGetPathCustomSdb",
+        "SdbGetStringTagPtr",
+        "SdbIsDbRuntimePlatformSupportedOnHost",
+        "SdbIsStandardDatabase",
+        "SdbOpenDatabase",
+        "SdbReadBinaryTag",
+        "SdbRegisterDatabaseEx",
+        "SdbUnregisterDatabase"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 3,
+      "functions": [
+        "NtDeleteKey",
+        "RtlFreeUnicodeString",
+        "RtlStringFromGUID"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "bb28e2d992b439a01fc6385be08c78254a304dd867c2c725a5eac39f67b0c44b"
+  },
+  "scan": {
+    "intentions": 5,
+    "uniq_apis_matched": 11,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

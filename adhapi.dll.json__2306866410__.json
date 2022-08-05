@@ -1,0 +1,192 @@
+{
+  "pe_name": "adhapi.dll",
+  "pe_type": 523,
+  "pe_size": 24576,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\adhapi.dll",
+  "pe_timedate_stamp": 2327909550,
+  "pe_timedate_human": "2043-10-08T09:32:30.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 7,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "free",
+        "malloc",
+        "memset"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 9,
+      "functions": [
+        "EtwGetTraceEnableFlags",
+        "EtwGetTraceEnableLevel",
+        "EtwGetTraceLoggerHandle",
+        "EtwRegisterTraceGuidsW",
+        "EtwTraceMessage",
+        "EtwUnregisterTraceGuids",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 11,
+      "functions": [
+        "Ndr64AsyncClientCall",
+        "NdrClientCall3",
+        "RpcAsyncCancelCall",
+        "RpcAsyncCompleteCall",
+        "RpcAsyncInitializeHandle",
+        "RpcBindingFree",
+        "RpcBindingFromStringBindingW",
+        "RpcBindingSetAuthInfoExW",
+        "RpcBindingSetOption",
+        "RpcStringBindingComposeW",
+        "RpcStringFreeW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-libraryloader-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "DisableThreadLibraryCalls"
+      ]
+    },
+    {
+      "name": "api-ms-win-security-base-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CreateWellKnownSid"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetLastError",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-threadpool-l1-2-0.dll",
+      "imports": 4,
+      "functions": [
+        "CloseThreadpoolWait",
+        "CreateThreadpoolWait",
+        "SetThreadpoolWait",
+        "WaitForThreadpoolWaitCallbacks"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "CreateEventW",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-heap-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "GetProcessHeap",
+        "HeapAlloc",
+        "HeapFree"
+      ]
+    },
+    {
+      "name": "api-ms-win-eventing-classicprovider-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "TraceMessage"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-handle-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CloseHandle"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "GetSystemTimeAsFileTime",
+        "GetTickCount"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-security-lsalookup-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "LookupAccountSidLocalW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 7,
+    "functions": [
+      "AdhEngineClose",
+      "AdhEngineOpen",
+      "AdhGetConfig",
+      "AdhGetEvidenceCollectorResult",
+      "AdhStatusEventSubscribe",
+      "AdhStatusEventUnsubscribe",
+      "DllMain"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "89a363b639b6542e78171a9153c152513eee92d0d2549a17e25cf9828dc6f030"
+  },
+  "scan": {
+    "intentions": 1,
+    "uniq_apis_matched": 1,
+    "results": [
+      {
+        "intent": "Discover Local User Accounts on the Target System",
+        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
+        "component": "Identities",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "LookupAccountSidLocalW"
+        ]
+      }
+    ]
+  }
+}

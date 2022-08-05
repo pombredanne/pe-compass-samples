@@ -1,0 +1,175 @@
+{
+  "pe_name": "msdadiag.dll",
+  "pe_type": 523,
+  "pe_size": 160256,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\msdadiag.dll",
+  "pe_timedate_stamp": 405878586,
+  "pe_timedate_human": "1982-11-11T16:03:06.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "kernel32.dll",
+      "imports": 84,
+      "functions": [
+        "CloseHandle",
+        "CreateFileW",
+        "DecodePointer",
+        "DelayLoadFailureHook",
+        "DeleteCriticalSection",
+        "EncodePointer",
+        "EnterCriticalSection",
+        "ExitProcess",
+        "FlsAlloc",
+        "FlsFree",
+        "FlsGetValue",
+        "FlsSetValue",
+        "FlushFileBuffers",
+        "FreeEnvironmentStringsW",
+        "FreeLibrary",
+        "GetACP",
+        "GetCPInfo",
+        "GetCommandLineA",
+        "GetConsoleCP",
+        "GetConsoleMode",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetDriveTypeW",
+        "GetEnvironmentStringsW",
+        "GetFileType",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleFileNameW",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetOEMCP",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetStdHandle",
+        "GetStringTypeW",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "HeapAlloc",
+        "HeapCreate",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSetInformation",
+        "HeapSize",
+        "InitializeCriticalSectionAndSpinCount",
+        "IsValidCodePage",
+        "LCMapStringW",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "MultiByteToWideChar",
+        "OutputDebugStringA",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ResolveDelayLoadedAPI",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlPcToFileHeader",
+        "RtlUnwindEx",
+        "RtlVirtualUnwind",
+        "SearchPathW",
+        "SetFilePointer",
+        "SetLastError",
+        "SetStdHandle",
+        "SetThreadStackGuarantee",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "TlsAlloc",
+        "TlsFree",
+        "TlsGetValue",
+        "TlsSetValue",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "WriteFile",
+        "lstrcmpiA"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 10,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegGetValueW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegisterTraceGuidsW",
+        "TraceEvent",
+        "UnregisterTraceGuids"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 1,
+    "functions": [
+      "DllBidEntryPoint"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "f504e6cb95a6272372b0cffd1567306980576beaaf3a33317895850210b5932c"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Implements Delayed Loads of DLL Resources",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

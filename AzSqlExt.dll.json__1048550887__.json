@@ -1,0 +1,127 @@
+{
+  "pe_name": "AzSqlExt.dll",
+  "pe_type": 267,
+  "pe_size": 25088,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\AzSqlExt.dll",
+  "pe_timedate_stamp": 2830733140,
+  "pe_timedate_human": "2059-09-14T02:45:40.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 18,
+      "functions": [
+        "??0exception@@QAE@ABV0@@Z",
+        "??0exception@@QAE@XZ",
+        "??1exception@@UAE@XZ",
+        "??1type_info@@UAE@XZ",
+        "?what@exception@@UBEPBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_purecall",
+        "_stricmp",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 20,
+      "functions": [
+        "CloseHandle",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryA",
+        "LocalAlloc",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 4,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "GetTokenInformation",
+        "OpenProcessToken",
+        "OpenThreadToken"
+      ]
+    },
+    {
+      "name": "authz.dll",
+      "imports": 4,
+      "functions": [
+        "AuthzEnumerateSecurityEventSources",
+        "AuthzInstallSecurityEventSource",
+        "AuthzRegisterSecurityEventSource",
+        "AuthzReportSecurityEvent"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 2,
+      "functions": [
+        "CoTaskMemFree",
+        "StringFromCLSID"
+      ]
+    },
+    {
+      "name": "odbc32.dll",
+      "imports": 0,
+      "functions": []
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 6,
+    "functions": [
+      "AzGenerateAudit",
+      "__GetXpVersion",
+      "xp_AzManAddRole",
+      "xp_AzManAddUserToRole",
+      "xp_AzManDeleteRole",
+      "xp_AzManRemoveUserFromRole"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "91cc1657ad4a7299809110e86b5c1fb93affd41570a4975450f746cc7ac0d557"
+  },
+  "scan": {
+    "intentions": 1,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 3,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      }
+    ]
+  }
+}

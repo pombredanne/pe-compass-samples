@@ -1,0 +1,240 @@
+{
+  "pe_name": "tssysprep.dll",
+  "pe_type": 267,
+  "pe_size": 44544,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\setup\\tssysprep.dll",
+  "pe_timedate_stamp": 2746767824,
+  "pe_timedate_human": "2057-01-15T07:03:44.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 27,
+      "functions": [
+        "??0exception@@QAE@ABQBD@Z",
+        "??0exception@@QAE@ABQBDH@Z",
+        "??0exception@@QAE@ABV0@@Z",
+        "??1exception@@UAE@XZ",
+        "??1type_info@@UAE@XZ",
+        "??3@YAXPAX@Z",
+        "??_V@YAXPAX@Z",
+        "?what@exception@@UBEPBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_snwprintf_s",
+        "_unlock",
+        "_vsnwprintf_s",
+        "free",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset"
+      ]
+    },
+    {
+      "name": "wdscore.dll",
+      "imports": 3,
+      "functions": [
+        "ConstructPartialMsgVW",
+        "CurrentIP",
+        "WdsSetupLogMessageW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 25,
+      "functions": [
+        "CloseHandle",
+        "CreateFileW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcAddress",
+        "GetSystemFirmwareTable",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExA",
+        "GetVersionExW",
+        "LoadLibraryW",
+        "LocalFree",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "SetFilePointer",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "crypt32.dll",
+      "imports": 4,
+      "functions": [
+        "CertCloseStore",
+        "CertDeleteCertificateFromStore",
+        "CertFindCertificateInStore",
+        "CertOpenStore"
+      ]
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 3,
+      "functions": [
+        "SHDeleteKeyW",
+        "SHDeleteValueW",
+        "SHGetValueW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "CoCreateInstance",
+        "CoInitializeEx",
+        "CoSetProxyBlanket",
+        "CoUninitialize"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 36,
+      "functions": [
+        "AddAccessAllowedAce",
+        "AddAccessAllowedAceEx",
+        "AddAce",
+        "AllocateAndInitializeSid",
+        "DeleteAce",
+        "EqualSid",
+        "FreeSid",
+        "GetAce",
+        "GetAclInformation",
+        "GetLengthSid",
+        "GetSecurityDescriptorDacl",
+        "GetSecurityDescriptorGroup",
+        "GetSecurityDescriptorLength",
+        "GetSecurityDescriptorOwner",
+        "GetSecurityDescriptorSacl",
+        "GetTokenInformation",
+        "InitializeAcl",
+        "InitializeSecurityDescriptor",
+        "IsValidAcl",
+        "IsValidSecurityDescriptor",
+        "MakeAbsoluteSD",
+        "MakeSelfRelativeSD",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "SetSecurityDescriptorControl",
+        "SetSecurityDescriptorDacl",
+        "SetSecurityDescriptorGroup",
+        "SetSecurityDescriptorOwner"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "cryptbase.dll",
+      "imports": 1,
+      "functions": [
+        "SystemFunction036"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 13,
+    "functions": [
+      "AppsrvSysPrepGeneralize",
+      "AppsrvSysPrepSpecializeOffline",
+      "AppsrvSysPrepSpecializeOnline",
+      "CBrokerSysPrepGeneralize",
+      "CBrokerSysPrepSpecializeOffline",
+      "CBrokerSysPrepSpecializeOnline",
+      "LSMSysPrepBackup",
+      "LSMSysPrepRestoreOffline",
+      "LSMSysPrepRestoreOnline",
+      "RCMSysPrepGeneralize",
+      "RdpSysPrepGeneralize",
+      "RdpSysPrepRestoreOffline",
+      "RdpSysPrepRestoreOnline"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "2dffb31ba3644dd8e07fcbdb3adc78737760c11617a64740575b2917c93b47e7"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

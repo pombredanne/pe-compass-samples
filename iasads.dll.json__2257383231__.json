@@ -1,0 +1,178 @@
+{
+  "pe_name": "iasads.dll",
+  "pe_type": 267,
+  "pe_size": 57344,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\iasads.dll",
+  "pe_timedate_stamp": 471277851,
+  "pe_timedate_human": "1984-12-07T14:30:51.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 32,
+      "functions": [
+        "??0exception@@QAE@ABQBD@Z",
+        "??0exception@@QAE@ABV0@@Z",
+        "??0exception@@QAE@XZ",
+        "??1exception@@UAE@XZ",
+        "??1type_info@@UAE@XZ",
+        "?terminate@@YAXXZ",
+        "?what@exception@@UBEPBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_unlock",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "memcpy",
+        "memcpy_s",
+        "memmove",
+        "memmove_s",
+        "memset",
+        "swprintf_s",
+        "wcscat_s",
+        "wcschr",
+        "wcscpy_s",
+        "wcsncpy_s",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "atl.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "iassvcs.dll",
+      "imports": 2,
+      "functions": [
+        "IASRegisterComponent",
+        "IASVariantChangeType"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 21,
+      "functions": [
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LocalAlloc",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "SetThreadStackGuarantee",
+        "SetUnhandledExceptionFilter",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegQueryValueExW",
+        "RegisterTraceGuidsW",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "activeds.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "netutils.dll",
+      "imports": 1,
+      "functions": [
+        "NetApiBufferFree"
+      ]
+    },
+    {
+      "name": "samcli.dll",
+      "imports": 2,
+      "functions": [
+        "NetUserGetInfo",
+        "NetUserSetInfo"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 6,
+      "functions": [
+        "RtlAllocateHeap",
+        "RtlCompareMemory",
+        "RtlFreeHeap",
+        "RtlImageNtHeader",
+        "RtlInitUnicodeString",
+        "RtlNtStatusToDosError"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "26e00bd8c529d0da4465f15ca56350c76ae346a788371529b6de76a000e98bbb"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 2,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      }
+    ]
+  }
+}

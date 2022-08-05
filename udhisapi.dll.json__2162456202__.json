@@ -1,0 +1,201 @@
+{
+  "pe_name": "udhisapi.dll",
+  "pe_type": 267,
+  "pe_size": 58368,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\udhisapi.dll",
+  "pe_timedate_stamp": 1418518044,
+  "pe_timedate_human": "2014-12-14T00:47:24.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 22,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "_strcmpi",
+        "_stricmp",
+        "_strnicmp",
+        "_vsnprintf",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "isdigit",
+        "isupper",
+        "malloc",
+        "memcpy",
+        "memset",
+        "strncmp",
+        "strstr",
+        "strtok",
+        "strtoul",
+        "tolower",
+        "wcsstr"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 6,
+      "functions": [
+        "EtwGetTraceEnableFlags",
+        "EtwGetTraceEnableLevel",
+        "EtwGetTraceLoggerHandle",
+        "EtwRegisterTraceGuidsW",
+        "EtwTraceMessage",
+        "EtwUnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "ws2_32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "GetLastError",
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 5,
+      "functions": [
+        "CoCreateInstance",
+        "CoInitializeEx",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoUninitialize"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-string-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "MultiByteToWideChar",
+        "WideCharToMultiByte"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "GetSystemTimeAsFileTime",
+        "GetTickCount"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-string-obsolete-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "lstrcmpW",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "api-ms-win-core-delayload-l1-1-1.dll",
+      "imports": 1,
+      "functions": [
+        "ResolveDelayLoadedAPI"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-delayload-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "DelayLoadFailureHook"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 3,
+    "functions": [
+      "GetExtensionVersion",
+      "HttpExtensionProc",
+      "TerminateExtension"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "005647c1ac25fe62038ac094747b6553b33d17ecd31d001d234f4281b2b685fb"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Delayed Loads of DLL Resources",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "pe_name": "sxsoa.dll",
+  "pe_type": 267,
+  "pe_size": 36352,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\servicing\\LCU\\Package_for_RollupFix~31bf3856ad364e35~amd64~~19041.1645.1.11\\x86_microsoft.windows.isolationautomation_6595b64144ccf1df_1.0.19041.746_none_c33b9b0d5e48a5d2\\sxsoa.dll",
+  "pe_timedate_stamp": 4046455305,
+  "pe_timedate_human": "2098-03-23T23:21:45.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 16,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memset",
+        "realloc",
+        "strcat_s",
+        "strcpy_s",
+        "wcschr"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "CharNextA",
+        "CharPrevA"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 47,
+      "functions": [
+        "CloseHandle",
+        "CreateFileW",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FindResourceExA",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleA",
+        "GetProcAddress",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameW",
+        "GetTempPathW",
+        "GetTickCount",
+        "HeapDestroy",
+        "InitializeCriticalSection",
+        "IsDBCSLeadByte",
+        "LeaveCriticalSection",
+        "LoadLibraryExA",
+        "LoadResource",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RegCloseKey",
+        "RegCreateKeyExA",
+        "RegDeleteValueA",
+        "RegEnumKeyExA",
+        "RegEnumValueA",
+        "RegOpenKeyExA",
+        "RegQueryInfoKeyA",
+        "RegSetValueExA",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WideCharToMultiByte",
+        "lstrcmpiA",
+        "lstrcpynA"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 9,
+      "functions": [
+        "CLSIDFromProgID",
+        "CoCreateFreeThreadedMarshaler",
+        "CoCreateInstance",
+        "CoCreateInstanceEx",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc",
+        "CreateBindCtx",
+        "MkParseDisplayName"
+      ]
+    },
+    {
+      "name": "urlmon.dll",
+      "imports": 2,
+      "functions": [
+        "CreateURLMoniker",
+        "URLDownloadToFileW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "45350010d97571e7a46cab6fa1ae054c64a8dcca5a87fb359c33c4d31bd16bcc"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExA",
+          "RegEnumValueA"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryInfoKeyA"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegDeleteValueA",
+          "RegOpenKeyExA",
+          "RegSetValueExA"
+        ]
+      }
+    ]
+  }
+}

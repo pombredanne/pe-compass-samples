@@ -1,0 +1,160 @@
+{
+  "pe_name": "netfxperf.dll",
+  "pe_type": 523,
+  "pe_size": 107520,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\netfxperf.dll",
+  "pe_timedate_stamp": 1723230833,
+  "pe_timedate_human": "2024-08-09T19:13:53.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "kernel32.dll",
+      "imports": 73,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "DecodePointer",
+        "DeleteCriticalSection",
+        "EncodePointer",
+        "EnterCriticalSection",
+        "EnumSystemLocalesA",
+        "ExitProcess",
+        "FlsAlloc",
+        "FlsFree",
+        "FlsGetValue",
+        "FlsSetValue",
+        "FreeEnvironmentStringsW",
+        "GetACP",
+        "GetCPInfo",
+        "GetCommandLineA",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetEnvironmentStringsW",
+        "GetFileType",
+        "GetLastError",
+        "GetLocaleInfoA",
+        "GetLocaleInfoW",
+        "GetModuleFileNameA",
+        "GetModuleHandleExW",
+        "GetOEMCP",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetStdHandle",
+        "GetStringTypeW",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetUserDefaultLCID",
+        "GetVersionExW",
+        "HeapAlloc",
+        "HeapCreate",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSetInformation",
+        "HeapSize",
+        "InitializeCriticalSection",
+        "InitializeCriticalSectionAndSpinCount",
+        "IsValidCodePage",
+        "IsValidLocale",
+        "LCMapStringW",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "MultiByteToWideChar",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReleaseSRWLockExclusive",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlPcToFileHeader",
+        "RtlUnwindEx",
+        "RtlVirtualUnwind",
+        "SetLastError",
+        "SetThreadStackGuarantee",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SleepConditionVariableSRW",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WakeAllConditionVariable",
+        "WideCharToMultiByte",
+        "WriteFile",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "mscoree.dll",
+      "imports": 2,
+      "functions": [
+        "GetCORSystemDirectory",
+        "GetRequestedRuntimeInfo"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "EventRegister",
+        "EventSetInformation",
+        "EventUnregister",
+        "EventWriteTransfer",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "ClosePerformanceData",
+      "CollectPerformanceData",
+      "OpenPerformanceData",
+      "TraceServiceStart"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "38c384c473a5d9e89f933b0df676629e2ab79240a0c84f2a78f40e50d87ae2c9"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

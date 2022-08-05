@@ -1,0 +1,211 @@
+{
+  "pe_name": "securebootai.dll",
+  "pe_type": 267,
+  "pe_size": 29008,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\x86_microsoft-windows-s..gstack-boot-onecore_31bf3856ad364e35_10.0.19041.1220_none_6e6ae35b6d51ed8c\\securebootai.dll",
+  "pe_timedate_stamp": 3622180790,
+  "pe_timedate_human": "2084-10-12T09:19:50.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 11,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "memcmp",
+        "memset"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-libraryloader-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "DisableThreadLibraryCalls",
+        "FreeLibrary",
+        "GetProcAddress",
+        "LoadLibraryExW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "DeleteCriticalSection",
+        "InitializeCriticalSection"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-heap-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "HeapDestroy"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 7,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "OpenProcessToken",
+        "OpenThreadToken",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetSystemWindowsDirectoryW",
+        "GetTickCount"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetLastError",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 4,
+      "functions": [
+        "NtQuerySystemInformation",
+        "NtSetSystemEnvironmentValueEx",
+        "RtlInitUnicodeString",
+        "RtlNtStatusToDosError"
+      ]
+    },
+    {
+      "name": "wcp.dll",
+      "imports": 3,
+      "functions": [
+        "ConvertNtStatusToHResult",
+        "RtlFreeLBlob",
+        "RtlReportErrorOrigination"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-file-l1-1-0.dll",
+      "imports": 6,
+      "functions": [
+        "CreateFileW",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "GetFileSizeEx",
+        "ReadFile"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-handle-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CloseHandle"
+      ]
+    },
+    {
+      "name": "api-ms-win-security-base-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "AdjustTokenPrivileges"
+      ]
+    },
+    {
+      "name": "api-ms-win-security-lsalookup-l2-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "LookupPrivilegeValueW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllCsiGetHandler"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "15989a6209245fd892c49bd52443b091ac658fb33d76306d70f9cb5c137a9e60"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 3,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

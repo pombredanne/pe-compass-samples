@@ -1,0 +1,166 @@
+{
+  "pe_name": "msiltcfg.dll",
+  "pe_type": 267,
+  "pe_size": 17408,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\msiltcfg.dll",
+  "pe_timedate_stamp": 1815714231,
+  "pe_timedate_human": "2027-07-16T05:03:51.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 13,
+      "functions": [
+        "_XcptFilter",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_unlock",
+        "_vsnwprintf",
+        "free",
+        "malloc",
+        "memcpy"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 33,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateThread",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FreeLibrary",
+        "FreeLibraryAndExitThread",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleExW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "OpenEventW",
+        "QueryPerformanceCounter",
+        "ResetEvent",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject",
+        "lstrcmpW"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 22,
+      "functions": [
+        "AccessCheck",
+        "AddAccessAllowedAce",
+        "AllocateAndInitializeSid",
+        "ConvertSidToStringSidW",
+        "CopySid",
+        "DuplicateToken",
+        "EqualSid",
+        "FreeSid",
+        "GetLengthSid",
+        "GetSecurityInfo",
+        "GetTokenInformation",
+        "InitializeAcl",
+        "InitializeSecurityDescriptor",
+        "IsValidSecurityDescriptor",
+        "OpenProcessToken",
+        "OpenThreadToken",
+        "SetEntriesInAclW",
+        "SetSecurityDescriptorDacl",
+        "SetSecurityDescriptorGroup",
+        "SetSecurityDescriptorOwner",
+        "SetSecurityInfo",
+        "SetThreadToken"
+      ]
+    },
+    {
+      "name": "version.dll",
+      "imports": 3,
+      "functions": [
+        "GetFileVersionInfoSizeW",
+        "GetFileVersionInfoW",
+        "VerQueryValueW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 14,
+    "functions": [
+      "MsiAdvertiseScriptW",
+      "MsiConfigureProductExW",
+      "MsiDecomposeDescriptorW",
+      "MsiGetComponentPathW",
+      "MsiGetProductInfoW",
+      "MsiIsProductElevatedW",
+      "MsiProvideComponentFromDescriptorW",
+      "MsiQueryFeatureStateFromDescriptorW",
+      "MsiQueryFeatureStateW",
+      "MsiQueryProductStateW",
+      "MsiReinstallProductW",
+      "MsiSetInternalUI",
+      "RestartMsi",
+      "ShutdownMsi"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "2bfbe77d7925d5503f95b352a3b2b84909f501f8359c4831bb8c83191d721c47"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Create Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Stealing Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "DuplicateToken"
+        ]
+      }
+    ]
+  }
+}

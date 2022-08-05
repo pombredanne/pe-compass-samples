@@ -1,0 +1,209 @@
+{
+  "pe_name": "Wpdcomp.dll",
+  "pe_type": 523,
+  "pe_size": 91648,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\DriverStore\\FileRepository\\wpdcomp.inf_amd64_d5fc5f7282c9bafb\\Wpdcomp.dll",
+  "pe_timedate_stamp": 609946753,
+  "pe_timedate_human": "1989-04-30T13:39:13.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 27,
+      "functions": [
+        "??1type_info@@UEAA@XZ",
+        "?terminate@@YAXXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_errno",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vscwprintf",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "memcpy_s",
+        "memmove_s",
+        "memset",
+        "realloc",
+        "vswprintf_s",
+        "wcschr",
+        "wcsncpy_s"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 46,
+      "functions": [
+        "CloseHandle",
+        "DelayLoadFailureHook",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FindResourceExW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSize",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadResource",
+        "LocalFree",
+        "LockResource",
+        "MultiByteToWideChar",
+        "OpenEventW",
+        "OpenProcess",
+        "OutputDebugStringA",
+        "QueryFullProcessImageNameW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ResolveDelayLoadedAPI",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "lstrcmpiW"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 27,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "AuditFree",
+        "AuditQueryPerUserPolicy",
+        "AuditQuerySystemPolicy",
+        "ConvertSecurityDescriptorToStringSecurityDescriptorW",
+        "ConvertStringSecurityDescriptorToSecurityDescriptorW",
+        "CopySid",
+        "EventRegister",
+        "EventUnregister",
+        "EventWriteTransfer",
+        "GetSecurityInfo",
+        "GetTokenInformation",
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "LookupPrivilegeValueW",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "CharNextW",
+        "UnregisterClassA"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "DllGetClassObject",
+      "Microsoft_WDF_UMDF_Version"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "58e70acd3b2290876fdf58ccc6d135a252ed9c42b58e7c114ffdc6a2a16e3bfe"
+  },
+  "scan": {
+    "intentions": 5,
+    "uniq_apis_matched": 10,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 2,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Delayed Loads of DLL Resources",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryInfoKeyW"
+        ]
+      }
+    ]
+  }
+}

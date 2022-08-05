@@ -1,0 +1,211 @@
+{
+  "pe_name": "TpmInit.exe",
+  "pe_type": 267,
+  "pe_size": 62976,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-tpm-adminsnapin_31bf3856ad364e35_10.0.19041.1_none_37c2cec4b2ff6c9c\\TpmInit.exe",
+  "pe_timedate_stamp": 2600921239,
+  "pe_timedate_human": "2052-06-02T06:07:19.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 10,
+      "functions": [
+        "EventProviderEnabled",
+        "EventRegister",
+        "EventSetInformation",
+        "EventUnregister",
+        "EventWriteTransfer",
+        "RegCloseKey",
+        "RegDeleteValueW",
+        "RegOpenKeyExA",
+        "RegOpenKeyExW",
+        "RegQueryValueExA"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 34,
+      "functions": [
+        "CloseHandle",
+        "CreateMutexW",
+        "CreateProcessW",
+        "CreateThread",
+        "ExitThread",
+        "ExpandEnvironmentStringsA",
+        "FormatMessageW",
+        "GetCommandLineW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapSetInformation",
+        "HeapSize",
+        "LoadLibraryExA",
+        "LocalAlloc",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "RegisterApplicationRestart",
+        "ReleaseSRWLockExclusive",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "lstrcmpW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 14,
+      "functions": [
+        "DestroyWindow",
+        "EnumWindows",
+        "GetDlgItem",
+        "GetParent",
+        "GetWindowLongW",
+        "GetWindowTextW",
+        "LoadIconW",
+        "LoadStringW",
+        "PostMessageW",
+        "SendMessageW",
+        "SendNotifyMessageW",
+        "SetForegroundWindow",
+        "SetWindowLongW",
+        "SetWindowTextW"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 29,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__getmainargs",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_callnewh",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "_ismbblead",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wsystem",
+        "exit",
+        "free",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset",
+        "toupper",
+        "wcsncat_s",
+        "wcstok",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "comctl32.dll",
+      "imports": 1,
+      "functions": [
+        "PropertySheetW"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 2,
+      "functions": [
+        "CommandLineToArgvW",
+        "ShellExecuteExW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 5,
+      "functions": [
+        "CoCreateInstance",
+        "CoInitializeEx",
+        "CoInitializeSecurity",
+        "CoSetProxyBlanket",
+        "CoUninitialize"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "ea80b5fc2cc98eea5376f3ef1b1de3c447550ae5ee3c7cc8dfbbe9310c288880"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 2,
+        "apis": [
+          "CreateProcessw",
+          "ShellExecuteExW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "CommandLineToArgvW",
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegDeleteValueW",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

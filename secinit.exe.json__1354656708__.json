@@ -1,0 +1,122 @@
+{
+  "pe_name": "secinit.exe",
+  "pe_type": 267,
+  "pe_size": 9728,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-secinit_31bf3856ad364e35_10.0.19041.1_none_47fda84da0bc8185\\secinit.exe",
+  "pe_timedate_stamp": 3221596763,
+  "pe_timedate_human": "2072-02-01T23:59:23.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "kernel32.dll",
+      "imports": 15,
+      "functions": [
+        "CloseHandle",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "OpenEventW",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 14,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__getmainargs",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "exit"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 4,
+      "functions": [
+        "NtClose",
+        "NtCreateEvent",
+        "NtOpenEvent",
+        "RtlInitUnicodeString"
+      ]
+    },
+    {
+      "name": "wkscli.dll",
+      "imports": 1,
+      "functions": [
+        "NetJoinDomain"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "aa365888ab4e37156f06edf20049831ba7cd9203f6617a9632f1c8f3bcafe15a"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

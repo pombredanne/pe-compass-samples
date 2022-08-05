@@ -1,0 +1,150 @@
+{
+  "pe_name": "VSD3DRefDebug.dll",
+  "pe_type": 267,
+  "pe_size": 56288,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\VSD3DRefDebug.dll",
+  "pe_timedate_stamp": 7501882,
+  "pe_timedate_human": "1970-03-28T19:51:22.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 29,
+      "functions": [
+        "??0exception@@QAE@ABQBD@Z",
+        "??0exception@@QAE@ABQBDH@Z",
+        "??0exception@@QAE@ABV0@@Z",
+        "??1exception@@UAE@XZ",
+        "??1type_info@@UAE@XZ",
+        "??3@YAXPAX@Z",
+        "??_V@YAXPAX@Z",
+        "?what@exception@@UBEPBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "free",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset",
+        "swprintf_s",
+        "wcscpy_s",
+        "wcsncpy_s"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 29,
+      "functions": [
+        "CancelIoEx",
+        "CloseHandle",
+        "ConnectNamedPipe",
+        "CreateEventW",
+        "CreateNamedPipeW",
+        "DisableThreadLibraryCalls",
+        "DisconnectNamedPipe",
+        "FlushFileBuffers",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetExitCodeProcess",
+        "GetLastError",
+        "GetOverlappedResult",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "OpenProcess",
+        "QueryPerformanceCounter",
+        "ReadFile",
+        "ReadProcessMemory",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject",
+        "WriteFile",
+        "WriteProcessMemory"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "AddAccessAllowedAce",
+        "GetLengthSid",
+        "GetTokenInformation",
+        "InitializeAcl",
+        "InitializeSecurityDescriptor",
+        "OpenProcessToken",
+        "SetSecurityDescriptorDacl"
+      ]
+    },
+    {
+      "name": "version.dll",
+      "imports": 3,
+      "functions": [
+        "GetFileVersionInfoSizeW",
+        "GetFileVersionInfoW",
+        "VerQueryValueW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 1,
+    "functions": [
+      "InitializeDebugging"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "b6a0819ab9f065d4870065abdb81eb840c75d3e1a78baeba54f32c9472039128"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "WriteProcessMemory"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Implement Features To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 12,
+        "matches": 2,
+        "apis": [
+          "ConnectNamedPipe",
+          "DisconnectNamedPipe"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "pe_name": "mqmigplugin.dll",
+  "pe_type": 523,
+  "pe_size": 147792,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-m..elmanifests-inetsrv_31bf3856ad364e35_10.0.19041.746_none_53241887a50e03e8\\mqmigplugin.dll",
+  "pe_timedate_stamp": 612827896,
+  "pe_timedate_human": "1989-06-02T21:58:16.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "kernel32.dll",
+      "imports": 90,
+      "functions": [
+        "CloseHandle",
+        "CopyFileW",
+        "CreateFileW",
+        "DecodePointer",
+        "DeleteCriticalSection",
+        "EncodePointer",
+        "EnterCriticalSection",
+        "ExitProcess",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FindResourceW",
+        "FlsAlloc",
+        "FlsFree",
+        "FlsGetValue",
+        "FlsSetValue",
+        "FlushFileBuffers",
+        "FreeEnvironmentStringsW",
+        "GetACP",
+        "GetCPInfo",
+        "GetCommandLineA",
+        "GetConsoleCP",
+        "GetConsoleMode",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetEnvironmentStringsW",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleFileNameW",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetOEMCP",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetStdHandle",
+        "GetStringTypeW",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetThreadLocale",
+        "GetTickCount",
+        "GetVersionExW",
+        "HeapAlloc",
+        "HeapCreate",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSetInformation",
+        "HeapSize",
+        "InitializeCriticalSection",
+        "InitializeCriticalSectionAndSpinCount",
+        "IsValidCodePage",
+        "LCMapStringW",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadResource",
+        "LockResource",
+        "MultiByteToWideChar",
+        "OpenProcess",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReadConsoleW",
+        "ReadFile",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlPcToFileHeader",
+        "RtlUnwind",
+        "RtlUnwindEx",
+        "RtlVirtualUnwind",
+        "SetEndOfFile",
+        "SetFilePointer",
+        "SetLastError",
+        "SetStdHandle",
+        "SetThreadLocale",
+        "SetThreadStackGuarantee",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WaitForSingleObject",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 2,
+      "functions": [
+        "CoCreateInstance",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 2,
+      "functions": [
+        "PathCombineW",
+        "PathFileExistsW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "CharNextW",
+        "UnregisterClassA"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 9,
+      "functions": [
+        "CloseServiceHandle",
+        "ControlService",
+        "OpenSCManagerW",
+        "OpenServiceW",
+        "QueryServiceStatusEx",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "c48ca9ce4b0215967edb3f67bd0d0750d4ce837a4112b52feee81592134617a9"
+  },
+  "scan": {
+    "intentions": 6,
+    "uniq_apis_matched": 10,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "CloseServiceHandle",
+          "ControlService"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 3,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceStatusEx"
+        ]
+      },
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      }
+    ]
+  }
+}

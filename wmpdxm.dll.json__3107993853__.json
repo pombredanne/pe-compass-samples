@@ -1,0 +1,214 @@
+{
+  "pe_name": "wmpdxm.dll",
+  "pe_type": 267,
+  "pe_size": 167424,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\wmpdxm.dll",
+  "pe_timedate_stamp": 970580407,
+  "pe_timedate_human": "2000-10-03T13:40:07.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 26,
+      "functions": [
+        "_CIlog10",
+        "_CIpow",
+        "_XcptFilter",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_ftol2",
+        "_ftol2_sse",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memcpy_s",
+        "memset",
+        "realloc",
+        "wcscat_s",
+        "wcschr",
+        "wcscpy_s",
+        "wcspbrk"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 45,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "CompareStringW",
+        "DebugBreak",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FindResourceExW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetLocaleInfoW",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetTimeFormatW",
+        "GetVersionExW",
+        "HeapDestroy",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadResource",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReleaseSRWLockExclusive",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "SleepConditionVariableSRW",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WakeAllConditionVariable",
+        "lstrcmpiW",
+        "lstrcpyW",
+        "lstrcpynW",
+        "lstrlenA",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "gdi32.dll",
+      "imports": 1,
+      "functions": [
+        "GetDeviceCaps"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 4,
+      "functions": [
+        "CharNextW",
+        "CharPrevW",
+        "GetDC",
+        "ReleaseDC"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 15,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegEnumValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 7,
+      "functions": [
+        "CLSIDFromString",
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc",
+        "OleLoadFromStream",
+        "StringFromCLSID"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "6f7b259b7bf6e1dfee666b31bb78f25351ca64515ad86075dda8d24e19385de3"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

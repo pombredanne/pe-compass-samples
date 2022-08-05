@@ -1,0 +1,213 @@
+{
+  "pe_name": "vmhgfs_x86.dll",
+  "pe_type": 267,
+  "pe_size": 78176,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\DRVSTORE\\vmhgfs_6A454CD9F601185C67C1C5A96077E67E037A1961\\vmhgfs_x86.dll",
+  "pe_timedate_stamp": 1582085537,
+  "pe_timedate_human": "2020-02-19T04:12:17.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "user32.dll",
+      "imports": 1,
+      "functions": [
+        "CharUpperBuffW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 45,
+      "functions": [
+        "CloseHandle",
+        "CompareStringW",
+        "CreateEventW",
+        "CreateFileMappingW",
+        "CreateFileW",
+        "CreateMutexW",
+        "DefineDosDeviceW",
+        "DeleteCriticalSection",
+        "DeviceIoControl",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetLastError",
+        "GetLogicalDrives",
+        "GetModuleHandleW",
+        "GetOverlappedResult",
+        "GetProcAddress",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "InitializeCriticalSection",
+        "InitializeSListHead",
+        "IsDebuggerPresent",
+        "IsProcessorFeaturePresent",
+        "LeaveCriticalSection",
+        "LoadLibraryA",
+        "LocalAlloc",
+        "LocalFree",
+        "MapViewOfFile",
+        "OpenFileMappingW",
+        "OpenMutexW",
+        "QueryDosDeviceW",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "ResetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 18,
+      "functions": [
+        "AddAccessAllowedAce",
+        "AllocateAndInitializeSid",
+        "CopySid",
+        "EqualSid",
+        "FreeSid",
+        "GetLengthSid",
+        "GetTokenInformation",
+        "InitializeAcl",
+        "InitializeSecurityDescriptor",
+        "IsValidSid",
+        "OpenProcessToken",
+        "OpenThreadToken",
+        "RegCloseKey",
+        "RegOpenKeyExA",
+        "RegOpenKeyExW",
+        "RegQueryValueExA",
+        "RegQueryValueExW",
+        "SetSecurityDescriptorDacl"
+      ]
+    },
+    {
+      "name": "version.dll",
+      "imports": 3,
+      "functions": [
+        "GetFileVersionInfoSizeW",
+        "GetFileVersionInfoW",
+        "VerQueryValueW"
+      ]
+    },
+    {
+      "name": "vcruntime140.dll",
+      "imports": 6,
+      "functions": [
+        "__std_type_info_destroy_list",
+        "_except_handler4_common",
+        "memcpy",
+        "memmove",
+        "memset",
+        "strrchr"
+      ]
+    },
+    {
+      "name": "api-ms-win-crt-stdio-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "__stdio_common_vsprintf_s",
+        "__stdio_common_vswprintf"
+      ]
+    },
+    {
+      "name": "api-ms-win-crt-runtime-l1-1-0.dll",
+      "imports": 12,
+      "functions": [
+        "_beginthreadex",
+        "_cexit",
+        "_configure_narrow_argv",
+        "_endthreadex",
+        "_errno",
+        "_execute_onexit_table",
+        "_initialize_narrow_environment",
+        "_initialize_onexit_table",
+        "_initterm",
+        "_initterm_e",
+        "_seh_filter_dll",
+        "_wassert"
+      ]
+    },
+    {
+      "name": "api-ms-win-crt-string-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "_wcsicmp",
+        "_wcsnicmp",
+        "towupper"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 16,
+    "functions": [
+      "HgfsNP_RegisterRemote",
+      "HgfsNP_UnregisterRemote",
+      "NPAddConnection3",
+      "NPAddConnection",
+      "NPCancelConnection",
+      "NPCloseEnum",
+      "NPEnumResource",
+      "NPFormatNetworkName",
+      "NPGetCaps",
+      "NPGetConnection3",
+      "NPGetConnection",
+      "NPGetConnectionPerformance",
+      "NPGetResourceInformation",
+      "NPGetResourceParent",
+      "NPGetUniversalName",
+      "NPOpenEnum"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "cadad9c7cd3ddb800db700cf26d342ffb7f8cb67a1785a45c8c7479b3c932f7f"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenKeyExA",
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

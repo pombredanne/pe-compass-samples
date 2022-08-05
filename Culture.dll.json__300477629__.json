@@ -1,0 +1,158 @@
+{
+  "pe_name": "Culture.dll",
+  "pe_type": 523,
+  "pe_size": 62952,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\Culture.dll",
+  "pe_timedate_stamp": 1574584697,
+  "pe_timedate_human": "2019-11-24T08:38:17.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 6,
+      "functions": [
+        "OpenThreadToken",
+        "RegCloseKey",
+        "RegEnumValueW",
+        "RegOpenCurrentUser",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 38,
+      "functions": [
+        "CloseHandle",
+        "CreateFileMappingW",
+        "CreateFileW",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetFileSize",
+        "GetLastError",
+        "GetLocaleInfoW",
+        "GetModuleFileNameW",
+        "GetProcessHeap",
+        "GetSystemDefaultLCID",
+        "GetSystemDefaultUILanguage",
+        "GetSystemTimeAsFileTime",
+        "GetSystemWindowsDirectoryW",
+        "GetUserDefaultLCID",
+        "HeapAlloc",
+        "HeapFree",
+        "InitializeCriticalSectionAndSpinCount",
+        "InitializeSListHead",
+        "IsDebuggerPresent",
+        "IsProcessorFeaturePresent",
+        "LeaveCriticalSection",
+        "MapViewOfFile",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "VerSetConditionMask",
+        "VerifyVersionInfoW"
+      ]
+    },
+    {
+      "name": "vcruntime140_clr0400.dll",
+      "imports": 3,
+      "functions": [
+        "__C_specific_handler",
+        "__std_type_info_destroy_list",
+        "memset"
+      ]
+    },
+    {
+      "name": "ucrtbase_clr0400.dll",
+      "imports": 11,
+      "functions": [
+        "__stdio_common_vsnwprintf_s",
+        "__stdio_common_vswscanf",
+        "_cexit",
+        "_configure_narrow_argv",
+        "_execute_onexit_table",
+        "_initialize_narrow_environment",
+        "_initialize_onexit_table",
+        "_initterm",
+        "_initterm_e",
+        "_seh_filter_dll",
+        "wcsncmp"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 9,
+    "functions": [
+      "EnumCalendarInfoExEx",
+      "EnumDateFormatsExEx",
+      "EnumSystemLocalesEx",
+      "EnumTimeFormatsEx",
+      "GetCalendarInfoEx",
+      "GetLocaleInfoEx",
+      "LCIDToLocaleName",
+      "LocaleNameToLCID",
+      "ResolveLocaleName"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "8df8b77ddaacaa23bac7de6a899272bbdb81c0dcd4b040875a659ed314d9e3cc"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenCurrentUser",
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

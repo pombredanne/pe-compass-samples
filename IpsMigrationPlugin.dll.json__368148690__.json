@@ -1,0 +1,212 @@
+{
+  "pe_name": "IpsMigrationPlugin.dll",
+  "pe_type": 523,
+  "pe_size": 43520,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-t..nputpersonalization_31bf3856ad364e35_10.0.19041.746_none_1da55dc225237a0d\\IpsMigrationPlugin.dll",
+  "pe_timedate_stamp": 1034580541,
+  "pe_timedate_human": "2002-10-14T07:29:01.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 21,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_errno",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy_s",
+        "memset",
+        "realloc",
+        "wcscat_s",
+        "wcscmp",
+        "wcscpy_s",
+        "wcsncpy_s"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 41,
+      "functions": [
+        "CloseHandle",
+        "CreateFileW",
+        "CreateMutexW",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "FindResourceExW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetThreadLocale",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadResource",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReadFile",
+        "ReleaseMutex",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetThreadLocale",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WaitNamedPipeW",
+        "WriteFile",
+        "lstrcmpiW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 4,
+      "functions": [
+        "CharNextW",
+        "FindWindowW",
+        "PostMessageW",
+        "UnregisterClassA"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 10,
+      "functions": [
+        "ConvertSidToStringSidW",
+        "LookupAccountNameW",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegGetValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 2,
+      "functions": [
+        "SHFileOperationW",
+        "SHGetFolderPathAndSubDirW"
+      ]
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 1,
+      "functions": [
+        "SHDeleteKeyW"
+      ]
+    },
+    {
+      "name": "wdscore.dll",
+      "imports": 3,
+      "functions": [
+        "ConstructPartialMsgVW",
+        "CurrentIP",
+        "WdsSetupLogMessageW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 5,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "sspicli.dll",
+      "imports": 1,
+      "functions": [
+        "GetUserNameExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 5,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer",
+      "Sysprep_Cleanup_IPS"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "6c8fb3cb78c5adad651872c81947eb0333d28d3d337adc4f968333248e36d7a6"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryInfoKeyW"
+        ]
+      }
+    ]
+  }
+}

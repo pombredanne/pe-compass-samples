@@ -1,0 +1,198 @@
+{
+  "pe_name": "wmdmlog.dll",
+  "pe_type": 267,
+  "pe_size": 32256,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\wmdmlog.dll",
+  "pe_timedate_stamp": 1707283859,
+  "pe_timedate_human": "2024-02-07T05:30:59.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 14,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_vsnprintf",
+        "atol",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset",
+        "realloc",
+        "strcat_s",
+        "strcpy_s"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 9,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExA",
+        "RegDeleteValueA",
+        "RegEnumKeyExA",
+        "RegEnumValueA",
+        "RegOpenKeyExA",
+        "RegQueryInfoKeyA",
+        "RegQueryValueExA",
+        "RegSetValueExA"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 48,
+      "functions": [
+        "CloseHandle",
+        "CreateFileA",
+        "CreateMutexA",
+        "DeleteCriticalSection",
+        "DeleteFileA",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FindResourceExA",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileSize",
+        "GetLastError",
+        "GetLocalTime",
+        "GetModuleFileNameA",
+        "GetModuleHandleA",
+        "GetProcAddress",
+        "GetSystemDirectoryA",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameA",
+        "GetTempPathA",
+        "GetTickCount",
+        "HeapDestroy",
+        "InitializeCriticalSection",
+        "IsDBCSLeadByte",
+        "LeaveCriticalSection",
+        "LoadLibraryExA",
+        "LoadResource",
+        "MoveFileA",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "ReadFile",
+        "SetFilePointer",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WaitForSingleObject",
+        "WideCharToMultiByte",
+        "WriteFile",
+        "lstrcmpiA",
+        "lstrcpynA"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "user32.dll",
+      "imports": 3,
+      "functions": [
+        "CharNextA",
+        "CharPrevA",
+        "LoadStringA"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "00b2b33c6a4cf227e99ab80bd788d147963e51ac52c64fbb806302f5d60f7396"
+  },
+  "scan": {
+    "intentions": 5,
+    "uniq_apis_matched": 10,
+    "results": [
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExA",
+          "RegEnumValueA"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegDeleteValueA",
+          "RegOpenKeyExA",
+          "RegSetValueExA"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyA",
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileA"
+        ]
+      }
+    ]
+  }
+}

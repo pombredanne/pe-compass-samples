@@ -1,0 +1,177 @@
+{
+  "pe_name": "FXSMON.dll",
+  "pe_type": 523,
+  "pe_size": 49152,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\Temp\\InFlight\\aac66e8eb77dd8016a03000004232404\\amd64_microsoft-windows-fax-service_31bf3856ad364e35_10.0.19041.804_none_8b46258bdefa0beb\\FXSMON.dll",
+  "pe_timedate_stamp": 4165986698,
+  "pe_timedate_human": "2102-01-06T10:31:38.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 15,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "_itow",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wsplitpath_s",
+        "_wtoi",
+        "free",
+        "iswdigit",
+        "malloc",
+        "memcpy",
+        "memset",
+        "wcsstr"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 9,
+      "functions": [
+        "EtwGetTraceEnableFlags",
+        "EtwGetTraceEnableLevel",
+        "EtwGetTraceLoggerHandle",
+        "EtwRegisterTraceGuidsW",
+        "EtwTraceMessage",
+        "EtwUnregisterTraceGuids",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "spoolss.dll",
+      "imports": 4,
+      "functions": [
+        "ClosePrinter",
+        "GetJobW",
+        "OpenPrinterW",
+        "SetJobW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 44,
+      "functions": [
+        "CloseHandle",
+        "CreateFileW",
+        "DelayLoadFailureHook",
+        "DeleteCriticalSection",
+        "DeleteFileW",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "ExpandEnvironmentStringsW",
+        "FileTimeToSystemTime",
+        "FlushFileBuffers",
+        "FreeLibrary",
+        "GetFileSize",
+        "GetLastError",
+        "GetLocalTime",
+        "GetModuleFileNameW",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameW",
+        "GetTempPathW",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapDestroy",
+        "HeapFree",
+        "InitializeCriticalSectionAndSpinCount",
+        "LeaveCriticalSection",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "ResolveDelayLoadedAPI",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SystemTimeToFileTime",
+        "UnhandledExceptionFilter",
+        "WriteFile",
+        "lstrcmpW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 1,
+    "functions": [
+      "InitializePrintMonitor2"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "b31a009ed60b0cd403a8e60b8540f115047304d2b6f009efda22a5a54c2e0c43"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Delayed Loads of DLL Resources",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      }
+    ]
+  }
+}

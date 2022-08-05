@@ -1,0 +1,152 @@
+{
+  "pe_name": "snmptrap.exe",
+  "pe_type": 523,
+  "pe_size": 16896,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-snmp-trap-service_31bf3856ad364e35_10.0.19041.1_none_857c0c60dec56103\\snmptrap.exe",
+  "pe_timedate_stamp": 443895704,
+  "pe_timedate_human": "1984-01-25T16:21:44.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 10,
+      "functions": [
+        "AddAccessAllowedAce",
+        "AllocateAndInitializeSid",
+        "FreeSid",
+        "GetLengthSid",
+        "InitializeAcl",
+        "InitializeSecurityDescriptor",
+        "RegisterServiceCtrlHandlerW",
+        "SetSecurityDescriptorDacl",
+        "SetServiceStatus",
+        "StartServiceCtrlDispatcherW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 34,
+      "functions": [
+        "CloseHandle",
+        "ConnectNamedPipe",
+        "CreateEventW",
+        "CreateNamedPipeW",
+        "DeleteCriticalSection",
+        "DisconnectNamedPipe",
+        "EnterCriticalSection",
+        "GetCommandLineW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetOverlappedResult",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GlobalAlloc",
+        "GlobalFree",
+        "HeapSetInformation",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "QueryPerformanceCounter",
+        "RegisterApplicationRestart",
+        "ResetEvent",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 14,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__set_app_type",
+        "__setusermatherr",
+        "_amsg_exit",
+        "_beginthreadex",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "exit"
+      ]
+    },
+    {
+      "name": "ws2_32.dll",
+      "imports": 2,
+      "functions": [
+        "FreeAddrInfoW",
+        "GetAddrInfoW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "9d665698ff26ed333ad385b4b7a6c0f2b6806371d278e281fa4188002a5317e8"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 3,
+        "apis": [
+          "RegisterServiceCtrlHandlerW",
+          "SetServiceStatus",
+          "StartServiceCtrlDispatcherW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Implement Features To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 12,
+        "matches": 2,
+        "apis": [
+          "ConnectNamedPipe",
+          "DisconnectNamedPipe"
+        ]
+      },
+      {
+        "intent": "Implements Features To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 1,
+        "apis": [
+          "GetAddrInfoW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "pe_name": "KeyboardFilterCore.dll",
+  "pe_type": 267,
+  "pe_size": 34632,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-e..-keyboardfiltercore_31bf3856ad364e35_10.0.19041.964_none_893069b57261b9e9\\KeyboardFilterCore.dll",
+  "pe_timedate_stamp": 2369235850,
+  "pe_timedate_human": "2045-01-28T17:04:10.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 14,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_purecall",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "iswalpha",
+        "malloc",
+        "memcpy_s",
+        "memset",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 14,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumValueW",
+        "RegGetValueW",
+        "RegNotifyChangeKeyValue",
+        "RegOpenKeyExW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 25,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateThread",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetNativeSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitOnceExecuteOnce",
+        "IsWow64Process",
+        "MultiByteToWideChar",
+        "OpenEventW",
+        "ProcessIdToSessionId",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ResetEvent",
+        "SetEvent",
+        "SetProcessShutdownParameters",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForMultipleObjects"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 24,
+      "functions": [
+        "CallNextHookEx",
+        "CloseDesktop",
+        "CreateWindowExW",
+        "DefWindowProcW",
+        "DestroyWindow",
+        "DispatchMessageW",
+        "GetClassNameW",
+        "GetGUIThreadInfo",
+        "GetKeyboardLayout",
+        "GetMessageW",
+        "GetUserObjectInformationW",
+        "GetWindowThreadProcessId",
+        "MapVirtualKeyExW",
+        "OpenInputDesktop",
+        "PostMessageW",
+        "PostQuitMessage",
+        "RegisterClassW",
+        "SetWinEventHook",
+        "SetWindowsHookExW",
+        "SystemParametersInfoW",
+        "TranslateMessage",
+        "UnhookWinEvent",
+        "UnhookWindowsHookEx",
+        "VkKeyScanExW"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 10,
+      "functions": [
+        "NdrClientCall4",
+        "NdrServerCall2",
+        "RpcBindingFree",
+        "RpcBindingFromStringBindingW",
+        "RpcServerListen",
+        "RpcServerRegisterIfEx",
+        "RpcServerUnregisterIf",
+        "RpcServerUseProtseqEpW",
+        "RpcStringBindingComposeW",
+        "RpcStringFreeW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 1,
+    "functions": [
+      "HookMain"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "2c585df7953e1a541b2279740b5374510c93f920022b43214a3d7c13469572b4"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegGetValueW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Query and Discovery General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
+        ]
+      }
+    ]
+  }
+}

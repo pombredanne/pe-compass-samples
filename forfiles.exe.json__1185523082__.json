@@ -1,0 +1,194 @@
+{
+  "pe_name": "forfiles.exe",
+  "pe_type": 267,
+  "pe_size": 41472,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-forfiles_31bf3856ad364e35_10.0.19041.1_none_15692775b14712c0\\forfiles.exe",
+  "pe_timedate_stamp": 1473233952,
+  "pe_timedate_human": "2016-09-07T07:39:12.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "kernel32.dll",
+      "imports": 54,
+      "functions": [
+        "CloseHandle",
+        "CompareStringA",
+        "CompareStringW",
+        "CreateProcessW",
+        "ExitProcess",
+        "FileTimeToDosDateTime",
+        "FileTimeToLocalFileTime",
+        "FileTimeToSystemTime",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FormatMessageW",
+        "GetConsoleMode",
+        "GetConsoleOutputCP",
+        "GetCurrentDirectoryW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetDateFormatW",
+        "GetFileType",
+        "GetLastError",
+        "GetLocalTime",
+        "GetLocaleInfoW",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcessHeap",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetThreadLocale",
+        "GetTickCount",
+        "GetTimeFormatW",
+        "GetUserDefaultLCID",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSetInformation",
+        "HeapSize",
+        "HeapValidate",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "SearchPathW",
+        "SetCurrentDirectoryW",
+        "SetErrorMode",
+        "SetLastError",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 29,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__iob_func",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_errno",
+        "_except_handler4_common",
+        "_exit",
+        "_fileno",
+        "_get_osfhandle",
+        "_initterm",
+        "_memicmp",
+        "_ui64tow",
+        "_ultow",
+        "_vsnwprintf",
+        "exit",
+        "fflush",
+        "fprintf",
+        "memset",
+        "toupper",
+        "wcstod",
+        "wcstol",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 2,
+      "functions": [
+        "RtlVerifyVersionInfo",
+        "VerSetConditionMask"
+      ]
+    },
+    {
+      "name": "version.dll",
+      "imports": 2,
+      "functions": [
+        "GetFileVersionInfoExW",
+        "GetFileVersionInfoSizeExW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 3,
+      "functions": [
+        "CharLowerW",
+        "CharUpperW",
+        "LoadStringW"
+      ]
+    },
+    {
+      "name": "ws2_32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 8,
+      "functions": [
+        "PathRelativePathToW",
+        "StrChrIW",
+        "StrChrW",
+        "StrDupW",
+        "StrPBrkW",
+        "StrRChrW",
+        "StrStrIW",
+        "StrStrW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "7074d2a9c3d669a15d5b3a7ba1226dbba05888cc537cf055fed6371f32f0c1f5"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

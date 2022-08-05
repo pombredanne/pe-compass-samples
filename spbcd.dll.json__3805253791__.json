@@ -1,0 +1,211 @@
+{
+  "pe_name": "spbcd.dll",
+  "pe_type": 267,
+  "pe_size": 86528,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\spbcd.dll",
+  "pe_timedate_stamp": 2695628422,
+  "pe_timedate_human": "2055-06-03T09:40:22.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 29,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "_snwscanf_s",
+        "_ultow_s",
+        "_vsnwprintf",
+        "_vsnwprintf_s",
+        "_wcsicmp",
+        "_wcslwr",
+        "_wcsnicmp",
+        "_wcsupr",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memmove",
+        "memset",
+        "strcpy_s",
+        "strncmp",
+        "swprintf_s",
+        "wcscat_s",
+        "wcschr",
+        "wcscpy_s",
+        "wcsncpy_s",
+        "wcsnlen",
+        "wcsrchr",
+        "wcsstr",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 71,
+      "functions": [
+        "LdrGetDllHandle",
+        "LdrGetProcedureAddress",
+        "NtAdjustPrivilegesToken",
+        "NtClose",
+        "NtCreateFile",
+        "NtDeviceIoControlFile",
+        "NtEnumerateBootEntries",
+        "NtOpenDirectoryObject",
+        "NtOpenFile",
+        "NtOpenKey",
+        "NtOpenProcessTokenEx",
+        "NtOpenSymbolicLinkObject",
+        "NtOpenThreadTokenEx",
+        "NtQueryBootEntryOrder",
+        "NtQueryBootOptions",
+        "NtQueryDirectoryObject",
+        "NtQuerySymbolicLinkObject",
+        "NtQuerySystemInformation",
+        "NtQueryValueKey",
+        "NtSetInformationThread",
+        "NtTranslateFilePath",
+        "NtWriteFile",
+        "RtlAddAccessAllowedAceEx",
+        "RtlAllocateAndInitializeSid",
+        "RtlAllocateHeap",
+        "RtlAppendUnicodeToString",
+        "RtlCompareMemory",
+        "RtlCreateAcl",
+        "RtlCreateSecurityDescriptor",
+        "RtlFreeHeap",
+        "RtlFreeSid",
+        "RtlFreeUnicodeString",
+        "RtlGUIDFromString",
+        "RtlGetNtProductType",
+        "RtlGetVersion",
+        "RtlImpersonateSelf",
+        "RtlInitAnsiString",
+        "RtlInitUnicodeString",
+        "RtlLengthSecurityDescriptor",
+        "RtlLengthSid",
+        "RtlNtStatusToDosError",
+        "RtlSetDaclSecurityDescriptor",
+        "RtlSetOwnerSecurityDescriptor",
+        "RtlStringFromGUID",
+        "ZwAllocateUuids",
+        "ZwClose",
+        "ZwCreateKey",
+        "ZwDeleteKey",
+        "ZwDeleteValueKey",
+        "ZwDeviceIoControlFile",
+        "ZwEnumerateKey",
+        "ZwLoadKey",
+        "ZwOpenDirectoryObject",
+        "ZwOpenFile",
+        "ZwOpenKey",
+        "ZwOpenMutant",
+        "ZwOpenProcess",
+        "ZwOpenSymbolicLinkObject",
+        "ZwQueryAttributesFile",
+        "ZwQueryDirectoryObject",
+        "ZwQueryInformationFile",
+        "ZwQueryInformationProcess",
+        "ZwQueryKey",
+        "ZwQuerySymbolicLinkObject",
+        "ZwQuerySystemInformation",
+        "ZwQueryValueKey",
+        "ZwReleaseMutant",
+        "ZwSetSecurityObject",
+        "ZwSetValueKey",
+        "ZwUnloadKey",
+        "ZwWaitForSingleObject"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 17,
+      "functions": [
+        "CompareStringW",
+        "ExpandEnvironmentStringsW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "QueryDosDeviceW",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 1,
+      "functions": [
+        "RegGetValueW"
+      ]
+    },
+    {
+      "name": "wdscore.dll",
+      "imports": 3,
+      "functions": [
+        "ConstructPartialMsgVW",
+        "CurrentIP",
+        "WdsSetupLogMessageW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 3,
+    "functions": [
+      "Sysprep_Generalize_Bcd",
+      "Sysprep_Offline_Specialize_Bcd",
+      "Sysprep_Online_Specialize_Bcd"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "4e3b1c2079bbdc9a965a8a94ea66daf31ac374c3a3092183b183f2df2eeafe6b"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegGetValueW"
+        ]
+      },
+      {
+        "intent": "Query and Discovery General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "RtlGetNtProductType",
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "NtAdjustPrivilegesToken"
+        ]
+      }
+    ]
+  }
+}

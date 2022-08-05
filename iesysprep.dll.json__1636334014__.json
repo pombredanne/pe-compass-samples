@@ -1,0 +1,204 @@
+{
+  "pe_name": "iesysprep.dll",
+  "pe_type": 523,
+  "pe_size": 47104,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-ie-sysprep_31bf3856ad364e35_11.0.19041.1_none_0574a22cc433ea85\\iesysprep.dll",
+  "pe_timedate_stamp": 2494731748,
+  "pe_timedate_human": "2049-01-20T05:02:28.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 16,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__dllonexit",
+        "_amsg_exit",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_unlock",
+        "_vsnwprintf",
+        "free",
+        "iswalpha",
+        "malloc",
+        "memcpy_s",
+        "memset",
+        "wcschr",
+        "wcsncmp"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 14,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "DeleteAce",
+        "GetAce",
+        "GetAclInformation",
+        "GetSecurityInfo",
+        "LookupPrivilegeValueW",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyW",
+        "RegOpenKeyExW",
+        "RegSetValueExW",
+        "SetSecurityInfo"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 36,
+      "functions": [
+        "CloseHandle",
+        "CreateMutexExW",
+        "CreateSemaphoreExW",
+        "DebugBreak",
+        "DecodePointer",
+        "EncodePointer",
+        "FormatMessageW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "IsDebuggerPresent",
+        "LocalAlloc",
+        "LocalFree",
+        "OpenSemaphoreW",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "ReleaseSemaphore",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WaitForSingleObjectEx",
+        "WideCharToMultiByte"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 3,
+      "functions": [
+        "CoCreateInstance",
+        "CoInitialize",
+        "CoUninitialize"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 1,
+      "functions": [
+        "SHCreateItemFromParsingName"
+      ]
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 4,
+      "functions": [
+        "SHDeleteKeyW",
+        "SHDeleteValueW",
+        "SHRegGetValueW",
+        "StrCmpNIW"
+      ]
+    },
+    {
+      "name": "wdscore.dll",
+      "imports": 3,
+      "functions": [
+        "ConstructPartialMsgVW",
+        "CurrentIP",
+        "WdsSetupLogMessageW"
+      ]
+    },
+    {
+      "name": "wininet.dll",
+      "imports": 5,
+      "functions": [
+        "DeleteUrlCacheEntryW",
+        "FindCloseUrlCache",
+        "FindFirstUrlCacheEntryW",
+        "FindNextUrlCacheEntryW",
+        "FreeUrlCacheSpaceW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 5,
+    "functions": [
+      "Sysprep_Cleanup_IE",
+      "Sysprep_Generalize_IE",
+      "Sysprep_Offline_Specialize_IE",
+      "Sysprep_Online_Specialize_IE",
+      "Sysprep_Specialize_IE"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "29fe4085551d8f2e5041f487a5d419d85074e3a8597d34229c1d22f7b0b3f5c6"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyW"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 2,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

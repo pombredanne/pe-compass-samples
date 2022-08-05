@@ -1,0 +1,186 @@
+{
+  "pe_name": "sbeio.dll",
+  "pe_type": 523,
+  "pe_size": 198144,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-streambufferengine_31bf3856ad364e35_10.0.19041.1_none_e87cc6b550ca2675\\sbeio.dll",
+  "pe_timedate_stamp": 4259312268,
+  "pe_timedate_human": "2104-12-21T14:17:48.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 17,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 3,
+      "functions": [
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 8,
+      "functions": [
+        "CryptAcquireContextA",
+        "CryptGenRandom",
+        "CryptReleaseContext",
+        "InitializeSecurityDescriptor",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "SetEntriesInAclW",
+        "SetSecurityDescriptorDacl"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 59,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateFileMappingW",
+        "CreateFileW",
+        "CreateMutexW",
+        "DeleteCriticalSection",
+        "DeleteFileW",
+        "DisableThreadLibraryCalls",
+        "DuplicateHandle",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileInformationByHandle",
+        "GetFileType",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempPathW",
+        "GetTickCount",
+        "GetVersion",
+        "GetVersionExW",
+        "GlobalMemoryStatus",
+        "HeapAlloc",
+        "HeapFree",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LocalAlloc",
+        "LocalFree",
+        "MapViewOfFile",
+        "OpenEventW",
+        "OpenFileMappingW",
+        "OpenMutexW",
+        "OpenProcess",
+        "QueryPerformanceCounter",
+        "ReadFile",
+        "ReleaseMutex",
+        "ResetEvent",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetEvent",
+        "SetFilePointer",
+        "SetFilePointerEx",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "VirtualAlloc",
+        "VirtualFree",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject",
+        "WaitForSingleObjectEx",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 1,
+      "functions": [
+        "UuidCreate"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "DVRCreateDVRFileSink",
+      "DVRCreateDVRFileSource"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "609be2915d4f32317999c56b69d26c463c62dc6795f5ef2687ca16784e838add"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      }
+    ]
+  }
+}

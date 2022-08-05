@@ -1,0 +1,178 @@
+{
+  "pe_name": "chgport.exe",
+  "pe_type": 523,
+  "pe_size": 25600,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\chgport.exe",
+  "pe_timedate_stamp": 1968655113,
+  "pe_timedate_human": "2032-05-20T08:38:33.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegEnumValueW",
+        "RegOpenKeyExW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 37,
+      "functions": [
+        "DefineDosDeviceW",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCommandLineW",
+        "GetConsoleOutputCP",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryDosDeviceW",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetLastError",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VerSetConditionMask",
+        "VerifyVersionInfoW",
+        "WriteConsoleW"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 4,
+      "functions": [
+        "NtClose",
+        "NtOpenFile",
+        "NtQueryVolumeInformationFile",
+        "RtlInitUnicodeString"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 38,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__iob_func",
+        "__set_app_type",
+        "__setusermatherr",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ultoa",
+        "_wcsdup",
+        "_wcsicmp",
+        "_wcslwr",
+        "_wcsnicmp",
+        "_wsetlocale",
+        "exit",
+        "free",
+        "fwprintf",
+        "iswalnum",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset",
+        "setlocale",
+        "swprintf_s",
+        "vfwprintf",
+        "vswprintf_s",
+        "wcscat_s",
+        "wcschr",
+        "wcscpy_s",
+        "wcsrchr",
+        "wcstol",
+        "wcstoul",
+        "wprintf"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "e68aa9ecd4ecf58618ef794a9b493b5d070ccd5b435b7b850c95a3302c39fa59"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
+        ]
+      }
+    ]
+  }
+}

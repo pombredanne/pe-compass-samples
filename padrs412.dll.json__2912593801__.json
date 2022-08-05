@@ -1,0 +1,174 @@
+{
+  "pe_name": "padrs412.dll",
+  "pe_type": 267,
+  "pe_size": 45056,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\IME\\SHARED\\res\\padrs412.dll",
+  "pe_timedate_stamp": 2124902225,
+  "pe_timedate_human": "2037-05-02T18:37:05.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 32,
+      "functions": [
+        "??0exception@@QAE@ABQBD@Z",
+        "??0exception@@QAE@ABQBDH@Z",
+        "??0exception@@QAE@ABV0@@Z",
+        "??0exception@@QAE@XZ",
+        "??1exception@@UAE@XZ",
+        "??1type_info@@UAE@XZ",
+        "??3@YAXPAX@Z",
+        "?terminate@@YAXXZ",
+        "?what@exception@@UBEPBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnprintf_s",
+        "_vsnwprintf",
+        "_vsnwprintf_s",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memcpy_s",
+        "memmove",
+        "memmove_s",
+        "memset"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 48,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "AcquireSRWLockShared",
+        "CloseHandle",
+        "CloseThreadpoolTimer",
+        "CreateMutexExW",
+        "CreateProcessW",
+        "CreateSemaphoreExW",
+        "CreateThreadpoolTimer",
+        "DebugBreak",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "ExpandEnvironmentStringsW",
+        "FormatMessageW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "HeapAlloc",
+        "HeapFree",
+        "InitializeCriticalSectionEx",
+        "IsDebuggerPresent",
+        "LeaveCriticalSection",
+        "OpenSemaphoreW",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "ReleaseSRWLockExclusive",
+        "ReleaseSRWLockShared",
+        "ReleaseSemaphore",
+        "SetLastError",
+        "SetThreadpoolTimer",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SleepConditionVariableSRW",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WaitForSingleObjectEx",
+        "WaitForThreadpoolTimerCallbacks",
+        "WakeAllConditionVariable"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 8,
+      "functions": [
+        "GetSidSubAuthority",
+        "GetSidSubAuthorityCount",
+        "GetTokenInformation",
+        "IsValidSid",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "PadHelp_HandleContextPopup",
+      "PadHelp_HandleHelp"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "9f49f94dd7769725615181656442c4fb35ffb33884ec4f5f3b262899226ca439"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      }
+    ]
+  }
+}

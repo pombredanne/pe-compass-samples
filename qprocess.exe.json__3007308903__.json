@@ -1,0 +1,194 @@
+{
+  "pe_name": "qprocess.exe",
+  "pe_type": 523,
+  "pe_size": 27648,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\qprocess.exe",
+  "pe_timedate_stamp": 2162799390,
+  "pe_timedate_human": "2038-07-15T09:36:30.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "winsta.dll",
+      "imports": 7,
+      "functions": [
+        "WinStationEnumerateProcesses",
+        "WinStationEnumerateW",
+        "WinStationFreeGAPMemory",
+        "WinStationFreeMemory",
+        "WinStationGetAllProcesses",
+        "WinStationOpenServerW",
+        "WinStationQueryInformationW"
+      ]
+    },
+    {
+      "name": "utildll.dll",
+      "imports": 1,
+      "functions": [
+        "GetUnknownString"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 38,
+      "functions": [
+        "CloseHandle",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCommandLineW",
+        "GetConsoleOutputCP",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetFileApisToOEM",
+        "SetLastError",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VerSetConditionMask",
+        "VerifyVersionInfoW",
+        "WideCharToMultiByte",
+        "WriteConsoleW"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 3,
+      "functions": [
+        "RtlEnterCriticalSection",
+        "RtlInitializeCriticalSection",
+        "RtlLeaveCriticalSection"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "CopySid",
+        "EqualSid",
+        "GetLengthSid",
+        "LookupAccountSidW",
+        "LookupPrivilegeValueW",
+        "OpenProcessToken"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 39,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__iob_func",
+        "__set_app_type",
+        "__setusermatherr",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ultoa",
+        "_wcsdup",
+        "_wcsicmp",
+        "_wcslwr",
+        "_wcsnicmp",
+        "_wsetlocale",
+        "exit",
+        "fprintf",
+        "free",
+        "fwprintf",
+        "iswdigit",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset",
+        "setlocale",
+        "swprintf_s",
+        "vfwprintf",
+        "vswprintf_s",
+        "wcscat_s",
+        "wcschr",
+        "wcscmp",
+        "wcscpy_s",
+        "wcstol",
+        "wcstoul",
+        "wprintf"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "f71965f45a393e95b8c10b6d8947903bd0f035fc8ca3982d0f1a7d42b23fa315"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 2,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "pe_name": "findnetprinters.dll",
+  "pe_type": 267,
+  "pe_size": 53248,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-p..installerandprintui_31bf3856ad364e35_10.0.19041.1237_none_556ba5d1df8130ac\\findnetprinters.dll",
+  "pe_timedate_stamp": 3441587440,
+  "pe_timedate_human": "2079-01-22T04:30:40.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 22,
+      "functions": [
+        "_CIsqrt",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_ftol2",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wcslwr",
+        "free",
+        "iswprint",
+        "malloc",
+        "memcpy",
+        "memset",
+        "time"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 38,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "CloseHandle",
+        "CreateEventW",
+        "CreateMutexW",
+        "CreateSemaphoreW",
+        "CreateThread",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleExW",
+        "GetPrivateProfileStringW",
+        "GetProcessHeap",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapFree",
+        "InitializeCriticalSection",
+        "InitializeCriticalSectionAndSpinCount",
+        "LeaveCriticalSection",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "ReleaseSRWLockExclusive",
+        "ReleaseSemaphore",
+        "SetEvent",
+        "SetThreadpoolTimer",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SleepConditionVariableSRW",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject",
+        "WakeAllConditionVariable",
+        "WideCharToMultiByte"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 3,
+      "functions": [
+        "MsgWaitForMultipleObjects",
+        "PeekMessageW",
+        "TranslateMessage"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 9,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "ws2_32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "iphlpapi.dll",
+      "imports": 2,
+      "functions": [
+        "GetIpAddrTable",
+        "GetNumberOfInterfaces"
+      ]
+    },
+    {
+      "name": "wsnmp32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 14,
+      "functions": [
+        "RtlNtStatusToDosError",
+        "TpAllocWait",
+        "TpCallbackMayRunLong",
+        "TpReleaseIoCompletion",
+        "TpReleasePool",
+        "TpReleaseTimer",
+        "TpReleaseWait",
+        "TpReleaseWork",
+        "TpSetWait",
+        "TpWaitForAlpcCompletion",
+        "TpWaitForIoCompletion",
+        "TpWaitForTimer",
+        "TpWaitForWait",
+        "TpWaitForWork"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "5c769759e6ed0e2c97025b253a359f7edf3c1110fec72a53f8661b51aa30fbce"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Discover Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 2,
+        "apis": [
+          "GetIpAddrTable",
+          "GetNumberOfInterfaces"
+        ]
+      }
+    ]
+  }
+}

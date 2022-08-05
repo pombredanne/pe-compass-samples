@@ -1,0 +1,207 @@
+{
+  "pe_name": "pnpibs.dll",
+  "pe_type": 523,
+  "pe_size": 82240,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-pnpibs_31bf3856ad364e35_10.0.19041.572_none_1fcf5277cadc6026\\pnpibs.dll",
+  "pe_timedate_stamp": 3254840303,
+  "pe_timedate_human": "2073-02-20T18:18:23.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 14,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "_amsg_exit",
+        "_initterm",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wcsnicmp",
+        "bsearch",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset",
+        "wcsncmp"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 4,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "VerSetConditionMask"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 45,
+      "functions": [
+        "CloseHandle",
+        "CompareStringW",
+        "CreateFileMappingW",
+        "CreateFileW",
+        "ExpandEnvironmentStringsW",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FindResourceExW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetLastError",
+        "GetLocaleInfoW",
+        "GetLogicalDrives",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemDefaultUILanguage",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetUserDefaultUILanguage",
+        "GetVersionExW",
+        "HeapFree",
+        "LoadLibraryExW",
+        "LoadLibraryW",
+        "LoadResource",
+        "LocalAlloc",
+        "LocalFree",
+        "LocalReAlloc",
+        "MapViewOfFile",
+        "QueryPerformanceCounter",
+        "SearchPathW",
+        "SetErrorMode",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "VerifyVersionInfoW",
+        "WideCharToMultiByte",
+        "lstrcmpW",
+        "lstrcmpiW"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 2,
+      "functions": [
+        "RpcStringFreeW",
+        "UuidToStringW"
+      ]
+    },
+    {
+      "name": "wdscore.dll",
+      "imports": 13,
+      "functions": [
+        "ConstructPartialMsgVW",
+        "CurrentIP",
+        "WdsCreateBlackboard",
+        "WdsDestroyBlackboard",
+        "WdsFreeData",
+        "WdsGetBlackboardValue",
+        "WdsInitializeCallbackArray",
+        "WdsInitializeDataStringW",
+        "WdsInitializeDataUInt32",
+        "WdsPublishImmediateEx",
+        "WdsSetBlackboardValue",
+        "WdsSetupLogMessageW",
+        "WdsSubscribeEx"
+      ]
+    },
+    {
+      "name": "wdsutil.dll",
+      "imports": 1,
+      "functions": [
+        "PublishMessage"
+      ]
+    },
+    {
+      "name": "setupapi.dll",
+      "imports": 2,
+      "functions": [
+        "SetupCopyOEMInfW",
+        "SetupDiGetINFClassW"
+      ]
+    },
+    {
+      "name": "unattend.dll",
+      "imports": 2,
+      "functions": [
+        "UnattendGetCount",
+        "UnattendGetString"
+      ]
+    },
+    {
+      "name": "mpr.dll",
+      "imports": 2,
+      "functions": [
+        "WNetAddConnection2W",
+        "WNetCancelConnection2W"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 3,
+    "functions": [
+      "CallBack_Pnp_AddDriversOffline",
+      "CallBack_Pnp_AddDriversOnlineWinPE",
+      "Module_Init_Pnp"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "ac61181b8005666f780773f00edaee3f5bb2f6aecf44217b88e4b29a58cc6519"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

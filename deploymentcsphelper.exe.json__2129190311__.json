@@ -1,0 +1,208 @@
+{
+  "pe_name": "deploymentcsphelper.exe",
+  "pe_type": 523,
+  "pe_size": 36352,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-deploymentcsps_31bf3856ad364e35_10.0.19041.746_none_4c096bd75d4397f3\\deploymentcsphelper.exe",
+  "pe_timedate_stamp": 96426761,
+  "pe_timedate_human": "1973-01-21T01:12:41.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 36,
+      "functions": [
+        "??0exception@@QEAA@AEBQEBD@Z",
+        "??0exception@@QEAA@AEBQEBDH@Z",
+        "??0exception@@QEAA@AEBV0@@Z",
+        "??1exception@@UEAA@XZ",
+        "??1type_info@@UEAA@XZ",
+        "??3@YAXPEAX@Z",
+        "?terminate@@YAXXZ",
+        "?what@exception@@UEBAPEBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_callnewh",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnprintf",
+        "_wcmdln",
+        "_wcsnicmp",
+        "exit",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "wcschr",
+        "wcsstr"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 5,
+      "functions": [
+        "RtlAllocateHeap",
+        "RtlCaptureContext",
+        "RtlFreeHeap",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 16,
+      "functions": [
+        "CompareStringW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapFree",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "wdscore.dll",
+      "imports": 5,
+      "functions": [
+        "ConstructPartialMsgVW",
+        "CurrentIP",
+        "WdsInitialize",
+        "WdsSetupLogMessageW",
+        "WdsTerminate"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 1,
+      "functions": [
+        "CommandLineToArgvW"
+      ]
+    },
+    {
+      "name": "dismapi.dll",
+      "imports": 10,
+      "functions": [
+        "DismAddCapability",
+        "DismCloseSession",
+        "DismDisableFeature",
+        "DismEnableFeature",
+        "DismGetCapabilities",
+        "DismGetFeatures",
+        "DismInitialize",
+        "DismOpenSession",
+        "DismRemoveCapability",
+        "DismShutdown"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 5,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "SetLastError"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processenvironment-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "ExpandEnvironmentStringsW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-heap-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "HeapAlloc"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-file-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "CreateDirectoryW",
+        "GetFileAttributesW",
+        "GetFullPathNameW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "90e6dbdb4eb72ed9bcb4dcdc53f9a3ce3108297f84ce346b9af04790a641ccce"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "CommandLineToArgvW",
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

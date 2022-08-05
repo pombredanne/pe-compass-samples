@@ -1,0 +1,206 @@
+{
+  "pe_name": "imapi.dll",
+  "pe_type": 267,
+  "pe_size": 114688,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\imapi.dll",
+  "pe_timedate_stamp": 605337757,
+  "pe_timedate_human": "1989-03-08T05:22:37.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 28,
+      "functions": [
+        "??1type_info@@UAE@XZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "__RTDynamicCast",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_errno",
+        "_except_handler4_common",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "_wremove",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memcpy_s",
+        "memset",
+        "realloc",
+        "wcscat_s",
+        "wcscpy_s",
+        "wcsncpy_s",
+        "wcsstr"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "CharNextW",
+        "UnregisterClassA"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 14,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 7,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc",
+        "CreateStreamOnHGlobal",
+        "PropVariantClear",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 1,
+      "functions": [
+        "SHCreateStreamOnFileEx"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 49,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "CloseHandle",
+        "CreateEventW",
+        "CreateMutexW",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "FileTimeToSystemTime",
+        "FindResourceExW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetDateFormatW",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameW",
+        "GetTempPathW",
+        "GetTickCount",
+        "GetVolumeInformationW",
+        "GlobalAlloc",
+        "GlobalFree",
+        "InitializeCriticalSection",
+        "InitializeCriticalSectionAndSpinCount",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadResource",
+        "LocalAlloc",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReleaseMutex",
+        "ReleaseSRWLockExclusive",
+        "ResetEvent",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "SleepConditionVariableSRW",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WakeAllConditionVariable",
+        "WideCharToMultiByte",
+        "lstrcmpiW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "217a49b86543dd641e624ddf5191e8b2da0a788bf28f23063f67201df8f67be3"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "pe_name": "vfprint.dll",
+  "pe_type": 523,
+  "pe_size": 441272,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\vfprint.dll",
+  "pe_timedate_stamp": 1740185186,
+  "pe_timedate_human": "2025-02-22T00:46:26.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "ntdll.dll",
+      "imports": 24,
+      "functions": [
+        "DbgPrint",
+        "LdrDisableThreadCalloutsForDll",
+        "NtCompareTokens",
+        "NtQueryInformationProcess",
+        "NtQueryPerformanceCounter",
+        "NtQuerySystemInformation",
+        "NtTerminateProcess",
+        "RtlCaptureContext",
+        "RtlCaptureStackBackTrace",
+        "RtlDeleteCriticalSection",
+        "RtlGetVersion",
+        "RtlInitializeCriticalSectionAndSpinCount",
+        "RtlLookupFunctionEntry",
+        "RtlNormalizeProcessParams",
+        "RtlRaiseException",
+        "RtlRandom",
+        "RtlUnhandledExceptionFilter",
+        "RtlVirtualUnwind",
+        "_stricmp",
+        "_wcsicmp",
+        "memcmp",
+        "memcpy",
+        "memset",
+        "wcsrchr"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 40,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "AddVectoredExceptionHandler",
+        "CloseHandle",
+        "DebugBreak",
+        "EnterCriticalSection",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemDirectoryW",
+        "GetSystemInfo",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapCreate",
+        "HeapDestroy",
+        "HeapFree",
+        "LeaveCriticalSection",
+        "LoadLibraryExA",
+        "LoadLibraryExW",
+        "LoadLibraryW",
+        "ProcessIdToSessionId",
+        "RaiseException",
+        "ReadProcessMemory",
+        "ReleaseSRWLockExclusive",
+        "RemoveVectoredExceptionHandler",
+        "SetFilePointer",
+        "SetLastError",
+        "TerminateProcess",
+        "TlsAlloc",
+        "TlsFree",
+        "TlsGetValue",
+        "TlsSetValue",
+        "VirtualProtect",
+        "VirtualQuery"
+      ]
+    },
+    {
+      "name": "vrfcore.dll",
+      "imports": 16,
+      "functions": [
+        "VerifierAreStaticDllsInitialized",
+        "VerifierEnableFaultInjectionTargetRange",
+        "VerifierGetAppCallerAddress",
+        "VerifierGetRecursionTlsSlot",
+        "VerifierIsDllEntryActive",
+        "VerifierIsLayerEnabled",
+        "VerifierRegisterFaultInjectProvider",
+        "VerifierRegisterLayer",
+        "VerifierRegisterProvider",
+        "VerifierSetAPIClassName",
+        "VerifierSetFaultInjectionProbability",
+        "VerifierShouldFaultInject",
+        "VerifierStopMessageEx",
+        "VerifierTlsGetValue",
+        "VerifierTlsSetValue",
+        "VerifierUnregisterLayer"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 6,
+    "functions": [
+      "CreateFilterTestHook",
+      "GetAccessViolationsCount",
+      "GetInvalidHandleExceptionCount",
+      "PrintVerifierCreatePluginInterfaceWrapper",
+      "PrintVerifierIsLayerEnabled",
+      "GetPrinterHandleCount"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "2ea1abe5e6f190c25eff2e6414ab42913f2619e62c51fcd799db9f13b667df2d"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 2,
+    "results": [
+      {
+        "intent": "Query and Discovery General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "NtCompareTokens"
+        ]
+      }
+    ]
+  }
+}

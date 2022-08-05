@@ -1,0 +1,143 @@
+{
+  "pe_name": "ndadmin.exe",
+  "pe_type": 523,
+  "pe_size": 69632,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\ndadmin.exe",
+  "pe_timedate_stamp": 4246729019,
+  "pe_timedate_human": "2104-07-28T22:56:59.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "kernel32.dll",
+      "imports": 33,
+      "functions": [
+        "CloseHandle",
+        "CreateDirectoryW",
+        "CreateEventW",
+        "ExitProcess",
+        "ExpandEnvironmentStringsW",
+        "FreeLibrary",
+        "GetCommandLineW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetSystemWindowsDirectoryW",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "SetEvent",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObjectEx"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 20,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ismbblead",
+        "_resetstkoflw",
+        "exit",
+        "memcpy",
+        "swscanf",
+        "wcschr",
+        "wcsrchr"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 10,
+      "functions": [
+        "NtClose",
+        "NtOpenKey",
+        "NtQueryValueKey",
+        "RtlCaptureContext",
+        "RtlFormatCurrentUserKeyPath",
+        "RtlFreeUnicodeString",
+        "RtlInitUnicodeString",
+        "RtlLookupFunctionEntry",
+        "RtlNtStatusToDosError",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 1,
+      "functions": [
+        "CommandLineToArgvW"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 3,
+      "functions": [
+        "AllocateAndInitializeSid",
+        "CheckTokenMembership",
+        "FreeSid"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "c33db51c283f57aa5169a3ec8367d754d7ad39e2e7b4e2975fdd1d62f221c028"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "CommandLineToArgvW",
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "CheckTokenMembership"
+        ]
+      }
+    ]
+  }
+}

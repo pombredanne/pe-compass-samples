@@ -1,0 +1,239 @@
+{
+  "pe_name": "cmcfg32.dll",
+  "pe_type": 523,
+  "pe_size": 39424,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\cmcfg32.dll",
+  "pe_timedate_stamp": 2588117459,
+  "pe_timedate_human": "2052-01-06T01:30:59.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 10,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "_stricmp",
+        "_vsnprintf",
+        "free",
+        "malloc",
+        "memset",
+        "strcmp"
+      ]
+    },
+    {
+      "name": "cmutil.dll",
+      "imports": 8,
+      "functions": [
+        "CmFmtMsgA",
+        "CmFree",
+        "CmMalloc",
+        "CmStrrchrA",
+        "GetOSMajorVersion",
+        "GetOSVersion",
+        "SzToWzWithAlloc",
+        "WzToSzWithAlloc"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 16,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "AllocateAndInitializeSid",
+        "BuildTrusteeWithSidA",
+        "ConvertStringSidToSidA",
+        "FreeSid",
+        "GetNamedSecurityInfoA",
+        "GetSecurityDescriptorDacl",
+        "GetSecurityDescriptorOwner",
+        "LookupPrivilegeValueA",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegEnumValueA",
+        "RegOpenKeyExA",
+        "RegQueryValueExA",
+        "SetEntriesInAclA",
+        "SetNamedSecurityInfoA"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 50,
+      "functions": [
+        "CloseHandle",
+        "CopyFileA",
+        "CreateDirectoryA",
+        "CreateFileA",
+        "DisableThreadLibraryCalls",
+        "FindClose",
+        "FindFirstFileA",
+        "FindNextFileA",
+        "FormatMessageA",
+        "FreeLibrary",
+        "GetCurrentDirectoryA",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleA",
+        "GetPrivateProfileIntA",
+        "GetPrivateProfileStringA",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemDirectoryA",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempPathA",
+        "GetTickCount",
+        "GetVersionExA",
+        "GetVolumeInformationA",
+        "GetWindowsDirectoryA",
+        "HeapAlloc",
+        "HeapFree",
+        "LoadLibraryExA",
+        "LocalFree",
+        "MoveFileA",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RemoveDirectoryA",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetCurrentDirectoryA",
+        "SetFileAttributesA",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "lstrcmpiA",
+        "lstrlenA"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 2,
+      "functions": [
+        "CoCreateGuid",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 6,
+      "functions": [
+        "SHFileOperationA",
+        "SHGetFolderPathA",
+        "SHGetMalloc",
+        "SHGetPathFromIDListA",
+        "SHGetSpecialFolderLocation",
+        "ShellExecuteA"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 5,
+      "functions": [
+        "CharNextA",
+        "CharPrevA",
+        "LoadStringA",
+        "MessageBoxA",
+        "MessageBoxExA"
+      ]
+    },
+    {
+      "name": "version.dll",
+      "imports": 3,
+      "functions": [
+        "GetFileVersionInfoA",
+        "GetFileVersionInfoSizeA",
+        "VerQueryValueA"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "CmstpExtensionProc2",
+      "CmstpExtensionProc",
+      "CMConfig",
+      "CMConfigEx"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "460e3eabb7400e7cb5e00e6b74e90da19ec6eda622af27fc76a662d9f3ad63c4"
+  },
+  "scan": {
+    "intentions": 6,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 2,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueA"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExA"
+        ]
+      },
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "ShellExecuteA"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileA"
+        ]
+      }
+    ]
+  }
+}

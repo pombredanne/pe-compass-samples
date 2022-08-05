@@ -1,0 +1,181 @@
+{
+  "pe_name": "amstream.dll",
+  "pe_type": 267,
+  "pe_size": 76800,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\amstream.dll",
+  "pe_timedate_stamp": 2836008604,
+  "pe_timedate_human": "2059-11-14T04:10:04.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 13,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_purecall",
+        "_vsnwprintf",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memset",
+        "realloc"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 46,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "CloseHandle",
+        "CreateEventW",
+        "CreateSemaphoreW",
+        "CreateThread",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FindResourceW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapDestroy",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadLibraryW",
+        "LoadResource",
+        "MulDiv",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "QueueUserAPC",
+        "ReleaseSRWLockExclusive",
+        "ReleaseSemaphore",
+        "ResetEvent",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "SleepConditionVariableSRW",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WakeAllConditionVariable",
+        "lstrcmpW",
+        "lstrcmpiW",
+        "lstrcpyW",
+        "lstrcpynW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "CharNextW",
+        "IsRectEmpty"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 9,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 4,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "ddraw.dll",
+      "imports": 1,
+      "functions": [
+        "DirectDrawCreate"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "8f487211365c5e7c69d63e3c35bf064e940055b3f56b71b537138541f09fc8fc"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      }
+    ]
+  }
+}

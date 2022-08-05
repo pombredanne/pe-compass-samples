@@ -1,0 +1,194 @@
+{
+  "pe_name": "rasphone.exe",
+  "pe_type": 267,
+  "pe_size": 31744,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\rasphone.exe",
+  "pe_timedate_stamp": 240364427,
+  "pe_timedate_human": "1977-08-13T23:53:47.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 9,
+      "functions": [
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 34,
+      "functions": [
+        "ActivateActCtx",
+        "CloseHandle",
+        "CompareStringW",
+        "CreateActCtxW",
+        "DeactivateActCtx",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetPrivateProfileStringW",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GlobalAlloc",
+        "GlobalFree",
+        "GlobalReAlloc",
+        "HeapSetInformation",
+        "LoadLibraryExW",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "ReleaseActCtx",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "lstrlenA",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 19,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__argc",
+        "__argv",
+        "__getmainargs",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "_ismbblead",
+        "exit",
+        "memset"
+      ]
+    },
+    {
+      "name": "rtutils.dll",
+      "imports": 3,
+      "functions": [
+        "TraceDeregisterExA",
+        "TracePrintfExA",
+        "TraceRegisterExA"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 3,
+      "functions": [
+        "NtQueryInformationToken",
+        "_vsnwprintf",
+        "_wtol"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 4,
+      "functions": [
+        "CharNextW",
+        "CharPrevW",
+        "LoadStringW",
+        "MessageBoxW"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 1,
+      "functions": [
+        "I_RpcExceptionFilter"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "081f631d598c327c2e9093d34fefee01bc571becf0b3b3eaf1f6537fe18a945e"
+  },
+  "scan": {
+    "intentions": 5,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      }
+    ]
+  }
+}

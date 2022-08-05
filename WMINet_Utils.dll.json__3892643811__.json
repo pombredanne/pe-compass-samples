@@ -1,0 +1,226 @@
+{
+  "pe_name": "WMINet_Utils.dll",
+  "pe_type": 267,
+  "pe_size": 140048,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\WMINet_Utils.dll",
+  "pe_timedate_stamp": 1574583731,
+  "pe_timedate_human": "2019-11-24T08:22:11.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 17,
+      "functions": [
+        "AddAce",
+        "AdjustTokenPrivileges",
+        "AllocateAndInitializeSid",
+        "CopySid",
+        "FreeSid",
+        "GetLengthSid",
+        "GetTokenInformation",
+        "InitializeAcl",
+        "InitializeSecurityDescriptor",
+        "OpenProcessToken",
+        "OpenThreadToken",
+        "RegCloseKey",
+        "RegCreateKeyExA",
+        "RegSetKeySecurity",
+        "RevertToSelf",
+        "SetSecurityDescriptorDacl",
+        "SetThreadToken"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 28,
+      "functions": [
+        "CloseHandle",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemDirectoryA",
+        "GetSystemTimeAsFileTime",
+        "GetVersionExA",
+        "HeapAlloc",
+        "HeapDestroy",
+        "HeapFree",
+        "InitializeCriticalSection",
+        "InitializeSListHead",
+        "InterlockedDecrement",
+        "InterlockedIncrement",
+        "IsDebuggerPresent",
+        "IsProcessorFeaturePresent",
+        "LeaveCriticalSection",
+        "LoadLibraryExA",
+        "SetUnhandledExceptionFilter",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "vcruntime140_clr0400.dll",
+      "imports": 8,
+      "functions": [
+        "_CxxThrowException",
+        "__CxxFrameHandler3",
+        "__std_exception_copy",
+        "__std_exception_destroy",
+        "__std_terminate",
+        "__std_type_info_destroy_list",
+        "_except_handler4_common",
+        "memset"
+      ]
+    },
+    {
+      "name": "ucrtbase_clr0400.dll",
+      "imports": 12,
+      "functions": [
+        "_callnewh",
+        "_cexit",
+        "_configure_narrow_argv",
+        "_execute_onexit_table",
+        "_initialize_narrow_environment",
+        "_initialize_onexit_table",
+        "_initterm",
+        "_initterm_e",
+        "_seh_filter_dll",
+        "_wcsnicmp",
+        "free",
+        "malloc"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 3,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 65,
+    "functions": [
+      "BeginEnumeration",
+      "BeginMethodEnumeration",
+      "BlessIWbemServices",
+      "BlessIWbemServicesObject",
+      "Clone",
+      "CloneEnumWbemClassObject",
+      "CompareTo",
+      "ConnectServerWmi",
+      "CreateClassEnumWmi",
+      "CreateInstanceEnumWmi",
+      "Delete",
+      "DeleteMethod",
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer",
+      "EndEnumeration",
+      "EndMethodEnumeration",
+      "ExecNotificationQueryWmi",
+      "ExecQueryWmi",
+      "Get",
+      "GetCurrentApartmentType",
+      "GetDemultiplexedStub",
+      "GetErrorInfo",
+      "GetMethod",
+      "GetMethodOrigin",
+      "GetMethodQualifierSet",
+      "GetNames",
+      "GetObjectText",
+      "GetPropertyHandle",
+      "GetPropertyInfoByHandle",
+      "GetPropertyOrigin",
+      "GetPropertyQualifierSet",
+      "GetQualifierSet",
+      "InheritsFrom",
+      "Initialize",
+      "Lock",
+      "Next",
+      "NextMethod",
+      "Put",
+      "PutClassWmi",
+      "PutInstanceWmi",
+      "PutMethod",
+      "QualifierSet_BeginEnumeration",
+      "QualifierSet_Delete",
+      "QualifierSet_EndEnumeration",
+      "QualifierSet_Get",
+      "QualifierSet_GetNames",
+      "QualifierSet_Next",
+      "QualifierSet_Put",
+      "ReadDWORD",
+      "ReadPropertyValue",
+      "ReadQWORD",
+      "ResetSecurity",
+      "SetSecurity",
+      "SpawnDerivedClass",
+      "SpawnInstance",
+      "UFunc",
+      "Unlock",
+      "VerifyClientKey",
+      "WriteDWORD",
+      "WriteDouble",
+      "WritePropertyValue",
+      "WriteQWORD",
+      "WriteSingle"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "fc0f7db5efa34abc02b426f94b1d172cca3552e3c34ac0b9244d8388fc00f669"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 3,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Create Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegCreateKeyExA"
+        ]
+      }
+    ]
+  }
+}

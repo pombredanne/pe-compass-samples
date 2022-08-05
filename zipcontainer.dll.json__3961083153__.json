@@ -1,0 +1,213 @@
+{
+  "pe_name": "zipcontainer.dll",
+  "pe_type": 523,
+  "pe_size": 79872,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\zipcontainer.dll",
+  "pe_timedate_stamp": 2836581511,
+  "pe_timedate_human": "2059-11-20T19:18:31.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 17,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_unlock",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-file-l1-1-0.dll",
+      "imports": 7,
+      "functions": [
+        "CreateDirectoryW",
+        "CreateFileW",
+        "DeleteFileW",
+        "ReadFile",
+        "SetEndOfFile",
+        "SetFilePointer",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetLastError",
+        "RaiseException",
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-handle-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CloseHandle"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-heap-l2-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "LocalAlloc",
+        "LocalFree"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-file-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "GetTempPathW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "CoCreateGuid",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-string-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "MultiByteToWideChar",
+        "WideCharToMultiByte"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "GetSystemTimeAsFileTime",
+        "GetTickCount"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-rtlsupport-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-heap-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "GetProcessHeap",
+        "HeapAlloc",
+        "HeapFree"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "CreateFileStream",
+      "ZipContainerCreateArchiveOnFile",
+      "ZipContainerInitialize",
+      "ZipContainerUninitialize"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "20c07a6a043d2c8eca409dfc1b47096732760586b7180baae13e4248a573c90e"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

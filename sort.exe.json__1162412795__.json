@@ -1,0 +1,157 @@
+{
+  "pe_name": "sort.exe",
+  "pe_type": 267,
+  "pe_size": 24576,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-sort_31bf3856ad364e35_10.0.19041.1_none_6c03db28ed4132dc\\sort.exe",
+  "pe_timedate_stamp": 4275976949,
+  "pe_timedate_human": "2105-07-02T11:22:29.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 36,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__getmainargs",
+        "__iob_func",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_ftol2",
+        "_ftol2_sse",
+        "_initterm",
+        "_stricoll",
+        "_strncoll",
+        "_strnicmp",
+        "_strnicoll",
+        "_wcsicoll",
+        "_wcsncoll",
+        "_wcsnicoll",
+        "atoi",
+        "exit",
+        "fprintf",
+        "memcpy",
+        "memmove",
+        "memset",
+        "qsort",
+        "setlocale",
+        "strchr",
+        "strcoll",
+        "strcpy_s",
+        "toupper",
+        "wcscoll"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 2,
+      "functions": [
+        "RtlMultiByteToUnicodeN",
+        "RtlUnicodeToOemN"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 44,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "CloseHandle",
+        "CreateEventA",
+        "CreateFileA",
+        "FormatMessageA",
+        "GetCPInfo",
+        "GetConsoleMode",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetDiskFreeSpaceA",
+        "GetFileSize",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleA",
+        "GetModuleHandleW",
+        "GetOverlappedResult",
+        "GetProcessHeap",
+        "GetStdHandle",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameA",
+        "GetTempPathA",
+        "GetTickCount",
+        "GlobalMemoryStatusEx",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapSetInformation",
+        "LocalAlloc",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "ReadFile",
+        "ReleaseSRWLockExclusive",
+        "ResetEvent",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "WaitForSingleObject",
+        "WideCharToMultiByte",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 6,
+      "functions": [
+        "EventProviderEnabled",
+        "EventRegister",
+        "EventSetInformation",
+        "EventUnregister",
+        "EventWriteTransfer",
+        "IsTextUnicode"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "a0a4fb16f2e2469624e82d6f87c5180b40d6213c3a993b0a85e391be1b149897"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 2,
+    "results": [
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      }
+    ]
+  }
+}

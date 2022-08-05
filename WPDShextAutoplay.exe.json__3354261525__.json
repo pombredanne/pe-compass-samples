@@ -1,0 +1,213 @@
+{
+  "pe_name": "WPDShextAutoplay.exe",
+  "pe_type": 523,
+  "pe_size": 30720,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\WPDShextAutoplay.exe",
+  "pe_timedate_stamp": 2269098305,
+  "pe_timedate_human": "2041-11-26T17:05:05.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegQueryValueExW",
+        "TraceMessage"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 38,
+      "functions": [
+        "CloseHandle",
+        "CompareStringW",
+        "CreateEventW",
+        "CreateFileMappingW",
+        "CreateProcessW",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "FindResourceExW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersion",
+        "HeapAlloc",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSize",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadResource",
+        "LockResource",
+        "MapViewOfFile",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 3,
+      "functions": [
+        "FindWindowW",
+        "SendMessageW",
+        "UnregisterClassA"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 34,
+      "functions": [
+        "??1type_info@@UEAA@XZ",
+        "?terminate@@YAXXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "__getmainargs",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_callnewh",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ismbblead",
+        "_lock",
+        "_onexit",
+        "_unlock",
+        "_vscwprintf",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "exit",
+        "free",
+        "malloc",
+        "memcpy_s",
+        "memmove_s",
+        "memset",
+        "vswprintf_s",
+        "wcschr",
+        "wcstok"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 1,
+      "functions": [
+        "StrRStrIW"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 7,
+      "functions": [
+        "CLSIDFromString",
+        "CoCreateInstance",
+        "CoInitializeEx",
+        "CoRegisterClassObject",
+        "CoRevokeClassObject",
+        "CoUninitialize",
+        "CreateBindCtx"
+      ]
+    },
+    {
+      "name": "setupapi.dll",
+      "imports": 7,
+      "functions": [
+        "SetupDiDestroyDeviceInfoList",
+        "SetupDiEnumDeviceInterfaces",
+        "SetupDiGetClassDevsExW",
+        "SetupDiGetDeviceInterfaceAlias",
+        "SetupDiGetDeviceInterfaceDetailW",
+        "SetupDiOpenDevRegKey",
+        "SetupDiOpenDeviceInterfaceW"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 2,
+      "functions": [
+        "SHParseDisplayName",
+        "ShellExecuteExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "c0f8536c11be99d0128dd970de2b592b7c558037f07783df006b552a9c07f17d"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 2,
+        "apis": [
+          "CreateProcessw",
+          "ShellExecuteExW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "pe_name": "cmmigr.dll",
+  "pe_type": 267,
+  "pe_size": 56320,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\setup\\cmmigr.dll",
+  "pe_timedate_stamp": 5782076,
+  "pe_timedate_human": "1970-03-08T22:07:56.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 31,
+      "functions": [
+        "??0exception@@QAE@ABV0@@Z",
+        "??0exception@@QAE@XZ",
+        "??1exception@@UAE@XZ",
+        "??1type_info@@UAE@XZ",
+        "?what@exception@@UBEPBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_errno",
+        "_except_handler4_common",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnprintf",
+        "_vsnwprintf",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memcpy_s",
+        "memmove_s",
+        "memset",
+        "realloc",
+        "wcscat_s",
+        "wcschr",
+        "wcscpy_s",
+        "wcsncpy_s"
+      ]
+    },
+    {
+      "name": "cmutil.dll",
+      "imports": 2,
+      "functions": [
+        "CmFree",
+        "CmMalloc"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 52,
+      "functions": [
+        "CloseHandle",
+        "CopyFileW",
+        "CreateDirectoryW",
+        "CreateFileW",
+        "DeleteCriticalSection",
+        "DeleteFileW",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FindResourceExW",
+        "GetCurrentDirectoryW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetPrivateProfileIntW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetThreadLocale",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSize",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LoadResource",
+        "LocalAlloc",
+        "LocalFree",
+        "LockResource",
+        "MultiByteToWideChar",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "SetCurrentDirectoryW",
+        "SetFileShortNameW",
+        "SetThreadLocale",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "lstrcmpiW",
+        "lstrlenA",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 3,
+      "functions": [
+        "CharNextW",
+        "CharPrevW",
+        "UnregisterClassA"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 4,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemFree",
+        "StringFromCLSID",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 13,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "GetSecurityInfo",
+        "LookupPrivilegeValueW",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyW",
+        "RegEnumKeyExW",
+        "RegEnumKeyW",
+        "RegEnumValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 2,
+      "functions": [
+        "SHFileOperationW",
+        "SHGetFileInfoW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 5,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllMain",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "7be410c550d9023ec9f3e4c7f42b7e7fec4de97af2015f15916e0a829991beac"
+  },
+  "scan": {
+    "intentions": 6,
+    "uniq_apis_matched": 12,
+    "results": [
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 3,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumKeyW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 2,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryInfoKeyW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      }
+    ]
+  }
+}

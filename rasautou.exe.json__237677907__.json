@@ -1,0 +1,179 @@
+{
+  "pe_name": "rasautou.exe",
+  "pe_type": 523,
+  "pe_size": 18432,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\rasautou.exe",
+  "pe_timedate_stamp": 1868543119,
+  "pe_timedate_human": "2029-03-18T15:45:19.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExA"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 27,
+      "functions": [
+        "ActivateActCtx",
+        "CreateActCtxW",
+        "DeactivateActCtx",
+        "DelayLoadFailureHook",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryExW",
+        "LocalAlloc",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "ProcessIdToSessionId",
+        "QueryPerformanceCounter",
+        "ReleaseActCtx",
+        "ResolveDelayLoadedAPI",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualFree"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 17,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_stricmp",
+        "_wcsicmp",
+        "exit",
+        "printf",
+        "strstr"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 8,
+      "functions": [
+        "DbgPrint",
+        "NtClose",
+        "NtOpenFile",
+        "NtQuerySystemInformation",
+        "RtlCaptureContext",
+        "RtlInitUnicodeString",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "rasapi32.dll",
+      "imports": 4,
+      "functions": [
+        "DwRasUninitialize",
+        "RasEnumAutodialAddressesW",
+        "RasGetAutodialAddressW",
+        "RasGetAutodialParamW"
+      ]
+    },
+    {
+      "name": "rasdlg.dll",
+      "imports": 3,
+      "functions": [
+        "RasAutodialQueryDlgW",
+        "RasDialDlgW",
+        "RasPhonebookDlgW"
+      ]
+    },
+    {
+      "name": "ws2_32.dll",
+      "imports": 0,
+      "functions": []
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "eec5dbdf411a89f65247679840dc7a902180c1d23c94b0d92c283b4130664263"
+  },
+  "scan": {
+    "intentions": 5,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Implements Delayed Loads of DLL Resources",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

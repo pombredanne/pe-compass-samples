@@ -1,0 +1,226 @@
+{
+  "pe_name": "ntvdm64.dll",
+  "pe_type": 267,
+  "pe_size": 16384,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\ntvdm64.dll",
+  "pe_timedate_stamp": 345527051,
+  "pe_timedate_human": "1980-12-13T03:44:11.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "ntdll.dll",
+      "imports": 8,
+      "functions": [
+        "NtQueryInformationProcess",
+        "RtlAllocateHeap",
+        "RtlFreeHeap",
+        "RtlGetThreadErrorMode",
+        "RtlUnwind",
+        "_vsnwprintf",
+        "wcschr",
+        "wcsncmp"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-version-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "GetFileVersionInfoExW",
+        "GetFileVersionInfoSizeExW",
+        "VerQueryValueW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processenvironment-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "ExpandEnvironmentStringsW",
+        "GetEnvironmentVariableW",
+        "SearchPathW",
+        "SetEnvironmentVariableW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-heap-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "GetProcessHeap",
+        "HeapAlloc",
+        "HeapFree"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetLastError",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-file-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "GetFullPathNameW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-localization-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "FormatMessageW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-libraryloader-l1-2-0.dll",
+      "imports": 3,
+      "functions": [
+        "DisableThreadLibraryCalls",
+        "GetModuleHandleW",
+        "LoadStringW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-heap-l2-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "LocalFree"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "GetSystemTimeAsFileTime",
+        "GetSystemWindowsDirectoryW",
+        "GetTickCount"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l2-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RegCreateKeyW",
+        "RegEnumKeyW",
+        "RegOpenKeyW"
+      ]
+    },
+    {
+      "name": "kernelbase.dll",
+      "imports": 1,
+      "functions": [
+        "CreateProcessInternalW"
+      ]
+    },
+    {
+      "name": "version.dll",
+      "imports": 1,
+      "functions": [
+        "VerQueryValueA"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-delayload-l1-1-1.dll",
+      "imports": 1,
+      "functions": [
+        "ResolveDelayLoadedAPI"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-delayload-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "DelayLoadFailureHook"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 3,
+    "functions": [
+      "DllInstall",
+      "NtVdm64CreateProcessInternalW",
+      "NtVdm64RaiseInvalid16BitError"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "e71a683863daff45a394cadabf5eef1c47d26a22df02e4aa2a917f321b409ce8"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Implements Delayed Loads of DLL Resources",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyW",
+          "RegOpenKeyW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

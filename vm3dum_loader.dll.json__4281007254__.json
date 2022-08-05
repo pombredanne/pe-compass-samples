@@ -1,0 +1,186 @@
+{
+  "pe_name": "vm3dum_loader.dll",
+  "pe_type": 267,
+  "pe_size": 161440,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\DriverStore\\FileRepository\\vm3d.inf_amd64_e3eb5e2a70444b3f\\vm3dum_loader.dll",
+  "pe_timedate_stamp": 1627261664,
+  "pe_timedate_human": "2021-07-26T01:07:44.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 5,
+      "functions": [
+        "RegCloseKey",
+        "RegGetValueW",
+        "RegOpenKeyExA",
+        "RegOpenKeyExW",
+        "RegQueryValueExA"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 1,
+      "functions": [
+        "CoTaskMemFree"
+      ]
+    },
+    {
+      "name": "shell32.dll",
+      "imports": 1,
+      "functions": [
+        "SHGetKnownFolderPath"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 83,
+      "functions": [
+        "CloseHandle",
+        "CreateDirectoryW",
+        "CreateFileW",
+        "DecodePointer",
+        "DeleteCriticalSection",
+        "DeleteFileW",
+        "EnterCriticalSection",
+        "ExitProcess",
+        "FatalExit",
+        "FindClose",
+        "FindFirstFileA",
+        "FindFirstFileExW",
+        "FindNextFileA",
+        "FindNextFileW",
+        "FlushFileBuffers",
+        "FreeEnvironmentStringsW",
+        "FreeLibrary",
+        "GetACP",
+        "GetCPInfo",
+        "GetCommandLineA",
+        "GetCommandLineW",
+        "GetConsoleMode",
+        "GetConsoleOutputCP",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetEnvironmentStringsW",
+        "GetFileSizeEx",
+        "GetFileType",
+        "GetLastError",
+        "GetLocalTime",
+        "GetModuleFileNameW",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetOEMCP",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetStdHandle",
+        "GetStringTypeW",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempPathW",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSize",
+        "InitializeCriticalSection",
+        "InitializeCriticalSectionAndSpinCount",
+        "InitializeSListHead",
+        "InterlockedFlushSList",
+        "IsDebuggerPresent",
+        "IsProcessorFeaturePresent",
+        "IsValidCodePage",
+        "LCMapStringW",
+        "LeaveCriticalSection",
+        "LoadLibraryExA",
+        "LoadLibraryExW",
+        "LoadLibraryW",
+        "MoveFileW",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReadConsoleW",
+        "ReadFile",
+        "RtlCaptureStackBackTrace",
+        "RtlUnwind",
+        "SetEndOfFile",
+        "SetFilePointerEx",
+        "SetLastError",
+        "SetStdHandle",
+        "SetUnhandledExceptionFilter",
+        "TerminateProcess",
+        "TlsAlloc",
+        "TlsFree",
+        "TlsGetValue",
+        "TlsSetValue",
+        "UnhandledExceptionFilter",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "WriteFile"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 3,
+    "functions": [
+      "OpenAdapter10",
+      "OpenAdapter10_2",
+      "OpenAdapter"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "57f6bf66b3452d81395644ef7b157c7da08459f3dfa9318d5858f38046a8da3f"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenKeyExA",
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileA",
+          "FindFirstFileExW"
+        ]
+      }
+    ]
+  }
+}

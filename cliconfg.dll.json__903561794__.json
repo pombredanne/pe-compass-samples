@@ -1,0 +1,209 @@
+{
+  "pe_name": "cliconfg.dll",
+  "pe_type": 523,
+  "pe_size": 93184,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\cliconfg.dll",
+  "pe_timedate_stamp": 117389056,
+  "pe_timedate_human": "1973-09-20T16:04:16.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 17,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wcsupr",
+        "_wtoi",
+        "_wtol",
+        "free",
+        "iswctype",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset",
+        "wcschr",
+        "wcsstr"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 43,
+      "functions": [
+        "CloseHandle",
+        "CompareStringW",
+        "CreateFileW",
+        "ExpandEnvironmentStringsA",
+        "FileTimeToSystemTime",
+        "FindResourceW",
+        "FreeLibrary",
+        "FreeResource",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetDateFormatW",
+        "GetFileSize",
+        "GetFileTime",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetNumberFormatA",
+        "GetOEMCP",
+        "GetProcAddress",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GlobalAlloc",
+        "GlobalFree",
+        "GlobalLock",
+        "GlobalUnlock",
+        "LoadLibraryExA",
+        "LoadLibraryExW",
+        "LoadLibraryW",
+        "LoadResource",
+        "LockResource",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 33,
+      "functions": [
+        "CallWindowProcW",
+        "CharUpperW",
+        "CheckDlgButton",
+        "CheckRadioButton",
+        "DialogBoxIndirectParamW",
+        "EnableWindow",
+        "EndDialog",
+        "GetDesktopWindow",
+        "GetDlgItem",
+        "GetParent",
+        "GetPropW",
+        "GetWindowLongPtrW",
+        "GetWindowRect",
+        "GetWindowTextLengthW",
+        "GetWindowTextW",
+        "IsDlgButtonChecked",
+        "LoadIconW",
+        "LoadImageW",
+        "LoadStringW",
+        "MessageBeep",
+        "MessageBoxW",
+        "MoveWindow",
+        "PostMessageW",
+        "RemovePropW",
+        "SendDlgItemMessageW",
+        "SendMessageW",
+        "SetClassLongPtrW",
+        "SetDlgItemTextW",
+        "SetFocus",
+        "SetPropW",
+        "SetWindowLongPtrW",
+        "SetWindowTextW",
+        "ShowWindow"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 11,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumValueW",
+        "RegFlushKey",
+        "RegOpenKeyExA",
+        "RegOpenKeyExW",
+        "RegOpenKeyW",
+        "RegQueryValueExA",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "comctl32.dll",
+      "imports": 1,
+      "functions": [
+        "PropertySheetW"
+      ]
+    },
+    {
+      "name": "version.dll",
+      "imports": 3,
+      "functions": [
+        "GetFileVersionInfoSizeW",
+        "GetFileVersionInfoW",
+        "VerQueryValueW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 3,
+    "functions": [
+      "CPlApplet",
+      "ClientConfigureAddEdit",
+      "OnInitDialogMain"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "25eac1a7ad0b7f62a251a9ccb90aef80edbcc8434c63e28690c153d7a8efb97b"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 6,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegOpenKeyW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

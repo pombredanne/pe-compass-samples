@@ -1,0 +1,227 @@
+{
+  "pe_name": "iexplore.exe",
+  "pe_type": 267,
+  "pe_size": 828368,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-i..etexplorer-optional_31bf3856ad364e35_11.0.19041.1566_none_5b687e60c0e4cbb4\\iexplore.exe",
+  "pe_timedate_stamp": 693750057,
+  "pe_timedate_human": "1991-12-26T12:20:57.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "user32.dll",
+      "imports": 8,
+      "functions": [
+        "AllowSetForegroundWindow",
+        "FindWindowExW",
+        "GetWindowThreadProcessId",
+        "IsWindowEnabled",
+        "IsWindowVisible",
+        "SendMessageTimeoutW",
+        "SetUserObjectInformationW",
+        "WaitForInputIdle"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 32,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__dllonexit",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_callnewh",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "_wcmdln",
+        "exit",
+        "free",
+        "iswalpha",
+        "iswspace",
+        "malloc",
+        "memcmp",
+        "memcpy_s",
+        "memmove_s",
+        "memset",
+        "wcschr",
+        "wcsncmp"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 58,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "AcquireSRWLockShared",
+        "CloseHandle",
+        "CloseThreadpoolTimer",
+        "CreateMutexExW",
+        "CreateProcessW",
+        "CreateSemaphoreExW",
+        "CreateThreadpoolTimer",
+        "DebugBreak",
+        "DelayLoadFailureHook",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "ExpandEnvironmentStringsW",
+        "FormatMessageW",
+        "GetCommandLineW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetNativeSystemInfo",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapSetInformation",
+        "InitializeCriticalSection",
+        "InitializeCriticalSectionEx",
+        "IsDebuggerPresent",
+        "IsWow64Process",
+        "LeaveCriticalSection",
+        "LocalAlloc",
+        "LocalFree",
+        "OpenSemaphoreW",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "ReleaseSRWLockExclusive",
+        "ReleaseSRWLockShared",
+        "ReleaseSemaphore",
+        "ResolveDelayLoadedAPI",
+        "SetDllDirectoryW",
+        "SetErrorMode",
+        "SetLastError",
+        "SetProcessDEPPolicy",
+        "SetThreadpoolTimer",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WaitForSingleObjectEx",
+        "WaitForThreadpoolTimerCallbacks"
+      ]
+    },
+    {
+      "name": "api-ms-win-downlevel-advapi32-l1-1-0.dll",
+      "imports": 5,
+      "functions": [
+        "EventRegister",
+        "EventUnregister",
+        "EventWriteEx",
+        "EventWriteTransfer",
+        "RegGetValueW"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 1,
+      "functions": [
+        "EventSetInformation"
+      ]
+    },
+    {
+      "name": "iertutil.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "api-ms-win-downlevel-shlwapi-l1-1-0.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "api-ms-win-downlevel-ole32-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CoCreateGuid"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "853215467e3d0b34e2b5533421b5846ee63ea163c669da52850bb5344b80ea23"
+  },
+  "scan": {
+    "intentions": 5,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Query and Discovery General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegGetValueW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Implements Delayed Loads of DLL Resources",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "pe_name": "KeyboardFilterShim.dll",
+  "pe_type": 523,
+  "pe_size": 60216,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\KeyboardFilterShim.dll",
+  "pe_timedate_stamp": 3381595677,
+  "pe_timedate_human": "2077-02-26T20:07:57.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "apphelp.dll",
+      "imports": 2,
+      "functions": [
+        "SE_GetShimId",
+        "SE_ShimDPF"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 22,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__dllonexit",
+        "_amsg_exit",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wcsnicmp",
+        "free",
+        "iswalpha",
+        "iswspace",
+        "malloc",
+        "memcpy",
+        "memcpy_s",
+        "memmove",
+        "memmove_s",
+        "memset",
+        "toupper"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 5,
+      "functions": [
+        "RtlAllocateHeap",
+        "RtlCaptureContext",
+        "RtlFreeHeap",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 14,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumValueW",
+        "RegGetValueW",
+        "RegNotifyChangeKeyValue",
+        "RegOpenKeyExW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 44,
+      "functions": [
+        "CloseHandle",
+        "CreateMutexExW",
+        "CreateSemaphoreExW",
+        "DebugBreak",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "FindResourceExW",
+        "FormatMessageW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSize",
+        "InitOnceExecuteOnce",
+        "InitializeCriticalSection",
+        "IsDebuggerPresent",
+        "LeaveCriticalSection",
+        "LoadResource",
+        "LockResource",
+        "OpenSemaphoreW",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReleaseMutex",
+        "ReleaseSemaphore",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "SizeofResource",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WaitForSingleObjectEx"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 7,
+      "functions": [
+        "GetClassNameW",
+        "GetGUIThreadInfo",
+        "GetKeyboardLayout",
+        "GetWindowThreadProcessId",
+        "MapVirtualKeyExW",
+        "UnregisterClassA",
+        "VkKeyScanExW"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 5,
+      "functions": [
+        "NdrClientCall3",
+        "RpcBindingFree",
+        "RpcBindingFromStringBindingW",
+        "RpcStringBindingComposeW",
+        "RpcStringFreeW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "GetHookAPIs",
+      "NotifyShims"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "e8c04c6364396b2e666878be668de02160e2370a1905c545dfa8a64bb7c7e8f7"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegGetValueW"
+        ]
+      }
+    ]
+  }
+}

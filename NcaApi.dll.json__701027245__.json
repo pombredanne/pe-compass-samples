@@ -1,0 +1,129 @@
+{
+  "pe_name": "NcaApi.dll",
+  "pe_type": 267,
+  "pe_size": 19968,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\NcaApi.dll",
+  "pe_timedate_stamp": 1869347645,
+  "pe_timedate_human": "2029-03-27T23:14:05.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 7,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "free",
+        "malloc",
+        "memset"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 6,
+      "functions": [
+        "EtwGetTraceEnableFlags",
+        "EtwGetTraceEnableLevel",
+        "EtwGetTraceLoggerHandle",
+        "EtwRegisterTraceGuidsW",
+        "EtwTraceMessage",
+        "EtwUnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 10,
+      "functions": [
+        "NdrAsyncClientCall2",
+        "NdrClientCall4",
+        "RpcAsyncCompleteCall",
+        "RpcAsyncInitializeHandle",
+        "RpcBindingFree",
+        "RpcBindingFromStringBindingW",
+        "RpcBindingSetAuthInfoExW",
+        "RpcBindingSetOption",
+        "RpcStringBindingComposeW",
+        "RpcStringFreeW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 21,
+      "functions": [
+        "CloseHandle",
+        "CloseThreadpoolWait",
+        "CreateEventW",
+        "CreateThreadpoolWait",
+        "DisableThreadLibraryCalls",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "QueryPerformanceCounter",
+        "SetLastError",
+        "SetThreadpoolWait",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-security-base-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CreateWellKnownSid"
+      ]
+    },
+    {
+      "name": "api-ms-win-security-lsalookup-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "LookupAccountSidLocalW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 11,
+    "functions": [
+      "NcaEngineClose",
+      "NcaEngineOpen",
+      "NcaExecuteAndCaptureLogs",
+      "NcaGetConfig",
+      "NcaGetEvidenceCollectorResult",
+      "NcaNetworkClose",
+      "NcaNetworkOpen",
+      "NcaStatusEventSubscribe",
+      "NcaStatusEventUnsubscribe",
+      "NcaToggleNamePreferenceState",
+      "DllMain"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "d3ef36c549ddcb5b0cc40c932204ce1d6e44110114372990e1f5f3f6da34a831"
+  },
+  "scan": {
+    "intentions": 1,
+    "uniq_apis_matched": 1,
+    "results": [
+      {
+        "intent": "Discover Local User Accounts on the Target System",
+        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
+        "component": "Identities",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "LookupAccountSidLocalW"
+        ]
+      }
+    ]
+  }
+}

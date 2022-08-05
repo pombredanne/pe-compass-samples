@@ -1,0 +1,233 @@
+{
+  "pe_name": "powershell.exe",
+  "pe_type": 267,
+  "pe_size": 433152,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-powershell-exe_31bf3856ad364e35_10.0.19041.546_none_5163f0069562aff6\\powershell.exe",
+  "pe_timedate_stamp": 821112691,
+  "pe_timedate_human": "1996-01-08T14:51:31.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 49,
+      "functions": [
+        "??0exception@@QAE@ABQBD@Z",
+        "??0exception@@QAE@ABQBDH@Z",
+        "??0exception@@QAE@ABV0@@Z",
+        "??1exception@@UAE@XZ",
+        "??1type_info@@UAE@XZ",
+        "??3@YAXPAX@Z",
+        "??_V@YAXPAX@Z",
+        "?terminate@@YAXXZ",
+        "?what@exception@@UBEPBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__uncaught_exception",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_callnewh",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "_itow_s",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wcsnicmp",
+        "_wfopen",
+        "bsearch",
+        "exit",
+        "fclose",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memcpy_s",
+        "memmove",
+        "memset",
+        "wcschr",
+        "wcsncmp",
+        "wcsrchr",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "atl.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 52,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "CloseHandle",
+        "CompareStringW",
+        "CreateFileMappingW",
+        "CreateFileW",
+        "ExpandEnvironmentStringsW",
+        "FindClose",
+        "FindFirstFileW",
+        "FindResourceExW",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFileType",
+        "GetLastError",
+        "GetLocaleInfoW",
+        "GetModuleFileNameW",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetStdHandle",
+        "GetSystemDefaultUILanguage",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetUserDefaultUILanguage",
+        "GetVersionExW",
+        "IsWow64Process",
+        "LoadLibraryExW",
+        "LoadResource",
+        "LocalFree",
+        "MapViewOfFile",
+        "QueryPerformanceCounter",
+        "ReleaseSRWLockExclusive",
+        "SearchPathW",
+        "SetConsoleTitleW",
+        "SetErrorMode",
+        "SetLastError",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SleepConditionVariableSRW",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "VerSetConditionMask",
+        "VerifyVersionInfoW",
+        "WakeAllConditionVariable",
+        "WriteConsoleW",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 4,
+      "functions": [
+        "RegCloseKey",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 5,
+      "functions": [
+        "CoInitialize",
+        "CoInitializeEx",
+        "CoTaskMemAlloc",
+        "CoUninitialize",
+        "PropVariantClear"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "name": "mscoree.dll",
+      "imports": 1,
+      "functions": [
+        "CorBindToRuntimeEx"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "73a3c4aef5de385875339fc2eb7e58a9e8a47b6161bdc6436bf78a763537be70"
+  },
+  "scan": {
+    "intentions": 5,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      }
+    ]
+  }
+}

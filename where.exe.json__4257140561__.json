@@ -1,0 +1,186 @@
+{
+  "pe_name": "where.exe",
+  "pe_type": 523,
+  "pe_size": 43008,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-where_31bf3856ad364e35_10.0.19041.1_none_13c446a37d881982\\where.exe",
+  "pe_timedate_stamp": 2119898948,
+  "pe_timedate_human": "2037-03-05T20:49:08.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "kernel32.dll",
+      "imports": 53,
+      "functions": [
+        "CloseHandle",
+        "CompareStringA",
+        "CompareStringW",
+        "CreateFileW",
+        "ExitProcess",
+        "FileTimeToLocalFileTime",
+        "FileTimeToSystemTime",
+        "FindClose",
+        "FindFirstFileExW",
+        "FindNextFileW",
+        "FormatMessageW",
+        "GetConsoleMode",
+        "GetConsoleOutputCP",
+        "GetCurrentDirectoryW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetDateFormatW",
+        "GetEnvironmentVariableW",
+        "GetFileAttributesW",
+        "GetFileInformationByHandle",
+        "GetFileSize",
+        "GetFileType",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetLongPathNameW",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcessHeap",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetThreadLocale",
+        "GetTickCount",
+        "GetTimeFormatW",
+        "GetUserDefaultLCID",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSetInformation",
+        "HeapSize",
+        "HeapValidate",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "SetErrorMode",
+        "SetLastError",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 32,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__iob_func",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_errno",
+        "_exit",
+        "_fileno",
+        "_fmode",
+        "_get_osfhandle",
+        "_initterm",
+        "_memicmp",
+        "_vsnwprintf",
+        "_wgetenv",
+        "_wstat",
+        "exit",
+        "fflush",
+        "fprintf",
+        "localtime",
+        "memset",
+        "towupper",
+        "wcspbrk",
+        "wcsrchr",
+        "wcstod",
+        "wcstok",
+        "wcstol",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 5,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVerifyVersionInfo",
+        "RtlVirtualUnwind",
+        "VerSetConditionMask"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "CharUpperW",
+        "LoadStringW"
+      ]
+    },
+    {
+      "name": "ws2_32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 5,
+      "functions": [
+        "StrChrIW",
+        "StrChrW",
+        "StrStrIW",
+        "StrStrW",
+        "StrTrimW"
+      ]
+    },
+    {
+      "name": "version.dll",
+      "imports": 3,
+      "functions": [
+        "GetFileVersionInfoExW",
+        "GetFileVersionInfoSizeExW",
+        "VerQueryValueW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "a19f7b783bc5611095d577f5eccc12069ca2b5e92bbe37f415429bb72c09792c"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 2,
+    "results": [
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileExW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

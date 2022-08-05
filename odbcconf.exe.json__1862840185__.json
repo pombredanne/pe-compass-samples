@@ -1,0 +1,143 @@
+{
+  "pe_name": "odbcconf.exe",
+  "pe_type": 267,
+  "pe_size": 22016,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\odbcconf.exe",
+  "pe_timedate_stamp": 1132972169,
+  "pe_timedate_human": "2005-11-26T02:29:29.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 4,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExA",
+        "RegOpenKeyExA",
+        "RegSetValueExA"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 24,
+      "functions": [
+        "DeleteFileA",
+        "FormatMessageA",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleA",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetSystemDirectoryA",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryExA",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RegisterApplicationRestart",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 2,
+      "functions": [
+        "LoadStringW",
+        "MessageBoxW"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 32,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__getmainargs",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_errno",
+        "_except_handler4_common",
+        "_exit",
+        "_fsopen",
+        "_initterm",
+        "_ismbblead",
+        "_vsnprintf",
+        "_vsnwprintf",
+        "exit",
+        "fclose",
+        "fflush",
+        "fgets",
+        "fopen",
+        "fprintf",
+        "fputs",
+        "free",
+        "getenv",
+        "malloc",
+        "memset",
+        "strerror",
+        "vfprintf"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "5213c43c38d85ba69b406f27fa1a2505173dea529010bf6dd34049e9cc9dc01a"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileA"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegOpenKeyExA",
+          "RegSetValueExA"
+        ]
+      }
+    ]
+  }
+}

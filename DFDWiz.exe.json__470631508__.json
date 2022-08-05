@@ -1,0 +1,237 @@
+{
+  "pe_name": "DFDWiz.exe",
+  "pe_type": 523,
+  "pe_size": 54784,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-d..ostic-user-resolver_31bf3856ad364e35_10.0.19041.1_none_7b261299a50c8282\\DFDWiz.exe",
+  "pe_timedate_stamp": 2749477030,
+  "pe_timedate_human": "2057-02-15T15:37:10.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 25,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "AllocateAndInitializeSid",
+        "CheckTokenMembership",
+        "ConvertStringSecurityDescriptorToSecurityDescriptorW",
+        "EventRegister",
+        "EventUnregister",
+        "EventWrite",
+        "FreeSid",
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "LookupPrivilegeValueW",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyW",
+        "RegEnumKeyExW",
+        "RegEnumValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 41,
+      "functions": [
+        "ActivateActCtx",
+        "CloseHandle",
+        "CreateActCtxW",
+        "CreateFileW",
+        "CreateMutexW",
+        "DeactivateActCtx",
+        "DeviceIoControl",
+        "FindActCtxSectionStringW",
+        "FindFirstVolumeW",
+        "FindNextVolumeW",
+        "FindVolumeClose",
+        "FormatMessageW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "GetVolumePathNamesForVolumeNameW",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "LocalFree",
+        "OpenMutexW",
+        "OutputDebugStringA",
+        "QueryActCtxW",
+        "QueryPerformanceCounter",
+        "RegisterApplicationRestart",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 1,
+      "functions": [
+        "MessageBoxW"
+      ]
+    },
+    {
+      "name": "msvcrt.dll",
+      "imports": 24,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__getmainargs",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_callnewh",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ismbblead",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "exit",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memset"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 5,
+      "functions": [
+        "CoCreateGuid",
+        "CoCreateInstance",
+        "CoInitializeEx",
+        "CoUninitialize",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 7,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "WinSqmAddToStream",
+        "WinSqmEndSession",
+        "WinSqmSetDWORD",
+        "WinSqmStartSession"
+      ]
+    },
+    {
+      "name": "setupapi.dll",
+      "imports": 5,
+      "functions": [
+        "SetupDiDestroyDeviceInfoList",
+        "SetupDiEnumDeviceInterfaces",
+        "SetupDiGetClassDevsW",
+        "SetupDiGetDeviceInterfaceDetailW",
+        "SetupDiGetDeviceRegistryPropertyW"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 0,
+    "functions": []
+  },
+  "ImageHashSignatures": {
+    "sha2": "548a3c7ec9ad1bb63f6cc21f4ae2a3b2317efad5b02031f542a18e3132022972"
+  },
+  "scan": {
+    "intentions": 5,
+    "uniq_apis_matched": 12,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 3,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "CheckTokenMembership",
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Implements Features For User CLI Experience",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      }
+    ]
+  }
+}

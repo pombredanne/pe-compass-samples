@@ -1,0 +1,190 @@
+{
+  "pe_name": "netnccim.dll",
+  "pe_type": 523,
+  "pe_size": 44544,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\wbem\\netnccim.dll",
+  "pe_timedate_stamp": 3799923033,
+  "pe_timedate_human": "2090-05-31T14:10:33.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 15,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "_wcsicmp",
+        "_wcslwr_s",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset",
+        "swprintf_s",
+        "wcschr",
+        "wcsncat_s",
+        "wcsstr",
+        "wcstok_s"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegOpenKeyExW",
+        "RegOpenKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 34,
+      "functions": [
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetComputerNameExW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleExW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetThreadPreferredUILanguages",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "InitializeCriticalSection",
+        "IsValidLocaleName",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LocalAlloc",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetThreadPreferredUILanguages",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "ws2_32.dll",
+      "imports": 2,
+      "functions": [
+        "FreeAddrInfoW",
+        "GetAddrInfoW"
+      ]
+    },
+    {
+      "name": "wldap32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "ncaapi.dll",
+      "imports": 6,
+      "functions": [
+        "NcaEngineClose",
+        "NcaEngineOpen",
+        "NcaNetworkClose",
+        "NcaNetworkOpen",
+        "NcaStatusEventSubscribe",
+        "NcaStatusEventUnsubscribe"
+      ]
+    },
+    {
+      "name": "netutils.dll",
+      "imports": 1,
+      "functions": [
+        "NetApiBufferFree"
+      ]
+    },
+    {
+      "name": "logoncli.dll",
+      "imports": 1,
+      "functions": [
+        "DsGetDcNameW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 7,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllMain",
+      "DllRegisterServer",
+      "DllUnregisterServer",
+      "GetProviderClassID",
+      "MI_Main"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "be903ef499a337aba36899e2a224c5356098d9f877f3a35fd5e2f74c4d61a564"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Implements Features To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 1,
+        "apis": [
+          "GetAddrInfoW"
+        ]
+      },
+      {
+        "intent": "Discover Configuration Attributes/Descriptions of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 1,
+        "apis": [
+          "DsGetDcNameW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegOpenKeyW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "pe_name": "itircl.dll",
+  "pe_type": 523,
+  "pe_size": 205824,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\itircl.dll",
+  "pe_timedate_stamp": 1394712896,
+  "pe_timedate_human": "2014-03-13T12:14:56.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 16,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_purecall",
+        "_vsnprintf",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memmove",
+        "memset",
+        "strncmp"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 66,
+      "functions": [
+        "CloseHandle",
+        "CompareStringA",
+        "CompareStringW",
+        "CreateFileA",
+        "CreateFileMappingA",
+        "DeleteCriticalSection",
+        "DeleteFileA",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "GetACP",
+        "GetCurrentDirectoryA",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileSize",
+        "GetFullPathNameA",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleA",
+        "GetProcAddress",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameA",
+        "GetTempPathA",
+        "GetTickCount",
+        "GetUserDefaultLCID",
+        "GetVersionExA",
+        "GlobalAlloc",
+        "GlobalFlags",
+        "GlobalFree",
+        "GlobalHandle",
+        "GlobalLock",
+        "GlobalReAlloc",
+        "GlobalSize",
+        "GlobalUnlock",
+        "HeapDestroy",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExA",
+        "LocalAlloc",
+        "LocalFree",
+        "LocalLock",
+        "LocalUnlock",
+        "MapViewOfFile",
+        "MultiByteToWideChar",
+        "OpenFile",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "ReadFile",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetFilePointer",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "VirtualAlloc",
+        "VirtualFree",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WideCharToMultiByte",
+        "WriteFile",
+        "lstrcmpiA",
+        "lstrlenA"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 3,
+      "functions": [
+        "CharNextA",
+        "CharUpperA",
+        "LoadStringA"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 5,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExA",
+        "RegEnumKeyExA",
+        "RegOpenKeyExA",
+        "RegSetValueExA"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 6,
+      "functions": [
+        "CoCreateInstance",
+        "CoGetClassObject",
+        "CoTaskMemFree",
+        "ReadClassStm",
+        "StringFromCLSID",
+        "WriteClassStm"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "57f542e3fe45c415240481bb20b772e47964aa0fd8f2647ce058de682d2a918e"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegOpenKeyExA",
+          "RegSetValueExA"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExA"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileA"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "pe_name": "sxsstore.dll",
+  "pe_type": 523,
+  "pe_size": 30208,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\sxsstore.dll",
+  "pe_timedate_stamp": 2009932654,
+  "pe_timedate_human": "2033-09-10T02:37:34.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 9,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 4,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlDetermineDosPathNameType_U",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 23,
+      "functions": [
+        "CloseHandle",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "ExitProcess",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "QueryPerformanceCounter",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 6,
+      "functions": [
+        "AllocateAndInitializeSid",
+        "CheckTokenMembership",
+        "FreeSid",
+        "ImpersonateSelf",
+        "OpenThreadToken",
+        "RevertToSelf"
+      ]
+    },
+    {
+      "name": "rpcrt4.dll",
+      "imports": 19,
+      "functions": [
+        "CStdStubBuffer_AddRef",
+        "CStdStubBuffer_Connect",
+        "CStdStubBuffer_CountRefs",
+        "CStdStubBuffer_DebugServerQueryInterface",
+        "CStdStubBuffer_DebugServerRelease",
+        "CStdStubBuffer_Disconnect",
+        "CStdStubBuffer_Invoke",
+        "CStdStubBuffer_IsIIDSupported",
+        "CStdStubBuffer_QueryInterface",
+        "IUnknown_AddRef_Proxy",
+        "IUnknown_QueryInterface_Proxy",
+        "IUnknown_Release_Proxy",
+        "NdrCStdStubBuffer_Release",
+        "NdrDllGetClassObject",
+        "NdrOleAllocate",
+        "NdrOleFree",
+        "RpcStringFreeW",
+        "UuidCreate",
+        "UuidToStringW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "CoGetCallContext",
+        "CoImpersonateClient",
+        "CoRevertToSelf"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-midlproxystub-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "ObjectStublessClient3",
+        "ObjectStublessClient4",
+        "ObjectStublessClient5",
+        "ObjectStublessClient6"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllGetClassObject",
+      "DllMain",
+      "SxsStoreFinalize",
+      "SxsStoreInitialize"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "8e3b0a7a5d68db2835d057a4535c0f1031d8a1596a0c80716b7ecae897a2b612"
+  },
+  "scan": {
+    "intentions": 1,
+    "uniq_apis_matched": 2,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 2,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenThreadToken"
+        ]
+      }
+    ]
+  }
+}

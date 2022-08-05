@@ -1,0 +1,176 @@
+{
+  "pe_name": "mscories.dll",
+  "pe_type": 267,
+  "pe_size": 83832,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\x86_netfx-mscories_dll_31bf3856ad364e35_10.0.19041.1_none_17f58f61d8cabf72\\mscories.dll",
+  "pe_timedate_stamp": 1571993294,
+  "pe_timedate_human": "2019-10-25T08:48:14.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "kernel32.dll",
+      "imports": 91,
+      "functions": [
+        "CloseHandle",
+        "CreateEventA",
+        "CreateEventW",
+        "CreateFileA",
+        "CreateMutexA",
+        "CreateMutexW",
+        "CreateSemaphoreA",
+        "CreateSemaphoreW",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "ExitProcess",
+        "FlushFileBuffers",
+        "FreeEnvironmentStringsA",
+        "FreeEnvironmentStringsW",
+        "FreeLibrary",
+        "GetACP",
+        "GetCPInfo",
+        "GetCommandLineA",
+        "GetConsoleCP",
+        "GetConsoleMode",
+        "GetConsoleOutputCP",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetEnvironmentStrings",
+        "GetEnvironmentStringsW",
+        "GetFileType",
+        "GetLastError",
+        "GetLocaleInfoA",
+        "GetModuleFileNameA",
+        "GetModuleHandleA",
+        "GetOEMCP",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetStartupInfoA",
+        "GetStdHandle",
+        "GetStringTypeA",
+        "GetStringTypeW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExA",
+        "HeapAlloc",
+        "HeapCreate",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSize",
+        "HeapValidate",
+        "InitializeCriticalSection",
+        "InterlockedCompareExchange",
+        "InterlockedDecrement",
+        "InterlockedIncrement",
+        "IsDebuggerPresent",
+        "IsValidCodePage",
+        "LCMapStringA",
+        "LCMapStringW",
+        "LeaveCriticalSection",
+        "LoadLibraryA",
+        "LoadLibraryExA",
+        "LoadLibraryExW",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReleaseMutex",
+        "ReleaseSemaphore",
+        "ResetEvent",
+        "RtlUnwind",
+        "SetEvent",
+        "SetFilePointer",
+        "SetHandleCount",
+        "SetLastError",
+        "SetStdHandle",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SleepEx",
+        "TerminateProcess",
+        "TlsAlloc",
+        "TlsFree",
+        "TlsGetValue",
+        "TlsSetValue",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualFree",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WaitForSingleObjectEx",
+        "WideCharToMultiByte",
+        "WriteConsoleA",
+        "WriteConsoleW",
+        "WriteFile",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 9,
+      "functions": [
+        "RegCloseKey",
+        "RegDeleteValueA",
+        "RegDeleteValueW",
+        "RegOpenKeyExA",
+        "RegOpenKeyExW",
+        "RegQueryValueExA",
+        "RegQueryValueExW",
+        "RegSetValueExA",
+        "RegSetValueExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "Install",
+      "Uninstall"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "7327eba030104898782d5754f7250e3a22347bb79b61a2881d6cd331ad41a2ef"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 6,
+        "apis": [
+          "RegDeleteValueA",
+          "RegDeleteValueW",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExA",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

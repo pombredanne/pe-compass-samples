@@ -1,0 +1,222 @@
+{
+  "pe_name": "dmloader.dll",
+  "pe_type": 523,
+  "pe_size": 50688,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\dmloader.dll",
+  "pe_timedate_stamp": 1296268466,
+  "pe_timedate_human": "2011-01-29T02:34:26.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 21,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "_amsg_exit",
+        "_fsopen",
+        "_initterm",
+        "_purecall",
+        "_wcsicmp",
+        "_wfsopen",
+        "fclose",
+        "fread",
+        "free",
+        "fseek",
+        "ftell",
+        "fwrite",
+        "malloc",
+        "mbstowcs",
+        "memcpy",
+        "memset",
+        "wcsrchr",
+        "wcstombs"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-libraryloader-l1-2-0.dll",
+      "imports": 2,
+      "functions": [
+        "DisableThreadLibraryCalls",
+        "GetModuleFileNameA"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExA"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 7,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExA",
+        "RegOpenKeyExA",
+        "RegOpenKeyExW",
+        "RegQueryValueExA",
+        "RegQueryValueExW",
+        "RegSetValueExA"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processenvironment-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "ExpandEnvironmentStringsA",
+        "ExpandEnvironmentStringsW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-file-l1-1-0.dll",
+      "imports": 7,
+      "functions": [
+        "FindClose",
+        "FindFirstFileA",
+        "FindFirstFileW",
+        "FindNextFileA",
+        "FindNextFileW",
+        "GetFileAttributesA",
+        "GetFileAttributesW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemFree",
+        "StringFromCLSID"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l2-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "RegDeleteKeyA",
+        "RegEnumKeyA"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-rtlsupport-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "a139716c767245a76e22e5a0354b1d00975d69f58cf8e38cc710ce5816065f2b"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 10,
+    "results": [
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileA",
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyA"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegDeleteKeyA",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExA"
+        ]
+      }
+    ]
+  }
+}

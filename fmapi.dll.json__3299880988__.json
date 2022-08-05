@@ -1,0 +1,148 @@
+{
+  "pe_name": "fmapi.dll",
+  "pe_type": 523,
+  "pe_size": 75264,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\fmapi.dll",
+  "pe_timedate_stamp": 2400769839,
+  "pe_timedate_human": "2046-01-28T16:30:39.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 24,
+      "functions": [
+        "??0exception@@QEAA@AEBQEBDH@Z",
+        "??0exception@@QEAA@AEBV0@@Z",
+        "??1exception@@UEAA@XZ",
+        "??1type_info@@UEAA@XZ",
+        "?what@exception@@UEBAPEBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_purecall",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memcpy_s",
+        "memmove",
+        "memset",
+        "wcschr",
+        "wcscpy_s",
+        "wcsncmp"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 30,
+      "functions": [
+        "CloseHandle",
+        "CreateFileW",
+        "DebugBreak",
+        "DeleteCriticalSection",
+        "DeleteFileW",
+        "DeviceIoControl",
+        "DosDateTimeToFileTime",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "InitializeCriticalSectionAndSpinCount",
+        "LeaveCriticalSection",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "ReadFile",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetFilePointerEx",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 1,
+      "functions": [
+        "CharUpperW"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 8,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 1,
+      "functions": [
+        "RtlDecompressBuffer"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 8,
+    "functions": [
+      "CloseFileRestoreContext",
+      "CreateFileRestoreContext",
+      "DetectBootSector",
+      "DetectEncryptedVolume",
+      "DetectEncryptedVolumeEx",
+      "RestoreFile",
+      "ScanRestorableFiles",
+      "SupplyDecryptionInfo"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "cd375aeab416e68c62ed19bc2f2c5e59725ce3be1f92f2daaea0c8298917d4ed"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 2,
+    "results": [
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "pe_name": "smphost.dll",
+  "pe_type": 523,
+  "pe_size": 36176,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\smphost.dll",
+  "pe_timedate_stamp": 3348455278,
+  "pe_timedate_human": "2076-02-09T06:27:58.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 9,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "_wcsicmp",
+        "_wtoi",
+        "free",
+        "malloc",
+        "memset"
+      ]
+    },
+    {
+      "name": "api-ms-win-eventing-provider-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "EventRegister",
+        "EventSetInformation",
+        "EventUnregister",
+        "EventWriteTransfer"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-registry-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "RegGetValueW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "CreateEventW",
+        "SetEvent"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "GetLastError",
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-service-winsvc-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "RegisterServiceCtrlHandlerW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-handle-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CloseHandle"
+      ]
+    },
+    {
+      "name": "api-ms-win-service-core-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "SetServiceStatus"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-libraryloader-l1-2-0.dll",
+      "imports": 3,
+      "functions": [
+        "FreeLibrary",
+        "GetProcAddress",
+        "LoadLibraryExW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "GetSystemTimeAsFileTime",
+        "GetTickCount"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-rtlsupport-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 1,
+      "functions": [
+        "RtlGetVersion"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-threadpool-legacy-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "UnregisterWaitEx"
+      ]
+    },
+    {
+      "name": "mi.dll",
+      "imports": 1,
+      "functions": [
+        "MI_Application_InitializeV1"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "ServiceMain",
+      "SvchostPushServiceGlobals"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "0144030b5513e7b8a71a8d600eae8301f29f18d8675f757a774e7fc690b838ad"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegGetValueW"
+        ]
+      },
+      {
+        "intent": "Query and Discovery General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "RegisterServiceCtrlHandlerW",
+          "SetServiceStatus"
+        ]
+      }
+    ]
+  }
+}

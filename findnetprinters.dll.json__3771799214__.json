@@ -1,0 +1,210 @@
+{
+  "pe_name": "findnetprinters.dll",
+  "pe_type": 523,
+  "pe_size": 67584,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-p..installerandprintui_31bf3856ad364e35_10.0.19041.1237_none_4b16fb7fab206eb1\\findnetprinters.dll",
+  "pe_timedate_stamp": 3836714966,
+  "pe_timedate_human": "2091-07-31T10:09:26.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 21,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wcslwr",
+        "free",
+        "iswprint",
+        "malloc",
+        "memcpy",
+        "memset",
+        "sqrt",
+        "time"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 18,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlNtStatusToDosError",
+        "RtlVirtualUnwind",
+        "TpAllocWait",
+        "TpCallbackMayRunLong",
+        "TpReleaseAlpcCompletion",
+        "TpReleaseIoCompletion",
+        "TpReleasePool",
+        "TpReleaseTimer",
+        "TpReleaseWait",
+        "TpReleaseWork",
+        "TpSetWait",
+        "TpWaitForAlpcCompletion",
+        "TpWaitForIoCompletion",
+        "TpWaitForTimer",
+        "TpWaitForWait",
+        "TpWaitForWork"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 39,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "CloseHandle",
+        "CreateEventW",
+        "CreateMutexW",
+        "CreateSemaphoreW",
+        "CreateThread",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleExW",
+        "GetPrivateProfileIntW",
+        "GetPrivateProfileStringW",
+        "GetProcessHeap",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapFree",
+        "InitializeCriticalSection",
+        "InitializeCriticalSectionAndSpinCount",
+        "LeaveCriticalSection",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "ReleaseSRWLockExclusive",
+        "ReleaseSemaphore",
+        "SetEvent",
+        "SetThreadpoolTimer",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SleepConditionVariableSRW",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject",
+        "WakeAllConditionVariable",
+        "WideCharToMultiByte"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 4,
+      "functions": [
+        "DispatchMessageW",
+        "MsgWaitForMultipleObjects",
+        "PeekMessageW",
+        "TranslateMessage"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 9,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "ws2_32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "iphlpapi.dll",
+      "imports": 2,
+      "functions": [
+        "GetIpAddrTable",
+        "GetNumberOfInterfaces"
+      ]
+    },
+    {
+      "name": "wsnmp32.dll",
+      "imports": 0,
+      "functions": []
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "8e041e60d8372a5d585d3d93cb622fe425204b6aa8045a00ae51fcc78feeab49"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Discover Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 2,
+        "apis": [
+          "GetIpAddrTable",
+          "GetNumberOfInterfaces"
+        ]
+      }
+    ]
+  }
+}

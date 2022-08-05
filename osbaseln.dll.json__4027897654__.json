@@ -1,0 +1,142 @@
+{
+  "pe_name": "osbaseln.dll",
+  "pe_type": 523,
+  "pe_size": 27136,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\osbaseln.dll",
+  "pe_timedate_stamp": 2720392634,
+  "pe_timedate_human": "2056-03-16T00:37:14.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 13,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "_vsnwprintf",
+        "free",
+        "isdigit",
+        "iswctype",
+        "malloc",
+        "memcpy",
+        "strtoul",
+        "wcsncmp",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "ntdll.dll",
+      "imports": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 14,
+      "functions": [
+        "DisableThreadLibraryCalls",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 11,
+      "functions": [
+        "RegCloseKey",
+        "RegDeleteValueW",
+        "RegEnumKeyExA",
+        "RegEnumKeyExW",
+        "RegOpenKeyExA",
+        "RegOpenKeyExW",
+        "RegQueryMultipleValuesA",
+        "RegQueryMultipleValuesW",
+        "RegQueryValueExA",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 14,
+    "functions": [
+      "CloseOsBaseline",
+      "EnumOsBaselineComponentsA",
+      "EnumOsBaselineComponentsW",
+      "EnumOsOutOfDateComponentsA",
+      "EnumOsOutOfDateComponentsW",
+      "GetOsBaselineComponentInfoA",
+      "GetOsBaselineComponentInfoW",
+      "GetOsInstalledComponentInfoA",
+      "GetOsInstalledComponentInfoW",
+      "GetOsLatestBaselineServicePack",
+      "OpenOsBaseline",
+      "pGetOsBaselineCurrentVersion",
+      "pGetOsCurrentBaselineServicePack",
+      "pOpenOsBaselineByVersion"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "864bf27f7c3461a40b5aa645c6b61210accb6e4c0ce5cbc7baa7b38f4c4f8a84"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 10,
+    "results": [
+      {
+        "intent": "Implements Features To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExA",
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 4,
+        "apis": [
+          "RegQueryMultipleValuesA",
+          "RegQueryMultipleValuesW",
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegDeleteValueW",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

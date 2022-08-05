@@ -1,0 +1,155 @@
+{
+  "pe_name": "mrt100.dll",
+  "pe_type": 523,
+  "pe_size": 31904,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\mrt100.dll",
+  "pe_timedate_stamp": 1484110340,
+  "pe_timedate_human": "2017-01-11T04:52:20.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 7,
+      "functions": [
+        "??_V@YAXPEAX@Z",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "free",
+        "malloc"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-file-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "CreateFileW"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-handle-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CloseHandle"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-1.dll",
+      "imports": 5,
+      "functions": [
+        "AddVectoredExceptionHandler",
+        "GetLastError",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-1.dll",
+      "imports": 10,
+      "functions": [
+        "CreateThread",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetThreadContext",
+        "ResumeThread",
+        "SetThreadPriority",
+        "SuspendThread",
+        "SwitchToThread",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-2-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetLogicalProcessorInformation",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GlobalMemoryStatusEx"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-memory-l1-1-1.dll",
+      "imports": 7,
+      "functions": [
+        "CreateFileMappingW",
+        "CreateMemoryResourceNotification",
+        "GetWriteWatch",
+        "MapViewOfFile",
+        "ResetWriteWatch",
+        "VirtualAlloc",
+        "VirtualFree"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CoWaitForMultipleHandles"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-rtlsupport-l1-2-0.dll",
+      "imports": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 1,
+    "functions": [
+      "GetManagedRuntimeService"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "26ccb798294d90845330012876e5e87994541be212fec8d5a9f01adadc093d18"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Inject malicious code into hijacked processes in order to evade process-based defenses",
+        "tag": "Defense Evasion:T1055.002 - Thread Execution Hijacking",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "ResumeThread",
+          "SuspendThread"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "pe_name": "mspatchc.dll",
+  "pe_type": 267,
+  "pe_size": 64000,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\mspatchc.dll",
+  "pe_timedate_stamp": 1226709020,
+  "pe_timedate_human": "2008-11-15T00:30:20.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 10,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memmove_s",
+        "memset"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-libraryloader-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "DisableThreadLibraryCalls",
+        "FreeLibrary",
+        "GetProcAddress"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-errorhandling-l1-1-0.dll",
+      "imports": 5,
+      "functions": [
+        "GetLastError",
+        "RaiseException",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-file-l1-1-0.dll",
+      "imports": 10,
+      "functions": [
+        "CreateFileA",
+        "CreateFileW",
+        "DeleteFileA",
+        "DeleteFileW",
+        "GetFileSize",
+        "GetFileTime",
+        "SetEndOfFile",
+        "SetFilePointer",
+        "SetFileTime",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-handle-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CloseHandle"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-string-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "MultiByteToWideChar"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-memory-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "MapViewOfFile",
+        "UnmapViewOfFile",
+        "VirtualAlloc",
+        "VirtualFree"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-processthreads-l1-1-0.dll",
+      "imports": 4,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "TerminateProcess"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-kernel32-legacy-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "CreateFileMappingA",
+        "LoadLibraryA"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-heap-l1-1-0.dll",
+      "imports": 3,
+      "functions": [
+        "GetProcessHeap",
+        "HeapAlloc",
+        "HeapFree"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-synch-l1-2-0.dll",
+      "imports": 1,
+      "functions": [
+        "Sleep"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-profile-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "QueryPerformanceCounter"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-sysinfo-l1-1-0.dll",
+      "imports": 2,
+      "functions": [
+        "GetSystemTimeAsFileTime",
+        "GetTickCount"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 14,
+    "functions": [
+      "CreatePatchFileA",
+      "CreatePatchFileByHandles",
+      "CreatePatchFileByHandlesEx",
+      "CreatePatchFileExA",
+      "CreatePatchFileExW",
+      "CreatePatchFileW",
+      "ExtractPatchHeaderToFileA",
+      "ExtractPatchHeaderToFileByHandles",
+      "ExtractPatchHeaderToFileW",
+      "GetFilePatchSignatureA",
+      "GetFilePatchSignatureByBuffer",
+      "GetFilePatchSignatureByHandle",
+      "GetFilePatchSignatureW",
+      "NormalizeFileForPatchSignature"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "ca94401d7739df4a4e7e8759aa66cb640334ba248b4f8655805410a575dcbcb3"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      }
+    ]
+  }
+}

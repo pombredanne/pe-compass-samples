@@ -1,0 +1,208 @@
+{
+  "pe_name": "msrd3x40.dll",
+  "pe_type": 267,
+  "pe_size": 353792,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\msrd3x40.dll",
+  "pe_timedate_stamp": 1598045388,
+  "pe_timedate_human": "2020-08-21T21:29:48.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "mswstr10.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 98,
+      "functions": [
+        "CloseHandle",
+        "CreateEventA",
+        "CreateFileA",
+        "CreateFileW",
+        "CreateThread",
+        "DecodePointer",
+        "DeleteCriticalSection",
+        "DeleteFileA",
+        "DeleteFileW",
+        "DisableThreadLibraryCalls",
+        "EncodePointer",
+        "EnterCriticalSection",
+        "ExitProcess",
+        "FindClose",
+        "FindFirstFileA",
+        "FindFirstFileW",
+        "FlushFileBuffers",
+        "FreeEnvironmentStringsW",
+        "GetACP",
+        "GetCPInfo",
+        "GetCommandLineA",
+        "GetComputerNameA",
+        "GetConsoleCP",
+        "GetConsoleMode",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetEnvironmentStringsW",
+        "GetFileInformationByHandle",
+        "GetFileSize",
+        "GetFileType",
+        "GetFullPathNameA",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetLocalTime",
+        "GetModuleFileNameA",
+        "GetModuleFileNameW",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetOEMCP",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetShortPathNameA",
+        "GetShortPathNameW",
+        "GetStartupInfoW",
+        "GetStdHandle",
+        "GetStringTypeW",
+        "GetSystemDefaultLangID",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameA",
+        "GetTempFileNameW",
+        "GetTempPathA",
+        "GetTempPathW",
+        "GetTickCount",
+        "GlobalMemoryStatus",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSize",
+        "InitializeCriticalSectionAndSpinCount",
+        "IsDBCSLeadByte",
+        "IsDebuggerPresent",
+        "IsProcessorFeaturePresent",
+        "IsValidCodePage",
+        "LCMapStringW",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LockFile",
+        "MultiByteToWideChar",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReadFile",
+        "ResetEvent",
+        "ResumeThread",
+        "RtlUnwind",
+        "SetEvent",
+        "SetFilePointer",
+        "SetFilePointerEx",
+        "SetLastError",
+        "SetStdHandle",
+        "SetThreadPriority",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "TlsAlloc",
+        "TlsFree",
+        "TlsGetValue",
+        "TlsSetValue",
+        "UnhandledExceptionFilter",
+        "UnlockFile",
+        "VirtualAlloc",
+        "VirtualFree",
+        "WaitForSingleObject",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExA",
+        "RegQueryValueExA"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "500bf6e56316aceeb91ccfd9b42711824453e554c61f7bd12867327bb3fb0386"
+  },
+  "scan": {
+    "intentions": 6,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Inject malicious code into hijacked processes in order to evade process-based defenses",
+        "tag": "Defense Evasion:T1055.002 - Thread Execution Hijacking",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "ResumeThread"
+        ]
+      },
+      {
+        "intent": "Enumerate Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileA",
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExA"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Inject DLLs into Processes to evade defenses",
+        "tag": "Defense Evasion:T1055 - Dynamic-Link Library Injection",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "VirtualAlloc"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "pe_name": "FXSDRV.DLL",
+  "pe_type": 523,
+  "pe_size": 32768,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\DriverStore\\FileRepository\\prnms002.inf_amd64_c3bd6686769ee10c\\Amd64\\FXSDRV.DLL",
+  "pe_timedate_stamp": 3353050995,
+  "pe_timedate_human": "2076-04-02T11:03:15.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 10,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset"
+      ]
+    },
+    {
+      "name": "gdi32.dll",
+      "imports": 12,
+      "functions": [
+        "EngAssociateSurface",
+        "EngBitBlt",
+        "EngCopyBits",
+        "EngCreateBitmap",
+        "EngCreatePalette",
+        "EngDeletePalette",
+        "EngDeleteSurface",
+        "EngEraseSurface",
+        "EngLockSurface",
+        "EngStretchBlt",
+        "EngUnlockSurface",
+        "XLATEOBJ_cGetPalette"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 30,
+      "functions": [
+        "CloseHandle",
+        "CreateFileMappingW",
+        "CreateFileW",
+        "DeleteFileW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileType",
+        "GetLastError",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "MapViewOfFile",
+        "MulDiv",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetFilePointer",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "VirtualFree",
+        "WriteFile"
+      ]
+    },
+    {
+      "name": "winspool.dll",
+      "imports": 3,
+      "functions": [
+        "EnumFormsW",
+        "GetPrinterDataW",
+        "WritePrinter"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 9,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 4,
+    "functions": [
+      "DllMain",
+      "DrvDisableDriver",
+      "DrvEnableDriver",
+      "DrvQueryDriverInfo"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "f8c569e4648990e7d4f703d13916b40e2a633c590f9526b5bc07ed779c7f44e3"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      }
+    ]
+  }
+}

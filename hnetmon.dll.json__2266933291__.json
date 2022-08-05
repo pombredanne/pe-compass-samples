@@ -1,0 +1,132 @@
+{
+  "pe_name": "hnetmon.dll",
+  "pe_type": 523,
+  "pe_size": 16896,
+  "pe_subsystem": 3,
+  "pe_subsystem_caption": "The Windows character (Cosole UI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\amd64_microsoft-windows-networkbridgenetsh_31bf3856ad364e35_10.0.19041.1_none_76330db204931244\\hnetmon.dll",
+  "pe_timedate_stamp": 3549997966,
+  "pe_timedate_human": "2082-06-29T22:32:46.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 10,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "free",
+        "malloc",
+        "memset",
+        "wcscat_s",
+        "wcscpy_s",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 5,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 17,
+      "functions": [
+        "DisableThreadLibraryCalls",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "name": "netsh.dll",
+      "imports": 9,
+      "functions": [
+        "FreeString",
+        "MakeString",
+        "MatchEnumTag",
+        "PreprocessCommand",
+        "PrintError",
+        "PrintMessage",
+        "PrintMessageFromModule",
+        "RegisterContext",
+        "RegisterHelper"
+      ]
+    },
+    {
+      "name": "netshell.dll",
+      "imports": 1,
+      "functions": [
+        "NcFreeNetconProperties"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 5,
+      "functions": [
+        "CoCreateInstance",
+        "CoInitializeEx",
+        "CoTaskMemFree",
+        "CoUninitialize",
+        "StringFromGUID2"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 1,
+    "functions": [
+      "InitHelperDll"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "9bd2e6214afd90348dcdf2742d0e868a5acd5b0d3371a8f2a379eb073f9784f0"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

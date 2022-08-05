@@ -1,0 +1,157 @@
+{
+  "pe_name": "mcicda.dll",
+  "pe_type": 267,
+  "pe_size": 38400,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\SysWOW64\\mcicda.dll",
+  "pe_timedate_stamp": 602025040,
+  "pe_timedate_human": "1989-01-28T21:10:40.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 10,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_local_unwind4",
+        "_vsnwprintf",
+        "free",
+        "malloc",
+        "memset"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 3,
+      "functions": [
+        "KillTimer",
+        "LoadStringW",
+        "SetTimer"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 41,
+      "functions": [
+        "CancelIo",
+        "CloseHandle",
+        "CreateEventW",
+        "CreateFileW",
+        "CreateMutexW",
+        "CreateThread",
+        "DeleteCriticalSection",
+        "DeviceIoControl",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FreeLibraryAndExitThread",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetDriveTypeW",
+        "GetLastError",
+        "GetLogicalDrives",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "LocalAlloc",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReleaseMutex",
+        "ResetEvent",
+        "SetErrorMode",
+        "SetEvent",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject",
+        "lstrcmpiW"
+      ]
+    },
+    {
+      "name": "winmm.dll",
+      "imports": 15,
+      "functions": [
+        "DefDriverProc",
+        "mciDriverNotify",
+        "mciDriverYield",
+        "mciGetDriverData",
+        "mciSetDriverData",
+        "waveOutClose",
+        "waveOutGetVolume",
+        "waveOutOpen",
+        "waveOutPause",
+        "waveOutPrepareHeader",
+        "waveOutReset",
+        "waveOutRestart",
+        "waveOutSetVolume",
+        "waveOutUnprepareHeader",
+        "waveOutWrite"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 10,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegCloseKey",
+        "RegGetValueW",
+        "RegOpenKeyW",
+        "RegQueryValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 1,
+    "functions": [
+      "DriverProc"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "c62699bcefc654e39662f829afa6263ea7931e693f0170d32c40d19aa4fe2371"
+  },
+  "scan": {
+    "intentions": 2,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyW"
+        ]
+      }
+    ]
+  }
+}

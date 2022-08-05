@@ -1,0 +1,220 @@
+{
+  "pe_name": "mscorpehost.dll",
+  "pe_type": 267,
+  "pe_size": 158992,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorpehost.dll",
+  "pe_timedate_stamp": 1574583469,
+  "pe_timedate_human": "2019-11-24T08:17:49.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "advapi32.dll",
+      "imports": 7,
+      "functions": [
+        "DeregisterEventSource",
+        "EventWrite",
+        "OpenThreadToken",
+        "RegisterEventSourceW",
+        "ReportEventW",
+        "RevertToSelf",
+        "SetThreadToken"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 59,
+      "functions": [
+        "ActivateActCtx",
+        "CloseHandle",
+        "CreateActCtxW",
+        "CreateFileMappingW",
+        "CreateFileW",
+        "CreateProcessW",
+        "DeactivateActCtx",
+        "DebugBreak",
+        "DeleteFileW",
+        "DisableThreadLibraryCalls",
+        "FlushInstructionCache",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetACP",
+        "GetCPInfo",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetEnvironmentVariableA",
+        "GetEnvironmentVariableW",
+        "GetExitCodeProcess",
+        "GetFileSize",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameW",
+        "GetTempPathW",
+        "GetWindowsDirectoryW",
+        "InitializeSListHead",
+        "IsDebuggerPresent",
+        "IsProcessorFeaturePresent",
+        "LoadLibraryExA",
+        "LoadLibraryExW",
+        "LocalFree",
+        "MapViewOfFile",
+        "MultiByteToWideChar",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReadFile",
+        "ReleaseActCtx",
+        "SetErrorMode",
+        "SetFilePointer",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "UnmapViewOfFile",
+        "VerSetConditionMask",
+        "VerifyVersionInfoW",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WaitForSingleObject",
+        "WideCharToMultiByte",
+        "WriteFile",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "vcruntime140_clr0400.dll",
+      "imports": 10,
+      "functions": [
+        "_CxxThrowException",
+        "__CxxFrameHandler3",
+        "__std_type_info_destroy_list",
+        "_except_handler4_common",
+        "_purecall",
+        "memcmp",
+        "memcpy",
+        "memmove",
+        "memset",
+        "wcsrchr"
+      ]
+    },
+    {
+      "name": "ucrtbase_clr0400.dll",
+      "imports": 30,
+      "functions": [
+        "__acrt_iob_func",
+        "__stdio_common_vfprintf",
+        "__stdio_common_vfwprintf",
+        "__stdio_common_vsnprintf_s",
+        "__stdio_common_vsnwprintf_s",
+        "__stdio_common_vsprintf_s",
+        "_cexit",
+        "_configure_narrow_argv",
+        "_errno",
+        "_execute_onexit_table",
+        "_initialize_narrow_environment",
+        "_initialize_onexit_table",
+        "_initterm",
+        "_initterm_e",
+        "_seh_filter_dll",
+        "_time64",
+        "fclose",
+        "fflush",
+        "fopen_s",
+        "fwrite",
+        "isdigit",
+        "qsort",
+        "strcat_s",
+        "strcpy_s",
+        "strncmp",
+        "strncpy_s",
+        "terminate",
+        "wcscat_s",
+        "wcscpy_s",
+        "wcsncpy_s"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "user32.dll",
+      "imports": 3,
+      "functions": [
+        "GetProcessWindowStation",
+        "GetUserObjectInformationW",
+        "LoadStringW"
+      ]
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 1,
+      "functions": [
+        "PathFindExtensionW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 3,
+    "functions": [
+      "CreateICeeFileGen",
+      "DestroyICeeFileGen",
+      "InitializeSxS"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "dcd9585e7269f5f980f4dcb2152d1b3662934b8d1d4b155ccb64010972be8fe5"
+  },
+  "scan": {
+    "intentions": 4,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Create Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      }
+    ]
+  }
+}

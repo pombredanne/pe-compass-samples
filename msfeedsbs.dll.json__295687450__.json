@@ -1,0 +1,256 @@
+{
+  "pe_name": "msfeedsbs.dll",
+  "pe_type": 523,
+  "pe_size": 76288,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\System32\\msfeedsbs.dll",
+  "pe_timedate_stamp": 1197530723,
+  "pe_timedate_human": "2007-12-13T07:25:23.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 22,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_ultow_s",
+        "_unlock",
+        "_vsnprintf",
+        "_vsnwprintf",
+        "free",
+        "iswalpha",
+        "malloc",
+        "memcpy",
+        "memcpy_s",
+        "memmove",
+        "memset",
+        "wcschr",
+        "wcsncmp",
+        "wcstoul"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 55,
+      "functions": [
+        "CloseHandle",
+        "CompareFileTime",
+        "CreateFileW",
+        "CreateMutexExW",
+        "CreateProcessW",
+        "CreateSemaphoreExW",
+        "DebugBreak",
+        "DelayLoadFailureHook",
+        "DeleteFileW",
+        "DisableThreadLibraryCalls",
+        "FileTimeToSystemTime",
+        "FormatMessageW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "IsDebuggerPresent",
+        "LocalAlloc",
+        "LocalFileTimeToFileTime",
+        "LocalFree",
+        "MoveFileExW",
+        "MultiByteToWideChar",
+        "OpenSemaphoreW",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "ReleaseSemaphore",
+        "ResolveDelayLoadedAPI",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetFileAttributesW",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SystemTimeToFileTime",
+        "TerminateProcess",
+        "TzSpecificLocalTimeToSystemTime",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WaitForSingleObjectEx",
+        "WideCharToMultiByte",
+        "WriteFile",
+        "lstrlenA",
+        "lstrlenW"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 16,
+      "functions": [
+        "ConvertSidToStringSidW",
+        "CreateRestrictedToken",
+        "GetTokenInformation",
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "ImpersonateLoggedOnUser",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegGetValueW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "RevertToSelf",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 6,
+      "functions": [
+        "CLSIDFromString",
+        "CoCreateGuid",
+        "CoCreateInstance",
+        "CoTaskMemFree",
+        "PropVariantClear",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "name": "shlwapi.dll",
+      "imports": 6,
+      "functions": [
+        "HashData",
+        "PathFindExtensionW",
+        "PathFindFileNameW",
+        "SHGetValueW",
+        "SHStrDupW",
+        "StrCmpNW"
+      ]
+    },
+    {
+      "name": "iertutil.dll",
+      "imports": 1,
+      "functions": [
+        "CreateUri"
+      ]
+    },
+    {
+      "name": "api-ms-win-core-com-l1-1-0.dll",
+      "imports": 1,
+      "functions": [
+        "CoTaskMemAlloc"
+      ]
+    },
+    {
+      "name": "sspicli.dll",
+      "imports": 1,
+      "functions": [
+        "GetUserNameExW"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 2,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "a047f448b8c0b4a4a1060f6759e9de66c95852fd2c9ea8c6cf44a2494a9128b4"
+  },
+  "scan": {
+    "intentions": 7,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Implements Delayed Loads of DLL Resources",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Stealing Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "ImpersonateLoggedOnUser"
+        ]
+      },
+      {
+        "intent": "Implements Features To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Manipulate Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Delete Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegGetValueW"
+        ]
+      }
+    ]
+  }
+}

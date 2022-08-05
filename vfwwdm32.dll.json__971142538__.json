@@ -1,0 +1,200 @@
+{
+  "pe_name": "vfwwdm32.dll",
+  "pe_type": 267,
+  "pe_size": 56832,
+  "pe_subsystem": 2,
+  "pe_subsystem_caption": "The Windows graphical user interface (GUI) subsystem",
+  "pe_path": "c:\\Windows\\WinSxS\\wow64_microsoft-windows-directshow-vfw-capture_31bf3856ad364e35_10.0.19041.1_none_96c3de99faae4b5d\\vfwwdm32.dll",
+  "pe_timedate_stamp": 3184536425,
+  "pe_timedate_human": "2070-11-30T01:27:05.000Z",
+  "ImageDLLImports": [
+    {
+      "name": "msvcrt.dll",
+      "imports": 13,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_purecall",
+        "_vsnprintf",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memset",
+        "strtol"
+      ]
+    },
+    {
+      "name": "ksuser.dll",
+      "imports": 1,
+      "functions": [
+        "KsCreatePin"
+      ]
+    },
+    {
+      "name": "user32.dll",
+      "imports": 25,
+      "functions": [
+        "CreateWindowExA",
+        "DefWindowProcA",
+        "DispatchMessageA",
+        "EnableWindow",
+        "FindWindowA",
+        "GetClassInfoA",
+        "GetClientRect",
+        "GetDlgItem",
+        "GetMessageA",
+        "GetParent",
+        "GetWindowLongA",
+        "GetWindowRect",
+        "IsWindowEnabled",
+        "LoadCursorA",
+        "LoadStringA",
+        "MessageBoxA",
+        "PostQuitMessage",
+        "RegisterClassA",
+        "SendMessageA",
+        "SetForegroundWindow",
+        "SetWindowLongA",
+        "SetWindowTextA",
+        "ShowWindow",
+        "UnregisterClassA",
+        "WinHelpA"
+      ]
+    },
+    {
+      "name": "kernel32.dll",
+      "imports": 35,
+      "functions": [
+        "CancelIo",
+        "CloseHandle",
+        "CreateEventA",
+        "CreateThread",
+        "DeleteCriticalSection",
+        "DeviceIoControl",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "ExitThread",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleA",
+        "GetOverlappedResult",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryA",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "ResumeThread",
+        "SetEvent",
+        "SetThreadPriority",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualFree",
+        "WaitForMultipleObjectsEx",
+        "WaitForSingleObject",
+        "WideCharToMultiByte"
+      ]
+    },
+    {
+      "name": "winmm.dll",
+      "imports": 3,
+      "functions": [
+        "DefDriverProc",
+        "DriverCallback",
+        "timeGetTime"
+      ]
+    },
+    {
+      "name": "advapi32.dll",
+      "imports": 4,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExA",
+        "RegQueryValueExA",
+        "RegSetValueExA"
+      ]
+    },
+    {
+      "name": "ole32.dll",
+      "imports": 4,
+      "functions": [
+        "CoCreateInstance",
+        "CoInitializeEx",
+        "CoTaskMemFree",
+        "CoUninitialize"
+      ]
+    },
+    {
+      "name": "oleaut32.dll",
+      "imports": 0,
+      "functions": []
+    },
+    {
+      "name": "comctl32.dll",
+      "imports": 2,
+      "functions": [
+        "CreatePropertySheetPageA",
+        "PropertySheetA"
+      ]
+    }
+  ],
+  "ImageDLLExports": {
+    "exports": 3,
+    "functions": [
+      "DllMain",
+      "DriverProc",
+      "VfwWdm"
+    ]
+  },
+  "ImageHashSignatures": {
+    "sha2": "3984c103ab5cfa94f5372a6bfe258ce0e314b5915da32d9b040cfd5534602788"
+  },
+  "scan": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Query And Discover Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Inject malicious code into hijacked processes in order to evade process-based defenses",
+        "tag": "Defense Evasion:T1055.002 - Thread Execution Hijacking",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "ResumeThread"
+        ]
+      },
+      {
+        "intent": "Implements Features To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegSetValueExA"
+        ]
+      }
+    ]
+  }
+}
