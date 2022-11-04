@@ -2,7 +2,6 @@
   "name": "44d6d67b5328a4d73f72d8a0f9d39fe4bb6539609f90f169483936a8b3b88316",
   "path": "/Users/dfirence/Documents/my_code/r5-weapons/weapons/comrat/real_malware/44d6d67b5328a4d73f72d8a0f9d39fe4bb6539609f90f169483936a8b3b88316",
   "size": 1827840,
-  "type": "win-pe",
   "is_64": true,
   "is_lib": true,
   "is_dotnet": false,
@@ -179,8 +178,8 @@
     "ssdeep": "49152:jTRjrgdOU9p1PZH/JNTFTJT5dwIwzQJH:PRCBNTBwAH"
   },
   "intent": {
-    "intentions": 8,
-    "uniq_apis_matched": 9,
+    "intentions": 9,
+    "uniq_apis_matched": 13,
     "results": [
       {
         "intent": "Queries And Discovers Windows Registry Configuration Settings",
@@ -193,7 +192,60 @@
         ]
       },
       {
-        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Can Initiate Crypto Operations",
+        "tag": "Expert Input:IBO.00022 - Cryptography",
+        "component": "Crypto",
+        "inputs": 10,
+        "matches": 3,
+        "apis": [
+          "CryptAcquireContextW",
+          "CryptDestroyKey",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Can Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
+        "matches": 1,
+        "apis": [
+          "CreatePipe"
+        ]
+      },
+      {
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "GetTimeZoneInformation"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,
@@ -213,54 +265,14 @@
         ]
       },
       {
-        "intent": "Has Ability To Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
-        "component": "Processes",
-        "inputs": 12,
-        "matches": 1,
-        "apis": [
-          "CreatePipe"
-        ]
-      },
-      {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "GetTimeZoneInformation"
-        ]
-      },
-      {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 2,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
         "intent": "Enumerates LoadedModules (DLLs) From Running Processes",
         "tag": "Discovery:T1057 - Process Discovery",
         "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "EnumProcessModules"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "GetNativeSystemInfo"
+          "EnumProcessModules",
+          "EnumProcessModulesEx"
         ]
       }
     ]
