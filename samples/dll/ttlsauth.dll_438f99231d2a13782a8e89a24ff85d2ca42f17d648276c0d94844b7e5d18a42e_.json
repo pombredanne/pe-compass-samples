@@ -2,7 +2,6 @@
   "name": "ttlsauth.dll",
   "path": "\\\\?\\C:\\Windows\\SysWOW64\\TtlsAuth.dll",
   "size": 193536,
-  "type": "win-pe",
   "is_64": false,
   "is_lib": true,
   "is_dotnet": true,
@@ -473,18 +472,18 @@
     "ssdeep": "3072:B+AoWCoyqOlfXBCkHNrFhhfRpdY7HdRHP08nUU6O/DZFLk7A3IGm5E1QbwpVfBe6:BtoWY8eH1Y79RHL1/DZFYGm5gQbwoAKC"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 12,
+    "intentions": 7,
+    "uniq_apis_matched": 14,
     "results": [
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
         "matches": 2,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "CheckTokenMembership",
+          "OpenThreadToken"
         ]
       },
       {
@@ -498,27 +497,25 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
         "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
+        "inputs": 11,
+        "matches": 2,
         "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
+        "intent": "Can Modify/Manipulate Credentials",
+        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 10,
         "matches": 2,
         "apis": [
-          "CheckTokenMembership",
-          "OpenThreadToken"
+          "CredUnprotectW",
+          "CredWriteA"
         ]
       },
       {
@@ -532,14 +529,27 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
         "matches": 2,
         "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       }
     ]

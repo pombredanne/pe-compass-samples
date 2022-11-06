@@ -2,7 +2,6 @@
   "name": "nltest.exe",
   "path": "\\\\?\\C:\\Windows\\WinSxS\\amd64_microsoft-windows-security-tools-nltest_31bf3856ad364e35_10.0.19041.1806_none_0ede17ceb1c02a12\\nltest.exe",
   "size": 545280,
-  "type": "win-pe",
   "is_64": true,
   "is_lib": false,
   "is_dotnet": false,
@@ -259,16 +258,6 @@
     "uniq_apis_matched": 27,
     "results": [
       {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
-        "matches": 1,
-        "apis": [
-          "getaddrinfo"
-        ]
-      },
-      {
         "intent": "Can Remotely Connect To A Target System And Access Its Windows Registry",
         "tag": "Expert Input:IBO.00010 - Connect To Remote Windows Registry",
         "component": "Networking",
@@ -279,24 +268,42 @@
         ]
       },
       {
-        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
-        "tag": "Impact:T1529 - System Shutdown/Reboot",
-        "component": "---",
-        "inputs": 6,
-        "matches": 1,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
         "apis": [
-          "InitiateSystemShutdownExW"
+          "RegQueryValueExA",
+          "RegQueryValueExW"
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 2,
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 9,
         "apis": [
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
+          "DsAddressToSiteNamesExA",
+          "DsGetDcNameA",
+          "DsGetDcNameW",
+          "DsGetDcNameWithAccountW",
+          "DsGetDcNextA",
+          "DsGetDomainControllerInfoW",
+          "DsGetSiteNameA",
+          "NetGetDCName",
+          "NetLogonGetTimeServiceParentDomain"
+        ]
+      },
+      {
+        "intent": "Can Delete DNS Records",
+        "tag": "Expert Input:IBO.00015 - DNS Record Deletion",
+        "component": "Networking",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "DsDeregisterDnsHostRecordsA"
         ]
       },
       {
@@ -322,25 +329,13 @@
         ]
       },
       {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
-        "component": "Networking",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "WSAAddressToStringA",
-          "WSAStringToAddressA",
-          "freeaddrinfo"
-        ]
-      },
-      {
-        "intent": "Can Communicate via MailSlots",
-        "tag": "Expert Input:IBO.0005 - Implement MailSlots",
-        "component": "Processes",
-        "inputs": 2,
+        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
+        "tag": "Impact:T1529 - System Shutdown/Reboot",
+        "component": "---",
+        "inputs": 6,
         "matches": 1,
         "apis": [
-          "CreateMailslotA"
+          "InitiateSystemShutdownExW"
         ]
       },
       {
@@ -355,42 +350,46 @@
         ]
       },
       {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
-        "component": "---",
-        "inputs": 24,
-        "matches": 9,
-        "apis": [
-          "DsAddressToSiteNamesExA",
-          "DsGetDcNameA",
-          "DsGetDcNameW",
-          "DsGetDcNameWithAccountW",
-          "DsGetDcNextA",
-          "DsGetDomainControllerInfoW",
-          "DsGetSiteNameA",
-          "NetGetDCName",
-          "NetLogonGetTimeServiceParentDomain"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryValueExA",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Delete DNS Records",
-        "tag": "Expert Input:IBO.00015 - DNS Record Deletion",
+        "intent": "Can Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
         "component": "Networking",
-        "inputs": 1,
+        "inputs": 31,
         "matches": 1,
         "apis": [
-          "DsDeregisterDnsHostRecordsA"
+          "getaddrinfo"
+        ]
+      },
+      {
+        "intent": "Can Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
+        "matches": 3,
+        "apis": [
+          "WSAAddressToStringA",
+          "WSAStringToAddressA",
+          "freeaddrinfo"
+        ]
+      },
+      {
+        "intent": "Can Initiate Crypto Operations",
+        "tag": "Expert Input:IBO.00022 - Cryptography",
+        "component": "Crypto",
+        "inputs": 12,
+        "matches": 2,
+        "apis": [
+          "CryptAcquireContextW",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Can Communicate via MailSlots",
+        "tag": "Expert Input:IBO.0005 - Implement MailSlots",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateMailslotA"
         ]
       }
     ]

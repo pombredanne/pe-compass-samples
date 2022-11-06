@@ -2,7 +2,6 @@
   "name": "netiohlp.dll",
   "path": "\\\\?\\C:\\Windows\\SysWOW64\\netiohlp.dll",
   "size": 154624,
-  "type": "win-pe",
   "is_64": false,
   "is_lib": true,
   "is_dotnet": true,
@@ -399,6 +398,22 @@
     "uniq_apis_matched": 27,
     "results": [
       {
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 7,
+        "apis": [
+          "GetAdaptersAddresses",
+          "GetIcmpStatistics",
+          "GetIfTable",
+          "GetIpNetTable",
+          "GetIpStatisticsEx",
+          "GetTcpTable",
+          "GetUdpTable"
+        ]
+      },
+      {
         "intent": "Can Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
@@ -408,6 +423,27 @@
           "RegEnumKeyExW",
           "RegEnumKeyW",
           "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 2,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW"
+        ]
+      },
+      {
+        "intent": "Can Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 1,
+        "apis": [
+          "GetNameInfoW"
         ]
       },
       {
@@ -424,7 +460,7 @@
       {
         "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
+        "component": "---",
         "inputs": 2,
         "matches": 2,
         "apis": [
@@ -433,14 +469,14 @@
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
         "matches": 2,
         "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW"
+          "RegGetValueW",
+          "RegQueryValueExW"
         ]
       },
       {
@@ -458,27 +494,6 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegGetValueW",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
-        "matches": 1,
-        "apis": [
-          "GetNameInfoW"
-        ]
-      },
-      {
         "intent": "Can Manipulate Access Control Mechanisms",
         "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
         "component": "Privileges",
@@ -488,22 +503,6 @@
           "AddAccessAllowedAce",
           "InitializeAcl",
           "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 7,
-        "apis": [
-          "GetAdaptersAddresses",
-          "GetIcmpStatistics",
-          "GetIfTable",
-          "GetIpNetTable",
-          "GetIpStatisticsEx",
-          "GetTcpTable",
-          "GetUdpTable"
         ]
       }
     ]

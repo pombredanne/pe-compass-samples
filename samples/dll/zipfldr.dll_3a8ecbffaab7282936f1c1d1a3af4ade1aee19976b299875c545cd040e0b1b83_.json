@@ -2,7 +2,6 @@
   "name": "zipfldr.dll",
   "path": "\\\\?\\C:\\Windows\\System32\\zipfldr.dll",
   "size": 281600,
-  "type": "win-pe",
   "is_64": true,
   "is_lib": true,
   "is_dotnet": false,
@@ -663,24 +662,13 @@
     "ssdeep": "6144:5V4aJ5vKT61thXfa0yajXE50gJwij9UwAwcFedUX:rXvz1thXfa0yaY55JwiFfU"
   },
   "intent": {
-    "intentions": 5,
-    "uniq_apis_matched": 8,
+    "intentions": 7,
+    "uniq_apis_matched": 10,
     "results": [
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "FindFirstFileA",
-          "FindFirstFileW"
-        ]
-      },
       {
         "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
+        "component": "---",
         "inputs": 2,
         "matches": 2,
         "apis": [
@@ -689,13 +677,13 @@
         ]
       },
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Can Modify/Manipulate Credentials",
+        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 10,
         "matches": 1,
         "apis": [
-          "DeleteFileW"
+          "CredWriteW"
         ]
       },
       {
@@ -717,6 +705,37 @@
         "apis": [
           "ShellExecuteExW",
           "ShellExecuteW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileA",
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Read Credentials",
+        "tag": "Expert Input:IBO.00023 - Access Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "CredReadW"
         ]
       }
     ]

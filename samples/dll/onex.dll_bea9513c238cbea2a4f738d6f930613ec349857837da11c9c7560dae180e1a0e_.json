@@ -2,7 +2,6 @@
   "name": "onex.dll",
   "path": "\\\\?\\C:\\Windows\\System32\\onex.dll",
   "size": 237568,
-  "type": "win-pe",
   "is_64": true,
   "is_lib": true,
   "is_dotnet": false,
@@ -329,17 +328,28 @@
     "ssdeep": "3072:yM2iNSVPgWYa+TzFIaIGhIDxYHX0PQjZnJ1DW2aqJB2WUYDhZgOIqlrQsO:ypiN8gZ3zOydJ1iIauNZgOIsbO"
   },
   "intent": {
-    "intentions": 3,
-    "uniq_apis_matched": 4,
+    "intentions": 4,
+    "uniq_apis_matched": 5,
     "results": [
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Delete Credentials",
+        "tag": "Expert Input:IBO.00024 - Delete Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "ImpersonateLoggedOnUser"
+          "CredDeleteW"
         ]
       },
       {
@@ -353,14 +363,13 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "ImpersonateLoggedOnUser"
         ]
       }
     ]

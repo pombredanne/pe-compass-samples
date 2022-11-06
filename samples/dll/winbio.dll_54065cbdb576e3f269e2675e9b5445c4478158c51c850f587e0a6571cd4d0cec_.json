@@ -2,7 +2,6 @@
   "name": "winbio.dll",
   "path": "\\\\?\\C:\\Windows\\SysWOW64\\winbio.dll",
   "size": 129024,
-  "type": "win-pe",
   "is_64": false,
   "is_lib": true,
   "is_dotnet": true,
@@ -504,8 +503,8 @@
     "ssdeep": "3072:6DAjRbls/52BsKa4TWcG34hojAzx8P3tMeXNTe0wG7Px:nbl9Gj0W4xG2e9LwG"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 9,
+    "intentions": 7,
+    "uniq_apis_matched": 11,
     "results": [
       {
         "intent": "Can Enumerate The Windows Registry",
@@ -515,6 +514,28 @@
         "matches": 1,
         "apis": [
           "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Modify/Manipulate Credentials",
+        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 10,
+        "matches": 2,
+        "apis": [
+          "CredProtectW",
+          "CredUnprotectW"
         ]
       },
       {
@@ -530,7 +551,7 @@
       {
         "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
+        "component": "---",
         "inputs": 2,
         "matches": 2,
         "apis": [
@@ -539,14 +560,13 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "RegGetValueW",
-          "RegQueryValueExW"
+          "ImpersonateLoggedOnUser"
         ]
       },
       {
@@ -558,16 +578,6 @@
         "apis": [
           "OpenProcessToken",
           "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "ImpersonateLoggedOnUser"
         ]
       }
     ]

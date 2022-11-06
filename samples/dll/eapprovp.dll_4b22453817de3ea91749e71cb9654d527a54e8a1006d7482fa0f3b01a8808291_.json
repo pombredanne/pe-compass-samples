@@ -2,7 +2,6 @@
   "name": "eapprovp.dll",
   "path": "\\\\?\\C:\\Windows\\System32\\eapprovp.dll",
   "size": 52224,
-  "type": "win-pe",
   "is_64": true,
   "is_lib": true,
   "is_dotnet": false,
@@ -317,9 +316,20 @@
     "ssdeep": "768:4cjjcDNUkbIYIDv5ltDsybs3uXBIVHhvh9e4V1v6xMTQFP2HRdd/cIBr:dQUkbIYIbnOas3uiVHhZ9eOcOR7/vBr"
   },
   "intent": {
-    "intentions": 5,
-    "uniq_apis_matched": 6,
+    "intentions": 7,
+    "uniq_apis_matched": 9,
     "results": [
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
       {
         "intent": "Can Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
@@ -328,6 +338,16 @@
         "matches": 1,
         "apis": [
           "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Can Read Credentials",
+        "tag": "Expert Input:IBO.00023 - Access Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "CredReadW"
         ]
       },
       {
@@ -341,24 +361,14 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
+        "intent": "Can Modify/Manipulate Credentials",
+        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 10,
         "matches": 2,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "ImpersonateLoggedOnUser"
+          "CredUnprotectW",
+          "CredWriteA"
         ]
       },
       {
@@ -369,6 +379,16 @@
         "matches": 1,
         "apis": [
           "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "ImpersonateLoggedOnUser"
         ]
       }
     ]

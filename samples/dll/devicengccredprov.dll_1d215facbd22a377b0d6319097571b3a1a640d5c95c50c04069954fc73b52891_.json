@@ -2,7 +2,6 @@
   "name": "devicengccredprov.dll",
   "path": "\\\\?\\C:\\Windows\\System32\\devicengccredprov.dll",
   "size": 237056,
-  "type": "win-pe",
   "is_64": true,
   "is_lib": true,
   "is_dotnet": false,
@@ -529,9 +528,21 @@
     "ssdeep": "3072:5jD2Qy0d0XmnloIeVBCtbdcDlsWYxLn2/yVo/oYZj3DRXf/MEkxJTFj1p4C:5jD9dpe1VkaD2W7AenSTFjI"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 13,
+    "intentions": 7,
+    "uniq_apis_matched": 14,
     "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 3,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
       {
         "intent": "Can Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
@@ -543,17 +554,6 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
         "intent": "Discovers Local User Accounts on the Target System",
         "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
         "component": "Identities",
@@ -562,6 +562,17 @@
         "apis": [
           "LookupAccountNameLocalW",
           "LookupAccountSidLocalW"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -588,15 +599,13 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 3,
+        "intent": "Can Modify/Manipulate Credentials",
+        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 10,
+        "matches": 1,
         "apis": [
-          "RegGetValueW",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
+          "CredProtectW"
         ]
       }
     ]

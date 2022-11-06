@@ -2,7 +2,6 @@
   "name": "runas.exe",
   "path": "\\\\?\\C:\\Windows\\System32\\runas.exe",
   "size": 20480,
-  "type": "win-pe",
   "is_64": true,
   "is_lib": false,
   "is_dotnet": false,
@@ -174,8 +173,8 @@
     "ssdeep": "384:+13uktNRQP6gFEcNEAhcSGpSW24GY2YorKq9bOOwp3MJOR/e6LeypWpOW:CektftQEcNEwi724GjYo9Ypp324ety0"
   },
   "intent": {
-    "intentions": 5,
-    "uniq_apis_matched": 9,
+    "intentions": 6,
+    "uniq_apis_matched": 10,
     "results": [
       {
         "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
@@ -185,6 +184,19 @@
         "matches": 1,
         "apis": [
           "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Discovers and Manipulates the Windows `SAFER Security Level` To Coerce Global Application Execution",
+        "tag": "Persistence:T1546.009 - AppCert DLLs",
+        "component": "---",
+        "inputs": 8,
+        "matches": 4,
+        "apis": [
+          "SaferCloseLevel",
+          "SaferCreateLevel",
+          "SaferGetLevelInformation",
+          "SaferGetPolicyInformation"
         ]
       },
       {
@@ -199,16 +211,6 @@
         ]
       },
       {
-        "intent": "Executes Application with Token Of Another Identity",
-        "tag": "Privilege Escalation:T1134.002 - Create Process With Token",
-        "component": "Identities",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CreateProcessWithLogonW"
-        ]
-      },
-      {
         "intent": "Manipulates Windows Tokens",
         "tag": "Defense Evasion:T1134 - Access Token Manipulation",
         "component": "Privileges",
@@ -219,16 +221,23 @@
         ]
       },
       {
-        "intent": "Discovers and Manipulates the Windows `SAFER Security Level` To Coerce Global Application Execution",
-        "tag": "Persistence:T1546.009 - AppCert DLLs",
-        "component": "---",
-        "inputs": 8,
-        "matches": 4,
+        "intent": "Can Modify/Manipulate Credentials",
+        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 10,
+        "matches": 1,
         "apis": [
-          "SaferCloseLevel",
-          "SaferCreateLevel",
-          "SaferGetLevelInformation",
-          "SaferGetPolicyInformation"
+          "CredWriteW"
+        ]
+      },
+      {
+        "intent": "Executes Application with Token Of Another Identity",
+        "tag": "Privilege Escalation:T1134.002 - Create Process With Token",
+        "component": "Identities",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessWithLogonW"
         ]
       }
     ]

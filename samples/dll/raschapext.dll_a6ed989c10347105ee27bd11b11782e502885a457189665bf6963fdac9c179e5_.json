@@ -2,7 +2,6 @@
   "name": "raschapext.dll",
   "path": "\\\\?\\C:\\Windows\\System32\\raschapext.dll",
   "size": 101888,
-  "type": "win-pe",
   "is_64": true,
   "is_lib": true,
   "is_dotnet": false,
@@ -376,8 +375,8 @@
     "ssdeep": "3072:Upu7ROuBa2aqnuNm33goLwI8z6DUeWaoi8WRPrRWQGvO3mpD34kQm:yKRO+a2aqnuNm33gswI8z6DU1iZ1rRWl"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 13,
+    "intentions": 7,
+    "uniq_apis_matched": 14,
     "results": [
       {
         "intent": "Can Enumerate The Windows Registry",
@@ -390,14 +389,13 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "OpenProcessToken"
         ]
       },
       {
@@ -409,6 +407,16 @@
         "apis": [
           "RegQueryInfoKeyW",
           "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Can Modify/Manipulate Credentials",
+        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
+        "component": "Authentication",
+        "inputs": 10,
+        "matches": 1,
+        "apis": [
+          "CredProtectW"
         ]
       },
       {
@@ -437,13 +445,14 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "OpenProcessToken"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       }
     ]

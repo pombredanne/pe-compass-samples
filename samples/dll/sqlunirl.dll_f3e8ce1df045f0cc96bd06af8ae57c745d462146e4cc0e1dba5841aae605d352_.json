@@ -2,7 +2,6 @@
   "name": "sqlunirl.dll",
   "path": "\\\\?\\C:\\Windows\\SysWOW64\\sqlunirl.dll",
   "size": 188768,
-  "type": "win-pe",
   "is_64": false,
   "is_lib": true,
   "is_dotnet": true,
@@ -965,63 +964,23 @@
     "uniq_apis_matched": 40,
     "results": [
       {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
-        "component": "Processes",
-        "inputs": 13,
-        "matches": 2,
-        "apis": [
-          "CallNamedPipeA",
-          "CreateNamedPipeA"
-        ]
-      },
-      {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 7,
-        "apis": [
-          "EnumDependentServicesA",
-          "GetServiceDisplayNameA",
-          "GetServiceKeyNameA",
-          "OpenSCManagerA",
-          "OpenServiceA",
-          "QueryServiceConfigA",
-          "QueryServiceLockStatusA"
-        ]
-      },
-      {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "intent": "Clears Windows Event Log Entries/Files",
+        "tag": "Defense Evasion:T1070.001",
         "component": "Filesystem",
         "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 3,
-        "apis": [
-          "RegEnumKeyA",
-          "RegEnumKeyExA",
-          "RegEnumValueA"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
         "matches": 1,
         "apis": [
-          "FindFirstFileA"
+          "ClearEventlogA"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserA"
         ]
       },
       {
@@ -1043,36 +1002,31 @@
         ]
       },
       {
-        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
-        "tag": "Impact:T1529 - System Shutdown/Reboot",
-        "component": "---",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "InitiateSystemShutdownA"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
         "component": "Services",
-        "inputs": 19,
-        "matches": 4,
+        "inputs": 28,
+        "matches": 7,
         "apis": [
-          "CreateServiceA",
-          "RegisterServiceCtrlHandlerA",
-          "StartServiceA",
-          "StartServiceCtrlDispatcherA"
+          "EnumDependentServicesA",
+          "GetServiceDisplayNameA",
+          "GetServiceKeyNameA",
+          "OpenSCManagerA",
+          "OpenServiceA",
+          "QueryServiceConfigA",
+          "QueryServiceLockStatusA"
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
+        "inputs": 7,
+        "matches": 3,
         "apis": [
-          "CreateProcessAsUserA"
+          "CreateProcessA",
+          "ShellExecuteA",
+          "ShellExecuteExA"
         ]
       },
       {
@@ -1083,16 +1037,6 @@
         "matches": 1,
         "apis": [
           "RegConnectRegistryA"
-        ]
-      },
-      {
-        "intent": "Clears Windows Event Log Entries/Files",
-        "tag": "Defense Evasion:T1070.001",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "ClearEventlogA"
         ]
       },
       {
@@ -1109,15 +1053,38 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 4,
+        "apis": [
+          "CreateServiceA",
+          "RegisterServiceCtrlHandlerA",
+          "StartServiceA",
+          "StartServiceCtrlDispatcherA"
+        ]
+      },
+      {
+        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
+        "tag": "Impact:T1529 - System Shutdown/Reboot",
+        "component": "---",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "InitiateSystemShutdownA"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
         "matches": 3,
         "apis": [
-          "CreateProcessA",
-          "ShellExecuteA",
-          "ShellExecuteExA"
+          "RegEnumKeyA",
+          "RegEnumKeyExA",
+          "RegEnumValueA"
         ]
       },
       {
@@ -1128,6 +1095,38 @@
         "matches": 1,
         "apis": [
           "CreateMailslotA"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Can Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
+        "matches": 2,
+        "apis": [
+          "CallNamedPipeA",
+          "CreateNamedPipeA"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileA"
         ]
       }
     ]

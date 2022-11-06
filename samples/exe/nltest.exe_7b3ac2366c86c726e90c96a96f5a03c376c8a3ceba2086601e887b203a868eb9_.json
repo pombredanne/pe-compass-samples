@@ -2,7 +2,6 @@
   "name": "nltest.exe",
   "path": "\\\\?\\C:\\Windows\\System32\\nltest.exe",
   "size": 540672,
-  "type": "win-pe",
   "is_64": true,
   "is_lib": false,
   "is_dotnet": false,
@@ -259,6 +258,36 @@
     "uniq_apis_matched": 27,
     "results": [
       {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Can Communicate via MailSlots",
+        "tag": "Expert Input:IBO.0005 - Implement MailSlots",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateMailslotA"
+        ]
+      },
+      {
+        "intent": "Can Delete DNS Records",
+        "tag": "Expert Input:IBO.00015 - DNS Record Deletion",
+        "component": "Networking",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "DsDeregisterDnsHostRecordsA"
+        ]
+      },
+      {
         "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
         "tag": "Impact:T1529 - System Shutdown/Reboot",
         "component": "---",
@@ -269,13 +298,25 @@
         ]
       },
       {
-        "intent": "Can Remotely Connect To A Target System And Access Its Windows Registry",
-        "tag": "Expert Input:IBO.00010 - Connect To Remote Windows Registry",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 1,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
         "apis": [
-          "RegConnectRegistryW"
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenKeyExA",
+          "RegSetValueExA"
         ]
       },
       {
@@ -289,13 +330,13 @@
         ]
       },
       {
-        "intent": "Can Communicate via MailSlots",
-        "tag": "Expert Input:IBO.0005 - Implement MailSlots",
-        "component": "Processes",
+        "intent": "Can Remotely Connect To A Target System And Access Its Windows Registry",
+        "tag": "Expert Input:IBO.00010 - Connect To Remote Windows Registry",
+        "component": "Networking",
         "inputs": 2,
         "matches": 1,
         "apis": [
-          "CreateMailslotA"
+          "RegConnectRegistryW"
         ]
       },
       {
@@ -311,25 +352,15 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 2,
+        "intent": "Enumerates Available Windows Domain Trusts",
+        "tag": "Discovery:T1482 - Domain Trust Discovery",
+        "component": "Networking",
+        "inputs": 7,
+        "matches": 3,
         "apis": [
-          "RegOpenKeyExA",
-          "RegSetValueExA"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryValueExA",
-          "RegQueryValueExW"
+          "DsEnumerateDomainTrustsA",
+          "DsGetForestTrustInformationW",
+          "LsaQueryForestTrustInformation"
         ]
       },
       {
@@ -341,18 +372,6 @@
         "apis": [
           "CryptAcquireContextW",
           "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Enumerates Available Windows Domain Trusts",
-        "tag": "Discovery:T1482 - Domain Trust Discovery",
-        "component": "Networking",
-        "inputs": 7,
-        "matches": 3,
-        "apis": [
-          "DsEnumerateDomainTrustsA",
-          "DsGetForestTrustInformationW",
-          "LsaQueryForestTrustInformation"
         ]
       },
       {
@@ -371,26 +390,6 @@
           "DsGetSiteNameA",
           "NetGetDCName",
           "NetLogonGetTimeServiceParentDomain"
-        ]
-      },
-      {
-        "intent": "Can Delete DNS Records",
-        "tag": "Expert Input:IBO.00015 - DNS Record Deletion",
-        "component": "Networking",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "DsDeregisterDnsHostRecordsA"
-        ]
-      },
-      {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
-        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
-        "component": "Processes",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "__getmainargs"
         ]
       }
     ]
