@@ -1,0 +1,131 @@
+{
+  "name": "bthudtask.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\bthudtask.exe",
+  "size": 40448,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "devobj.dll",
+    "kernel32.dll",
+    "msvcrt.dll"
+  ],
+  "imports": [
+    {
+      "lib": "devobj.dll",
+      "count": 7,
+      "functions": [
+        "DevObjCreateDeviceInfoList",
+        "DevObjDestroyDeviceInfoList",
+        "DevObjEnumDeviceInfo",
+        "DevObjGetClassDevs",
+        "DevObjGetDeviceInstanceId",
+        "DevObjOpenDevRegKey",
+        "DevObjUninstallDevice"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 15,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_vsnwprintf",
+        "exit",
+        "memset"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 21,
+      "functions": [
+        "CloseHandle",
+        "CompareStringOrdinal",
+        "DelayLoadFailureHook",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "OpenEventW",
+        "QueryPerformanceCounter",
+        "ResolveDelayLoadedAPI",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 2,
+      "functions": [
+        "RegCloseKey",
+        "RegQueryValueExW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "cf5ae95c9fdafe5f0cc9d7010412e84502fe66ad60f57dfdf68735b9315ff444",
+    "ssdeep": "384:9xPCdanLUfz+Kr+fUOzDfINIDaqJkb9J3WWLHWpKJajXDO1/EagS817l:rjLUL+KAfosa59J7kzDO"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      }
+    ]
+  }
+}

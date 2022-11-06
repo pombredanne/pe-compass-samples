@@ -1,0 +1,186 @@
+{
+  "name": "iemigplugin.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\iemigplugin.dll",
+  "size": 65536,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "ntdll.dll",
+    "oleaut32.dll",
+    "shlwapi.dll"
+  ],
+  "imports": [
+    {
+      "lib": "oleaut32.dll",
+      "count": 2,
+      "functions": [
+        "ORDINAL 2",
+        "ORDINAL 6"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 68,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "CloseHandle",
+        "CreateFileW",
+        "DecodePointer",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EncodePointer",
+        "EnterCriticalSection",
+        "ExitProcess",
+        "FlsAlloc",
+        "FlsFree",
+        "FlsGetValue",
+        "FlsSetValue",
+        "FlushFileBuffers",
+        "FreeEnvironmentStringsW",
+        "GetACP",
+        "GetCPInfo",
+        "GetCommandLineA",
+        "GetConsoleCP",
+        "GetConsoleMode",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetEnvironmentStringsW",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleHandleExW",
+        "GetOEMCP",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetStdHandle",
+        "GetStringTypeW",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "HeapAlloc",
+        "HeapCreate",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSetInformation",
+        "HeapSize",
+        "InitOnceExecuteOnce",
+        "InitializeCriticalSectionAndSpinCount",
+        "IsValidCodePage",
+        "LCMapStringW",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "MultiByteToWideChar",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "ReleaseSRWLockExclusive",
+        "SetFilePointer",
+        "SetLastError",
+        "SetStdHandle",
+        "SetThreadStackGuarantee",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualProtect",
+        "VirtualQuery",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "WriteFile"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 7,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "LookupPrivilegeValueW",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "lib": "shlwapi.dll",
+      "count": 1,
+      "functions": [
+        "ORDINAL 219"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 4,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlUnwindEx",
+        "RtlVirtualUnwind"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 5,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllInstall",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "hashes": {
+    "sha2": "5efc4aa5bb7e9474309e7ef9718350822ba7d3d24398b0bc874c97c346fb3778",
+    "ssdeep": "1536:lNtx6TyxsRgiPeAq6xDd87D+1/CbdFixR9dV8+:lNtx6Tp6iPeex587D+1a2D9dV8+"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

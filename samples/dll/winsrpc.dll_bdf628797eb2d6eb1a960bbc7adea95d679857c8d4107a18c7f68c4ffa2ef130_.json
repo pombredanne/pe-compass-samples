@@ -1,0 +1,176 @@
+{
+  "name": "winsrpc.dll",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\WINSRPC.DLL",
+  "size": 17920,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": true,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "rpcrt4.dll"
+  ],
+  "imports": [
+    {
+      "lib": "advapi32.dll",
+      "count": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "lib": "rpcrt4.dll",
+      "count": 7,
+      "functions": [
+        "I_RpcExceptionFilter",
+        "NdrClientCall4",
+        "RpcBindingFree",
+        "RpcBindingFromStringBindingW",
+        "RpcBindingSetAuthInfoW",
+        "RpcStringBindingComposeW",
+        "RpcStringFreeW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 8,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "free",
+        "malloc",
+        "strcat_s",
+        "strcpy_s"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 27,
+      "functions": [
+        "CreateDirectoryA",
+        "DeleteFileA",
+        "ExpandEnvironmentStringsW",
+        "FindClose",
+        "FindFirstFileA",
+        "FindNextFileA",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RemoveDirectoryA",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "lstrcmpW"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 31,
+    "functions": [
+      "WinsABind",
+      "WinsAllocMem",
+      "WinsBackup",
+      "WinsCheckAccess",
+      "WinsDelDbRecs",
+      "WinsDeleteWins",
+      "WinsDoScavenging",
+      "WinsDoScavengingNew",
+      "WinsDoStaticInit",
+      "WinsFreeMem",
+      "WinsGetBrowserNames",
+      "WinsGetDbRecs",
+      "WinsGetDbRecsByName",
+      "WinsGetNameAndAdd",
+      "WinsPullRange",
+      "WinsRecordAction",
+      "WinsResetCounters",
+      "WinsRestore",
+      "WinsRestoreEx",
+      "WinsSetFlags",
+      "WinsSetPriorityClass",
+      "WinsStatus",
+      "WinsStatusNew",
+      "WinsStatusWHdl",
+      "WinsSyncUp",
+      "WinsTerm",
+      "WinsTombstoneDbRecs",
+      "WinsTrigger",
+      "WinsUBind",
+      "WinsUnbind",
+      "WinsWorkerThdUpd"
+    ]
+  },
+  "hashes": {
+    "sha2": "bdf628797eb2d6eb1a960bbc7adea95d679857c8d4107a18c7f68c4ffa2ef130",
+    "ssdeep": "192:mZ7A/2s0mT/nz2xShbY0EVs5OkIEzbWDLWWuCqUJrE:mZ7A/0mrzfhbY0ws8kIqWDLWEqq"
+  },
+  "intent": {
+    "intentions": 4,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileA"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileA"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "name": "msiltcfg.dll",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\msiltcfg.dll",
+  "size": 17408,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": true,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "version.dll"
+  ],
+  "imports": [
+    {
+      "lib": "kernel32.dll",
+      "count": 33,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateThread",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FreeLibrary",
+        "FreeLibraryAndExitThread",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleExW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "OpenEventW",
+        "QueryPerformanceCounter",
+        "ResetEvent",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject",
+        "lstrcmpW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 13,
+      "functions": [
+        "_XcptFilter",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_unlock",
+        "_vsnwprintf",
+        "free",
+        "malloc",
+        "memcpy"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 22,
+      "functions": [
+        "AccessCheck",
+        "AddAccessAllowedAce",
+        "AllocateAndInitializeSid",
+        "ConvertSidToStringSidW",
+        "CopySid",
+        "DuplicateToken",
+        "EqualSid",
+        "FreeSid",
+        "GetLengthSid",
+        "GetSecurityInfo",
+        "GetTokenInformation",
+        "InitializeAcl",
+        "InitializeSecurityDescriptor",
+        "IsValidSecurityDescriptor",
+        "OpenProcessToken",
+        "OpenThreadToken",
+        "SetEntriesInAclW",
+        "SetSecurityDescriptorDacl",
+        "SetSecurityDescriptorGroup",
+        "SetSecurityDescriptorOwner",
+        "SetSecurityInfo",
+        "SetThreadToken"
+      ]
+    },
+    {
+      "lib": "version.dll",
+      "count": 3,
+      "functions": [
+        "GetFileVersionInfoSizeW",
+        "GetFileVersionInfoW",
+        "VerQueryValueW"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 14,
+    "functions": [
+      "MsiAdvertiseScriptW",
+      "MsiConfigureProductExW",
+      "MsiDecomposeDescriptorW",
+      "MsiGetComponentPathW",
+      "MsiGetProductInfoW",
+      "MsiIsProductElevatedW",
+      "MsiProvideComponentFromDescriptorW",
+      "MsiQueryFeatureStateFromDescriptorW",
+      "MsiQueryFeatureStateW",
+      "MsiQueryProductStateW",
+      "MsiReinstallProductW",
+      "MsiSetInternalUI",
+      "RestartMsi",
+      "ShutdownMsi"
+    ]
+  },
+  "hashes": {
+    "sha2": "2bfbe77d7925d5503f95b352a3b2b84909f501f8359c4831bb8c83191d721c47",
+    "ssdeep": "384:C2o2WdT6RZcHzqknU+aAm3U3wkM3urn6+P4uz5Zjj8TMTmCWLB5:82WdT6RZcHzyy0mMC7/TTmv/"
+  },
+  "intent": {
+    "intentions": 4,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Can Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 3,
+        "apis": [
+          "AddAccessAllowedAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "DuplicateToken"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      }
+    ]
+  }
+}

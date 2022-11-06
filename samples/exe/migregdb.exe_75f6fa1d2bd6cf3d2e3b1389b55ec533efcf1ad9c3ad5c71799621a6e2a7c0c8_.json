@@ -1,0 +1,129 @@
+{
+  "name": "migregdb.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\Com\\MigRegDB.exe",
+  "size": 13312,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "clbcatq.dll",
+    "kernel32.dll",
+    "msvcrt.dll"
+  ],
+  "imports": [
+    {
+      "lib": "kernel32.dll",
+      "count": 21,
+      "functions": [
+        "ExitProcess",
+        "ExpandEnvironmentStringsW",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "clbcatq.dll",
+      "count": 2,
+      "functions": [
+        "ComPlusMigrate",
+        "OpenComponentLibraryEx"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegDeleteValueW",
+        "RegOpenKeyExW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 17,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_vsnwprintf",
+        "_wtol",
+        "exit",
+        "swscanf"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "75f6fa1d2bd6cf3d2e3b1389b55ec533efcf1ad9c3ad5c71799621a6e2a7c0c8",
+    "ssdeep": "192:KgW6jmFhw9BbREMcnpl0FK3rK9wvx3WTgeo+TEPS5IzHGLFto4rWYwW:KgW6jmnw9x2rL0urPx3+FIr2o4rWYwW"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegDeleteValueW",
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      }
+    ]
+  }
+}

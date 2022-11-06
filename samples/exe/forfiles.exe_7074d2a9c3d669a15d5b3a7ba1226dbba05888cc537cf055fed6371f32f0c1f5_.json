@@ -1,0 +1,206 @@
+{
+  "name": "forfiles.exe",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\forfiles.exe",
+  "size": 41472,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": false,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "shlwapi.dll",
+    "user32.dll",
+    "version.dll",
+    "ws2_32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "ntdll.dll",
+      "count": 2,
+      "functions": [
+        "RtlVerifyVersionInfo",
+        "VerSetConditionMask"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 54,
+      "functions": [
+        "CloseHandle",
+        "CompareStringA",
+        "CompareStringW",
+        "CreateProcessW",
+        "ExitProcess",
+        "FileTimeToDosDateTime",
+        "FileTimeToLocalFileTime",
+        "FileTimeToSystemTime",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FormatMessageW",
+        "GetConsoleMode",
+        "GetConsoleOutputCP",
+        "GetCurrentDirectoryW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetDateFormatW",
+        "GetFileType",
+        "GetLastError",
+        "GetLocalTime",
+        "GetLocaleInfoW",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcessHeap",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetThreadLocale",
+        "GetTickCount",
+        "GetTimeFormatW",
+        "GetUserDefaultLCID",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSetInformation",
+        "HeapSize",
+        "HeapValidate",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "SearchPathW",
+        "SetCurrentDirectoryW",
+        "SetErrorMode",
+        "SetLastError",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "lstrlenW"
+      ]
+    },
+    {
+      "lib": "shlwapi.dll",
+      "count": 8,
+      "functions": [
+        "PathRelativePathToW",
+        "StrChrIW",
+        "StrChrW",
+        "StrDupW",
+        "StrPBrkW",
+        "StrRChrW",
+        "StrStrIW",
+        "StrStrW"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 3,
+      "functions": [
+        "CharLowerW",
+        "CharUpperW",
+        "LoadStringW"
+      ]
+    },
+    {
+      "lib": "ws2_32.dll",
+      "count": 1,
+      "functions": [
+        "ORDINAL 116"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 29,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__iob_func",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_errno",
+        "_except_handler4_common",
+        "_exit",
+        "_fileno",
+        "_get_osfhandle",
+        "_initterm",
+        "_memicmp",
+        "_ui64tow",
+        "_ultow",
+        "_vsnwprintf",
+        "exit",
+        "fflush",
+        "fprintf",
+        "memset",
+        "toupper",
+        "wcstod",
+        "wcstol",
+        "wcstoul"
+      ]
+    },
+    {
+      "lib": "version.dll",
+      "count": 3,
+      "functions": [
+        "GetFileVersionInfoExW",
+        "GetFileVersionInfoSizeExW",
+        "VerQueryValueW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "7074d2a9c3d669a15d5b3a7ba1226dbba05888cc537cf055fed6371f32f0c1f5",
+    "ssdeep": "768:f96OOt1TmpvqEHZLDarw+Vv9Tm8oIiItPT98u0BZi5MjcPA/Fw2Dx899BLlv/:f96OaTm5HZDarwATNi6KBZi+k7gx8/BF"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      }
+    ]
+  }
+}

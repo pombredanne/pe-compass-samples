@@ -1,0 +1,218 @@
+{
+  "name": "wsreset.exe",
+  "path": "\\\\?\\C:\\Windows\\WinSxS\\amd64_microsoft-windows-s..e-client-ui-wsreset_31bf3856ad364e35_10.0.19041.746_none_a47144c464d15475\\WSReset.exe",
+  "size": 94208,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "api-ms-win-core-winrt-l1-1-0.dll",
+    "api-ms-win-core-winrt-string-l1-1-0.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ole32.dll",
+    "shell32.dll",
+    "wevtapi.dll"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 24,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "exit",
+        "memset",
+        "printf",
+        "wcsrchr"
+      ]
+    },
+    {
+      "lib": "api-ms-win-core-winrt-l1-1-0.dll",
+      "count": 3,
+      "functions": [
+        "RoActivateInstance",
+        "RoInitialize",
+        "RoUninitialize"
+      ]
+    },
+    {
+      "lib": "api-ms-win-core-winrt-string-l1-1-0.dll",
+      "count": 1,
+      "functions": [
+        "WindowsCreateStringReference"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 31,
+      "functions": [
+        "CloseHandle",
+        "CreateEventExW",
+        "DeleteFileW",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "LoadLibraryW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "RemoveDirectoryW",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "ole32.dll",
+      "count": 3,
+      "functions": [
+        "CoCreateFreeThreadedMarshaler",
+        "CoTaskMemFree",
+        "CoWaitForMultipleHandles"
+      ]
+    },
+    {
+      "lib": "shell32.dll",
+      "count": 2,
+      "functions": [
+        "SHGetKnownFolderPath",
+        "ShellExecuteExW"
+      ]
+    },
+    {
+      "lib": "wevtapi.dll",
+      "count": 1,
+      "functions": [
+        "EvtClearLog"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 8,
+      "functions": [
+        "EventRegister",
+        "EventUnregister",
+        "EventWrite",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyW",
+        "RegDeleteValueW",
+        "RegEnumValueW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "2f59cfe63442b61f8aaef0e1471d40dbc8ae91d4697bde7699e9d0f3f1aece1a",
+    "ssdeep": "768:lqaVflIeB+juij5G2IZB/0w41Nsn4FOBkStBWl:zrHEjuS5G2OiGg0Yl"
+  },
+  "intent": {
+    "intentions": 6,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "ShellExecuteExW"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
+        ]
+      }
+    ]
+  }
+}

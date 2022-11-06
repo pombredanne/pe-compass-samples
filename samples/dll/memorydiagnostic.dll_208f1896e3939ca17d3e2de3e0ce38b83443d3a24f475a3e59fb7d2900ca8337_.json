@@ -1,0 +1,209 @@
+{
+  "name": "memorydiagnostic.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\MemoryDiagnostic.dll",
+  "size": 33792,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "bcd.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "ole32.dll",
+    "oleaut32.dll",
+    "wevtapi.dll"
+  ],
+  "imports": [
+    {
+      "lib": "oleaut32.dll",
+      "count": 4,
+      "functions": [
+        "ORDINAL 2",
+        "ORDINAL 6",
+        "ORDINAL 8",
+        "ORDINAL 9"
+      ]
+    },
+    {
+      "lib": "bcd.dll",
+      "count": 6,
+      "functions": [
+        "BcdCloseObject",
+        "BcdCloseStore",
+        "BcdGetElementData",
+        "BcdOpenObject",
+        "BcdOpenSystemStore",
+        "BcdSetElementData"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 8,
+      "functions": [
+        "NtQuerySystemInformation",
+        "NtSetSystemInformation",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "WinSqmIncrementDWORD",
+        "WinSqmSetDWORD",
+        "WinSqmSetIfMaxDWORD"
+      ]
+    },
+    {
+      "lib": "wevtapi.dll",
+      "count": 5,
+      "functions": [
+        "EvtClose",
+        "EvtCreateRenderContext",
+        "EvtNext",
+        "EvtQuery",
+        "EvtRender"
+      ]
+    },
+    {
+      "lib": "ole32.dll",
+      "count": 1,
+      "functions": [
+        "CoCreateInstance"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 16,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "EventRegister",
+        "EventUnregister",
+        "EventWrite",
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "LookupPrivilegeValueW",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 23,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateThread",
+        "DisableThreadLibraryCalls",
+        "FreeLibrary",
+        "FreeLibraryAndExitThread",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleExW",
+        "GetSystemInfo",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetTickCount64",
+        "QueryPerformanceCounter",
+        "ResumeThread",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 13,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_wcsdup",
+        "bsearch",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset",
+        "qsort",
+        "wcscmp"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 4,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllRegisterServer",
+      "DllUnregisterServer"
+    ]
+  },
+  "hashes": {
+    "sha2": "208f1896e3939ca17d3e2de3e0ce38b83443d3a24f475a3e59fb7d2900ca8337",
+    "ssdeep": "768:RL+UB0dQH6LQHqxVRgXCoSMIOSUtShlxlTQykqdw1W7MfnCNT3iK+7NIq9:RHB0dNLQHqPyXZIOZGxlTQykqdwCMfnB"
+  },
+  "intent": {
+    "intentions": 4,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

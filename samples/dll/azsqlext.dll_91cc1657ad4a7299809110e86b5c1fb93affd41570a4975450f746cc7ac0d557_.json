@@ -1,0 +1,161 @@
+{
+  "name": "azsqlext.dll",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\AzSqlExt.dll",
+  "size": 25088,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": true,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "authz.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "odbc32.dll",
+    "ole32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "ole32.dll",
+      "count": 2,
+      "functions": [
+        "CoTaskMemFree",
+        "StringFromCLSID"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 4,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "GetTokenInformation",
+        "OpenProcessToken",
+        "OpenThreadToken"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 18,
+      "functions": [
+        "??0exception@@QAE@ABV0@@Z",
+        "??0exception@@QAE@XZ",
+        "??1exception@@UAE@XZ",
+        "??1type_info@@UAE@XZ",
+        "?what@exception@@UBEPBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_purecall",
+        "_stricmp",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 21,
+      "functions": [
+        "CloseHandle",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryA",
+        "LocalAlloc",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "odbc32.dll",
+      "count": 11,
+      "functions": [
+        "ORDINAL 111",
+        "ORDINAL 136",
+        "ORDINAL 139",
+        "ORDINAL 141",
+        "ORDINAL 176",
+        "ORDINAL 26",
+        "ORDINAL 31",
+        "ORDINAL 4",
+        "ORDINAL 72",
+        "ORDINAL 77",
+        "ORDINAL 9"
+      ]
+    },
+    {
+      "lib": "authz.dll",
+      "count": 4,
+      "functions": [
+        "AuthzEnumerateSecurityEventSources",
+        "AuthzInstallSecurityEventSource",
+        "AuthzRegisterSecurityEventSource",
+        "AuthzReportSecurityEvent"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 6,
+    "functions": [
+      "AzGenerateAudit",
+      "__GetXpVersion",
+      "xp_AzManAddRole",
+      "xp_AzManAddUserToRole",
+      "xp_AzManDeleteRole",
+      "xp_AzManRemoveUserFromRole"
+    ]
+  },
+  "hashes": {
+    "sha2": "91cc1657ad4a7299809110e86b5c1fb93affd41570a4975450f746cc7ac0d557",
+    "ssdeep": "384:PVvW1Ip5tt75tI4b9zYN4uxCCpNNzF5zfJ4uaVuusPGe+OBEAtxDD0LsuWMNVWC0:tvWGp5tt75tI4CJlfJNzJvHX0LTwh"
+  },
+  "intent": {
+    "intentions": 2,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      }
+    ]
+  }
+}

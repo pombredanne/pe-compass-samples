@@ -1,0 +1,171 @@
+{
+  "name": "azsqlext.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\AzSqlExt.dll",
+  "size": 32256,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "authz.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "odbc32.dll",
+    "ole32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "advapi32.dll",
+      "count": 4,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "GetTokenInformation",
+        "OpenProcessToken",
+        "OpenThreadToken"
+      ]
+    },
+    {
+      "lib": "authz.dll",
+      "count": 4,
+      "functions": [
+        "AuthzEnumerateSecurityEventSources",
+        "AuthzInstallSecurityEventSource",
+        "AuthzRegisterSecurityEventSource",
+        "AuthzReportSecurityEvent"
+      ]
+    },
+    {
+      "lib": "ole32.dll",
+      "count": 2,
+      "functions": [
+        "CoTaskMemFree",
+        "StringFromCLSID"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 21,
+      "functions": [
+        "CloseHandle",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThread",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryA",
+        "LocalAlloc",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 18,
+      "functions": [
+        "??0exception@@QEAA@AEBQEBDH@Z",
+        "??0exception@@QEAA@AEBV0@@Z",
+        "??1exception@@UEAA@XZ",
+        "??1type_info@@UEAA@XZ",
+        "?what@exception@@UEBAPEBDXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_purecall",
+        "_stricmp",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "lib": "odbc32.dll",
+      "count": 11,
+      "functions": [
+        "ORDINAL 111",
+        "ORDINAL 136",
+        "ORDINAL 139",
+        "ORDINAL 141",
+        "ORDINAL 176",
+        "ORDINAL 26",
+        "ORDINAL 31",
+        "ORDINAL 4",
+        "ORDINAL 72",
+        "ORDINAL 77",
+        "ORDINAL 9"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 6,
+    "functions": [
+      "AzGenerateAudit",
+      "__GetXpVersion",
+      "xp_AzManAddRole",
+      "xp_AzManAddUserToRole",
+      "xp_AzManDeleteRole",
+      "xp_AzManRemoveUserFromRole"
+    ]
+  },
+  "hashes": {
+    "sha2": "c53f83a7c7df88f52eabf4e98fdbe6e4187f533d13456c95b4290681e710a041",
+    "ssdeep": "384:edMHZPduB2tHBbiLmzaDTpTE9YKcbgtwNVa2QVeWrSt9C8W53EBWfoyE00YEpr/a:HFHe3HKYgtwNwjrSW0BNDp6m3IIYx++"
+  },
+  "intent": {
+    "intentions": 2,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "name": "qappsrv.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\qappsrv.exe",
+  "size": 25088,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "kernel32.dll",
+    "msvcrt.dll",
+    "netapi32.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "netapi32.dll",
+      "count": 4,
+      "functions": [
+        "NetApiBufferFree",
+        "NetServerEnum",
+        "NetServerGetInfo",
+        "NetServerTransportEnum"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 37,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__iob_func",
+        "__set_app_type",
+        "__setusermatherr",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ultoa",
+        "_wcsdup",
+        "_wcsicmp",
+        "_wcslwr",
+        "_wcsnicmp",
+        "_wcsupr",
+        "_wsetlocale",
+        "exit",
+        "free",
+        "fwprintf",
+        "malloc",
+        "memmove",
+        "memset",
+        "setlocale",
+        "swprintf_s",
+        "vfwprintf",
+        "vswprintf_s",
+        "wcscat_s",
+        "wcschr",
+        "wcscmp",
+        "wcscpy_s",
+        "wcstol",
+        "wcstoul",
+        "wprintf"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 38,
+      "functions": [
+        "CreateFileW",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCommandLineW",
+        "GetConsoleMode",
+        "GetConsoleOutputCP",
+        "GetConsoleScreenBufferInfo",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "ReadConsoleInputW",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetConsoleMode",
+        "SetLastError",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WriteConsoleW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "7854bece46eca8917904d60666a856de11ca4896c6452d5af1a1b20f1626c971",
+    "ssdeep": "384:DQTcgWLsYGvRO+UxtRT5dseZ87BvFtSZa6KuRX390pkINWgaWF:DQoMYGvRO+UtYeZ8Nr6ckIx"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 1,
+        "apis": [
+          "NetServerGetInfo"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      }
+    ]
+  }
+}

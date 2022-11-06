@@ -1,0 +1,213 @@
+{
+  "name": "hidserv.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\hidserv.dll",
+  "size": 36352,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "api-ms-win-service-core-l1-1-0.dll",
+    "api-ms-win-service-management-l1-1-0.dll",
+    "api-ms-win-service-management-l2-1-0.dll",
+    "hid.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "api-ms-win-service-management-l1-1-0.dll",
+      "count": 4,
+      "functions": [
+        "CloseServiceHandle",
+        "OpenSCManagerW",
+        "OpenServiceW",
+        "StartServiceW"
+      ]
+    },
+    {
+      "lib": "api-ms-win-service-core-l1-1-0.dll",
+      "count": 2,
+      "functions": [
+        "RegisterServiceCtrlHandlerExW",
+        "SetServiceStatus"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 10,
+      "functions": [
+        "EtwGetTraceEnableFlags",
+        "EtwGetTraceEnableLevel",
+        "EtwGetTraceLoggerHandle",
+        "EtwRegisterTraceGuidsW",
+        "EtwTraceMessage",
+        "EtwUnregisterTraceGuids",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlPublishWnfStateData",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 33,
+      "functions": [
+        "CancelIo",
+        "CloseHandle",
+        "CompareStringW",
+        "CreateEventW",
+        "CreateFileW",
+        "CreateMutexW",
+        "CreateThread",
+        "DelayLoadFailureHook",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "LoadLibraryExW",
+        "LocalAlloc",
+        "LocalFree",
+        "OpenEventW",
+        "QueryPerformanceCounter",
+        "ReadFile",
+        "ReleaseMutex",
+        "ResolveDelayLoadedAPI",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SleepEx",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WTSGetActiveConsoleSessionId",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "lib": "hid.dll",
+      "count": 12,
+      "functions": [
+        "HidD_FreePreparsedData",
+        "HidD_GetAttributes",
+        "HidD_GetHidGuid",
+        "HidD_GetPreparsedData",
+        "HidP_GetButtonCaps",
+        "HidP_GetCaps",
+        "HidP_GetLinkCollectionNodes",
+        "HidP_GetScaledUsageValue",
+        "HidP_GetUsageValue",
+        "HidP_GetUsages",
+        "HidP_GetValueCaps",
+        "HidP_MaxUsageListLength"
+      ]
+    },
+    {
+      "lib": "api-ms-win-service-management-l2-1-0.dll",
+      "count": 2,
+      "functions": [
+        "ChangeServiceConfigW",
+        "QueryServiceConfigW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 7,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "free",
+        "malloc",
+        "memset"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 17,
+      "functions": [
+        "CreateWindowExW",
+        "DefWindowProcW",
+        "DestroyWindow",
+        "DispatchMessageW",
+        "GetGUIThreadInfo",
+        "GetMessageW",
+        "KillTimer",
+        "PostMessageW",
+        "RegisterClassExW",
+        "RegisterDeviceNotificationW",
+        "SendInput",
+        "SendNotifyMessageW",
+        "SetTimer",
+        "SystemParametersInfoW",
+        "TranslateMessage",
+        "UnregisterClassW",
+        "UnregisterDeviceNotification"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 2,
+    "functions": [
+      "InstallHidserv",
+      "ServiceMain"
+    ]
+  },
+  "hashes": {
+    "sha2": "2b6ec0692a09e5943c5bba0e3aefc746e96412e1836c84b1857b4dcf242dd28b",
+    "ssdeep": "768:5+eQGjISHfZQXcdS5Sw7WZSzKwVEB78W1vAWFaCVMBWt4+9rM0:ERSHhOcEaGuvAZCQah"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 3,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceConfigW"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 4,
+        "apis": [
+          "CloseServiceHandle",
+          "RegisterServiceCtrlHandlerExW",
+          "SetServiceStatus",
+          "StartServiceW"
+        ]
+      }
+    ]
+  }
+}

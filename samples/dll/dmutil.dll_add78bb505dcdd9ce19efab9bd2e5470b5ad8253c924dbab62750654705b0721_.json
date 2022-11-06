@@ -1,0 +1,186 @@
+{
+  "name": "dmutil.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\dmutil.dll",
+  "size": 27648,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "api-ms-win-core-registry-l1-1-0.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll"
+  ],
+  "imports": [
+    {
+      "lib": "kernel32.dll",
+      "count": 31,
+      "functions": [
+        "CreateThread",
+        "DelayLoadFailureHook",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCurrentDirectoryW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "InitializeCriticalSectionAndSpinCount",
+        "LeaveCriticalSection",
+        "LoadLibraryW",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "ResolveDelayLoadedAPI",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VerifyVersionInfoW",
+        "lstrcmpW",
+        "lstrlenA",
+        "lstrlenW"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 17,
+      "functions": [
+        "NtAddBootEntry",
+        "NtClose",
+        "NtDeviceIoControlFile",
+        "NtOpenFile",
+        "NtQueryBootEntryOrder",
+        "NtQueryInformationFile",
+        "NtReadFile",
+        "NtSetBootEntryOrder",
+        "NtSetInformationFile",
+        "NtWriteFile",
+        "RtlAdjustPrivilege",
+        "RtlCaptureContext",
+        "RtlCreateUnicodeString",
+        "RtlFreeUnicodeString",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "VerSetConditionMask"
+      ]
+    },
+    {
+      "lib": "api-ms-win-core-registry-l1-1-0.dll",
+      "count": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 14,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_callnewh",
+        "_initterm",
+        "_vsnprintf",
+        "_vsnwprintf",
+        "_wgetenv",
+        "free",
+        "malloc",
+        "mbstowcs",
+        "memcpy",
+        "memset",
+        "wcstok"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 30,
+    "functions": [
+      "AddEntryBootFileGpt",
+      "AddEntryBootFileMbr",
+      "CoDisableDynamicVolumes",
+      "DisplayError",
+      "DisplayErrorRgszw",
+      "DllMain",
+      "DmCommonNtOpenFile",
+      "DynamicSupport",
+      "FTrace",
+      "FTraceValist",
+      "FreeRgszw",
+      "GetErrorData",
+      "GetInstallDirectoryPath",
+      "GetSystemVolume",
+      "IsPersonalSKU",
+      "LowAcquirePrivilege",
+      "LowGetPartitionInfo",
+      "LowNtAddBootEntry",
+      "LowNtReadFile",
+      "LowNtReadOnlyAttributeOff",
+      "LowNtWriteFile",
+      "RgszwDupRgszw",
+      "RgszwFromArgs",
+      "RgszwFromValist",
+      "SafeLoadVdsService",
+      "ShowMessage",
+      "ShowMessageValist",
+      "SzwDupSzw",
+      "SzwFromSza",
+      "TranslateError"
+    ]
+  },
+  "hashes": {
+    "sha2": "add78bb505dcdd9ce19efab9bd2e5470b5ad8253c924dbab62750654705b0721",
+    "ssdeep": "768:37Ma0F0GPuTmVAo89gHh8xeK/pEONuzNkrnA:37PkDnAoKe88K/p5N9A"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      }
+    ]
+  }
+}

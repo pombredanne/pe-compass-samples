@@ -1,0 +1,153 @@
+{
+  "name": "printui.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\printui.exe",
+  "size": 64000,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "gdi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "kernel32.dll",
+      "count": 18,
+      "functions": [
+        "FreeLibrary",
+        "GetCommandLineW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 5,
+      "functions": [
+        "CreateWindowExW",
+        "DefWindowProcW",
+        "DestroyWindow",
+        "LoadCursorW",
+        "RegisterClassW"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 7,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyExW",
+        "RegDeleteValueW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 16,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_wcmdln",
+        "exit",
+        "iswspace",
+        "memset"
+      ]
+    },
+    {
+      "lib": "gdi32.dll",
+      "count": 1,
+      "functions": [
+        "GetStockObject"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "ac75af591c08442ea453eb92f6344e930585d912894e9323db922bcd9edf4cd1",
+    "ssdeep": "768:a4uHmXrH60qKdC5vI1iQfCIWVM9G4qW4ne+S/ly+PKAoXRZX6fbX57UWkCRPPA7f:Uca1KAVIPd4n+lbeRZIbSQPPA7f"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 7,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

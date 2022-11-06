@@ -1,0 +1,191 @@
+{
+  "name": "auditshd.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\oobe\\AuditShD.exe",
+  "size": 31744,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "ole32.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 28,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_callnewh",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_unlock",
+        "_vsnprintf",
+        "_wcsnicmp",
+        "exit",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset",
+        "wcschr",
+        "wcsrchr"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 2,
+      "functions": [
+        "LockSetForegroundWindow",
+        "SendInput"
+      ]
+    },
+    {
+      "lib": "ole32.dll",
+      "count": 3,
+      "functions": [
+        "CoCreateInstance",
+        "CoInitializeEx",
+        "CoUninitialize"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 18,
+      "functions": [
+        "GetLengthSid",
+        "GetSidLengthRequired",
+        "GetSidSubAuthority",
+        "GetSidSubAuthorityCount",
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "GetUserNameW",
+        "LookupAccountSidW",
+        "LsaClose",
+        "LsaFreeMemory",
+        "LsaOpenPolicy",
+        "LsaQueryInformationPolicy",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegisterTraceGuidsW",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 5,
+      "functions": [
+        "RtlAllocateHeap",
+        "RtlCaptureContext",
+        "RtlFreeHeap",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 36,
+      "functions": [
+        "CloseHandle",
+        "CompareStringW",
+        "CreateDirectoryW",
+        "CreateEventW",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "ExpandEnvironmentStringsW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFullPathNameW",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "HeapAlloc",
+        "HeapFree",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryExW",
+        "OpenEventW",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "SetEvent",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "ce614bacc1415f84eafbbf999c143ff1bf2dcd180bf9ea515439ade978eb920f",
+    "ssdeep": "384:jxYS2Y8by12TAIO3KyGFs5tveSGIYeGQOk4g4ti92H9SBOr3fpgHuWGfErnUoskt:jxYnby4TAIOvC8vLO9nPdMWTjdmq3L"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

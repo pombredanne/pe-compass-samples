@@ -1,0 +1,152 @@
+{
+  "name": "fxsunatd.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\FXSUNATD.exe",
+  "size": 19968,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "fxsapi.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "winspool.drv"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 16,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_vsnwprintf",
+        "exit",
+        "memset",
+        "wcscmp"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 6,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "TraceMessage"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 25,
+      "functions": [
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "winspool.drv",
+      "count": 5,
+      "functions": [
+        "ClosePrinter",
+        "EnumPrintersW",
+        "GetPrinterW",
+        "OpenPrinterW",
+        "SetPrinterW"
+      ]
+    },
+    {
+      "lib": "fxsapi.dll",
+      "count": 6,
+      "functions": [
+        "FaxClose",
+        "FaxConnectFaxServerW",
+        "FaxEnumPortsExW",
+        "FaxFreeBuffer",
+        "FaxSetExtensionDataW",
+        "FaxSetPortExW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "d70c69ce5c8a3aefabd3ccf2dfba0f418ddde06f9fd31907f5a8d7d9a0789970",
+    "ssdeep": "384:YD1Bo0ueRKYAVKzaud/WKfj53NOCWdR0oKVTr5drZF1/j3zzOeIRofvkLZFhpunl:YD1BKeRKYeedlfdNloK/BZHj3zdIZLZM"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

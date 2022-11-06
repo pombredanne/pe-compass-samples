@@ -1,0 +1,171 @@
+{
+  "name": "msclmd.dll",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\msclmd.dll",
+  "size": 206848,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": true,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "bcrypt.dll",
+    "crypt32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "rpcrt4.dll",
+    "user32.dll",
+    "winscard.dll"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 13,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "_stricmp",
+        "_vsnprintf",
+        "_vsnwprintf",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset",
+        "sscanf_s",
+        "swscanf_s"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 1,
+      "functions": [
+        "IsWindow"
+      ]
+    },
+    {
+      "lib": "bcrypt.dll",
+      "count": 6,
+      "functions": [
+        "BCryptCloseAlgorithmProvider",
+        "BCryptDestroyKey",
+        "BCryptEncrypt",
+        "BCryptGenerateSymmetricKey",
+        "BCryptGetProperty",
+        "BCryptOpenAlgorithmProvider"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 8,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "RegGetValueW",
+        "RegisterTraceGuidsW",
+        "SystemFunction036",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "lib": "crypt32.dll",
+      "count": 4,
+      "functions": [
+        "CertCreateCertificateContext",
+        "CertFreeCertificateContext",
+        "CryptDecodeObject",
+        "CryptEncodeObjectEx"
+      ]
+    },
+    {
+      "lib": "rpcrt4.dll",
+      "count": 3,
+      "functions": [
+        "RpcStringFreeW",
+        "UuidCreate",
+        "UuidToStringW"
+      ]
+    },
+    {
+      "lib": "winscard.dll",
+      "count": 9,
+      "functions": [
+        "SCardControl",
+        "SCardFreeMemory",
+        "SCardGetStatusChangeW",
+        "SCardReadCacheW",
+        "SCardStatusW",
+        "SCardTransmit",
+        "SCardWriteCacheW",
+        "g_rgSCardT0Pci",
+        "g_rgSCardT1Pci"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 16,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 2,
+    "functions": [
+      "CardAcquireContext",
+      "CardAcquireContextInternal"
+    ]
+  },
+  "hashes": {
+    "sha2": "6947e10f3866cf8803189014cd09640e004b4a386c28c24ef117d493ed80dd1a",
+    "ssdeep": "6144:0+l/G+8yX061sgpQQFyvXoVLxmD4zKE719fb9:0+l/G+A61sgp1FeXi6MKE19"
+  },
+  "intent": {
+    "intentions": 2,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegGetValueW"
+        ]
+      },
+      {
+        "intent": "Can Initiate Crypto Operations",
+        "tag": "Expert Input:IBO.00022 - Cryptography",
+        "component": "Crypto",
+        "inputs": 12,
+        "matches": 2,
+        "apis": [
+          "BCryptCloseAlgorithmProvider",
+          "BCryptOpenAlgorithmProvider"
+        ]
+      }
+    ]
+  }
+}

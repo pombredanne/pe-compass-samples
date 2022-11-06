@@ -1,0 +1,185 @@
+{
+  "name": "mdsched.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\MdSched.exe",
+  "size": 92672,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "bcd.dll",
+    "comctl32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "ntdll.dll",
+      "count": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "lib": "comctl32.dll",
+      "count": 1,
+      "functions": [
+        "ORDINAL 345"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 16,
+      "functions": [
+        "AdjustTokenPrivileges",
+        "EventRegister",
+        "EventUnregister",
+        "EventWrite",
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "InitiateShutdownW",
+        "LookupPrivilegeValueW",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 17,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_callnewh",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "exit",
+        "free",
+        "malloc",
+        "memset"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "lib": "bcd.dll",
+      "count": 5,
+      "functions": [
+        "BcdCloseObject",
+        "BcdCloseStore",
+        "BcdOpenObject",
+        "BcdOpenSystemStore",
+        "BcdSetElementData"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 15,
+      "functions": [
+        "CloseHandle",
+        "CompareStringW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "043cf5da5a37a30ecc4bf526a811e7c474843fd25e45c691b82c1458318686e8",
+    "ssdeep": "1536:j60HWG8IvGm+65tFI720+VpmDOzc4JNWxwB1MjVJmRc:tHfvGe/FO+VQDUcUNWs+jm6"
+  },
+  "intent": {
+    "intentions": 5,
+    "uniq_apis_matched": 6,
+    "results": [
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
+        "tag": "Impact:T1529 - System Shutdown/Reboot",
+        "component": "---",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "InitiateShutdownW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

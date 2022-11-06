@@ -1,0 +1,215 @@
+{
+  "name": "damm.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\DAMM.dll",
+  "size": 126464,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "api-ms-win-core-com-l1-1-0.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "advapi32.dll",
+      "count": 10,
+      "functions": [
+        "CloseServiceHandle",
+        "ControlService",
+        "EventRegister",
+        "EventUnregister",
+        "EventWriteTransfer",
+        "OpenSCManagerW",
+        "OpenServiceW",
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 30,
+      "functions": [
+        "AcquireSRWLockExclusive",
+        "DelayLoadFailureHook",
+        "DeleteCriticalSection",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapDestroy",
+        "HeapFree",
+        "HeapReAlloc",
+        "HeapSize",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "OutputDebugStringA",
+        "QueryPerformanceCounter",
+        "RaiseException",
+        "ReleaseSRWLockExclusive",
+        "ResolveDelayLoadedAPI",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "SleepConditionVariableSRW",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WakeAllConditionVariable"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 12,
+      "functions": [
+        "EtwGetTraceEnableFlags",
+        "EtwGetTraceEnableLevel",
+        "EtwGetTraceLoggerHandle",
+        "EtwRegisterTraceGuidsW",
+        "EtwTraceMessage",
+        "EtwUnregisterTraceGuids",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "WinSqmAddToStream",
+        "WinSqmAddToStreamEx",
+        "WinSqmSetDWORD"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 29,
+      "functions": [
+        "??1type_info@@UEAA@XZ",
+        "?terminate@@YAXXZ",
+        "_CxxThrowException",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_callnewh",
+        "_errno",
+        "_get_errno",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_purecall",
+        "_resetstkoflw",
+        "_set_errno",
+        "_unlock",
+        "_vscwprintf",
+        "_vsnwprintf",
+        "calloc",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy_s",
+        "memmove_s",
+        "memset",
+        "realloc",
+        "vswprintf_s"
+      ]
+    },
+    {
+      "lib": "api-ms-win-core-com-l1-1-0.dll",
+      "count": 4,
+      "functions": [
+        "CoCreateInstance",
+        "CoTaskMemAlloc",
+        "CoTaskMemFree",
+        "CoTaskMemRealloc"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 1,
+      "functions": [
+        "UnregisterClassA"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 2,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject"
+    ]
+  },
+  "hashes": {
+    "sha2": "81bf117272457aa6ff76b7ebc5c141f0f4b4f596c071e80a0287e6601fbc75f7",
+    "ssdeep": "768:a6rdMBrq+Wy5A3Iqt2hVzbjBKKSEcun/qMGfDv7ReGRtw8szs2kZ7TbgYjriLPVA:a6rdL3INkmqRoXz3wP3splpCt"
+  },
+  "intent": {
+    "intentions": 5,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 2,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "CloseServiceHandle",
+          "ControlService"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

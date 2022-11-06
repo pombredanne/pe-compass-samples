@@ -1,0 +1,203 @@
+{
+  "name": "wdacwmiprov.dll",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\wbem\\WdacWmiProv.dll",
+  "size": 111616,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": true,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "mi.dll",
+    "msvcrt.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "kernel32.dll",
+      "count": 38,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateMutexW",
+        "DelayLoadFailureHook",
+        "DeleteFileW",
+        "DisableThreadLibraryCalls",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameW",
+        "GetTempPathW",
+        "GetThreadUILanguage",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "IsWow64Process",
+        "LoadLibraryA",
+        "LoadLibraryExW",
+        "LocaleNameToLCID",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "ResolveDelayLoadedAPI",
+        "SetEvent",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 2,
+      "functions": [
+        "LoadStringW",
+        "MessageBoxW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 24,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "_purecall",
+        "_ui64tow_s",
+        "_ultow_s",
+        "_vsnwprintf",
+        "_vsnwprintf_s",
+        "_wcsicmp",
+        "_wfopen",
+        "fclose",
+        "free",
+        "fwprintf",
+        "iswspace",
+        "malloc",
+        "memcpy",
+        "memset",
+        "swprintf_s",
+        "tolower",
+        "toupper",
+        "wcsrchr",
+        "wcsstr",
+        "wcstoul"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 9,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteTreeW",
+        "RegDeleteValueW",
+        "RegEnumKeyW",
+        "RegEnumValueW",
+        "RegGetValueW",
+        "RegOpenKeyExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "lib": "mi.dll",
+      "count": 1,
+      "functions": [
+        "mi_clientFT_V1"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 7,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllMain",
+      "DllRegisterServer",
+      "DllUnregisterServer",
+      "GetProviderClassID",
+      "MI_Main"
+    ]
+  },
+  "hashes": {
+    "sha2": "cc4ea3ae8946aaf3222c7cb0bba782809e376b19204627f52af095d360458738",
+    "ssdeep": "1536:KsrsDEPFBFS5/3ToxkLoxwNY7AvyJQV/HksYCr97D5KnLOUwvu:xkQBFStsxkE97myJRsYCr97wLOUf"
+  },
+  "intent": {
+    "intentions": 5,
+    "uniq_apis_matched": 10,
+    "results": [
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegGetValueW"
+        ]
+      }
+    ]
+  }
+}

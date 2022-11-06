@@ -1,0 +1,171 @@
+{
+  "name": "tcmsetup.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\tcmsetup.exe",
+  "size": 16896,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "tapi32.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 16,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ismbblead",
+        "_vsnwprintf",
+        "exit"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 26,
+      "functions": [
+        "CloseHandle",
+        "CompareStringW",
+        "CreateMutexW",
+        "GetCommandLineW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetModuleHandleW",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GlobalAlloc",
+        "GlobalFree",
+        "HeapSetInformation",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "lstrcmpiW",
+        "lstrlenW"
+      ]
+    },
+    {
+      "lib": "tapi32.dll",
+      "count": 2,
+      "functions": [
+        "lineAddProviderW",
+        "lineRemoveProvider"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 2,
+      "functions": [
+        "LoadStringW",
+        "MessageBoxW"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 10,
+      "functions": [
+        "AllocateAndInitializeSid",
+        "CheckTokenMembership",
+        "FreeSid",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyW",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "e243501ba2ef7a6f04f51410bb916faffe0ec23450a4d030ce6bfe747e544b39",
+    "ssdeep": "384:A+W7Hrtkdpm8DwTWeErIiBAEdBTC2WGroW:Af7xapm8Dw6n3/CA"
+  },
+  "intent": {
+    "intentions": 5,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "CheckTokenMembership"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "name": "systemresetplatform.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\SystemResetPlatform\\SystemResetPlatform.exe",
+  "size": 12800,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll"
+  ],
+  "imports": [
+    {
+      "lib": "advapi32.dll",
+      "count": 7,
+      "functions": [
+        "EventRegister",
+        "EventWriteTransfer",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 16,
+      "functions": [
+        "ExpandEnvironmentStringsW",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "LoadLibraryExW",
+        "QueryPerformanceCounter",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 15,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "exit",
+        "memset",
+        "swprintf_s"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 4,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlNtStatusToDosErrorNoTeb",
+        "RtlVirtualUnwind"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "260b6137f1d1977f569edef5df5684fe61f5cc2a5e56f351a6309bd97e8e4f16",
+    "ssdeep": "192:oX0u1J0pbgNGM9gNaBLLSGBwcgvv1sxu4UGvdhjUWpSW:UpJsgkYC+HIXSQ4UhWpSW"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

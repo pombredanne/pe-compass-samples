@@ -1,0 +1,224 @@
+{
+  "name": "iesetup.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\iesetup.dll",
+  "size": 79872,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "ieadvpack.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "shell32.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 16,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__dllonexit",
+        "_amsg_exit",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_unlock",
+        "_vsnwprintf",
+        "free",
+        "iswalpha",
+        "malloc",
+        "memcpy_s",
+        "memset",
+        "wcschr",
+        "wcsncmp"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 14,
+      "functions": [
+        "CheckRadioButton",
+        "CreateDialogParamW",
+        "DestroyWindow",
+        "DispatchMessageW",
+        "GetMessageW",
+        "IsDialogMessageW",
+        "IsDlgButtonChecked",
+        "LoadCursorW",
+        "LoadImageW",
+        "PostQuitMessage",
+        "SendDlgItemMessageW",
+        "SendMessageW",
+        "SetCursor",
+        "TranslateMessage"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 44,
+      "functions": [
+        "ActivateActCtx",
+        "CloseHandle",
+        "CreateActCtxW",
+        "CreateMutexExW",
+        "CreateProcessW",
+        "CreateSemaphoreExW",
+        "DeactivateActCtx",
+        "DebugBreak",
+        "FormatMessageW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameA",
+        "GetModuleFileNameW",
+        "GetModuleHandleExW",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetProcessHeap",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "IsDebuggerPresent",
+        "LoadLibraryExW",
+        "LocalAlloc",
+        "LocalFree",
+        "OpenSemaphoreW",
+        "OutputDebugStringW",
+        "QueryPerformanceCounter",
+        "ReleaseActCtx",
+        "ReleaseMutex",
+        "ReleaseSemaphore",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetLastError",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject",
+        "WaitForSingleObjectEx"
+      ]
+    },
+    {
+      "lib": "shell32.dll",
+      "count": 2,
+      "functions": [
+        "SHGetFolderPathW",
+        "ShellExecuteW"
+      ]
+    },
+    {
+      "lib": "ieadvpack.dll",
+      "count": 2,
+      "functions": [
+        "ExecuteCabW",
+        "IsNTAdmin"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 10,
+      "functions": [
+        "GetTokenInformation",
+        "OpenProcessToken",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteValueW",
+        "RegEnumValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 7,
+    "functions": [
+      "IEApplyCurrentHardening",
+      "IEHardenAdmin",
+      "IEHardenAdminNow",
+      "IEHardenLMSettings",
+      "IEHardenMachineNow",
+      "IEHardenUser",
+      "IEShowHardeningDialog"
+    ]
+  },
+  "hashes": {
+    "sha2": "d2a82e714ffde64a7aab72c75d7319aef3f7830db4316ca596fa4f3e4eae32e6",
+    "ssdeep": "1536:R0l6vwc6M5aZIHaibGfRD04mB802DSPuGb3TXZCLf0lCtWgemJ/q:il6SIbbis2eP1jpS0lIWge6/q"
+  },
+  "intent": {
+    "intentions": 5,
+    "uniq_apis_matched": 10,
+    "results": [
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 2,
+        "apis": [
+          "CreateProcessw",
+          "ShellExecuteW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

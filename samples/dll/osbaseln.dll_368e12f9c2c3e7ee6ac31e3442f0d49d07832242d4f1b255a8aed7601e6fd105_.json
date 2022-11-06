@@ -1,0 +1,142 @@
+{
+  "name": "osbaseln.dll",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\osbaseln.dll",
+  "size": 21504,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": true,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll"
+  ],
+  "imports": [
+    {
+      "lib": "advapi32.dll",
+      "count": 11,
+      "functions": [
+        "RegCloseKey",
+        "RegDeleteValueW",
+        "RegEnumKeyExA",
+        "RegEnumKeyExW",
+        "RegOpenKeyExA",
+        "RegOpenKeyExW",
+        "RegQueryMultipleValuesA",
+        "RegQueryMultipleValuesW",
+        "RegQueryValueExA",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 14,
+      "functions": [
+        "DisableThreadLibraryCalls",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 13,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_except_handler4_common",
+        "_initterm",
+        "_vsnwprintf",
+        "free",
+        "isdigit",
+        "iswctype",
+        "malloc",
+        "memcpy",
+        "strtoul",
+        "wcsncmp",
+        "wcstoul"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 14,
+    "functions": [
+      "CloseOsBaseline",
+      "EnumOsBaselineComponentsA",
+      "EnumOsBaselineComponentsW",
+      "EnumOsOutOfDateComponentsA",
+      "EnumOsOutOfDateComponentsW",
+      "GetOsBaselineComponentInfoA",
+      "GetOsBaselineComponentInfoW",
+      "GetOsInstalledComponentInfoA",
+      "GetOsInstalledComponentInfoW",
+      "GetOsLatestBaselineServicePack",
+      "OpenOsBaseline",
+      "pGetOsBaselineCurrentVersion",
+      "pGetOsCurrentBaselineServicePack",
+      "pOpenOsBaselineByVersion"
+    ]
+  },
+  "hashes": {
+    "sha2": "368e12f9c2c3e7ee6ac31e3442f0d49d07832242d4f1b255a8aed7601e6fd105",
+    "ssdeep": "384:qwmrEvjUfUW5ukIYAMYCMR+UczRmcwCQzjJW0UKWENJnj:yELyUMrvYezvUQMn"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 10,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 4,
+        "apis": [
+          "RegQueryMultipleValuesA",
+          "RegQueryMultipleValuesW",
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExA",
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegDeleteValueW",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

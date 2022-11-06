@@ -1,0 +1,194 @@
+{
+  "name": "gpprnext.dll",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\gpprnext.dll",
+  "size": 32256,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": true,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "activeds.dll",
+    "advapi32.dll",
+    "api-ms-win-core-com-l1-1-0.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "oleaut32.dll",
+    "userenv.dll",
+    "winspool.drv"
+  ],
+  "imports": [
+    {
+      "lib": "userenv.dll",
+      "count": 1,
+      "functions": [
+        "ProcessGroupPolicyCompletedEx"
+      ]
+    },
+    {
+      "lib": "api-ms-win-core-com-l1-1-0.dll",
+      "count": 3,
+      "functions": [
+        "CoCreateGuid",
+        "CoTaskMemFree",
+        "StringFromIID"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 14,
+      "functions": [
+        "CompareStringW",
+        "DisableThreadLibraryCalls",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 17,
+      "functions": [
+        "GetTraceEnableFlags",
+        "GetTraceEnableLevel",
+        "GetTraceLoggerHandle",
+        "ImpersonateLoggedOnUser",
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW",
+        "RegisterTraceGuidsW",
+        "RevertToSelf",
+        "TraceMessage",
+        "UnregisterTraceGuids"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 13,
+      "functions": [
+        "_XcptFilter",
+        "__CxxFrameHandler3",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "free",
+        "malloc",
+        "memset",
+        "wcscat_s",
+        "wcscpy_s"
+      ]
+    },
+    {
+      "lib": "winspool.drv",
+      "count": 1,
+      "functions": [
+        "ORDINAL 250"
+      ]
+    },
+    {
+      "lib": "activeds.dll",
+      "count": 1,
+      "functions": [
+        "ORDINAL 9"
+      ]
+    },
+    {
+      "lib": "oleaut32.dll",
+      "count": 3,
+      "functions": [
+        "ORDINAL 2",
+        "ORDINAL 6",
+        "ORDINAL 8"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 8,
+    "functions": [
+      "DllCanUnloadNow",
+      "DllGetClassObject",
+      "DllMain",
+      "DllRegisterServer",
+      "DllUnregisterServer",
+      "PrinterGenerateGroupPolicy",
+      "PrinterProcessGroupPolicy",
+      "PrinterProcessGroupPolicyEx"
+    ]
+  },
+  "hashes": {
+    "sha2": "5c98e007426d753b7904a840e65eca07f1fc129f207a6a0c08dd1d94c115d0f4",
+    "ssdeep": "768:9ppsB6+wJGkw06o8cm9OyxcwpJpgRNIx:Zg6+lkw7o5m9Oyxc+3+NC"
+  },
+  "intent": {
+    "intentions": 4,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "ImpersonateLoggedOnUser"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      }
+    ]
+  }
+}

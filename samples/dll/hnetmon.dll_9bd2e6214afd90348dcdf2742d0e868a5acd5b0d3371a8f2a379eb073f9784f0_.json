@@ -1,0 +1,144 @@
+{
+  "name": "hnetmon.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\hnetmon.dll",
+  "size": 16896,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "netsh.exe",
+    "netshell.dll",
+    "ole32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "netshell.dll",
+      "count": 1,
+      "functions": [
+        "NcFreeNetconProperties"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 5,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 17,
+      "functions": [
+        "DisableThreadLibraryCalls",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "netsh.exe",
+      "count": 9,
+      "functions": [
+        "FreeString",
+        "MakeString",
+        "MatchEnumTag",
+        "PreprocessCommand",
+        "PrintError",
+        "PrintMessage",
+        "PrintMessageFromModule",
+        "RegisterContext",
+        "RegisterHelper"
+      ]
+    },
+    {
+      "lib": "ole32.dll",
+      "count": 5,
+      "functions": [
+        "CoCreateInstance",
+        "CoInitializeEx",
+        "CoTaskMemFree",
+        "CoUninitialize",
+        "StringFromGUID2"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 10,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "free",
+        "malloc",
+        "memset",
+        "wcscat_s",
+        "wcscpy_s",
+        "wcstoul"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 1,
+    "functions": [
+      "InitHelperDll"
+    ]
+  },
+  "hashes": {
+    "sha2": "9bd2e6214afd90348dcdf2742d0e868a5acd5b0d3371a8f2a379eb073f9784f0",
+    "ssdeep": "192:mTBz9jj9+/x2V4qMarrkuEXg1iP9CXCkrBgnlg3iTFh0I/WBqW:m9z9j4J2vMGEXYS9EBgu3aecWBqW"
+  },
+  "intent": {
+    "intentions": 2,
+    "uniq_apis_matched": 4,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "name": "tlscsp.dll",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\tlscsp.dll",
+  "size": 35840,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": true,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "bcrypt.dll",
+    "kernel32.dll",
+    "msvcrt.dll"
+  ],
+  "imports": [
+    {
+      "lib": "bcrypt.dll",
+      "count": 9,
+      "functions": [
+        "BCryptCloseAlgorithmProvider",
+        "BCryptCreateHash",
+        "BCryptDestroyHash",
+        "BCryptDestroyKey",
+        "BCryptEncrypt",
+        "BCryptFinishHash",
+        "BCryptHashData",
+        "BCryptImportKeyPair",
+        "BCryptOpenAlgorithmProvider"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 33,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateMutexW",
+        "CreateThread",
+        "DelayLoadFailureHook",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "FreeLibrary",
+        "GetComputerNameW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcAddress",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "InitializeCriticalSection",
+        "LeaveCriticalSection",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "OpenMutexW",
+        "QueryPerformanceCounter",
+        "ReleaseMutex",
+        "ResolveDelayLoadedAPI",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 11,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "free",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memset",
+        "swprintf_s"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 10,
+    "functions": [
+      "LsCsp_DecryptEnvelopedData",
+      "LsCsp_EncryptHwid",
+      "LsCsp_GetServerData",
+      "LsCsp_RetrieveSecret",
+      "LsCsp_StoreSecret",
+      "TLSCspInit",
+      "TLSCspShutdown",
+      "TLSCspStartInstallCertificateThread",
+      "TLSFreeTSCertificate",
+      "TLSGetTSCertificate"
+    ]
+  },
+  "hashes": {
+    "sha2": "19057076dad7864c3fbce706bdd7cc82f1f3aea8ef3602ac8d6197a762e5552e",
+    "ssdeep": "384:ixA6FgLP8YbyFs8nV9u6fz8s94d3doresICpxHvNRm+7nPz1o3qUQPYFBebkVdow:ixcLPByZ/YldAvzL1oarYFBXsMc1"
+  },
+  "intent": {
+    "intentions": 2,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Initiate Crypto Operations",
+        "tag": "Expert Input:IBO.00022 - Cryptography",
+        "component": "Crypto",
+        "inputs": 12,
+        "matches": 6,
+        "apis": [
+          "BCryptCloseAlgorithmProvider",
+          "BCryptCreateHash",
+          "BCryptDestroyHash",
+          "BCryptFinishHash",
+          "BCryptHashData",
+          "BCryptOpenAlgorithmProvider"
+        ]
+      }
+    ]
+  }
+}

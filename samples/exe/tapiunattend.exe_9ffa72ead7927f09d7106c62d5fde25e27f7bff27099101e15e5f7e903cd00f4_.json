@@ -1,0 +1,125 @@
+{
+  "name": "tapiunattend.exe",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\TapiUnattend.exe",
+  "size": 12800,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": false,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "wdscore.dll"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 17,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_callnewh",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "exit",
+        "free",
+        "malloc"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 5,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 13,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "wdscore.dll",
+      "count": 3,
+      "functions": [
+        "ConstructPartialMsgVW",
+        "CurrentIP",
+        "WdsSetupLogMessageW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "9ffa72ead7927f09d7106c62d5fde25e27f7bff27099101e15e5f7e903cd00f4",
+    "ssdeep": "192:HUadkYPdilaGPwrnMcjpc0dVCOmm1NF7faTWDrDSX1MD8w1wGuW/GUW0:HhvPUYWkMy8m13TEWDSXWDUGuW/GUW0"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

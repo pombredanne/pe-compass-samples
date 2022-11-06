@@ -1,0 +1,236 @@
+{
+  "name": "runas.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\runas.exe",
+  "size": 20480,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "credui.dll",
+    "crypt32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "netutils.dll",
+    "ntdll.dll",
+    "shell32.dll",
+    "sspicli.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "credui.dll",
+      "count": 2,
+      "functions": [
+        "CredUICmdLinePromptForCredentialsW",
+        "SspiIsPromptingNeeded"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 21,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ismbblead",
+        "_resetstkoflw",
+        "_vsnwprintf",
+        "exit",
+        "memcpy",
+        "memset",
+        "wcschr",
+        "wcstoul"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 3,
+      "functions": [
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "lib": "crypt32.dll",
+      "count": 5,
+      "functions": [
+        "CertCloseStore",
+        "CertFindCertificateInStore",
+        "CertFreeCertificateContext",
+        "CertGetNameStringW",
+        "CertOpenSystemStoreW"
+      ]
+    },
+    {
+      "lib": "netutils.dll",
+      "count": 2,
+      "functions": [
+        "NetApiBufferAllocate",
+        "NetApiBufferFree"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 16,
+      "functions": [
+        "CreateProcessAsUserW",
+        "CreateProcessWithLogonW",
+        "CredFree",
+        "CredGetSessionTypes",
+        "CredMarshalCredentialW",
+        "CredUnmarshalCredentialW",
+        "CredWriteW",
+        "LsaClose",
+        "LsaFreeMemory",
+        "LsaOpenPolicy",
+        "LsaQueryInformationPolicy",
+        "SaferCloseLevel",
+        "SaferComputeTokenFromLevel",
+        "SaferCreateLevel",
+        "SaferGetLevelInformation",
+        "SaferGetPolicyInformation"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 33,
+      "functions": [
+        "CloseHandle",
+        "FormatMessageW",
+        "GetCommandLineW",
+        "GetComputerNameExW",
+        "GetCurrentDirectoryW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetEnvironmentStringsW",
+        "GetExitCodeProcess",
+        "GetExitCodeThread",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcessHeap",
+        "GetStartupInfoW",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "GetVersionExW",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapSetInformation",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "SetLastError",
+        "SetThreadPreferredUILanguages",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WriteConsoleW",
+        "lstrcmpiW",
+        "lstrlenW"
+      ]
+    },
+    {
+      "lib": "sspicli.dll",
+      "count": 1,
+      "functions": [
+        "GetUserNameExW"
+      ]
+    },
+    {
+      "lib": "shell32.dll",
+      "count": 1,
+      "functions": [
+        "CommandLineToArgvW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "cfdd7cc431d1ed6ca72b43292daad839066425661b5a7fe30a680ae6735cfd3a",
+    "ssdeep": "384:+13uktNRQP6gFEcNEAhcSGpSW24GY2YorKq9bOOwp3MJOR/e6LeypWpOW:CektftQEcNEwi724GjYo9Ypp324ety0"
+  },
+  "intent": {
+    "intentions": 5,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "CommandLineToArgvW",
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Executes Application with Token Of Another Identity",
+        "tag": "Privilege Escalation:T1134.002 - Create Process With Token",
+        "component": "Identities",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessWithLogonW"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "SaferComputeTokenFromLevel"
+        ]
+      },
+      {
+        "intent": "Discovers and Manipulates the Windows `SAFER Security Level` To Coerce Global Application Execution",
+        "tag": "Persistence:T1546.009 - AppCert DLLs",
+        "component": "---",
+        "inputs": 8,
+        "matches": 4,
+        "apis": [
+          "SaferCloseLevel",
+          "SaferCreateLevel",
+          "SaferGetLevelInformation",
+          "SaferGetPolicyInformation"
+        ]
+      }
+    ]
+  }
+}

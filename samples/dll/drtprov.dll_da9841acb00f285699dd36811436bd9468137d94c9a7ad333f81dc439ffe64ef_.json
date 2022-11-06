@@ -1,0 +1,202 @@
+{
+  "name": "drtprov.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\drtprov.dll",
+  "size": 70144,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "bcrypt.dll",
+    "crypt32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ncrypt.dll",
+    "ntdll.dll"
+  ],
+  "imports": [
+    {
+      "lib": "bcrypt.dll",
+      "count": 16,
+      "functions": [
+        "BCryptCloseAlgorithmProvider",
+        "BCryptCreateHash",
+        "BCryptDecrypt",
+        "BCryptDestroyHash",
+        "BCryptDestroyKey",
+        "BCryptEncrypt",
+        "BCryptExportKey",
+        "BCryptFinishHash",
+        "BCryptGenRandom",
+        "BCryptGenerateSymmetricKey",
+        "BCryptGetProperty",
+        "BCryptHashData",
+        "BCryptImportKey",
+        "BCryptOpenAlgorithmProvider",
+        "BCryptSetProperty",
+        "BCryptVerifySignature"
+      ]
+    },
+    {
+      "lib": "ncrypt.dll",
+      "count": 3,
+      "functions": [
+        "NCryptDecrypt",
+        "NCryptFreeObject",
+        "NCryptSignHash"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 12,
+      "functions": [
+        "EtwEventActivityIdControl",
+        "EtwGetTraceEnableFlags",
+        "EtwGetTraceEnableLevel",
+        "EtwGetTraceLoggerHandle",
+        "EtwRegisterTraceGuidsW",
+        "EtwTraceMessage",
+        "EtwUnregisterTraceGuids",
+        "RtlCaptureContext",
+        "RtlHashUnicodeString",
+        "RtlInitUnicodeString",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "lib": "crypt32.dll",
+      "count": 13,
+      "functions": [
+        "CertAddCertificateContextToStore",
+        "CertCloseStore",
+        "CertEnumCertificatesInStore",
+        "CertFindCertificateInStore",
+        "CertFreeCertificateChain",
+        "CertFreeCertificateContext",
+        "CertGetCertificateChain",
+        "CertOpenStore",
+        "CertSaveStore",
+        "CertVerifySubjectCertificateContext",
+        "CertVerifyTimeValidity",
+        "CryptAcquireCertificatePrivateKey",
+        "CryptImportPublicKeyInfoEx2"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 29,
+      "functions": [
+        "CloseHandle",
+        "CreateEventW",
+        "CreateThread",
+        "DebugBreak",
+        "DelayLoadFailureHook",
+        "DeleteCriticalSection",
+        "DisableThreadLibraryCalls",
+        "EnterCriticalSection",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetProcessHeap",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapAlloc",
+        "HeapFree",
+        "HeapReAlloc",
+        "InitializeCriticalSectionAndSpinCount",
+        "LeaveCriticalSection",
+        "QueryPerformanceCounter",
+        "ResolveDelayLoadedAPI",
+        "SetEvent",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForMultipleObjects",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 20,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__CxxFrameHandler3",
+        "__dllonexit",
+        "_amsg_exit",
+        "_i64tow_s",
+        "_initterm",
+        "_lock",
+        "_onexit",
+        "_unlock",
+        "_vsnwprintf",
+        "free",
+        "iswdigit",
+        "malloc",
+        "memcmp",
+        "memcpy",
+        "memmove",
+        "memset",
+        "wcschr"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 9,
+    "functions": [
+      "DrtCreateDerivedKey",
+      "DrtCreateDerivedKeySecurityProvider",
+      "DrtCreateDnsBootstrapResolver",
+      "DrtCreateNullSecurityProvider",
+      "DrtCreatePnrpBootstrapResolver",
+      "DrtDeleteDerivedKeySecurityProvider",
+      "DrtDeleteDnsBootstrapResolver",
+      "DrtDeleteNullSecurityProvider",
+      "DrtDeletePnrpBootstrapResolver"
+    ]
+  },
+  "hashes": {
+    "sha2": "da9841acb00f285699dd36811436bd9468137d94c9a7ad333f81dc439ffe64ef",
+    "ssdeep": "1536:PuOv5JG6BYc6BpIiTRBi1LGbm3FejV6Ch0CdOSJKNv1erpK7gw:WQGCEpxTIabm3Fex6C+QJY8w"
+  },
+  "intent": {
+    "intentions": 2,
+    "uniq_apis_matched": 8,
+    "results": [
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Initiate Crypto Operations",
+        "tag": "Expert Input:IBO.00022 - Cryptography",
+        "component": "Crypto",
+        "inputs": 12,
+        "matches": 6,
+        "apis": [
+          "BCryptCloseAlgorithmProvider",
+          "BCryptCreateHash",
+          "BCryptDestroyHash",
+          "BCryptFinishHash",
+          "BCryptHashData",
+          "BCryptOpenAlgorithmProvider"
+        ]
+      }
+    ]
+  }
+}

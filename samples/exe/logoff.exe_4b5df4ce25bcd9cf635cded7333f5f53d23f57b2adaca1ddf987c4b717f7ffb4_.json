@@ -1,0 +1,155 @@
+{
+  "name": "logoff.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\logoff.exe",
+  "size": 23552,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "kernel32.dll",
+    "msvcrt.dll",
+    "user32.dll",
+    "winsta.dll"
+  ],
+  "imports": [
+    {
+      "lib": "user32.dll",
+      "count": 2,
+      "functions": [
+        "ExitWindowsEx",
+        "LoadStringW"
+      ]
+    },
+    {
+      "lib": "winsta.dll",
+      "count": 7,
+      "functions": [
+        "LogonIdFromWinStationNameW",
+        "WinStationFreeMemory",
+        "WinStationGetAllSessionsW",
+        "WinStationNameFromLogonIdW",
+        "WinStationOpenServerExW",
+        "WinStationOpenServerW",
+        "WinStationReset"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 36,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__iob_func",
+        "__set_app_type",
+        "__setusermatherr",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ultoa",
+        "_wcsdup",
+        "_wcslwr",
+        "_wcsnicmp",
+        "_wsetlocale",
+        "exit",
+        "fgetwc",
+        "free",
+        "fwprintf",
+        "iswctype",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset",
+        "setlocale",
+        "swprintf_s",
+        "vfwprintf",
+        "vswprintf_s",
+        "wcscat_s",
+        "wcschr",
+        "wcscpy_s",
+        "wcstol",
+        "wcstoul"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 35,
+      "functions": [
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCommandLineW",
+        "GetConsoleOutputCP",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetLastError",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VerSetConditionMask",
+        "VerifyVersionInfoW",
+        "WriteConsoleW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "4b5df4ce25bcd9cf635cded7333f5f53d23f57b2adaca1ddf987c4b717f7ffb4",
+    "ssdeep": "384:OZYareI5jx+cnKJlcXeet3T5t1pZ8PoBZv5Tx8YRA8oYMhVMcrLoiW3kuW:O+aaI5UcnKvcXecVpZ8wBhRzT0voA"
+  },
+  "intent": {
+    "intentions": 2,
+    "uniq_apis_matched": 2,
+    "results": [
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      }
+    ]
+  }
+}

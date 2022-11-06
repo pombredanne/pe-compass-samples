@@ -1,0 +1,154 @@
+{
+  "name": "tskill.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\tskill.exe",
+  "size": 25088,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "kernel32.dll",
+    "msvcrt.dll",
+    "user32.dll",
+    "winsta.dll"
+  ],
+  "imports": [
+    {
+      "lib": "winsta.dll",
+      "count": 6,
+      "functions": [
+        "WinStationEnumerateProcesses",
+        "WinStationFreeGAPMemory",
+        "WinStationFreeMemory",
+        "WinStationGetAllProcesses",
+        "WinStationOpenServerW",
+        "WinStationTerminateProcess"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 35,
+      "functions": [
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCommandLineW",
+        "GetConsoleOutputCP",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFileType",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetStdHandle",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetLastError",
+        "SetThreadUILanguage",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VerSetConditionMask",
+        "VerifyVersionInfoW",
+        "WriteConsoleW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 37,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__iob_func",
+        "__set_app_type",
+        "__setusermatherr",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ultoa",
+        "_wcsdup",
+        "_wcslwr",
+        "_wcsnicmp",
+        "_wsetlocale",
+        "exit",
+        "free",
+        "fwprintf",
+        "malloc",
+        "memcpy",
+        "memmove",
+        "memset",
+        "setlocale",
+        "swprintf_s",
+        "towupper",
+        "vfwprintf",
+        "vswprintf_s",
+        "wcscat_s",
+        "wcschr",
+        "wcscmp",
+        "wcscpy_s",
+        "wcsncpy_s",
+        "wcstol",
+        "wcstoul"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "8d9373ebd69f42153b0b47dbda2174811599db91630651ca01627ac1795f8d56",
+    "ssdeep": "768:+IPzZhZGDotUMCZvNvNZ8LYIPxCHxCH9kG:+IjEVdJ6YIwYGG"
+  },
+  "intent": {
+    "intentions": 2,
+    "uniq_apis_matched": 2,
+    "results": [
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      }
+    ]
+  }
+}

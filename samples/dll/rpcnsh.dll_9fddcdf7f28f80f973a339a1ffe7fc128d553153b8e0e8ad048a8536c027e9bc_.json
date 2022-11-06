@@ -1,0 +1,206 @@
+{
+  "name": "rpcnsh.dll",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\rpcnsh.dll",
+  "size": 27648,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": true,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "fwpuclnt.dll",
+    "iphlpapi.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "netsh.exe",
+    "ntdll.dll",
+    "rpcrt4.dll",
+    "ws2_32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "iphlpapi.dll",
+      "count": 2,
+      "functions": [
+        "GetIfEntry",
+        "GetIpAddrTable"
+      ]
+    },
+    {
+      "lib": "fwpuclnt.dll",
+      "count": 8,
+      "functions": [
+        "FwpmEngineClose0",
+        "FwpmEngineOpen0",
+        "FwpmFilterAdd0",
+        "FwpmFilterCreateEnumHandle0",
+        "FwpmFilterDeleteByKey0",
+        "FwpmFilterDestroyEnumHandle0",
+        "FwpmFilterEnum0",
+        "FwpmFreeMemory0"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 13,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleA",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "ws2_32.dll",
+      "count": 5,
+      "functions": [
+        "ORDINAL 111",
+        "ORDINAL 115",
+        "ORDINAL 12",
+        "WSAStringToAddressW",
+        "inet_pton"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 16,
+      "functions": [
+        "_XcptFilter",
+        "_amsg_exit",
+        "_callnewh",
+        "_except_handler4_common",
+        "_initterm",
+        "_vsnprintf",
+        "_wcsicmp",
+        "_wtoi",
+        "atol",
+        "free",
+        "malloc",
+        "memcpy",
+        "memset",
+        "printf",
+        "swscanf",
+        "wcsrchr"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 2,
+      "functions": [
+        "WinSqmIncrementDWORD",
+        "WinSqmIsOptedIn"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 8,
+      "functions": [
+        "ConvertSecurityDescriptorToStringSecurityDescriptorW",
+        "ConvertStringSecurityDescriptorToSecurityDescriptorW",
+        "RegCloseKey",
+        "RegCreateKeyExA",
+        "RegDeleteKeyExA",
+        "RegGetValueA",
+        "RegOpenKeyExA",
+        "RegSetValueExA"
+      ]
+    },
+    {
+      "lib": "rpcrt4.dll",
+      "count": 4,
+      "functions": [
+        "UuidCreateNil",
+        "UuidCreateSequential",
+        "UuidEqual",
+        "UuidIsNil"
+      ]
+    },
+    {
+      "lib": "netsh.exe",
+      "count": 7,
+      "functions": [
+        "MatchToken",
+        "PreprocessCommand",
+        "PrintError",
+        "PrintMessage",
+        "PrintMessageFromModule",
+        "RegisterContext",
+        "RegisterHelper"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 1,
+    "functions": [
+      "InitHelperDll"
+    ]
+  },
+  "hashes": {
+    "sha2": "9fddcdf7f28f80f973a339a1ffe7fc128d553153b8e0e8ad048a8536c027e9bc",
+    "ssdeep": "384:jCq6BhXf5ua+iVfzkuXEt0Gl0pRckyeBohbLhBn9oPK0FNzb3IL9UpSi54A1WZtQ:OBJltVf+wpRNye4ByI9B5w"
+  },
+  "intent": {
+    "intentions": 4,
+    "uniq_apis_matched": 9,
+    "results": [
+      {
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 2,
+        "apis": [
+          "GetIfEntry",
+          "GetIpAddrTable"
+        ]
+      },
+      {
+        "intent": "Can Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
+        "matches": 2,
+        "apis": [
+          "WSAStringToAddressW",
+          "inet_pton"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegDeleteKeyExA",
+          "RegOpenKeyExA",
+          "RegSetValueExA"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegGetValueA"
+        ]
+      }
+    ]
+  }
+}

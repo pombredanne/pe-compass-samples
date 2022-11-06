@@ -1,0 +1,126 @@
+{
+  "name": "tapisysprep.dll",
+  "path": "\\\\?\\C:\\Windows\\System32\\TapiSysprep.dll",
+  "size": 13312,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": true,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": true,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "shlwapi.dll",
+    "wdscore.dll"
+  ],
+  "imports": [
+    {
+      "lib": "wdscore.dll",
+      "count": 3,
+      "functions": [
+        "ConstructPartialMsgVW",
+        "CurrentIP",
+        "WdsSetupLogMessageW"
+      ]
+    },
+    {
+      "lib": "shlwapi.dll",
+      "count": 1,
+      "functions": [
+        "SHDeleteKeyW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 14,
+      "functions": [
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 4,
+      "functions": [
+        "RegCloseKey",
+        "RegEnumKeyExW",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 6,
+      "functions": [
+        "_XcptFilter",
+        "__C_specific_handler",
+        "_amsg_exit",
+        "_initterm",
+        "free",
+        "malloc"
+      ]
+    }
+  ],
+  "exports": {
+    "count": 1,
+    "functions": [
+      "TapiSysPrepClean"
+    ]
+  },
+  "hashes": {
+    "sha2": "dea8d882f6492786d680ae5d94f6f107b072aed8e6ca4f968725d9752cd12d60",
+    "ssdeep": "192:/VWqpdfXRVpTkTdCk3gpKghDk8aFl0HvWOopbW:/VJpdfuTfgpqpYvWOabW"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "name": "wpnpinst.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\wpnpinst.exe",
+  "size": 22528,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "cabinet.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "user32.dll",
+    "winspool.drv"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 20,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_wcmdln",
+        "_wcslwr",
+        "exit",
+        "memcpy",
+        "memset",
+        "wcschr",
+        "wcsrchr",
+        "wcsstr"
+      ]
+    },
+    {
+      "lib": "cabinet.dll",
+      "count": 3,
+      "functions": [
+        "ORDINAL 20",
+        "ORDINAL 22",
+        "ORDINAL 23"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 48,
+      "functions": [
+        "CloseHandle",
+        "CreateDirectoryW",
+        "CreateFileW",
+        "DeleteFileW",
+        "DosDateTimeToFileTime",
+        "FindClose",
+        "FindFirstFileW",
+        "FindNextFileW",
+        "FormatMessageW",
+        "FreeLibrary",
+        "GetCurrentDirectoryW",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTempFileNameW",
+        "GetTempPathW",
+        "GetTickCount",
+        "GetVersionExW",
+        "GlobalAlloc",
+        "GlobalFree",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "LocalFileTimeToFileTime",
+        "MoveFileExW",
+        "MultiByteToWideChar",
+        "QueryPerformanceCounter",
+        "ReadFile",
+        "RemoveDirectoryW",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetCurrentDirectoryW",
+        "SetFileAttributesW",
+        "SetFilePointer",
+        "SetFileTime",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "WriteFile",
+        "lstrcmpiW"
+      ]
+    },
+    {
+      "lib": "winspool.drv",
+      "count": 1,
+      "functions": [
+        "UploadPrinterDriverPackageW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "fd428df5c658de7bd1df56cbee5d0aacb4192d0e10c324a058500ebaaf2f5fda",
+    "ssdeep": "384:hMy5IFOz4Zb5qe+a4M0/BeeaJ9VVzbld1bBklYOfbOlTWVcW:p5KWYoeiMQeb71a5q4"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      }
+    ]
+  }
+}

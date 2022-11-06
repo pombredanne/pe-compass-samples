@@ -1,0 +1,131 @@
+{
+  "name": "secinit.exe",
+  "path": "\\\\?\\C:\\Windows\\System32\\secinit.exe",
+  "size": 10752,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "wkscli.dll"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 13,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__set_app_type",
+        "__setusermatherr",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "exit"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 15,
+      "functions": [
+        "CloseHandle",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleHandleW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "OpenEventW",
+        "QueryPerformanceCounter",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WaitForSingleObject"
+      ]
+    },
+    {
+      "lib": "wkscli.dll",
+      "count": 1,
+      "functions": [
+        "NetJoinDomain"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 7,
+      "functions": [
+        "NtClose",
+        "NtCreateEvent",
+        "NtOpenEvent",
+        "RtlCaptureContext",
+        "RtlInitUnicodeString",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExW"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "2cdd87c41c0865de240aa3324492c66eded2ee0acac2e0532a92cdc0d664cd23",
+    "ssdeep": "192:6AUaMc1cWhuo7KJhxGsWK+5KNf1Tqze+eIG4ahdfSm9W8vbzRiW:bQRWYwK7xvWKOrzeRIc9W8vbzRiW"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 3,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}

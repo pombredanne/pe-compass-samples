@@ -1,0 +1,213 @@
+{
+  "name": "sdbinst.exe",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\sdbinst.exe",
+  "size": 20992,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": false,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "apphelp.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "shell32.dll",
+    "user32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "msvcrt.dll",
+      "count": 24,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__iob_func",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "_vsnwprintf",
+        "_wcsicmp",
+        "_wfullpath",
+        "exit",
+        "fgetwc",
+        "memcpy",
+        "memset",
+        "tolower",
+        "towupper",
+        "wcsrchr"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 10,
+      "functions": [
+        "RegCloseKey",
+        "RegCreateKeyExW",
+        "RegDeleteKeyExW",
+        "RegDeleteValueW",
+        "RegEnumKeyExW",
+        "RegEnumValueW",
+        "RegOpenKeyExW",
+        "RegQueryInfoKeyW",
+        "RegQueryValueExW",
+        "RegSetValueExW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 29,
+      "functions": [
+        "CopyFileW",
+        "DeleteFileW",
+        "FreeLibrary",
+        "GetConsoleMode",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetFileAttributesW",
+        "GetFileType",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetStdHandle",
+        "GetSystemDirectoryW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryW",
+        "LocalAlloc",
+        "LocalFree",
+        "QueryPerformanceCounter",
+        "SetFileAttributesW",
+        "SetThreadPreferredUILanguages",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "WideCharToMultiByte",
+        "WriteConsoleW",
+        "WriteFile"
+      ]
+    },
+    {
+      "lib": "shell32.dll",
+      "count": 1,
+      "functions": [
+        "ORDINAL 680"
+      ]
+    },
+    {
+      "lib": "user32.dll",
+      "count": 1,
+      "functions": [
+        "LoadStringW"
+      ]
+    },
+    {
+      "lib": "apphelp.dll",
+      "count": 13,
+      "functions": [
+        "SdbCloseDatabase",
+        "SdbFindFirstTag",
+        "SdbFindNextTag",
+        "SdbGetBinaryTagData",
+        "SdbGetDatabaseInformation",
+        "SdbGetPathCustomSdb",
+        "SdbGetStringTagPtr",
+        "SdbIsDbRuntimePlatformSupportedOnHost",
+        "SdbIsStandardDatabase",
+        "SdbOpenDatabase",
+        "SdbReadBinaryTag",
+        "SdbRegisterDatabaseEx",
+        "SdbUnregisterDatabase"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 3,
+      "functions": [
+        "NtDeleteKey",
+        "RtlFreeUnicodeString",
+        "RtlStringFromGUID"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "bb28e2d992b439a01fc6385be08c78254a304dd867c2c725a5eac39f67b0c44b",
+    "ssdeep": "384:VOhy/EcSJPJ4UdeW9A9y6KHSJ/fFpx1RuOQ1s4WPDEiEWYgW:VOOeDcW9oKHSl51YE4WPDEiG"
+  },
+  "intent": {
+    "intentions": 5,
+    "uniq_apis_matched": 11,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      }
+    ]
+  }
+}

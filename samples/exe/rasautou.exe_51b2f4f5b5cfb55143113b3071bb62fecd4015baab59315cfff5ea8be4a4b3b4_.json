@@ -1,0 +1,179 @@
+{
+  "name": "rasautou.exe",
+  "path": "\\\\?\\C:\\Windows\\SysWOW64\\rasautou.exe",
+  "size": 15360,
+  "type": "win-pe",
+  "is_64": false,
+  "is_lib": false,
+  "is_dotnet": true,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 3,
+  "subsystem_caption": "The Windows Character (Console UI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll",
+    "ntdll.dll",
+    "rasapi32.dll",
+    "rasdlg.dll",
+    "ws2_32.dll"
+  ],
+  "imports": [
+    {
+      "lib": "rasdlg.dll",
+      "count": 3,
+      "functions": [
+        "RasAutodialQueryDlgW",
+        "RasDialDlgW",
+        "RasPhonebookDlgW"
+      ]
+    },
+    {
+      "lib": "ntdll.dll",
+      "count": 5,
+      "functions": [
+        "DbgPrint",
+        "NtClose",
+        "NtOpenFile",
+        "NtQuerySystemInformation",
+        "RtlInitUnicodeString"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 3,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExW",
+        "RegQueryValueExA"
+      ]
+    },
+    {
+      "lib": "rasapi32.dll",
+      "count": 4,
+      "functions": [
+        "DwRasUninitialize",
+        "RasEnumAutodialAddressesW",
+        "RasGetAutodialAddressW",
+        "RasGetAutodialParamW"
+      ]
+    },
+    {
+      "lib": "kernel32.dll",
+      "count": 27,
+      "functions": [
+        "ActivateActCtx",
+        "CreateActCtxW",
+        "DeactivateActCtx",
+        "DelayLoadFailureHook",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryExW",
+        "LocalAlloc",
+        "LocalFree",
+        "MultiByteToWideChar",
+        "ProcessIdToSessionId",
+        "QueryPerformanceCounter",
+        "ReleaseActCtx",
+        "ResolveDelayLoadedAPI",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter",
+        "VirtualAlloc",
+        "VirtualFree"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 19,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__p__commode",
+        "__p__fmode",
+        "__set_app_type",
+        "__setusermatherr",
+        "__wgetmainargs",
+        "_amsg_exit",
+        "_cexit",
+        "_controlfp",
+        "_except_handler4_common",
+        "_exit",
+        "_initterm",
+        "_stricmp",
+        "_wcsicmp",
+        "exit",
+        "memset",
+        "printf",
+        "strstr"
+      ]
+    },
+    {
+      "lib": "ws2_32.dll",
+      "count": 1,
+      "functions": [
+        "ORDINAL 115"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "51b2f4f5b5cfb55143113b3071bb62fecd4015baab59315cfff5ea8be4a4b3b4",
+    "ssdeep": "192:bqNL4VbTTSWOqEpitQ3xFey4zNq3jzoGoDY0FZOGZPWGTp+p43KWHBWn0:uNLfqElBFDPzoGGZOGZuct3KWHBW"
+  },
+  "intent": {
+    "intentions": 4,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExA"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__wgetmainargs"
+        ]
+      }
+    ]
+  }
+}

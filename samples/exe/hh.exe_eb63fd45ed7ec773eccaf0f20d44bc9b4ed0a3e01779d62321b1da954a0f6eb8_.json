@@ -1,0 +1,123 @@
+{
+  "name": "hh.exe",
+  "path": "\\\\?\\C:\\Windows\\hh.exe",
+  "size": 18432,
+  "type": "win-pe",
+  "is_64": true,
+  "is_lib": false,
+  "is_dotnet": false,
+  "has_imports": true,
+  "has_exports": false,
+  "subsystem": 2,
+  "subsystem_caption": "The Windows Graphical User Interface (GUI) Subsystem",
+  "libs": [
+    "advapi32.dll",
+    "kernel32.dll",
+    "msvcrt.dll"
+  ],
+  "imports": [
+    {
+      "lib": "kernel32.dll",
+      "count": 21,
+      "functions": [
+        "ExpandEnvironmentStringsA",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetCurrentProcessId",
+        "GetCurrentThreadId",
+        "GetModuleHandleW",
+        "GetProcAddress",
+        "GetStartupInfoW",
+        "GetSystemTimeAsFileTime",
+        "GetTickCount",
+        "HeapSetInformation",
+        "LoadLibraryA",
+        "QueryPerformanceCounter",
+        "RtlCaptureContext",
+        "RtlLookupFunctionEntry",
+        "RtlVirtualUnwind",
+        "SetProcessDEPPolicy",
+        "SetUnhandledExceptionFilter",
+        "Sleep",
+        "TerminateProcess",
+        "UnhandledExceptionFilter"
+      ]
+    },
+    {
+      "lib": "advapi32.dll",
+      "count": 5,
+      "functions": [
+        "RegCloseKey",
+        "RegOpenKeyExA",
+        "RegOpenKeyExW",
+        "RegQueryValueExA",
+        "RegQueryValueExW"
+      ]
+    },
+    {
+      "lib": "msvcrt.dll",
+      "count": 17,
+      "functions": [
+        "?terminate@@YAXXZ",
+        "_XcptFilter",
+        "__C_specific_handler",
+        "__getmainargs",
+        "__set_app_type",
+        "__setusermatherr",
+        "_acmdln",
+        "_amsg_exit",
+        "_cexit",
+        "_commode",
+        "_exit",
+        "_fmode",
+        "_initterm",
+        "_ismbblead",
+        "_vsnprintf",
+        "exit",
+        "memset"
+      ]
+    }
+  ],
+  "hashes": {
+    "sha2": "eb63fd45ed7ec773eccaf0f20d44bc9b4ed0a3e01779d62321b1da954a0f6eb8",
+    "ssdeep": "192:U8kHEFbfhORz4NqRGQE7KpcPUKU/dlk06Sl0+m5GJ1KDJD/QWc7:U8kH67heMMRGQEOpR/dlk06I1KDuWc7"
+  },
+  "intent": {
+    "intentions": 3,
+    "uniq_apis_matched": 5,
+    "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "__getmainargs"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenKeyExA",
+          "RegOpenKeyExW"
+        ]
+      }
+    ]
+  }
+}
