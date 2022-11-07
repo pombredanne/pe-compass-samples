@@ -1771,64 +1771,45 @@
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 18,
-        "apis": [
-          "EnumDependentServicesW",
-          "EnumServicesStatusExW",
-          "GetServiceDisplayNameW",
-          "GetServiceKeyNameW",
-          "NotifyServiceStatusChangeA",
-          "NotifyServiceStatusChangeW",
-          "OpenSCManagerA",
-          "OpenSCManagerW",
-          "OpenServiceA",
-          "OpenServiceW",
-          "QueryServiceConfig2A",
-          "QueryServiceConfig2W",
-          "QueryServiceConfigA",
-          "QueryServiceConfigW",
-          "QueryServiceDynamicInformation",
-          "QueryServiceObjectSecurity",
-          "QueryServiceStatus",
-          "QueryServiceStatusEx"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "CreateProcessAsUserA",
-          "CreateProcessAsUserW"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 4,
-        "apis": [
-          "DuplicateToken",
-          "ImpersonateAnonymousToken",
-          "ImpersonateLoggedOnUser",
-          "NtDuplicateToken"
-        ]
-      },
-      {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "intent": "Can Delete Files From Filesystem (Disk)",
+        "tag": "Expert Input:IBO.00034 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
         "apis": [
           "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "SetThreadToken",
+          "SetTokenInformation"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileExW"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "---",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -1845,24 +1826,60 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
         "inputs": 5,
-        "matches": 1,
+        "matches": 2,
         "apis": [
-          "FindFirstFileExW"
+          "EnumDynamicTimeZoneInformation",
+          "GetDynamicTimeZoneInformationEffectiveYears"
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
+        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
         "inputs": 2,
         "matches": 2,
         "apis": [
-          "SetThreadToken",
-          "SetTokenInformation"
+          "CreateProcessAsUserA",
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Can Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 13,
+        "apis": [
+          "AddAccessAllowedAce",
+          "AddAccessAllowedAceEx",
+          "AddAccessAllowedObjectAce",
+          "AddAccessDeniedAce",
+          "AddAccessDeniedAceEx",
+          "AddAccessDeniedObjectAce",
+          "AddAce",
+          "AddAuditAccessAce",
+          "AddAuditAccessAceEx",
+          "AddAuditAccessObjectAce",
+          "DeleteAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 4,
+        "apis": [
+          "DuplicateToken",
+          "ImpersonateAnonymousToken",
+          "ImpersonateLoggedOnUser",
+          "NtDuplicateToken"
         ]
       },
       {
@@ -1933,6 +1950,17 @@
         ]
       },
       {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "RtlGetNtProductType",
+          "RtlGetVersion"
+        ]
+      },
+      {
         "intent": "Manipulates Windows Tokens",
         "tag": "Defense Evasion:T1134 - Access Token Manipulation",
         "component": "Privileges",
@@ -1944,47 +1972,30 @@
         ]
       },
       {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 2,
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 18,
         "apis": [
-          "EnumDynamicTimeZoneInformation",
-          "GetDynamicTimeZoneInformationEffectiveYears"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 13,
-        "apis": [
-          "AddAccessAllowedAce",
-          "AddAccessAllowedAceEx",
-          "AddAccessAllowedObjectAce",
-          "AddAccessDeniedAce",
-          "AddAccessDeniedAceEx",
-          "AddAccessDeniedObjectAce",
-          "AddAce",
-          "AddAuditAccessAce",
-          "AddAuditAccessAceEx",
-          "AddAuditAccessObjectAce",
-          "DeleteAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
+          "EnumDependentServicesW",
+          "EnumServicesStatusExW",
+          "GetServiceDisplayNameW",
+          "GetServiceKeyNameW",
+          "NotifyServiceStatusChangeA",
+          "NotifyServiceStatusChangeW",
+          "OpenSCManagerA",
+          "OpenSCManagerW",
+          "OpenServiceA",
+          "OpenServiceW",
+          "QueryServiceConfig2A",
+          "QueryServiceConfig2W",
+          "QueryServiceConfigA",
+          "QueryServiceConfigW",
+          "QueryServiceDynamicInformation",
+          "QueryServiceObjectSecurity",
+          "QueryServiceStatus",
+          "QueryServiceStatusEx"
         ]
       },
       {
@@ -1995,17 +2006,6 @@
         "matches": 1,
         "apis": [
           "ImpersonateNamedPipeClient"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 2,
-        "apis": [
-          "RtlGetNtProductType",
-          "RtlGetVersion"
         ]
       }
     ]
