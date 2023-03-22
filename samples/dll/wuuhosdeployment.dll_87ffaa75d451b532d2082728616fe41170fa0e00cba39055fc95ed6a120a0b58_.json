@@ -631,19 +631,9 @@
     "ssdeep": "6144:rXRGvRlfd9Kd7CwcuNnWvsuF5q7ZqLwBNDXVI6:rXRkO7C2Wv7q7AwzFF"
   },
   "intent": {
-    "intentions": 7,
-    "uniq_apis_matched": 13,
+    "intentions": 6,
+    "uniq_apis_matched": 11,
     "results": [
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumValueW"
-        ]
-      },
       {
         "intent": "Queries And Discovers Windows Registry Configuration Settings",
         "tag": "Discovery:T1012 - Query Registry",
@@ -656,13 +646,27 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
         "apis": [
-          "FindFirstFileW"
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -676,38 +680,23 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "FindFirstFileW"
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 2,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
+        "inputs": 6,
+        "matches": 1,
         "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyExW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "RegEnumValueW"
         ]
       }
     ]

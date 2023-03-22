@@ -680,17 +680,28 @@
     "uniq_apis_matched": 22,
     "results": [
       {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
         "matches": 1,
         "apis": [
-          "GetAddrInfoW"
+          "CreateProcessw"
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "CloseServiceHandle",
+          "StartServiceW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -700,9 +711,32 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
+        "component": "Memory",
         "inputs": 2,
         "matches": 2,
         "apis": [
@@ -711,23 +745,15 @@
         ]
       },
       {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
-        "component": "Networking",
-        "inputs": 15,
-        "matches": 1,
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 3,
         "apis": [
-          "WSAStringToAddressW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "CreateProcessw"
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceStatus"
         ]
       },
       {
@@ -742,69 +768,33 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Has Ability To Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
+        "matches": 1,
+        "apis": [
+          "WSAStringToAddressW"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
         "apis": [
           "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 3,
-        "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceStatus"
-        ]
-      },
-      {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 1,
-        "apis": [
-          "GetAdaptersAddresses"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 3,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 2,
-        "apis": [
-          "CloseServiceHandle",
-          "StartServiceW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
         ]
       },
       {
@@ -818,13 +808,23 @@
         ]
       },
       {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
         "matches": 1,
         "apis": [
-          "RtlGetVersion"
+          "GetAdaptersAddresses"
+        ]
+      },
+      {
+        "intent": "Has Ability To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 1,
+        "apis": [
+          "GetAddrInfoW"
         ]
       }
     ]

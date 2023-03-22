@@ -879,31 +879,9 @@
     "ssdeep": "49152:bqRc2gUPLqT52e1wX290pjNw+yhOTm8UwJ/Maxn:bqRc+PLqNhWX2cjGtOTZUwJb"
   },
   "intent": {
-    "intentions": 12,
-    "uniq_apis_matched": 34,
+    "intentions": 11,
+    "uniq_apis_matched": 26,
     "results": [
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "DuplicateToken",
-          "NtDuplicateToken"
-        ]
-      },
       {
         "intent": "Creates Token To Impersonate",
         "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
@@ -915,7 +893,17 @@
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
         "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
         "component": "Privileges",
         "inputs": 15,
@@ -939,57 +927,18 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 8,
-        "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider",
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
         "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
+        "inputs": 5,
         "matches": 2,
         "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
+          "DuplicateToken",
+          "NtDuplicateToken"
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,
@@ -999,7 +948,7 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -1015,13 +964,47 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
-        "inputs": 5,
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "FindFirstFileW"
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       }
     ]

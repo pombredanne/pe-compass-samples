@@ -722,19 +722,9 @@
     "ssdeep": "24576:9vPCNYdts54VusDlkGQlTdap49qIumx2hwXhgQex:9HvnV5iGQlRap49qNmxZgQex"
   },
   "intent": {
-    "intentions": 16,
-    "uniq_apis_matched": 35,
+    "intentions": 13,
+    "uniq_apis_matched": 31,
     "results": [
-      {
-        "intent": "Can Delete Credentials",
-        "tag": "Expert Input:IBO.00024 - Delete Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CredDeleteW"
-        ]
-      },
       {
         "intent": "Queries And Discovers Windows Registry Configuration Settings",
         "tag": "Discovery:T1012 - Query Registry",
@@ -751,7 +741,41 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 3,
+        "apis": [
+          "AddAccessAllowedAce",
+          "AddMandatoryAce",
+          "InitializeAcl"
+        ]
+      },
+      {
+        "intent": "Enumerates Credentials From The Windows Credential Manager Password Store",
+        "tag": "Credential Access:T1555.004 - Windows Credential Manager",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CredEnumerateW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
         "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
         "component": "Processes",
         "inputs": 2,
@@ -761,71 +785,7 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "SetThreadToken",
-          "SetTokenInformation"
-        ]
-      },
-      {
-        "intent": "Enumerates Credentials From The Windows Credential Manager Password Store",
-        "tag": "Credential Access:T1555.004 - Windows Credential Manager",
-        "component": "Filesystem",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "CredEnumerateW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Read Credentials",
-        "tag": "Expert Input:IBO.00023 - Access Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "CredReadDomainCredentialsW",
-          "CredReadW"
-        ]
-      },
-      {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
-        "matches": 1,
-        "apis": [
-          "CredWriteW"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 2,
-        "apis": [
-          "GetNativeSystemInfo",
-          "RtlGetVersion"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -841,7 +801,50 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "SetThreadToken",
+          "SetTokenInformation"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "GetNativeSystemInfo",
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -868,40 +871,6 @@
         "matches": 1,
         "apis": [
           "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "AddAccessAllowedAce",
-          "AddMandatoryAce",
-          "InitializeAcl"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
         ]
       }
     ]

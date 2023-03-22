@@ -370,18 +370,18 @@
     "uniq_apis_matched": 8,
     "results": [
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
         "inputs": 2,
         "matches": 2,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "SetThreadToken",
+          "SetTokenInformation"
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
         "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
         "component": "Processes",
         "inputs": 2,
@@ -391,17 +391,7 @@
         ]
       },
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "ImpersonateLoggedOnUser"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -412,14 +402,24 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
         "inputs": 2,
         "matches": 2,
         "apis": [
-          "SetThreadToken",
-          "SetTokenInformation"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "ImpersonateLoggedOnUser"
         ]
       }
     ]

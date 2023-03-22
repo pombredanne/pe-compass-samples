@@ -611,30 +611,9 @@
     "uniq_apis_matched": 22,
     "results": [
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 2,
-        "apis": [
-          "AddAce",
-          "InitializeAcl"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "AdjustTokenPrivileges"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
+        "component": "Memory",
         "inputs": 2,
         "matches": 2,
         "apis": [
@@ -643,7 +622,7 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -655,13 +634,27 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
-        "inputs": 5,
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "FindFirstFileW"
+          "DeleteFileW"
         ]
       },
       {
@@ -675,7 +668,7 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -685,17 +678,13 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 5,
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "FindFirstFileW"
         ]
       },
       {
@@ -710,16 +699,6 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
         "intent": "Queries And Discovers Windows Registry Configuration Settings",
         "tag": "Discovery:T1012 - Query Registry",
         "component": "Registry",
@@ -729,6 +708,27 @@
           "RegGetValueW",
           "RegQueryInfoKeyW",
           "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 2,
+        "apis": [
+          "AddAce",
+          "InitializeAcl"
         ]
       }
     ]

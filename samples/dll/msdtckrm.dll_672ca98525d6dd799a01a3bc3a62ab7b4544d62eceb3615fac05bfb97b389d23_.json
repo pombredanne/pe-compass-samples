@@ -432,31 +432,19 @@
     "uniq_apis_matched": 17,
     "results": [
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
+        "inputs": 33,
+        "matches": 3,
         "apis": [
-          "RegQueryValueExA",
-          "RegQueryValueExW"
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 4,
-        "apis": [
-          "AddAccessAllowedAceEx",
-          "AddAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
+        "intent": "Has Ability To Create/Manipulate System Services",
         "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
         "component": "Services",
         "inputs": 19,
@@ -464,27 +452,6 @@
         "apis": [
           "RegisterServiceCtrlHandlerW",
           "SetServiceStatus"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -498,19 +465,17 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 3,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
         "apis": [
-          "RegOpenKeyExA",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "DeleteFileW"
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,
@@ -520,13 +485,48 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 4,
+        "apis": [
+          "AddAccessAllowedAceEx",
+          "AddAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
         "matches": 1,
         "apis": [
           "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       }
     ]

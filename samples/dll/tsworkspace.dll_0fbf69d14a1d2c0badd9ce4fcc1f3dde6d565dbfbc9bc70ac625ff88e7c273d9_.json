@@ -793,9 +793,37 @@
     "ssdeep": "24576:XDipRtyncLsyCX/envWyO1ocFPq9NXKVdimNiG/oeVHdx:XDiUncTZvneZP2NXK5Ax4Hdx"
   },
   "intent": {
-    "intentions": 12,
-    "uniq_apis_matched": 30,
+    "intentions": 10,
+    "uniq_apis_matched": 27,
     "results": [
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 3,
+        "apis": [
+          "AddAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 7,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegCreateKeyTransactedW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetKeyValueW",
+          "RegSetValueExW"
+        ]
+      },
       {
         "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
         "tag": "Command And Control:T1105 - Ingress Tool Transfer",
@@ -812,13 +840,34 @@
         ]
       },
       {
-        "intent": "Can Discover Network Proxy Configuration",
+        "intent": "Has Ability To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 1,
+        "apis": [
+          "DnsQuery_W"
+        ]
+      },
+      {
+        "intent": "Has Ability To Discover Network Proxy Configuration",
         "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
         "component": "Networking",
         "inputs": 2,
         "matches": 1,
         "apis": [
           "WinHttpGetIEProxyConfigForCurrentUser"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
@@ -832,17 +881,7 @@
         ]
       },
       {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
-        "matches": 1,
-        "apis": [
-          "CredWriteW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -853,30 +892,13 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
         "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 7,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegCreateKeyTransactedW",
-          "RegDeleteKeyW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetKeyValueW",
-          "RegSetValueExW"
+          "DeleteFileW"
         ]
       },
       {
@@ -889,49 +911,6 @@
           "RegGetValueW",
           "RegQueryInfoKeyW",
           "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "AddAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
-        "matches": 1,
-        "apis": [
-          "DnsQuery_W"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 2,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
         ]
       }
     ]

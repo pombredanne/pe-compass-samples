@@ -487,61 +487,42 @@
     "uniq_apis_matched": 21,
     "results": [
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 3,
-        "apis": [
-          "RegGetValueW",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "ImpersonateLoggedOnUser"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
-        "matches": 1,
+        "matches": 3,
         "apis": [
-          "AdjustTokenPrivileges"
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "RegisterServiceCtrlHandlerExW",
+          "SetServiceStatus"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
@@ -550,7 +531,18 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -564,37 +556,45 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
         "matches": 3,
         "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "RegGetValueW",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
         ]
       },
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 2,
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
         "apis": [
-          "RegisterServiceCtrlHandlerExW",
-          "SetServiceStatus"
+          "AdjustTokenPrivileges"
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
+          "ImpersonateLoggedOnUser"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
         ]
       }
     ]

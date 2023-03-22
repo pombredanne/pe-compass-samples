@@ -644,21 +644,32 @@
     "ssdeep": "24576:BttUVYJmCP1dO3YPAToDPqnOyllw19XVLe+Do7lxpId9C1wUJgw2QLkxPUYP5A23:BPUuZP1CYPA6qnxlxpIAVgwcP5A2IMw"
   },
   "intent": {
-    "intentions": 15,
-    "uniq_apis_matched": 29,
+    "intentions": 11,
+    "uniq_apis_matched": 24,
     "results": [
       {
-        "intent": "Can Read Credentials",
-        "tag": "Expert Input:IBO.00023 - Access Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 4,
-        "matches": 1,
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
         "apis": [
-          "CredReadW"
+          "RegisterServiceCtrlHandlerExW",
+          "SetServiceStatus"
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
         "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
         "component": "Privileges",
         "inputs": 15,
@@ -667,6 +678,16 @@
           "AddAccessAllowedAceEx",
           "InitializeAcl",
           "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
         ]
       },
       {
@@ -682,89 +703,14 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumKeyExW"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "ImpersonateLoggedOnUser"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 2,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 5,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenCurrentUser",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
-        "matches": 1,
-        "apis": [
-          "CredWriteW"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
+        "inputs": 5,
+        "matches": 2,
         "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Delete Credentials",
-        "tag": "Expert Input:IBO.00024 - Delete Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CredDeleteW"
+          "FindFirstFileExW",
+          "FindFirstFileW"
         ]
       },
       {
@@ -778,25 +724,24 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
         "matches": 2,
         "apis": [
-          "FindFirstFileExW",
-          "FindFirstFileW"
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 2,
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "RegisterServiceCtrlHandlerExW",
-          "SetServiceStatus"
+          "ImpersonateLoggedOnUser"
         ]
       },
       {
@@ -809,6 +754,20 @@
           "WinHttpConnect",
           "WinHttpOpenRequest",
           "WinHttpSendRequest"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenCurrentUser",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       }
     ]

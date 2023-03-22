@@ -680,33 +680,34 @@
     "ssdeep": "6144:BqE/2xc8e5QpN9NI5ryDHBA9uZBHvCHah0yNC1yb:BB2XN3XDhA8ZBPUarC4b"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 9,
+    "intentions": 4,
+    "uniq_apis_matched": 7,
     "results": [
       {
         "intent": "Enumerates Credentials From The Windows Credential Manager Password Store",
         "tag": "Credential Access:T1555.004 - Windows Credential Manager",
         "component": "Filesystem",
-        "inputs": 4,
+        "inputs": 2,
         "matches": 1,
         "apis": [
           "CredEnumerateW"
         ]
       },
       {
-        "intent": "Can Delete Credentials",
-        "tag": "Expert Input:IBO.00024 - Delete Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 2,
-        "matches": 1,
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
         "apis": [
-          "CredDeleteW"
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
+        "component": "Memory",
         "inputs": 2,
         "matches": 2,
         "apis": [
@@ -715,7 +716,7 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,
@@ -723,27 +724,6 @@
         "apis": [
           "CreateProcessw",
           "ShellExecuteExW"
-        ]
-      },
-      {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
-        "matches": 1,
-        "apis": [
-          "CredWriteW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
         ]
       }
     ]

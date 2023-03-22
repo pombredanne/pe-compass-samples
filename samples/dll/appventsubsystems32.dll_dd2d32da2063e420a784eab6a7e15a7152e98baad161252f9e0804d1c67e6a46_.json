@@ -668,13 +668,102 @@
     "uniq_apis_matched": 22,
     "results": [
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "CreateProcessw"
+          "DuplicateToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 3,
+        "apis": [
+          "AddAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
+        "matches": 3,
+        "apis": [
+          "ConnectNamedPipe",
+          "DisconnectNamedPipe",
+          "PeekNamedPipe"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
         ]
       },
       {
@@ -689,84 +778,7 @@
         ]
       },
       {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
-        "component": "Processes",
-        "inputs": 13,
-        "matches": 3,
-        "apis": [
-          "ConnectNamedPipe",
-          "DisconnectNamedPipe",
-          "PeekNamedPipe"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "DuplicateToken"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "GetNativeSystemInfo"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 1,
-        "apis": [
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
         "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
         "component": "Processes",
         "inputs": 2,
@@ -776,25 +788,13 @@
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "AddAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
         "matches": 1,
         "apis": [
-          "SetThreadToken"
+          "CreateProcessw"
         ]
       }
     ]

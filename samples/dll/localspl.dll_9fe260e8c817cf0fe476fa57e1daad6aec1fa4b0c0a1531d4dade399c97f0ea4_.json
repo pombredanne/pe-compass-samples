@@ -1147,9 +1147,19 @@
     "ssdeep": "24576:xv6mqHyxyEWvvcNTxh2GiVVf6ikLOKxshLwQxiljNEI24o:GSkp0T2PVlvwu1wLRSI24o"
   },
   "intent": {
-    "intentions": 19,
-    "uniq_apis_matched": 48,
+    "intentions": 18,
+    "uniq_apis_matched": 42,
     "results": [
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "RtlGetNtProductType"
+        ]
+      },
       {
         "intent": "Enumerates Files or Directories on the Target System",
         "tag": "Discovery:T1083 - File and Directory Discovery",
@@ -1162,39 +1172,13 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Enumerates Available Network Shares",
-        "tag": "Discovery:T1135 - Network Share Discovery",
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
         "component": "Networking",
-        "inputs": 2,
-        "matches": 2,
+        "inputs": 41,
+        "matches": 1,
         "apis": [
-          "NetShareEnum",
-          "NetShareGetInfo"
-        ]
-      },
-      {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
-        "component": "Processes",
-        "inputs": 13,
-        "matches": 4,
-        "apis": [
-          "ConnectNamedPipe",
-          "DisconnectNamedPipe",
-          "GetNamedPipeInfo",
-          "ImpersonateNamedPipeClient"
+          "GetAdaptersAddresses"
         ]
       },
       {
@@ -1210,63 +1194,6 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 7,
-        "apis": [
-          "AddAccessAllowedAce",
-          "AddAccessAllowedAceEx",
-          "AddAccessDeniedAce",
-          "AddAce",
-          "DeleteAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "GetTimeZoneInformation"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "RtlGetNtProductType"
-        ]
-      },
-      {
         "intent": "Steals Tokens To Impersonate Windows Identities",
         "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
         "component": "Privileges",
@@ -1277,6 +1204,27 @@
         ]
       },
       {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Enumerates Available Network Shares",
+        "tag": "Discovery:T1135 - Network Share Discovery",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "NetShareEnum",
+          "NetShareGetInfo"
+        ]
+      },
+      {
         "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
         "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
         "component": "---",
@@ -1284,22 +1232,6 @@
         "matches": 1,
         "apis": [
           "NetServerGetInfo"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 7,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyExW",
-          "RegDeleteValueW",
-          "RegOpenCurrentUser",
-          "RegOpenKeyExW",
-          "RegSetKeyValueW",
-          "RegSetValueExW"
         ]
       },
       {
@@ -1324,17 +1256,95 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
         "apis": [
-          "CreateProcessw"
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "GetTimeZoneInformation"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 7,
+        "apis": [
+          "AddAccessAllowedAce",
+          "AddAccessAllowedAceEx",
+          "AddAccessDeniedAce",
+          "AddAce",
+          "DeleteAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
+        "matches": 4,
+        "apis": [
+          "ConnectNamedPipe",
+          "DisconnectNamedPipe",
+          "GetNamedPipeInfo",
+          "ImpersonateNamedPipeClient"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 7,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenCurrentUser",
+          "RegOpenKeyExW",
+          "RegSetKeyValueW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -1342,31 +1352,6 @@
         "apis": [
           "RegEnumKeyExW",
           "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 1,
-        "apis": [
-          "GetAdaptersAddresses"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 6,
-        "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider"
         ]
       }
     ]

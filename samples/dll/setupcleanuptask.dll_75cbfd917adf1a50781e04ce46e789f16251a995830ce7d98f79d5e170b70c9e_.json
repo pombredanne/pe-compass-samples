@@ -637,39 +637,17 @@
     "ssdeep": "6144:SQ5IurwizGpZhdyuLKmRJAfcpqDsjrG9KMNBgvk:cSmyuLKmRJAfccWrGD"
   },
   "intent": {
-    "intentions": 11,
-    "uniq_apis_matched": 20,
+    "intentions": 10,
+    "uniq_apis_matched": 19,
     "results": [
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
         "apis": [
           "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Read Credentials",
-        "tag": "Expert Input:IBO.00023 - Access Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "CredReadW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 3,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
         ]
       },
       {
@@ -693,6 +671,28 @@
         ]
       },
       {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "ImpersonateLoggedOnUser"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
         "intent": "Queries And Discovers Windows Registry Configuration Settings",
         "tag": "Discovery:T1012 - Query Registry",
         "component": "Registry",
@@ -705,7 +705,18 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Discover Network Proxy Configuration",
+        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "WinHttpGetDefaultProxyConfiguration",
+          "WinHttpGetIEProxyConfigForCurrentUser"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -716,7 +727,7 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -736,27 +747,6 @@
           "WinHttpGetProxyForUrl",
           "WinHttpOpenRequest",
           "WinHttpSendRequest"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "ImpersonateLoggedOnUser"
-        ]
-      },
-      {
-        "intent": "Can Discover Network Proxy Configuration",
-        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "WinHttpGetDefaultProxyConfiguration",
-          "WinHttpGetIEProxyConfigForCurrentUser"
         ]
       }
     ]

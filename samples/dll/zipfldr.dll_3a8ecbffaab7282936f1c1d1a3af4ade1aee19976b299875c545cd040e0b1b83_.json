@@ -662,43 +662,11 @@
     "ssdeep": "6144:5V4aJ5vKT61thXfa0yajXE50gJwij9UwAwcFedUX:rXvz1thXfa0yaY55JwiFfU"
   },
   "intent": {
-    "intentions": 7,
-    "uniq_apis_matched": 10,
+    "intentions": 5,
+    "uniq_apis_matched": 8,
     "results": [
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "FindFirstFileA",
-          "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
-        "matches": 1,
-        "apis": [
-          "CredWriteW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,
@@ -706,6 +674,17 @@
         "apis": [
           "ShellExecuteExW",
           "ShellExecuteW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -719,23 +698,24 @@
         ]
       },
       {
-        "intent": "Can Read Credentials",
-        "tag": "Expert Input:IBO.00023 - Access Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "CredReadW"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
         "apis": [
           "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileA",
+          "FindFirstFileW"
         ]
       }
     ]

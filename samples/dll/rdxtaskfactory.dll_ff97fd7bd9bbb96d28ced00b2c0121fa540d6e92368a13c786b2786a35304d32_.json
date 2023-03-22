@@ -706,34 +706,14 @@
     "uniq_apis_matched": 22,
     "results": [
       {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "RtlGetVersion"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "ImpersonateLoggedOnUser"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
         "matches": 2,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "OpenSCManagerW",
+          "OpenServiceW"
         ]
       },
       {
@@ -747,14 +727,43 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 2,
+        "intent": "Enumerates Active Sessions With Usernames On The Target System",
+        "tag": "Discovery:T1087 - Account Discovery (Windows)",
+        "component": "Identities",
+        "inputs": 4,
+        "matches": 1,
         "apis": [
-          "CloseServiceHandle",
-          "StartServiceW"
+          "LsaEnumerateLogonSessions"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "GetTimeZoneInformation"
+        ]
+      },
+      {
+        "intent": "Enumerates Running Processes/Applications",
+        "tag": "Discovery:T1057 - Process Discovery",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "CreateToolHelp32Snapshot"
         ]
       },
       {
@@ -769,48 +778,50 @@
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 2,
-        "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW"
-        ]
-      },
-      {
-        "intent": "Enumerates Active Sessions With Usernames On The Target System",
-        "tag": "Discovery:T1087 - Account Discovery (Windows)",
-        "component": "Identities",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "LsaEnumerateLogonSessions"
-        ]
-      },
-      {
-        "intent": "Enumerates Running Processes/Applications",
-        "tag": "Discovery:T1057 - Process Discovery",
-        "component": "Processes",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "CreateToolHelp32Snapshot"
-        ]
-      },
-      {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
         "inputs": 5,
         "matches": 1,
         "apis": [
-          "GetTimeZoneInformation"
+          "ImpersonateLoggedOnUser"
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "CloseServiceHandle",
+          "StartServiceW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -822,17 +833,6 @@
           "RegOpenKeyExW",
           "RegSetKeyValueW",
           "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
         ]
       }
     ]

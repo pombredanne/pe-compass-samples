@@ -622,11 +622,59 @@
     "ssdeep": "6144:9NL86PvFGh6bUIG1kYiw2fWkTqeuHmpkFW0v7xxyzcZl5YpY5q/DiKqA:9NLxPvw6YIOkYiBnsrmz45qQA"
   },
   "intent": {
-    "intentions": 10,
-    "uniq_apis_matched": 29,
+    "intentions": 9,
+    "uniq_apis_matched": 25,
     "results": [
       {
-        "intent": "Can Create/Manipulate System Services",
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 4,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceConfigW",
+          "QueryServiceStatus"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegGetValueA",
+          "RegGetValueW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate System Services",
         "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
         "component": "Services",
         "inputs": 19,
@@ -637,30 +685,6 @@
           "DeleteService",
           "RegisterServiceCtrlHandlerExW",
           "SetServiceStatus"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 4,
-        "apis": [
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData"
         ]
       },
       {
@@ -676,65 +700,6 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 4,
-        "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceConfigW",
-          "QueryServiceStatus"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegGetValueA",
-          "RegGetValueW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumKeyExW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 5,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExA",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
         "intent": "Manipulates Windows Tokens",
         "tag": "Defense Evasion:T1134 - Access Token Manipulation",
         "component": "Privileges",
@@ -742,6 +707,28 @@
         "matches": 1,
         "apis": [
           "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       }
     ]

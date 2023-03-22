@@ -752,14 +752,48 @@
     "uniq_apis_matched": 23,
     "results": [
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetKeyValueW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
         "matches": 2,
         "apis": [
-          "ShellExecuteExW",
-          "ShellExecuteW"
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -773,27 +807,17 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 5,
         "apis": [
-          "RegCreateKeyExW",
-          "RegOpenKeyExW",
-          "RegSetKeyValueW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "AddAccessAllowedAceEx",
+          "AddAccessDeniedAceEx",
+          "AddAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
         ]
       },
       {
@@ -809,28 +833,6 @@
         ]
       },
       {
-        "intent": "Discovers Local User Accounts on the Target System",
-        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
-        "component": "Identities",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "LookupAccountNameLocalW",
-          "LookupAccountSidLocalW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
         "intent": "Steals Tokens To Impersonate Windows Identities",
         "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
         "component": "Privileges",
@@ -841,27 +843,25 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Discovers Local User Accounts on the Target System",
+        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
+        "component": "Identities",
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "FindFirstFileW"
+          "LookupAccountNameLocalW",
+          "LookupAccountSidLocalW"
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 5,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 2,
         "apis": [
-          "AddAccessAllowedAceEx",
-          "AddAccessDeniedAceEx",
-          "AddAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
+          "ShellExecuteExW",
+          "ShellExecuteW"
         ]
       }
     ]

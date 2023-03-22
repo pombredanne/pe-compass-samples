@@ -518,52 +518,9 @@
     "ssdeep": "24576:WH07BQHvlzqZD6uvHLB2S37p22TGlBmP2sS5sOjsGSwCpl:WgOHvlzgbB2S3o2ilBmP2sMRsGSwy"
   },
   "intent": {
-    "intentions": 7,
-    "uniq_apis_matched": 13,
+    "intentions": 6,
+    "uniq_apis_matched": 11,
     "results": [
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumKeyW"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 2,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken"
-        ]
-      },
       {
         "intent": "Discovers Time Configuration Settings On The Target System",
         "tag": "Discovery:T1124 - System Time Discovery",
@@ -575,7 +532,17 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 1,
+        "apis": [
+          "DsRoleGetPrimaryDomainInformation"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -588,13 +555,35 @@
         ]
       },
       {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
-        "component": "---",
-        "inputs": 24,
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
         "matches": 1,
         "apis": [
-          "DsRoleGetPrimaryDomainInformation"
+          "RegEnumKeyW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
         ]
       }
     ]

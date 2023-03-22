@@ -622,34 +622,53 @@
     "ssdeep": "98304:yaRYb0S7xvW7uTY+RQ7rgHyYZ2Mnxy2zhU:ysYb0S7xvW72YkQ7rgHyYZ2MnxV"
   },
   "intent": {
-    "intentions": 11,
-    "uniq_apis_matched": 28,
+    "intentions": 10,
+    "uniq_apis_matched": 22,
     "results": [
       {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
-        "component": "Processes",
-        "inputs": 13,
-        "matches": 2,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
         "apis": [
-          "ConnectNamedPipe",
-          "DisconnectNamedPipe"
+          "DeleteFileW"
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "CommandLineToArgvW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
         "matches": 3,
         "apis": [
-          "RegGetValueW",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
+          "AddAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -665,64 +684,7 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 6,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptDestroyKey",
-          "CryptEncrypt",
-          "CryptGenKey",
-          "CryptImportKey",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
-        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
-        "component": "Processes",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "CommandLineToArgvW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "AddAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -733,7 +695,30 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 3,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
+        "matches": 2,
+        "apis": [
+          "ConnectNamedPipe",
+          "DisconnectNamedPipe"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,
@@ -743,13 +728,13 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "OpenProcessToken"
+          "FindFirstFileW"
         ]
       }
     ]

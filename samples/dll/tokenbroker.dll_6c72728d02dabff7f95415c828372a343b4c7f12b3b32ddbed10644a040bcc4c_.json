@@ -800,17 +800,18 @@
     "uniq_apis_matched": 20,
     "results": [
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "RegEnumKeyExW"
+          "SetThreadToken",
+          "SetTokenInformation"
         ]
       },
       {
-        "intent": "Can Create/Manipulate System Services",
+        "intent": "Has Ability To Create/Manipulate System Services",
         "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
         "component": "Services",
         "inputs": 19,
@@ -818,6 +819,40 @@
         "apis": [
           "RegisterServiceCtrlHandlerExW",
           "SetServiceStatus"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegOpenKeyW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
         ]
       },
       {
@@ -833,52 +868,6 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "ImpersonateLoggedOnUser"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 5,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegOpenKeyW",
-          "RegSetValueExW"
-        ]
-      },
-      {
         "intent": "Enumerates Files or Directories on the Target System",
         "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
@@ -889,24 +878,35 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CreateProcessAsUserW"
-        ]
-      },
-      {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
         "inputs": 2,
         "matches": 2,
         "apis": [
-          "SetThreadToken",
-          "SetTokenInformation"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "ImpersonateLoggedOnUser"
         ]
       }
     ]

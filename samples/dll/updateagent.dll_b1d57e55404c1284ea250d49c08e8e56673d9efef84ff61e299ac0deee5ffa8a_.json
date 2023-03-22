@@ -898,9 +898,52 @@
     "ssdeep": "49152:4ja6Rb803yIbuuehD8hZlFwsiOVdVBvP/jh3yMorUn5LDV6X6NW8s8TKtGOjPpAL:4jH1iMoVxMKs"
   },
   "intent": {
-    "intentions": 14,
-    "uniq_apis_matched": 28,
+    "intentions": 13,
+    "uniq_apis_matched": 27,
     "results": [
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileExW",
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
+        "tag": "Impact:T1529 - System Shutdown/Reboot",
+        "component": "---",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "InitiateSystemShutdownExW"
+        ]
+      },
       {
         "intent": "Manipulates Windows Tokens",
         "tag": "Defense Evasion:T1134 - Access Token Manipulation",
@@ -910,6 +953,76 @@
         "apis": [
           "AdjustTokenPrivileges",
           "NtAdjustPrivilegesToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 2,
+        "apis": [
+          "CreateProcessA",
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 4,
+        "apis": [
+          "AddAccessAllowedAce",
+          "AddAccessAllowedAceEx",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "GetTimeZoneInformation"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
@@ -930,129 +1043,6 @@
         "matches": 1,
         "apis": [
           "NtDuplicateToken"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 5,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
-        "tag": "Impact:T1529 - System Shutdown/Reboot",
-        "component": "---",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "InitiateSystemShutdownExW"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "FindFirstFileExW",
-          "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 2,
-        "apis": [
-          "CreateProcessA",
-          "CreateProcessw"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 4,
-        "apis": [
-          "AddAccessAllowedAce",
-          "AddAccessAllowedAceEx",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 1,
-        "apis": [
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "GetTimeZoneInformation"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 1,
-        "apis": [
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
         ]
       }
     ]

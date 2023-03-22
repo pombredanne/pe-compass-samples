@@ -1092,95 +1092,17 @@
     "ssdeep": "196608:ZmjAQLqKnPsAcWOe4e52H+k8TW4rLjYoEoKty33fPfKlRftaeknp6oPNEZ+Y0DD2:ZmjAQLqKnPBcWOe4e52H+k8TW4rLj/Ee"
   },
   "intent": {
-    "intentions": 15,
-    "uniq_apis_matched": 39,
+    "intentions": 11,
+    "uniq_apis_matched": 23,
     "results": [
       {
-        "intent": "Can Read Credentials",
-        "tag": "Expert Input:IBO.00023 - Access Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "CredReadDomainCredentialsW",
-          "CredReadW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 3,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumKeyW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 9,
-        "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider",
-          "CryptAcquireContextW",
-          "CryptDestroyKey",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Delete Credentials",
-        "tag": "Expert Input:IBO.00024 - Delete Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CredDeleteW"
-        ]
-      },
-      {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
-        "component": "Processes",
-        "inputs": 13,
-        "matches": 1,
-        "apis": [
-          "DisconnectNamedPipe"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 8,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyW",
-          "RegDeleteValueW",
-          "RegOpenKeyA",
-          "RegOpenKeyExA",
-          "RegOpenKeyExW",
-          "RegSetKeyValueW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
         "component": "---",
-        "inputs": 5,
+        "inputs": 3,
         "matches": 1,
         "apis": [
-          "GetTimeZoneInformation"
+          "GetNativeSystemInfo"
         ]
       },
       {
@@ -1197,6 +1119,75 @@
         ]
       },
       {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 3,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumKeyW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
+        "matches": 1,
+        "apis": [
+          "DisconnectNamedPipe"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "GetTimeZoneInformation"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 8,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyA",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetKeyValueW",
+          "RegSetValueExW"
+        ]
+      },
+      {
         "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
         "tag": "Collection:T1115 - Clipboard Data",
         "component": "---",
@@ -1207,13 +1198,13 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
         "matches": 1,
         "apis": [
-          "OpenProcessToken"
+          "CreateProcessw"
         ]
       },
       {
@@ -1224,49 +1215,6 @@
         "matches": 1,
         "apis": [
           "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "CreateProcessw"
-        ]
-      },
-      {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
-        "matches": 4,
-        "apis": [
-          "CredProtectW",
-          "CredUnprotectW",
-          "CredWriteDomainCredentialsW",
-          "CredWriteW"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "GetNativeSystemInfo"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
         ]
       }
     ]

@@ -722,6 +722,16 @@
     "uniq_apis_matched": 21,
     "results": [
       {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
         "intent": "Enumerates Files or Directories on the Target System",
         "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
@@ -729,82 +739,6 @@
         "matches": 1,
         "apis": [
           "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "RtlGetVersion"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CreateProcessAsUserW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 1,
-        "apis": [
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "CreateProcessw"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 1,
-        "apis": [
-          "DnsHostnameToComputerNameW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 6,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenCurrentUser",
-          "RegOpenKeyExW",
-          "RegSetKeyValueW",
-          "RegSetValueExW"
         ]
       },
       {
@@ -819,26 +753,6 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
         "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
         "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
         "component": "---",
@@ -849,14 +763,100 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
         "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
         "inputs": 2,
         "matches": 2,
         "apis": [
           "DelayLoadFailureHook",
           "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 1,
+        "apis": [
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 6,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenCurrentUser",
+          "RegOpenKeyExW",
+          "RegSetKeyValueW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 1,
+        "apis": [
+          "DnsHostnameToComputerNameW"
         ]
       }
     ]

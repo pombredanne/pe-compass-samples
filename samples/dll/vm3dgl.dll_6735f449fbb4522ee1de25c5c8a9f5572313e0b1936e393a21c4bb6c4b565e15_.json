@@ -1625,68 +1625,17 @@
     "ssdeep": "393216:KnEMwFpSfL+grsI/NESGV5WBuLsgPW17hNzIY9+e:KnEXSfkJTW8LlPINxp"
   },
   "intent": {
-    "intentions": 11,
-    "uniq_apis_matched": 17,
+    "intentions": 10,
+    "uniq_apis_matched": 15,
     "results": [
       {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "GetTimeZoneInformation"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumValueA"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "FindFirstFileExW",
-          "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
-        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "intent": "Enumerates Running Processes/Applications",
+        "tag": "Discovery:T1057 - Process Discovery",
         "component": "Processes",
-        "inputs": 3,
+        "inputs": 4,
         "matches": 1,
         "apis": [
-          "CommandLineToArgvW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "CreateProcessw"
+          "CreateToolHelp32Snapshot"
         ]
       },
       {
@@ -1700,14 +1649,43 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 2,
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
+          "GetTimeZoneInformation"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueA"
+        ]
+      },
+      {
+        "intent": "Has Ability To Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "CommandLineToArgvW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
         ]
       },
       {
@@ -1723,7 +1701,28 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileExW",
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -1732,16 +1731,6 @@
           "RegCreateKeyExA",
           "RegOpenKeyExA",
           "RegSetValueExA"
-        ]
-      },
-      {
-        "intent": "Enumerates Running Processes/Applications",
-        "tag": "Discovery:T1057 - Process Discovery",
-        "component": "Processes",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "CreateToolHelp32Snapshot"
         ]
       }
     ]

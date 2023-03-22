@@ -249,11 +249,52 @@
     "ssdeep": "12288:QKHHeXu+zPUaFBbdTwOxdRLZvUwkk3Y1Kr0YcGL2wJxdKkPvHXPHtBw8K+VsLpAq:DKu+oabbd7X3rKnDdhM1HagX43L1Pos"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 22,
+    "intentions": 5,
+    "uniq_apis_matched": 21,
     "results": [
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileA",
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 10,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegCreateKeyExW",
+          "RegDeleteKeyA",
+          "RegDeleteKeyW",
+          "RegDeleteValueA",
+          "RegDeleteValueW",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExA",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -275,57 +316,6 @@
           "RegQueryInfoKeyA",
           "RegQueryValueExA",
           "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 10,
-        "apis": [
-          "RegCreateKeyExA",
-          "RegCreateKeyExW",
-          "RegDeleteKeyA",
-          "RegDeleteKeyW",
-          "RegDeleteValueA",
-          "RegDeleteValueW",
-          "RegOpenKeyExA",
-          "RegOpenKeyExW",
-          "RegSetValueExA",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 1,
-        "apis": [
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "FindFirstFileA",
-          "FindFirstFileW"
         ]
       }
     ]

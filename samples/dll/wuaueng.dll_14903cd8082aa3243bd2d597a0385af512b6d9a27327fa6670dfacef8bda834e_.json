@@ -1070,33 +1070,72 @@
     "ssdeep": "49152:Kj9VDRIDGs8nMWIfC9SBPmJoGArVDWE3liRNNIq4Avi17R+LzWrFQFxuE/hkfvJg:GDoYd47Uuy"
   },
   "intent": {
-    "intentions": 17,
-    "uniq_apis_matched": 48,
+    "intentions": 16,
+    "uniq_apis_matched": 42,
     "results": [
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 6,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceConfig2W",
+          "QueryServiceConfigW",
+          "QueryServiceStatus",
+          "QueryServiceStatusEx"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
         "inputs": 5,
         "matches": 1,
         "apis": [
-          "ImpersonateLoggedOnUser"
+          "FindFirstFileW"
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 3,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
         "apis": [
-          "RegEnumKeyExW",
-          "RegEnumKeyW",
-          "RegEnumValueW"
+          "CreateProcessAsUserW"
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 1,
+        "apis": [
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 7,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenCurrentUser",
+          "RegOpenKeyExW",
+          "RegSetKeyValueW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -1105,17 +1144,6 @@
           "CheckTokenMembership",
           "OpenProcessToken",
           "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -1132,37 +1160,6 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 1,
-        "apis": [
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
         "intent": "Discovers Time Configuration Settings On The Target System",
         "tag": "Discovery:T1124 - System Time Discovery",
         "component": "---",
@@ -1173,13 +1170,39 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 4,
         "apis": [
-          "CreateProcessAsUserW"
+          "CloseServiceHandle",
+          "ControlService",
+          "RegisterServiceCtrlHandlerExW",
+          "SetServiceStatus"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 3,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumKeyW",
+          "RegEnumValueW"
         ]
       },
       {
@@ -1193,20 +1216,7 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 4,
-        "apis": [
-          "CloseServiceHandle",
-          "ControlService",
-          "RegisterServiceCtrlHandlerExW",
-          "SetServiceStatus"
-        ]
-      },
-      {
-        "intent": "Can Discover Network Proxy Configuration",
+        "intent": "Has Ability To Discover Network Proxy Configuration",
         "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
         "component": "Networking",
         "inputs": 2,
@@ -1217,34 +1227,13 @@
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 6,
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceConfig2W",
-          "QueryServiceConfigW",
-          "QueryServiceStatus",
-          "QueryServiceStatusEx"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 7,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyExW",
-          "RegDeleteValueW",
-          "RegOpenCurrentUser",
-          "RegOpenKeyExW",
-          "RegSetKeyValueW",
-          "RegSetValueExW"
+          "ImpersonateLoggedOnUser"
         ]
       },
       {
@@ -1260,18 +1249,14 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 6,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider"
+          "DeleteFileA",
+          "DeleteFileW"
         ]
       }
     ]

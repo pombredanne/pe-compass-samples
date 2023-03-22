@@ -4394,32 +4394,9 @@
     "ssdeep": "49152:pQpRZnNJM7MuLvIe4vKVrf8akWGmDlD513UunAh7/zrPWFW4scgxxSg:2MoyP4Q9GolDd"
   },
   "intent": {
-    "intentions": 14,
-    "uniq_apis_matched": 28,
+    "intentions": 11,
+    "uniq_apis_matched": 25,
     "results": [
-      {
-        "intent": "Can Read Credentials",
-        "tag": "Expert Input:IBO.00023 - Access Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "CredReadW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 4,
-        "apis": [
-          "CheckTokenMembership",
-          "NtCompareTokens",
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
       {
         "intent": "Steals Tokens To Impersonate Windows Identities",
         "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
@@ -4431,17 +4408,7 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -4449,6 +4416,16 @@
         "apis": [
           "RegEnumKeyExW",
           "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 1,
+        "apis": [
+          "DsRoleGetPrimaryDomainInformation"
         ]
       },
       {
@@ -4462,41 +4439,6 @@
         ]
       },
       {
-        "intent": "Can Delete Credentials",
-        "tag": "Expert Input:IBO.00024 - Delete Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CredDeleteW"
-        ]
-      },
-      {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
-        "matches": 1,
-        "apis": [
-          "CredWriteW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 6,
-        "apis": [
-          "RegCopyTreeW",
-          "RegCreateKeyExW",
-          "RegDeleteKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
         "intent": "Discovers Time Configuration Settings On The Target System",
         "tag": "Discovery:T1124 - System Time Discovery",
         "component": "---",
@@ -4507,14 +4449,15 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 3,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "AddAccessAllowedAceEx",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
         ]
       },
       {
@@ -4530,25 +4473,52 @@
         ]
       },
       {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
-        "component": "---",
-        "inputs": 24,
-        "matches": 1,
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "DsRoleGetPrimaryDomainInformation"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
+        "inputs": 4,
+        "matches": 4,
         "apis": [
-          "AddAccessAllowedAceEx",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
+          "CheckTokenMembership",
+          "NtCompareTokens",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 6,
+        "apis": [
+          "RegCopyTreeW",
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       }
     ]

@@ -399,28 +399,18 @@
     "uniq_apis_matched": 16,
     "results": [
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
         "matches": 2,
         "apis": [
-          "CheckTokenMembership",
-          "OpenThreadToken"
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
         ]
       },
       {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 1,
-        "apis": [
-          "GetAdaptersInfo"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -430,17 +420,6 @@
           "RegDeleteValueW",
           "RegOpenKeyExW",
           "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
         ]
       },
       {
@@ -456,7 +435,28 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -467,7 +467,7 @@
         ]
       },
       {
-        "intent": "Can Conduct DNS Queries",
+        "intent": "Has Ability To Conduct DNS Queries",
         "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
         "component": "Networking",
         "inputs": 31,
@@ -477,13 +477,13 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
         "matches": 1,
         "apis": [
-          "SetThreadToken"
+          "GetAdaptersInfo"
         ]
       }
     ]

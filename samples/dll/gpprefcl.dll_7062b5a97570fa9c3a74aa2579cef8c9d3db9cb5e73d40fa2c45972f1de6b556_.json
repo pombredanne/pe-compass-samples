@@ -857,23 +857,21 @@
     "ssdeep": "6144:gtNd6Kzerlhj2tg/hCP9JYk83azruESP4E+8Esagb6GKzF08ohds:gtNdQn2twCkAzruESwE+82gbhK68Mu"
   },
   "intent": {
-    "intentions": 17,
-    "uniq_apis_matched": 41,
+    "intentions": 16,
+    "uniq_apis_matched": 38,
     "results": [
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "AddAccessAllowedAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
+          "GetTimeZoneInformation"
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -885,19 +883,7 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 3,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptDestroyKey",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -912,25 +898,14 @@
         ]
       },
       {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
-        "component": "---",
-        "inputs": 24,
-        "matches": 2,
-        "apis": [
-          "DsGetSiteNameW",
-          "DsRoleGetPrimaryDomainInformation"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
         "component": "Registry",
-        "inputs": 6,
+        "inputs": 11,
         "matches": 2,
         "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
         ]
       },
       {
@@ -945,51 +920,7 @@
         ]
       },
       {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 1,
-        "apis": [
-          "GetIfTable"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "AdjustTokenPrivileges"
-        ]
-      },
-      {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "GetTimeZoneInformation"
-        ]
-      },
-      {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 5,
-        "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceConfig2W",
-          "QueryServiceConfigW",
-          "QueryServiceStatus"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
+        "intent": "Has Ability To Create/Manipulate System Services",
         "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
         "component": "Services",
         "inputs": 19,
@@ -1003,13 +934,14 @@
         ]
       },
       {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
-        "matches": 1,
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
         "apis": [
-          "GetAddrInfoW"
+          "RegEnumKeyExW",
+          "RegEnumValueW"
         ]
       },
       {
@@ -1020,6 +952,49 @@
         "matches": 1,
         "apis": [
           "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 2,
+        "apis": [
+          "DsGetSiteNameW",
+          "DsRoleGetPrimaryDomainInformation"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 3,
+        "apis": [
+          "AddAccessAllowedAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
         ]
       },
       {
@@ -1034,24 +1009,37 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Has Ability To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
         "matches": 1,
         "apis": [
-          "DeleteFileW"
+          "GetAddrInfoW"
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 1,
         "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
+          "GetIfTable"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 5,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceConfig2W",
+          "QueryServiceConfigW",
+          "QueryServiceStatus"
         ]
       }
     ]

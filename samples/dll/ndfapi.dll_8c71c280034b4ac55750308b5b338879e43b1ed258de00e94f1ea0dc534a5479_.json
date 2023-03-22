@@ -415,9 +415,19 @@
     "uniq_apis_matched": 21,
     "results": [
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 1,
+        "apis": [
+          "GetAdaptersAddresses"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
+        "component": "Memory",
         "inputs": 2,
         "matches": 2,
         "apis": [
@@ -426,17 +436,18 @@
         ]
       },
       {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
-        "component": "Networking",
-        "inputs": 15,
-        "matches": 1,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 2,
         "apis": [
-          "WSAStringToAddressW"
+          "CreateProcessw",
+          "ShellExecuteExW"
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -447,6 +458,67 @@
           "RegOpenKeyExW",
           "RegOpenKeyW",
           "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumKeyW"
+        ]
+      },
+      {
+        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
+        "tag": "Impact:T1529 - System Shutdown/Reboot",
+        "component": "---",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "InitiateSystemShutdownExW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
+        "matches": 1,
+        "apis": [
+          "WSAStringToAddressW"
         ]
       },
       {
@@ -462,85 +534,13 @@
         ]
       },
       {
-        "intent": "Can Communicate via NamedPipes",
+        "intent": "Has Ability To Communicate via NamedPipes",
         "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
         "component": "Processes",
         "inputs": 13,
         "matches": 1,
         "apis": [
           "CreatePipe"
-        ]
-      },
-      {
-        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
-        "tag": "Impact:T1529 - System Shutdown/Reboot",
-        "component": "---",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "InitiateSystemShutdownExW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 2,
-        "apis": [
-          "CreateProcessw",
-          "ShellExecuteExW"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "AdjustTokenPrivileges"
-        ]
-      },
-      {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 1,
-        "apis": [
-          "GetAdaptersAddresses"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "OpenProcessToken"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumKeyW"
         ]
       }
     ]

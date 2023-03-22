@@ -459,33 +459,11 @@
     "ssdeep": "3072:ga9vxhofV5NyDhdymlsZ2b17CWUurr3rPxPTcklh/YNUAKr5X8OdgRYAyoGz2w4p:TvHo9m1Fb5CuLjxPTckYKXX2w4HOrJ7"
   },
   "intent": {
-    "intentions": 14,
-    "uniq_apis_matched": 24,
+    "intentions": 12,
+    "uniq_apis_matched": 22,
     "results": [
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegGetValueW",
-          "RegQueryInfoKeyW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
         "tag": "Expert Input:IBO.0006 - Enumerate System Services",
         "component": "Services",
         "inputs": 28,
@@ -497,28 +475,48 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
+        "intent": "Has Ability To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
         "matches": 1,
         "apis": [
-          "RegEnumValueW"
+          "GetAddrInfoW"
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
+        "matches": 1,
+        "apis": [
+          "WSAAddressToStringW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -533,63 +531,23 @@
         ]
       },
       {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
-        "component": "Networking",
-        "inputs": 15,
-        "matches": 1,
-        "apis": [
-          "WSAAddressToStringW"
-        ]
-      },
-      {
         "intent": "Enumerates Credentials From The Windows Credential Manager Password Store",
         "tag": "Credential Access:T1555.004 - Windows Credential Manager",
         "component": "Filesystem",
-        "inputs": 4,
+        "inputs": 2,
         "matches": 1,
         "apis": [
           "CredEnumerateW"
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
-        "matches": 1,
-        "apis": [
-          "CredWriteW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
+        "intent": "Has Ability To Create/Manipulate System Services",
         "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
         "component": "Services",
         "inputs": 19,
         "matches": 1,
         "apis": [
           "CloseServiceHandle"
-        ]
-      },
-      {
-        "intent": "Can Delete Credentials",
-        "tag": "Expert Input:IBO.00024 - Delete Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CredDeleteW"
         ]
       },
       {
@@ -603,13 +561,35 @@
         ]
       },
       {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
         "matches": 1,
         "apis": [
-          "GetAddrInfoW"
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryInfoKeyW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       }
     ]

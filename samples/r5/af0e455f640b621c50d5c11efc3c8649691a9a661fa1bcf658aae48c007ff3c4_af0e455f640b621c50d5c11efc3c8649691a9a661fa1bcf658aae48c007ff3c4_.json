@@ -277,39 +277,7 @@
     "uniq_apis_matched": 24,
     "results": [
       {
-        "intent": "Enumerates Running Processes/Applications",
-        "tag": "Discovery:T1057 - Process Discovery",
-        "component": "Processes",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "CreateToolHelp32Snapshot",
-          "EnumProcesses"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CreateProcessAsUserA"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryValueExA",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
         "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
         "component": "Privileges",
         "inputs": 15,
@@ -320,7 +288,70 @@
         ]
       },
       {
-        "intent": "Can Communicate via NamedPipes",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserA"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegOpenKeyExA",
+          "RegSetValueExA",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 1,
+        "apis": [
+          "NetGetDCName"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileA"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileA"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Has Ability To Communicate via NamedPipes",
         "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
         "component": "Processes",
         "inputs": 13,
@@ -336,7 +367,18 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -347,56 +389,14 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileA"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegOpenKeyExA",
-          "RegSetValueExA",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
+        "intent": "Enumerates Running Processes/Applications",
+        "tag": "Discovery:T1057 - Process Discovery",
+        "component": "Processes",
         "inputs": 4,
-        "matches": 1,
+        "matches": 2,
         "apis": [
-          "AdjustTokenPrivileges"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "FindFirstFileA"
-        ]
-      },
-      {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
-        "component": "---",
-        "inputs": 24,
-        "matches": 1,
-        "apis": [
-          "NetGetDCName"
+          "CreateToolHelp32Snapshot",
+          "EnumProcesses"
         ]
       }
     ]

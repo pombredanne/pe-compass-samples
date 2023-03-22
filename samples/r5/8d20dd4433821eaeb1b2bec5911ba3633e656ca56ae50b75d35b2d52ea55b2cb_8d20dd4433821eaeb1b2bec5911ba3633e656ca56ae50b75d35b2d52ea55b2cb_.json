@@ -281,41 +281,49 @@
     "ssdeep": "3072:zbgc4D9slEhEtdKtXa3CLbewj+9f3bVC+jdc:zbgd9KEh5ayLbU9pTe"
   },
   "intent": {
-    "intentions": 14,
-    "uniq_apis_matched": 29,
+    "intentions": 13,
+    "uniq_apis_matched": 25,
     "results": [
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 2,
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
         "apis": [
-          "AddAccessAllowedAce",
-          "InitializeAcl"
+          "RegCreateKeyExA",
+          "RegOpenKeyExA",
+          "RegSetValueExA"
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 4,
-        "apis": [
-          "CryptEncrypt",
-          "CryptGenKey",
-          "CryptImportKey",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
         "matches": 1,
         "apis": [
-          "DeleteFileA"
+          "CreateProcessA"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileA"
+        ]
+      },
+      {
+        "intent": "Has Ability To Transmit/Receive Data Over The Network",
+        "tag": "Expert Input:IBO.00011 - Network Socket Send/Receive",
+        "component": "Networking",
+        "inputs": 16,
+        "matches": 1,
+        "apis": [
+          "WSASend"
         ]
       },
       {
@@ -329,49 +337,27 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
         "component": "Registry",
-        "inputs": 6,
+        "inputs": 11,
         "matches": 1,
         "apis": [
-          "RegEnumValueA"
+          "RegQueryValueExA"
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 3,
-        "apis": [
-          "RegCreateKeyExA",
-          "RegOpenKeyExA",
-          "RegSetValueExA"
-        ]
-      },
-      {
-        "intent": "Can Transmit/Receive Data Over The Network",
-        "tag": "Expert Input:IBO.00011 - Network Socket Send/Receive",
-        "component": "Networking",
-        "inputs": 16,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "WSASend"
+          "DeleteFileA"
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "CreateProcessA"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -392,29 +378,7 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 1,
-        "apis": [
-          "RegQueryValueExA"
-        ]
-      },
-      {
-        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
-        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
-        "component": "Networking",
-        "inputs": 21,
-        "matches": 3,
-        "apis": [
-          "HttpOpenRequestA",
-          "HttpSendRequestA",
-          "InternetConnectA"
-        ]
-      },
-      {
-        "intent": "Can Communicate via NamedPipes",
+        "intent": "Has Ability To Communicate via NamedPipes",
         "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
         "component": "Processes",
         "inputs": 13,
@@ -430,13 +394,36 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
+        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
+        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
+        "component": "Networking",
+        "inputs": 21,
+        "matches": 3,
+        "apis": [
+          "HttpOpenRequestA",
+          "HttpSendRequestA",
+          "InternetConnectA"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 2,
+        "apis": [
+          "AddAccessAllowedAce",
+          "InitializeAcl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
         "matches": 1,
         "apis": [
-          "FindFirstFileA"
+          "RegEnumValueA"
         ]
       }
     ]

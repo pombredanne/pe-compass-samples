@@ -484,8 +484,8 @@
     "ssdeep": "6144:D4UvQbyh/UMPz61Y3a+dAUHCLVGl6j8dxmFaTjE3e8sBu7WkirrPP8r/2ueCVBP/:Fl8MG1WjHCQl6jKxmcH4GBuSkiry4CT/"
   },
   "intent": {
-    "intentions": 5,
-    "uniq_apis_matched": 10,
+    "intentions": 4,
+    "uniq_apis_matched": 4,
     "results": [
       {
         "intent": "Manipulates Windows Tokens",
@@ -498,38 +498,13 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
         "matches": 1,
         "apis": [
           "OpenProcessToken"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 6,
-        "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
         ]
       },
       {
@@ -540,6 +515,16 @@
         "matches": 1,
         "apis": [
           "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
         ]
       }
     ]

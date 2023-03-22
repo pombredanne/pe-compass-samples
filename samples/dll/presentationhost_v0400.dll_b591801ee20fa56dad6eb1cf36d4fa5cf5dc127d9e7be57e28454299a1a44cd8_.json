@@ -527,13 +527,113 @@
     "uniq_apis_matched": 26,
     "results": [
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
         "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
         "component": "Processes",
         "inputs": 2,
         "matches": 1,
         "apis": [
           "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 3,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumKeyW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 3,
+        "apis": [
+          "CreateProcessw",
+          "ShellExecuteExW",
+          "ShellExecuteW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 3,
+        "apis": [
+          "AddAccessAllowedAce",
+          "AddAce",
+          "InitializeAcl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "CommandLineToArgvW"
+        ]
+      },
+      {
+        "intent": "Enumerates Running Processes/Applications",
+        "tag": "Discovery:T1057 - Process Discovery",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "CreateToolHelp32Snapshot"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetTokenInformation"
         ]
       },
       {
@@ -548,83 +648,6 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 5,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 2,
-        "apis": [
-          "GetNativeSystemInfo",
-          "RtlGetVersion"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "AddAccessAllowedAce",
-          "AddAce",
-          "InitializeAcl"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "OpenProcessToken"
-        ]
-      },
-      {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetTokenInformation"
-        ]
-      },
-      {
-        "intent": "Enumerates Running Processes/Applications",
-        "tag": "Discovery:T1057 - Process Discovery",
-        "component": "Processes",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "CreateToolHelp32Snapshot"
-        ]
-      },
-      {
         "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
         "tag": "Command And Control:T1105 - Ingress Tool Transfer",
         "component": "Networking",
@@ -636,37 +659,14 @@
         ]
       },
       {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
-        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
-        "component": "Processes",
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
         "inputs": 3,
-        "matches": 1,
+        "matches": 2,
         "apis": [
-          "CommandLineToArgvW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 3,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumKeyW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 3,
-        "apis": [
-          "CreateProcessw",
-          "ShellExecuteExW",
-          "ShellExecuteW"
+          "GetNativeSystemInfo",
+          "RtlGetVersion"
         ]
       }
     ]

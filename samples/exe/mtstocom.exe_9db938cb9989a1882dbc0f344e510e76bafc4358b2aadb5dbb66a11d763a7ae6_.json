@@ -395,7 +395,7 @@
     "uniq_apis_matched": 23,
     "results": [
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -405,6 +405,60 @@
           "RegDeleteValueW",
           "RegOpenKeyExW",
           "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Remotely Connect To A Target System And Access Its Windows Registry",
+        "tag": "Expert Input:IBO.00010 - Connect To Remote Windows Registry",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "RegConnectRegistryW"
+        ]
+      },
+      {
+        "intent": "Discovers Local User Accounts on the Target System",
+        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
+        "component": "Identities",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "LookupAccountNameLocalW",
+          "LookupAccountSidLocalW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 3,
+        "apis": [
+          "AddAccessAllowedAce",
+          "AddAce",
+          "InitializeAcl"
         ]
       },
       {
@@ -419,17 +473,7 @@
         ]
       },
       {
-        "intent": "Can Remotely Connect To A Target System And Access Its Windows Registry",
-        "tag": "Expert Input:IBO.00010 - Connect To Remote Windows Registry",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "RegConnectRegistryW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -440,25 +484,13 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
         "apis": [
-          "SetThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "AddAccessAllowedAce",
-          "AddAce",
-          "InitializeAcl"
+          "DeleteFileW"
         ]
       },
       {
@@ -472,7 +504,18 @@
         ]
       },
       {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Has Ability To Be Invoked With CommandLine Arguments From a Console/Terminal",
         "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
         "component": "Processes",
         "inputs": 3,
@@ -482,50 +525,7 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Discovers Local User Accounts on the Target System",
-        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
-        "component": "Identities",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "LookupAccountNameLocalW",
-          "LookupAccountSidLocalW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,

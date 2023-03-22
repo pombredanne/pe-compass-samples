@@ -692,64 +692,9 @@
     "ssdeep": "24576:CE8nVU0uskAoRFnUvt5JoKPN6R0J+AhaAEdixVa67XydO2nlsqyiqweLTWeD3D:OnVU00nUZt86yls/Z"
   },
   "intent": {
-    "intentions": 11,
-    "uniq_apis_matched": 22,
+    "intentions": 10,
+    "uniq_apis_matched": 20,
     "results": [
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 3,
-        "apis": [
-          "RegOpenCurrentUser",
-          "RegOpenKeyExW",
-          "RegSetKeyValueW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "CreateProcessw"
-        ]
-      },
-      {
-        "intent": "Can Discover Network Proxy Configuration",
-        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "WinHttpGetDefaultProxyConfiguration",
-          "WinHttpGetIEProxyConfigForCurrentUser"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
       {
         "intent": "Queries And Discovers Windows Registry Configuration Settings",
         "tag": "Discovery:T1012 - Query Registry",
@@ -761,19 +706,62 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 2,
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
         "apis": [
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
+          "RegOpenCurrentUser",
+          "RegOpenKeyExW",
+          "RegSetKeyValueW"
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileA",
+          "FindFirstFileExA"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "ImpersonateLoggedOnUser"
+        ]
+      },
+      {
+        "intent": "Has Ability To Discover Network Proxy Configuration",
+        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "WinHttpGetDefaultProxyConfiguration",
+          "WinHttpGetIEProxyConfigForCurrentUser"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 2,
@@ -796,24 +784,25 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
         "matches": 2,
         "apis": [
-          "FindFirstFileA",
-          "FindFirstFileExA"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
+        "inputs": 4,
+        "matches": 2,
         "apis": [
-          "ImpersonateLoggedOnUser"
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       }
     ]

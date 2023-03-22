@@ -606,40 +606,9 @@
     "ssdeep": "12288:XMNlFuOfOMeReO4HkAVq7GK6oilA4lBdH4b+B/8F:iFjOvZ4Enn6o+A49HvBE"
   },
   "intent": {
-    "intentions": 11,
-    "uniq_apis_matched": 25,
+    "intentions": 9,
+    "uniq_apis_matched": 16,
     "results": [
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
-        "matches": 1,
-        "apis": [
-          "GetAddrInfoW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumKeyExW"
-        ]
-      },
       {
         "intent": "Queries And Discovers Windows Registry Configuration Settings",
         "tag": "Discovery:T1012 - Query Registry",
@@ -653,13 +622,47 @@
         ]
       },
       {
-        "intent": "Can Work With The TCP Network Protocol",
+        "intent": "Has Ability To Work With The TCP Network Protocol",
         "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
         "component": "Networking",
         "inputs": 15,
         "matches": 1,
         "apis": [
           "InetNtopW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenCurrentUser",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "ImpersonateLoggedOnUser"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
         ]
       },
       {
@@ -683,54 +686,24 @@
         ]
       },
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
+        "intent": "Has Ability To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
         "matches": 1,
         "apis": [
-          "ImpersonateLoggedOnUser"
+          "GetAddrInfoW"
         ]
       },
       {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
-        "matches": 1,
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "CredUnprotectW"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 8,
-        "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider",
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 5,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenCurrentUser",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       }
     ]

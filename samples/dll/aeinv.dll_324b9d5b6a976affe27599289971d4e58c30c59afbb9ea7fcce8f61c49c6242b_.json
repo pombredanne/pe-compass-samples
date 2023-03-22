@@ -506,91 +506,28 @@
     "ssdeep": "12288:Zk63lGHM1KQOdtbt2m/9X5cxrCcQ/YFVIYXg6XnMWa/Pb08BC:Z3lUMwQO2m/9J2V7IaXMWar08BC"
   },
   "intent": {
-    "intentions": 10,
-    "uniq_apis_matched": 26,
+    "intentions": 9,
+    "uniq_apis_matched": 18,
     "results": [
       {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
-        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
-        "component": "Processes",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "CommandLineToArgvW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DelayLoadFailureHook"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 8,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyExW",
-          "RegDeleteKeyW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegOpenKeyW",
-          "RegSetKeyValueW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 8,
-        "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider",
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
+        "inputs": 5,
+        "matches": 2,
         "apis": [
-          "DeleteFileW"
+          "FindFirstFileW",
+          "ZwQueryDirectoryFile"
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
         "matches": 1,
         "apis": [
           "RegEnumKeyExW"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "RtlGetVersion"
         ]
       },
       {
@@ -605,7 +542,17 @@
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DelayLoadFailureHook"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
         "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
         "component": "Privileges",
         "inputs": 15,
@@ -615,14 +562,50 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
         "apis": [
-          "FindFirstFileW",
-          "ZwQueryDirectoryFile"
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Has Ability To Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "CommandLineToArgvW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 8,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegOpenKeyW",
+          "RegSetKeyValueW",
+          "RegSetValueExW"
         ]
       }
     ]

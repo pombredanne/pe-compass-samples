@@ -391,47 +391,21 @@
     "ssdeep": "24576:stlidcvbfLxlvUyMQi85ezRmqirHrR9zq2LRT5QEdeWj9H:s/idcDfLAUi85ezRriHF91TyE"
   },
   "intent": {
-    "intentions": 9,
-    "uniq_apis_matched": 20,
+    "intentions": 8,
+    "uniq_apis_matched": 13,
     "results": [
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "OpenProcessToken"
+          "FindFirstFileExW"
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "CreateProcessw"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 7,
-        "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -443,25 +417,33 @@
         ]
       },
       {
-        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
-        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
-        "component": "Networking",
-        "inputs": 21,
-        "matches": 3,
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
         "apis": [
-          "WinHttpConnect",
-          "WinHttpOpenRequest",
-          "WinHttpSendRequest"
+          "OpenProcessToken"
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
         "matches": 1,
         "apis": [
-          "DeleteFileW"
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "GetTimeZoneInformation"
         ]
       },
       {
@@ -476,23 +458,25 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
-        "inputs": 5,
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "FindFirstFileExW"
+          "DeleteFileW"
         ]
       },
       {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
+        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
+        "component": "Networking",
+        "inputs": 21,
+        "matches": 3,
         "apis": [
-          "GetTimeZoneInformation"
+          "WinHttpConnect",
+          "WinHttpOpenRequest",
+          "WinHttpSendRequest"
         ]
       }
     ]

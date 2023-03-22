@@ -974,17 +974,38 @@
     "ssdeep": "24576:tean+TW9di3XBSFy0QnnQnGVNLzCoWL9ANvooWC5Gt3FbI:oO+yTi3XJ0QtCoWRANlWC83xI"
   },
   "intent": {
-    "intentions": 16,
-    "uniq_apis_matched": 36,
+    "intentions": 15,
+    "uniq_apis_matched": 30,
     "results": [
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
         "matches": 1,
         "apis": [
-          "DeleteFileW"
+          "GetAdaptersAddresses"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 1,
+        "apis": [
+          "CloseServiceHandle"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -998,6 +1019,51 @@
         ]
       },
       {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 4,
+        "apis": [
+          "GetAddrInfoExW",
+          "GetAddrInfoW",
+          "GetNameInfoW",
+          "getaddrinfo"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
+        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
+        "component": "Networking",
+        "inputs": 21,
+        "matches": 3,
+        "apis": [
+          "WinHttpConnect",
+          "WinHttpOpenRequest",
+          "WinHttpSendRequest"
+        ]
+      },
+      {
         "intent": "Enumerates Files or Directories on the Target System",
         "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
@@ -1008,14 +1074,36 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
         "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 3,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceConfigW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
         "matches": 2,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "FreeAddrInfoExW",
+          "inet_ntop"
         ]
       },
       {
@@ -1031,50 +1119,7 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 3,
-        "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceConfigW"
-        ]
-      },
-      {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
-        "component": "Networking",
-        "inputs": 15,
-        "matches": 2,
-        "apis": [
-          "FreeAddrInfoExW",
-          "inet_ntop"
-        ]
-      },
-      {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 1,
-        "apis": [
-          "GetAdaptersAddresses"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -1087,55 +1132,7 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 6,
-        "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider"
-        ]
-      },
-      {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
-        "matches": 4,
-        "apis": [
-          "GetAddrInfoExW",
-          "GetAddrInfoW",
-          "GetNameInfoW",
-          "getaddrinfo"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 1,
-        "apis": [
-          "CloseServiceHandle"
-        ]
-      },
-      {
-        "intent": "Can Transmit/Receive Data Over The Network",
+        "intent": "Has Ability To Transmit/Receive Data Over The Network",
         "tag": "Expert Input:IBO.00011 - Network Socket Send/Receive",
         "component": "Networking",
         "inputs": 16,
@@ -1143,18 +1140,6 @@
         "apis": [
           "WSARecv",
           "WSASend"
-        ]
-      },
-      {
-        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
-        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
-        "component": "Networking",
-        "inputs": 21,
-        "matches": 3,
-        "apis": [
-          "WinHttpConnect",
-          "WinHttpOpenRequest",
-          "WinHttpSendRequest"
         ]
       }
     ]

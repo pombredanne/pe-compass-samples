@@ -244,9 +244,32 @@
     "ssdeep": "24576:hTYTYznVJV8kBByT2IdG355b8m2N7dnysrdJ7DSN+oHa3N:hTGkfvBpIY3P+nfBGDa3N"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 22,
+    "intentions": 5,
+    "uniq_apis_matched": 21,
     "results": [
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 3,
+        "apis": [
+          "RegQueryInfoKeyA",
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
       {
         "intent": "Enumerates Files or Directories on the Target System",
         "tag": "Discovery:T1083 - File and Directory Discovery",
@@ -259,31 +282,7 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 4,
-        "apis": [
-          "RegEnumKeyExA",
-          "RegEnumKeyExW",
-          "RegEnumValueA",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -302,25 +301,16 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
-        "inputs": 11,
-        "matches": 3,
+        "inputs": 6,
+        "matches": 4,
         "apis": [
-          "RegQueryInfoKeyA",
-          "RegQueryValueExA",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 1,
-        "apis": [
-          "CryptReleaseContext"
+          "RegEnumKeyExA",
+          "RegEnumKeyExW",
+          "RegEnumValueA",
+          "RegEnumValueW"
         ]
       }
     ]

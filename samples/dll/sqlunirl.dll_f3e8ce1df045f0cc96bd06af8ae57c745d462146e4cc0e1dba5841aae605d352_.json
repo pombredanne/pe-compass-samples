@@ -964,21 +964,20 @@
     "uniq_apis_matched": 40,
     "results": [
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 4,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 3,
         "apis": [
-          "CreateServiceA",
-          "RegisterServiceCtrlHandlerA",
-          "StartServiceA",
-          "StartServiceCtrlDispatcherA"
+          "CreateProcessA",
+          "ShellExecuteA",
+          "ShellExecuteExA"
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 2,
@@ -988,14 +987,23 @@
         ]
       },
       {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
-        "component": "Processes",
-        "inputs": 13,
-        "matches": 2,
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "CallNamedPipeA",
-          "CreateNamedPipeA"
+          "FindFirstFileA"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserA"
         ]
       },
       {
@@ -1009,7 +1017,7 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -1027,29 +1035,56 @@
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 7,
+        "intent": "Has Ability To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
+        "matches": 2,
         "apis": [
-          "EnumDependentServicesA",
-          "GetServiceDisplayNameA",
-          "GetServiceKeyNameA",
-          "OpenSCManagerA",
-          "OpenServiceA",
-          "QueryServiceConfigA",
-          "QueryServiceLockStatusA"
+          "CallNamedPipeA",
+          "CreateNamedPipeA"
         ]
       },
       {
-        "intent": "Can Remotely Connect To A Target System And Access Its Windows Registry",
+        "intent": "Has Ability To Communicate via MailSlots",
+        "tag": "Expert Input:IBO.0005 - Implement MailSlots",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateMailslotA"
+        ]
+      },
+      {
+        "intent": "Has Ability To Remotely Connect To A Target System And Access Its Windows Registry",
         "tag": "Expert Input:IBO.00010 - Connect To Remote Windows Registry",
         "component": "Networking",
         "inputs": 2,
         "matches": 1,
         "apis": [
           "RegConnectRegistryA"
+        ]
+      },
+      {
+        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
+        "tag": "Impact:T1529 - System Shutdown/Reboot",
+        "component": "---",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "InitiateSystemShutdownA"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 3,
+        "apis": [
+          "RegEnumKeyA",
+          "RegEnumKeyExA",
+          "RegEnumValueA"
         ]
       },
       {
@@ -1066,67 +1101,32 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 3,
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 4,
         "apis": [
-          "CreateProcessA",
-          "ShellExecuteA",
-          "ShellExecuteExA"
+          "CreateServiceA",
+          "RegisterServiceCtrlHandlerA",
+          "StartServiceA",
+          "StartServiceCtrlDispatcherA"
         ]
       },
       {
-        "intent": "Can Communicate via MailSlots",
-        "tag": "Expert Input:IBO.0005 - Implement MailSlots",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 7,
         "apis": [
-          "CreateMailslotA"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 3,
-        "apis": [
-          "RegEnumKeyA",
-          "RegEnumKeyExA",
-          "RegEnumValueA"
-        ]
-      },
-      {
-        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
-        "tag": "Impact:T1529 - System Shutdown/Reboot",
-        "component": "---",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "InitiateSystemShutdownA"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CreateProcessAsUserA"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "FindFirstFileA"
+          "EnumDependentServicesA",
+          "GetServiceDisplayNameA",
+          "GetServiceKeyNameA",
+          "OpenSCManagerA",
+          "OpenServiceA",
+          "QueryServiceConfigA",
+          "QueryServiceLockStatusA"
         ]
       }
     ]

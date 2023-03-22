@@ -511,55 +511,9 @@
     "ssdeep": "196608:sG6cLPMPDY50LNkxjK/sYbz4DOh5vKQ1UW+t3XCCfsd9O2Mxgv4FCR:36oPMs50qxjXD0KQ1BDCmcngR"
   },
   "intent": {
-    "intentions": 19,
-    "uniq_apis_matched": 49,
+    "intentions": 18,
+    "uniq_apis_matched": 44,
     "results": [
-      {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 5,
-        "apis": [
-          "CloseServiceHandle",
-          "ControlService",
-          "CreateServiceW",
-          "DeleteService",
-          "StartServiceW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "DuplicateToken"
-        ]
-      },
       {
         "intent": "Manipulates Windows Tokens",
         "tag": "Defense Evasion:T1134 - Access Token Manipulation",
@@ -568,28 +522,6 @@
         "matches": 1,
         "apis": [
           "AdjustTokenPrivileges"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "AddAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
-        "tag": "Impact:T1529 - System Shutdown/Reboot",
-        "component": "---",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "InitiateSystemShutdownExW"
         ]
       },
       {
@@ -603,47 +535,7 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 5,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptDestroyKey",
-          "CryptEncrypt",
-          "CryptImportKey",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 2,
-        "apis": [
-          "GetNativeSystemInfo",
-          "RtlGetVersion"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 6,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyW",
-          "RegDeleteValueW",
-          "RegOpenCurrentUser",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,
@@ -653,34 +545,49 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CreateProcessAsUserW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
         "component": "Privileges",
-        "inputs": 2,
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "SetThreadToken"
+          "DuplicateToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 5,
+        "apis": [
+          "CloseServiceHandle",
+          "ControlService",
+          "CreateServiceW",
+          "DeleteService",
+          "StartServiceW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 3,
+        "apis": [
+          "RegGetValueA",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
+        "tag": "Impact:T1529 - System Shutdown/Reboot",
+        "component": "---",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "InitiateSystemShutdownExW"
         ]
       },
       {
@@ -695,7 +602,7 @@
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
         "tag": "Expert Input:IBO.0006 - Enumerate System Services",
         "component": "Services",
         "inputs": 28,
@@ -713,6 +620,63 @@
         ]
       },
       {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 6,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenCurrentUser",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
         "intent": "Enumerates Running Processes/Applications",
         "tag": "Discovery:T1057 - Process Discovery",
         "component": "Processes",
@@ -723,15 +687,37 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
         "matches": 3,
         "apis": [
-          "RegGetValueA",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
+          "AddAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "GetNativeSystemInfo",
+          "RtlGetVersion"
         ]
       }
     ]

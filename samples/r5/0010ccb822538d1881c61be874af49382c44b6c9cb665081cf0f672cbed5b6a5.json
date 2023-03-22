@@ -273,18 +273,28 @@
     "ssdeep": "12288:GDGr2e8VoD4uJ2y9b017j5vBHyWwXuuu/gKLDP5YXh2thGozglV4WZ79dxS0u2Ex:GKlJ2VdvpIUtglnZ45P4Vbxu"
   },
   "intent": {
-    "intentions": 14,
-    "uniq_apis_matched": 22,
+    "intentions": 13,
+    "uniq_apis_matched": 18,
     "results": [
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
         "component": "Processes",
-        "inputs": 7,
+        "inputs": 13,
         "matches": 2,
         "apis": [
-          "CreateProcessA",
-          "CreateProcessw"
+          "CreatePipe",
+          "PeekNamedPipe"
         ]
       },
       {
@@ -298,46 +308,14 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 1,
-        "apis": [
-          "RegOpenKeyExA"
-        ]
-      },
-      {
-        "intent": "Can Discover Network Proxy Configuration",
-        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "WinHttpGetDefaultProxyConfiguration",
-          "WinHttpGetIEProxyConfigForCurrentUser"
-        ]
-      },
-      {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
-        "inputs": 13,
+        "inputs": 7,
         "matches": 2,
         "apis": [
-          "CreatePipe",
-          "PeekNamedPipe"
+          "CreateProcessA",
+          "CreateProcessw"
         ]
       },
       {
@@ -351,23 +329,35 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Has Ability To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 2,
         "apis": [
-          "FindFirstFileExW"
+          "DnsQuery_W",
+          "getaddrinfo"
         ]
       },
       {
-        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
-        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
+        "intent": "Has Ability To Discover Network Proxy Configuration",
+        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
         "component": "Networking",
-        "inputs": 21,
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "WinHttpGetDefaultProxyConfiguration",
+          "WinHttpGetIEProxyConfigForCurrentUser"
+        ]
+      },
+      {
+        "intent": "Has Ability To Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
         "matches": 1,
         "apis": [
-          "InternetOpenUrlA"
+          "freeaddrinfo"
         ]
       },
       {
@@ -381,14 +371,24 @@
         ]
       },
       {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
         "matches": 2,
         "apis": [
-          "DnsQuery_W",
-          "getaddrinfo"
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExA"
         ]
       },
       {
@@ -402,26 +402,13 @@
         ]
       },
       {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
+        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
+        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
         "component": "Networking",
-        "inputs": 15,
+        "inputs": 21,
         "matches": 1,
         "apis": [
-          "freeaddrinfo"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 4,
-        "apis": [
-          "CryptDestroyKey",
-          "CryptEncrypt",
-          "CryptImportKey",
-          "CryptReleaseContext"
+          "InternetOpenUrlA"
         ]
       }
     ]

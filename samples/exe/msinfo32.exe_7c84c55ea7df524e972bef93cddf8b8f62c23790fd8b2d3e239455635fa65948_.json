@@ -482,6 +482,16 @@
     "uniq_apis_matched": 12,
     "results": [
       {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
+        ]
+      },
+      {
         "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
         "tag": "Collection:T1115 - Clipboard Data",
         "component": "---",
@@ -493,6 +503,17 @@
         ]
       },
       {
+        "intent": "Has Ability To Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "CommandLineToArgvW",
+          "__wgetmainargs"
+        ]
+      },
+      {
         "intent": "Enumerates Files or Directories on the Target System",
         "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
@@ -500,6 +521,17 @@
         "matches": 1,
         "apis": [
           "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
@@ -514,38 +546,6 @@
         ]
       },
       {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
-        "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
-        "component": "Processes",
-        "inputs": 3,
-        "matches": 2,
-        "apis": [
-          "CommandLineToArgvW",
-          "__wgetmainargs"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 2,
-        "apis": [
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
         "intent": "Discovers Network Settings On The Target System",
         "tag": "Discovery:T1016 - System Network Configuration Discovery",
         "component": "Networking",
@@ -556,13 +556,13 @@
         ]
       },
       {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "GetNativeSystemInfo"
+          "DeleteFileW"
         ]
       }
     ]

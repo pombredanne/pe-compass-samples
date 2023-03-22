@@ -608,32 +608,34 @@
     "ssdeep": "6144:+wjoAiNM0QbPIpiwUTD5prVAtMZ3/GPMOKBdOVm0GisSJ+evw3/9lj42ZwO:+wjo1QjZnrVAtMdGRIOAuZvwPPn"
   },
   "intent": {
-    "intentions": 14,
-    "uniq_apis_matched": 31,
+    "intentions": 13,
+    "uniq_apis_matched": 25,
     "results": [
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
         "component": "Services",
-        "inputs": 19,
+        "inputs": 28,
+        "matches": 3,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceStatus"
+        ]
+      },
+      {
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
         "matches": 2,
         "apis": [
-          "CloseServiceHandle",
-          "StartServiceW"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "ShellExecuteW"
-        ]
-      },
-      {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "intent": "Has Ability To Be Invoked With CommandLine Arguments From a Console/Terminal",
         "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
         "component": "Processes",
         "inputs": 3,
@@ -641,6 +643,41 @@
         "apis": [
           "CommandLineToArgvW",
           "__wgetmainargs"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumKeyW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "CloseServiceHandle",
+          "StartServiceW"
         ]
       },
       {
@@ -654,28 +691,54 @@
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 3,
+        "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
+        "tag": "Collection:T1115 - Clipboard Data",
+        "component": "---",
+        "inputs": 4,
+        "matches": 1,
         "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceStatus"
+          "OpenClipboard"
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
         "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "ShellExecuteW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Conduct DNS Queries",
+        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 1,
+        "apis": [
+          "GetAddrInfoW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken"
         ]
       },
       {
@@ -688,84 +751,6 @@
           "RegGetValueW",
           "RegQueryInfoKeyW",
           "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumKeyW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 6,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptDestroyKey",
-          "CryptEncrypt",
-          "CryptGenKey",
-          "CryptImportKey",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
-        "tag": "Collection:T1115 - Clipboard Data",
-        "component": "---",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "OpenClipboard"
-        ]
-      },
-      {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
-        "matches": 1,
-        "apis": [
-          "GetAddrInfoW"
         ]
       }
     ]

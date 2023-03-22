@@ -838,9 +838,47 @@
     "ssdeep": "24576:LHo2SKj92XYJWOKMs8cPbM1TjRQX1cs2vbF:Lr3yM1s2vbF"
   },
   "intent": {
-    "intentions": 17,
-    "uniq_apis_matched": 39,
+    "intentions": 15,
+    "uniq_apis_matched": 32,
     "results": [
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 8,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegOpenKeyW",
+          "RegSetKeyValueW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
       {
         "intent": "Enumerates Files or Directories on the Target System",
         "tag": "Discovery:T1083 - File and Directory Discovery",
@@ -852,18 +890,13 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 6,
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 1,
         "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider"
+          "SetSecurityDescriptorDacl"
         ]
       },
       {
@@ -892,63 +925,14 @@
         ]
       },
       {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
-        "component": "---",
-        "inputs": 24,
-        "matches": 1,
-        "apis": [
-          "DsGetDcNameW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
+        "intent": "Has Ability To Discover Network Proxy Configuration",
+        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
+        "component": "Networking",
+        "inputs": 2,
         "matches": 2,
         "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Read Credentials",
-        "tag": "Expert Input:IBO.00023 - Access Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "CredReadW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 8,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyExW",
-          "RegDeleteKeyW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegOpenKeyW",
-          "RegSetKeyValueW",
-          "RegSetValueExW"
+          "WinHttpGetDefaultProxyConfiguration",
+          "WinHttpGetIEProxyConfigForCurrentUser"
         ]
       },
       {
@@ -962,19 +946,9 @@
         ]
       },
       {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "AdjustTokenPrivileges"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
+        "component": "Memory",
         "inputs": 2,
         "matches": 2,
         "apis": [
@@ -983,14 +957,25 @@
         ]
       },
       {
-        "intent": "Can Discover Network Proxy Configuration",
-        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 2,
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
         "apis": [
-          "WinHttpGetDefaultProxyConfiguration",
-          "WinHttpGetIEProxyConfigForCurrentUser"
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 1,
+        "apis": [
+          "DsGetDcNameW"
         ]
       },
       {
@@ -1004,16 +989,6 @@
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 1,
-        "apis": [
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
         "intent": "Creates Token To Impersonate",
         "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
         "component": "Privileges",
@@ -1024,13 +999,13 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
         "matches": 1,
         "apis": [
-          "DeleteFileW"
+          "AdjustTokenPrivileges"
         ]
       }
     ]

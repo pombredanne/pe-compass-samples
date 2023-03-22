@@ -612,13 +612,14 @@
     "uniq_apis_matched": 9,
     "results": [
       {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
-        "matches": 1,
+        "matches": 2,
         "apis": [
-          "NtAdjustPrivilegesToken"
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
@@ -632,25 +633,13 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
         "component": "Privileges",
         "inputs": 4,
-        "matches": 2,
+        "matches": 1,
         "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 2,
-        "apis": [
-          "GetNativeSystemInfo",
-          "RtlGetVersion"
+          "NtAdjustPrivilegesToken"
         ]
       },
       {
@@ -664,13 +653,24 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
         "apis": [
           "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "GetNativeSystemInfo",
+          "RtlGetVersion"
         ]
       },
       {

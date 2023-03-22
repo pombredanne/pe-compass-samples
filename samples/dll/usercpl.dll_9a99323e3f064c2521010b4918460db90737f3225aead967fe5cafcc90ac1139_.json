@@ -1262,30 +1262,20 @@
     "ssdeep": "12288:jql8y4+myk3xsFpJdvSsGeIndLvVIHqW2Jeds3hF5:jS7myk3xsFhvFGeIndLvV/dgds3hF5"
   },
   "intent": {
-    "intentions": 15,
-    "uniq_apis_matched": 34,
+    "intentions": 14,
+    "uniq_apis_matched": 32,
     "results": [
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
-        "inputs": 11,
-        "matches": 3,
+        "inputs": 33,
+        "matches": 4,
         "apis": [
-          "RegGetValueW",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 2,
-        "apis": [
-          "CloseServiceHandle",
-          "StartServiceW"
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
@@ -1299,34 +1289,14 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
+        "component": "Memory",
         "inputs": 2,
         "matches": 2,
         "apis": [
           "DelayLoadFailureHook",
           "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
-        "component": "---",
-        "inputs": 24,
-        "matches": 1,
-        "apis": [
-          "DsGetDcNameW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "ShellExecuteExW"
         ]
       },
       {
@@ -1340,24 +1310,51 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 5,
         "apis": [
-          "DeleteFileW"
+          "AddAccessAllowedAceEx",
+          "AddAccessDeniedAceEx",
+          "AddAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
         ]
       },
       {
-        "intent": "Can Modify/Manipulate Credentials",
-        "tag": "Expert Input:IBO.00025 - Manipulate Authentication Credentials",
-        "component": "Authentication",
-        "inputs": 10,
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
         "matches": 2,
         "apis": [
-          "CredProtectW",
-          "CredUnprotectW"
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 3,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "CloseServiceHandle",
+          "StartServiceW"
         ]
       },
       {
@@ -1372,7 +1369,7 @@
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
         "tag": "Expert Input:IBO.0006 - Enumerate System Services",
         "component": "Services",
         "inputs": 28,
@@ -1385,18 +1382,7 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
+        "intent": "Has Ability To Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -1408,30 +1394,33 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
         "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "ShellExecuteExW"
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 5,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
         "apis": [
-          "AddAccessAllowedAceEx",
-          "AddAccessDeniedAceEx",
-          "AddAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 1,
+        "apis": [
+          "DsGetDcNameW"
         ]
       }
     ]

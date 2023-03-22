@@ -1572,19 +1572,34 @@
     "uniq_apis_matched": 28,
     "results": [
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 7,
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
         "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyExA",
-          "RegDeleteKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExA",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
         ]
       },
       {
@@ -1599,14 +1614,19 @@
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 7,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "RegCreateKeyExW",
+          "RegDeleteKeyExA",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
@@ -1623,40 +1643,7 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "CreateProcessw"
-        ]
-      },
-      {
-        "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
-        "tag": "Collection:T1115 - Clipboard Data",
-        "component": "---",
-        "inputs": 4,
-        "matches": 4,
-        "apis": [
-          "EnumClipboardFormats",
-          "GetClipboardData",
-          "GetClipboardSequenceNumber",
-          "OpenClipboard"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -1668,8 +1655,19 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
@@ -1688,14 +1686,16 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
+        "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
+        "tag": "Collection:T1115 - Clipboard Data",
+        "component": "---",
         "inputs": 4,
-        "matches": 2,
+        "matches": 4,
         "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "EnumClipboardFormats",
+          "GetClipboardData",
+          "GetClipboardSequenceNumber",
+          "OpenClipboard"
         ]
       }
     ]

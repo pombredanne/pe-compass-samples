@@ -380,63 +380,17 @@
     "ssdeep": "49152:Mnqqr9wJI6S7RSSon9X6f4IeY0+h1s410I1xIdcxynt:Mnq29lFHon9X5Iddq41Lxry"
   },
   "intent": {
-    "intentions": 8,
-    "uniq_apis_matched": 17,
+    "intentions": 7,
+    "uniq_apis_matched": 16,
     "results": [
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
-        "apis": [
-          "CreateProcessw"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 6,
-        "apis": [
-          "RegCreateKeyExA",
-          "RegDeleteKeyA",
-          "RegDeleteValueA",
-          "RegOpenKeyExA",
-          "RegOpenKeyExW",
-          "RegSetValueExA"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
         "matches": 1,
         "apis": [
           "RegEnumKeyExA"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 1,
-        "apis": [
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "FindFirstFileA",
-          "FindFirstFileW"
         ]
       },
       {
@@ -452,6 +406,17 @@
         ]
       },
       {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
         "intent": "Enumerates Running Processes/Applications",
         "tag": "Discovery:T1057 - Process Discovery",
         "component": "Processes",
@@ -462,14 +427,39 @@
         ]
       },
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
-        "inputs": 2,
+        "inputs": 5,
         "matches": 2,
         "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
+          "FindFirstFileA",
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 6,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegDeleteKeyA",
+          "RegDeleteValueA",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExA"
         ]
       }
     ]

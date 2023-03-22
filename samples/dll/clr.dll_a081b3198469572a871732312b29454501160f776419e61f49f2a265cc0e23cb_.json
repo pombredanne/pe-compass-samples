@@ -695,61 +695,11 @@
     "ssdeep": "196608:BXfgcUcHztVYKwCbWiF1YyCBpIXhukQTgupJDQVpTIi8f2HEL+5oNgx+dQFZD8Iv:hf1UcTttwCbWinTkpmhuk9upJDQVpTjH"
   },
   "intent": {
-    "intentions": 17,
-    "uniq_apis_matched": 52,
+    "intentions": 16,
+    "uniq_apis_matched": 46,
     "results": [
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 5,
-        "apis": [
-          "RegQueryInfoKeyA",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExA",
-          "RegQueryValueExW",
-          "RegQueryValueW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 5,
-        "apis": [
-          "AddAccessAllowedAce",
-          "AddAccessAllowedAceEx",
-          "DeleteAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Discovers and Manipulates the Windows `SAFER Security Level` To Coerce Global Application Execution",
-        "tag": "Persistence:T1546.009 - AppCert DLLs",
-        "component": "---",
-        "inputs": 8,
-        "matches": 2,
-        "apis": [
-          "SaferCloseLevel",
-          "SaferCreateLevel"
-        ]
-      },
-      {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -768,36 +718,48 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
+        "intent": "Enumerates Running Processes/Applications",
+        "tag": "Discovery:T1057 - Process Discovery",
+        "component": "Processes",
         "inputs": 4,
-        "matches": 2,
+        "matches": 1,
         "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "CreateToolHelp32Snapshot"
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
+        "intent": "Has Ability To Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
+        "matches": 5,
         "apis": [
-          "FindFirstFileA",
-          "FindFirstFileW"
+          "ConnectNamedPipe",
+          "DisconnectNamedPipe",
+          "PeekNamedPipe",
+          "SetNamedPipeHandleState",
+          "TransactNamedPipe"
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
+        "intent": "Discovers and Manipulates the Windows `SAFER Security Level` To Coerce Global Application Execution",
+        "tag": "Persistence:T1546.009 - AppCert DLLs",
+        "component": "---",
+        "inputs": 8,
         "matches": 2,
         "apis": [
-          "SetThreadToken",
-          "SetTokenInformation"
+          "SaferCloseLevel",
+          "SaferCreateLevel"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
         ]
       },
       {
@@ -811,17 +773,24 @@
         ]
       },
       {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.0004 - Implement Named Pipes",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
-        "inputs": 13,
-        "matches": 5,
+        "inputs": 7,
+        "matches": 1,
         "apis": [
-          "ConnectNamedPipe",
-          "DisconnectNamedPipe",
-          "PeekNamedPipe",
-          "SetNamedPipeHandleState",
-          "TransactNamedPipe"
+          "CreateProcessw"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
         ]
       },
       {
@@ -846,42 +815,43 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 6,
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "CryptAcquireContextW",
-          "CryptDestroyKey",
-          "CryptEncrypt",
-          "CryptGenKey",
-          "CryptImportKey",
-          "CryptReleaseContext"
+          "SetThreadToken",
+          "SetTokenInformation"
         ]
       },
       {
-        "intent": "Enumerates Running Processes/Applications",
-        "tag": "Discovery:T1057 - Process Discovery",
-        "component": "Processes",
-        "inputs": 4,
-        "matches": 1,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 5,
         "apis": [
-          "CreateToolHelp32Snapshot"
+          "RegQueryInfoKeyA",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExA",
+          "RegQueryValueExW",
+          "RegQueryValueW"
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
         "apis": [
-          "CreateProcessw"
+          "FindFirstFileA",
+          "FindFirstFileW"
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -894,13 +864,28 @@
         ]
       },
       {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 5,
         "apis": [
-          "GetNativeSystemInfo"
+          "AddAccessAllowedAce",
+          "AddAccessAllowedAceEx",
+          "DeleteAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       }
     ]

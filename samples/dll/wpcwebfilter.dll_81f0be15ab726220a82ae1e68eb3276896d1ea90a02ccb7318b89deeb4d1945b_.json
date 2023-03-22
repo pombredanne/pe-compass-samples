@@ -705,22 +705,24 @@
     "ssdeep": "12288:am6Mrue8tdzLNWZnY2IzAVwF6WC9ptlrdY781PvmIRm:EMrj8tdzBW22IzAVIM9ptlZY781Pvmg"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 17,
+    "intentions": 5,
+    "uniq_apis_matched": 13,
     "results": [
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
         "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -728,6 +730,17 @@
         "apis": [
           "RegEnumKeyExW",
           "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
@@ -742,19 +755,6 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
         "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
         "tag": "Command And Control:T1105 - Ingress Tool Transfer",
         "component": "Networking",
@@ -764,19 +764,6 @@
           "WinHttpConnect",
           "WinHttpOpenRequest",
           "WinHttpSendRequest"
-        ]
-      },
-      {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 4,
-        "apis": [
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData"
         ]
       }
     ]

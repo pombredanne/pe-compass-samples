@@ -669,21 +669,9 @@
     "ssdeep": "12288:9Z2TdRDRfgz69G99MZUCTyvN+WvT061ynHmlT:irDlu67qV+qKGlT"
   },
   "intent": {
-    "intentions": 12,
-    "uniq_apis_matched": 26,
+    "intentions": 11,
+    "uniq_apis_matched": 24,
     "results": [
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
       {
         "intent": "Discovers Network Settings On The Target System",
         "tag": "Discovery:T1016 - System Network Configuration Discovery",
@@ -709,17 +697,41 @@
         ]
       },
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
         "apis": [
-          "DuplicateToken"
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
+        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Has Ability To Transmit/Receive Data Over The Network",
+        "tag": "Expert Input:IBO.00011 - Network Socket Send/Receive",
+        "component": "Networking",
+        "inputs": 16,
+        "matches": 1,
+        "apis": [
+          "AcceptEx"
+        ]
+      },
+      {
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
         "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
         "component": "Privileges",
         "inputs": 15,
@@ -728,6 +740,38 @@
           "AddAccessAllowedAce",
           "InitializeAcl",
           "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Modify The DNS Resolution Cache",
+        "tag": "Expert Input:IBO.00019 - Network Layer-7 DNS",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DnsFreeConfigStructure"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "DuplicateToken"
         ]
       },
       {
@@ -741,62 +785,7 @@
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 2,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "---",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Transmit/Receive Data Over The Network",
-        "tag": "Expert Input:IBO.00011 - Network Socket Send/Receive",
-        "component": "Networking",
-        "inputs": 16,
-        "matches": 1,
-        "apis": [
-          "AcceptEx"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Can Modify The DNS Resolution Cache",
-        "tag": "Expert Input:IBO.00019 - Network Layer-7 DNS",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DnsFreeConfigStructure"
-        ]
-      },
-      {
-        "intent": "Can Conduct DNS Queries",
+        "intent": "Has Ability To Conduct DNS Queries",
         "tag": "Expert Input:IBO.00014 - Network Layer-7 DNS Usage",
         "component": "Networking",
         "inputs": 31,

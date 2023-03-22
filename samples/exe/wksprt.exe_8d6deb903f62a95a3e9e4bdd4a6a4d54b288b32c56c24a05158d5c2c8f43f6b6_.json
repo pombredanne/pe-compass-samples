@@ -420,12 +420,12 @@
     "ssdeep": "12288:8SdCmpetqV+PwWqVCpm4EYK3Ul+CM9XIB7GjFMvT3lxR:8Sc+O5v4CYCM9imI"
   },
   "intent": {
-    "intentions": 8,
-    "uniq_apis_matched": 20,
+    "intentions": 7,
+    "uniq_apis_matched": 18,
     "results": [
       {
-        "intent": "Can Delete Files From Filesystem (Disk)",
-        "tag": "Expert Input:IBO.00034 - File Deletion",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
@@ -434,7 +434,21 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetKeyValueW",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -445,20 +459,7 @@
         ]
       },
       {
-        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
-        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
-        "component": "Networking",
-        "inputs": 21,
-        "matches": 4,
-        "apis": [
-          "HttpOpenRequestW",
-          "HttpSendRequestExW",
-          "InternetConnectW",
-          "InternetCrackUrlW"
-        ]
-      },
-      {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "intent": "Has Ability To Be Invoked With CommandLine Arguments From a Console/Terminal",
         "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
         "component": "Processes",
         "inputs": 3,
@@ -480,32 +481,20 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 5,
+        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
+        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
+        "component": "Networking",
+        "inputs": 21,
+        "matches": 4,
         "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetKeyValueW",
-          "RegSetValueExW"
+          "HttpOpenRequestW",
+          "HttpSendRequestExW",
+          "InternetConnectW",
+          "InternetCrackUrlW"
         ]
       },
       {
-        "intent": "Can Initiate Crypto Operations",
-        "tag": "Expert Input:IBO.00022 - Cryptography",
-        "component": "Crypto",
-        "inputs": 12,
-        "matches": 2,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,

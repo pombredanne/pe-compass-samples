@@ -454,6 +454,16 @@
     "uniq_apis_matched": 26,
     "results": [
       {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
+        ]
+      },
+      {
         "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
         "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
         "component": "---",
@@ -464,13 +474,29 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
+        "inputs": 33,
+        "matches": 6,
         "apis": [
-          "RegEnumValueW"
+          "RegCreateKeyExW",
+          "RegDeleteValueW",
+          "RegDisablePredefinedCacheEx",
+          "RegOpenCurrentUser",
+          "RegOpenKeyExW",
+          "RegSetKeyValueW"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "DuplicateToken",
+          "ImpersonateLoggedOnUser"
         ]
       },
       {
@@ -486,29 +512,6 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 3,
-        "apis": [
-          "RegisterServiceCtrlHandlerExW",
-          "SetServiceStatus",
-          "StartServiceCtrlDispatcherW"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "DuplicateToken",
-          "ImpersonateLoggedOnUser"
-        ]
-      },
-      {
         "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
         "tag": "Command And Control:T1105 - Ingress Tool Transfer",
         "component": "Networking",
@@ -520,32 +523,7 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 6,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteValueW",
-          "RegDisablePredefinedCacheEx",
-          "RegOpenCurrentUser",
-          "RegOpenKeyExW",
-          "RegSetKeyValueW"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "GetNativeSystemInfo"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
+        "intent": "Has Ability To Manipulate Access Control Mechanisms",
         "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
         "component": "Privileges",
         "inputs": 15,
@@ -557,15 +535,15 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
+        "intent": "Has Ability To Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
         "matches": 3,
         "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "RegisterServiceCtrlHandlerExW",
+          "SetServiceStatus",
+          "StartServiceCtrlDispatcherW"
         ]
       },
       {
@@ -576,6 +554,28 @@
         "matches": 1,
         "apis": [
           "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Has Ability To Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Has Ability To Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       }
     ]
