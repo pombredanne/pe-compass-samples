@@ -607,9 +607,19 @@
     "ssdeep": "49152:quiwYK81sOdOVC4joyXdxhDNZTaJ1YJBY3bO+C4Y:g8InEhLLXl"
   },
   "intent": {
-    "intentions": 4,
-    "uniq_apis_matched": 11,
+    "intentions": 6,
+    "uniq_apis_matched": 15,
     "results": [
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
       {
         "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
         "tag": "Defense Evasion:T1070.004 - File Deletion",
@@ -621,7 +631,30 @@
         ]
       },
       {
-        "intent": "Has Ability To Enumerate The Windows Registry",
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 67,
+        "matches": 3,
+        "apis": [
+          "CryptAcquireContextA",
+          "CryptGenRandom",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -632,7 +665,7 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "intent": "Can Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -644,17 +677,6 @@
           "RegOpenKeyExW",
           "RegOpenKeyW",
           "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
         ]
       }
     ]

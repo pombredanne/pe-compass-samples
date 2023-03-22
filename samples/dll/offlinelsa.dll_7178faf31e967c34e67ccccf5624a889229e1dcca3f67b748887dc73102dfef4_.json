@@ -320,21 +320,21 @@
     "ssdeep": "3072:ZDcqf7Dy/Inqmq/cMhdsx0p0CkVC/wWGpihBJV:Zwqf7DuU4cHxAwWFvJV"
   },
   "intent": {
-    "intentions": 3,
-    "uniq_apis_matched": 3,
+    "intentions": 5,
+    "uniq_apis_matched": 16,
     "results": [
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
         "matches": 1,
         "apis": [
-          "NtDuplicateToken"
+          "TerminateProcess"
         ]
       },
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
+        "intent": "Can Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -351,6 +351,37 @@
         "matches": 1,
         "apis": [
           "NtAdjustPrivilegesToken"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 67,
+        "matches": 12,
+        "apis": [
+          "BCryptCloseAlgorithmProvider",
+          "BCryptCreateHash",
+          "BCryptDestroyHash",
+          "BCryptDestroyKey",
+          "BCryptEncrypt",
+          "BCryptFinishHash",
+          "BCryptGenerateSymmetricKey",
+          "BCryptHashData",
+          "BCryptOpenAlgorithmProvider",
+          "CryptAcquireContextW",
+          "CryptGenRandom",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "NtDuplicateToken"
         ]
       }
     ]

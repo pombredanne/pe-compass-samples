@@ -415,19 +415,9 @@
     "ssdeep": "6144:d9LQAfRpQSDaChrhg2jFN6XQKym+4nSiVMHxM8ckxEmSaYi:d5DvGChrhgMFNO+4rVMHxMQSI"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 11,
+    "intentions": 7,
+    "uniq_apis_matched": 12,
     "results": [
-      {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
       {
         "intent": "Enumerates Files or Directories on the Target System",
         "tag": "Discovery:T1083 - File and Directory Discovery",
@@ -439,17 +429,27 @@
         ]
       },
       {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "AdjustTokenPrivileges"
+          "DeleteFileW"
         ]
       },
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -460,7 +460,7 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "intent": "Can Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -481,6 +481,16 @@
         "matches": 1,
         "apis": [
           "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "AdjustTokenPrivileges"
         ]
       }
     ]

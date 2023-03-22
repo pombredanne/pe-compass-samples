@@ -718,17 +718,30 @@
     "ssdeep": "24576:7GR2DsRlWSrrHZGj6uafq9UxPMJB7KCRnEAnPIGS0fXgxD47:7GRjTdGjsqEeIGS0fgts"
   },
   "intent": {
-    "intentions": 13,
-    "uniq_apis_matched": 31,
+    "intentions": 14,
+    "uniq_apis_matched": 32,
     "results": [
       {
-        "intent": "Has Ability To Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
-        "component": "Processes",
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
         "inputs": 2,
-        "matches": 1,
+        "matches": 2,
         "apis": [
-          "CreateProcessAsUserW"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
@@ -742,48 +755,33 @@
         ]
       },
       {
-        "intent": "Enumerates Credentials From The Windows Credential Manager Password Store",
-        "tag": "Credential Access:T1555.004 - Windows Credential Manager",
+        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.0003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
         "apis": [
-          "CredEnumerateW"
-        ]
-      },
-      {
-        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Has Ability To Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "AddAccessAllowedAce",
-          "AddMandatoryAce",
-          "InitializeAcl"
-        ]
-      },
-      {
-        "intent": "Has Ability To Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "DeleteFileW"
         ]
       },
       {
@@ -798,13 +796,13 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "intent": "Enumerates Credentials From The Windows Credential Manager Password Store",
+        "tag": "Credential Access:T1555.004 - Windows Credential Manager",
         "component": "Filesystem",
-        "inputs": 5,
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "FindFirstFileW"
+          "CredEnumerateW"
         ]
       },
       {
@@ -823,28 +821,29 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "intent": "Can Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.00021 - Windows Access Control Lists",
         "component": "Privileges",
-        "inputs": 2,
-        "matches": 2,
+        "inputs": 15,
+        "matches": 3,
         "apis": [
-          "SetThreadToken",
-          "SetTokenInformation"
+          "AddAccessAllowedAce",
+          "AddMandatoryAce",
+          "InitializeAcl"
         ]
       },
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
-        "inputs": 2,
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "DeleteFileW"
+          "FindFirstFileW"
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "intent": "Can Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -860,13 +859,24 @@
         ]
       },
       {
-        "intent": "Has Ability To Enumerate The Windows Registry",
+        "intent": "Can Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
         "matches": 1,
         "apis": [
           "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "SetThreadToken",
+          "SetTokenInformation"
         ]
       }
     ]

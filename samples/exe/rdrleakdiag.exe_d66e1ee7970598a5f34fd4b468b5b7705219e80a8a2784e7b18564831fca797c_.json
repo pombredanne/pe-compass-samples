@@ -415,30 +415,28 @@
     "ssdeep": "768:e9c+P7qBxdbY2rZuv/lOmhqabv28XZACDJMwxKiHHd3nyBQgpHBe/pIP6kFNco2j:GIdVuv/lOmLRdvHpt5A6kFNx5W"
   },
   "intent": {
-    "intentions": 8,
-    "uniq_apis_matched": 13,
+    "intentions": 9,
+    "uniq_apis_matched": 14,
     "results": [
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
         "apis": [
-          "OpenProcessToken"
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
-        "intent": "Has Ability To Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
         "component": "Services",
-        "inputs": 28,
-        "matches": 4,
+        "inputs": 19,
+        "matches": 1,
         "apis": [
-          "EnumServicesStatusExW",
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceConfigW"
+          "CloseServiceHandle"
         ]
       },
       {
@@ -452,24 +450,36 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 2,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
         "apis": [
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "TerminateProcess"
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.0006 - Enumerate System Services",
         "component": "Services",
-        "inputs": 19,
+        "inputs": 28,
+        "matches": 4,
+        "apis": [
+          "EnumServicesStatusExW",
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceConfigW"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
         "matches": 1,
         "apis": [
-          "CloseServiceHandle"
+          "AdjustTokenPrivileges"
         ]
       },
       {
@@ -483,7 +493,17 @@
         ]
       },
       {
-        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
         "component": "Memory",
         "inputs": 2,
@@ -491,16 +511,6 @@
         "apis": [
           "DelayLoadFailureHook",
           "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "AdjustTokenPrivileges"
         ]
       }
     ]

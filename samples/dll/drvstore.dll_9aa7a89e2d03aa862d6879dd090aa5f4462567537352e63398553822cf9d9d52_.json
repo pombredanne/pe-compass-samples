@@ -596,8 +596,8 @@
     "ssdeep": "24576:yALGx2pLS1sZ+Dz5a7yOqh4StCbLJo3Rw2eOnn8DPI1Q5pUxSbacgbfnIy15FCOk:yA5Qs031Oqh4wCbFoZnn8DPSQHU/1x5C"
   },
   "intent": {
-    "intentions": 7,
-    "uniq_apis_matched": 9,
+    "intentions": 8,
+    "uniq_apis_matched": 10,
     "results": [
       {
         "intent": "Queries and Discovers General Attributes From The Target System",
@@ -608,6 +608,27 @@
         "apis": [
           "GetNativeSystemInfo",
           "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
@@ -631,6 +652,16 @@
         ]
       },
       {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
+      {
         "intent": "Manipulates Windows Tokens",
         "tag": "Defense Evasion:T1134 - Access Token Manipulation",
         "component": "Privileges",
@@ -638,27 +669,6 @@
         "matches": 1,
         "apis": [
           "NtAdjustPrivilegesToken"
-        ]
-      },
-      {
-        "intent": "Has Ability To Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
         ]
       },
       {

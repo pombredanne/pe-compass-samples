@@ -210,17 +210,23 @@
     "ssdeep": "24576:3tSUZ4v/VgpLPuh/KlJDVCdQnq/hjBIALT0eSo8TxFqwVQ3m:3tSUZ4vtZeZguq5jBIA30JnTxFq0"
   },
   "intent": {
-    "intentions": 2,
-    "uniq_apis_matched": 5,
+    "intentions": 4,
+    "uniq_apis_matched": 13,
     "results": [
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 67,
+        "matches": 7,
         "apis": [
-          "FindFirstFileExW"
+          "BCryptCloseAlgorithmProvider",
+          "BCryptCreateHash",
+          "BCryptDestroyHash",
+          "BCryptFinishHash",
+          "BCryptGetProperty",
+          "BCryptHashData",
+          "BCryptOpenAlgorithmProvider"
         ]
       },
       {
@@ -234,6 +240,26 @@
           "WinHttpGetProxyForUrl",
           "WinHttpOpenRequest",
           "WinHttpSendRequest"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileExW"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
         ]
       }
     ]

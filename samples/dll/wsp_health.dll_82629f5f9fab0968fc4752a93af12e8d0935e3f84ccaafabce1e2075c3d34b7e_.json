@@ -654,9 +654,41 @@
     "ssdeep": "24576:e7CJ9nDsjgC0GNzZ83Pt3DQuG6/gwkcEEF:e7YjDPtzEVwTEEF"
   },
   "intent": {
-    "intentions": 7,
-    "uniq_apis_matched": 9,
+    "intentions": 9,
+    "uniq_apis_matched": 13,
     "results": [
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileExW"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 67,
+        "matches": 3,
+        "apis": [
+          "CryptAcquireContextW",
+          "CryptGenRandom",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
       {
         "intent": "Steals Tokens To Impersonate Windows Identities",
         "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
@@ -688,28 +720,17 @@
         ]
       },
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
         "matches": 1,
         "apis": [
-          "FindFirstFileExW"
+          "TerminateProcess"
         ]
       },
       {
-        "intent": "Has Ability To Work With The TCP Network Protocol",
+        "intent": "Can Work With The TCP Network Protocol",
         "tag": "Expert Input:IBO.00012 - Network TCP Sockets",
         "component": "Networking",
         "inputs": 15,
@@ -720,13 +741,14 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 1,
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
         "apis": [
-          "RegOpenKeyExW"
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       }
     ]

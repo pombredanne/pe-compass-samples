@@ -502,9 +502,21 @@
     "ssdeep": "3072:985EXN5dKng1gH8q2aaYBHOK0ydKqfwGGIBqpLiFOaGE0QLZoi0PZwu7TGD0SWHC:9VrGx0kjqp20oLZoXMnBjjk1FMr"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 17,
+    "intentions": 8,
+    "uniq_apis_matched": 21,
     "results": [
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 67,
+        "matches": 3,
+        "apis": [
+          "CryptAcquireContextA",
+          "CryptGenRandom",
+          "CryptReleaseContext"
+        ]
+      },
       {
         "intent": "Queries and Discovers General Attributes From The Target System",
         "tag": "Discovery:T1082 - System Information Discovery",
@@ -517,7 +529,40 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 1,
+        "apis": [
+          "DsRoleGetPrimaryDomainInformation"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExA"
+        ]
+      },
+      {
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 4,
+        "apis": [
+          "GetAdaptersInfo",
+          "GetIpAddrTable",
+          "GetIpForwardTable",
+          "GetPerAdapterInfo"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -544,36 +589,13 @@
         ]
       },
       {
-        "intent": "Has Ability To Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumKeyExA"
-        ]
-      },
-      {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 4,
-        "apis": [
-          "GetAdaptersInfo",
-          "GetIpAddrTable",
-          "GetIpForwardTable",
-          "GetPerAdapterInfo"
-        ]
-      },
-      {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
         "component": "---",
-        "inputs": 24,
+        "inputs": 1,
         "matches": 1,
         "apis": [
-          "DsRoleGetPrimaryDomainInformation"
+          "TerminateProcess"
         ]
       }
     ]

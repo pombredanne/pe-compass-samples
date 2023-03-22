@@ -582,8 +582,8 @@
     "ssdeep": "6144:p8TW2rGgRCISpfWbEbhLgUnKLtwDlLOrfZTSc/6Me:p8TrCISpfWqtpRM"
   },
   "intent": {
-    "intentions": 7,
-    "uniq_apis_matched": 12,
+    "intentions": 8,
+    "uniq_apis_matched": 13,
     "results": [
       {
         "intent": "Queries and Discovers General Attributes From The Target System",
@@ -596,13 +596,26 @@
         ]
       },
       {
-        "intent": "Has Ability To Discover Network Proxy Configuration",
-        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 1,
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
         "apis": [
-          "WinHttpGetDefaultProxyConfiguration"
+          "RegOpenKeyExW",
+          "RegSetKeyValueW"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
@@ -616,19 +629,17 @@
         ]
       },
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
         "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "TerminateProcess"
         ]
       },
       {
-        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
         "component": "Memory",
         "inputs": 2,
@@ -636,6 +647,16 @@
         "apis": [
           "DelayLoadFailureHook",
           "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Discover Network Proxy Configuration",
+        "tag": "Expert Input:IBO.00017 - Network Layer-7 HTTP",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "WinHttpGetDefaultProxyConfiguration"
         ]
       },
       {
@@ -647,17 +668,6 @@
         "apis": [
           "RegGetValueW",
           "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 2,
-        "apis": [
-          "RegOpenKeyExW",
-          "RegSetKeyValueW"
         ]
       }
     ]

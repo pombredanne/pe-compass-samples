@@ -618,21 +618,11 @@
     "ssdeep": "3072:FTDFwGq5L5YEG3HgX8O0p+Sj7vRdh/M5Gi8luKO1LndQl+XBobH9cfkDoaU5VU1A:FH4F03J2jQl+ibd1ZU5VU1LpF8Vq"
   },
   "intent": {
-    "intentions": 4,
-    "uniq_apis_matched": 5,
+    "intentions": 5,
+    "uniq_apis_matched": 6,
     "results": [
       {
-        "intent": "Discovers Local User Accounts on the Target System",
-        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
-        "component": "Identities",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "LookupAccountNameLocalW"
-        ]
-      },
-      {
-        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
         "component": "Memory",
         "inputs": 2,
@@ -640,6 +630,26 @@
         "apis": [
           "DelayLoadFailureHook",
           "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
         ]
       },
       {
@@ -653,13 +663,13 @@
         ]
       },
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
+        "intent": "Discovers Local User Accounts on the Target System",
+        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
+        "component": "Identities",
         "inputs": 4,
         "matches": 1,
         "apis": [
-          "OpenProcessToken"
+          "LookupAccountNameLocalW"
         ]
       }
     ]

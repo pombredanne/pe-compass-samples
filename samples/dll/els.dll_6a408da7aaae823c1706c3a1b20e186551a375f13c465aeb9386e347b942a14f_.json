@@ -433,17 +433,17 @@
     "ssdeep": "3072:c+5m+jGgnLpi4Uai1EqyHoQi1pP9P3XztFVXsuc6C5t/gr5liAb:c+5mBg4XaiLyIr1F9tFV8v6CMoAb"
   },
   "intent": {
-    "intentions": 12,
-    "uniq_apis_matched": 18,
+    "intentions": 13,
+    "uniq_apis_matched": 19,
     "results": [
       {
-        "intent": "Has Ability To Remotely Connect To A Target System And Access Its Windows Registry",
-        "tag": "Expert Input:IBO.00010 - Connect To Remote Windows Registry",
-        "component": "Networking",
-        "inputs": 2,
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.0002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
         "matches": 1,
         "apis": [
-          "RegConnectRegistryW"
+          "ShellExecuteW"
         ]
       },
       {
@@ -458,53 +458,33 @@
         ]
       },
       {
-        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.0002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
         "matches": 1,
         "apis": [
-          "ShellExecuteW"
+          "TerminateProcess"
         ]
       },
       {
-        "intent": "Has Ability To Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "intent": "Can Remotely Connect To A Target System And Access Its Windows Registry",
+        "tag": "Expert Input:IBO.00010 - Connect To Remote Windows Registry",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "RegConnectRegistryW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
         "tag": "Expert Input:IBO.0001 - Accepts CommandLine Arguments",
         "component": "Processes",
         "inputs": 3,
         "matches": 1,
         "apis": [
           "CommandLineToArgvW"
-        ]
-      },
-      {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "GetTimeZoneInformation"
-        ]
-      },
-      {
-        "intent": "Clears Windows Event Log Entries/Files",
-        "tag": "Defense Evasion:T1070.001",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "ClearEventlogW"
-        ]
-      },
-      {
-        "intent": "Has Ability To Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumKeyExW"
         ]
       },
       {
@@ -529,17 +509,17 @@
         ]
       },
       {
-        "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
-        "tag": "Collection:T1115 - Clipboard Data",
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
         "component": "---",
-        "inputs": 4,
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "OpenClipboard"
+          "GetTimeZoneInformation"
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "intent": "Can Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -553,6 +533,26 @@
         ]
       },
       {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
+        "tag": "Collection:T1115 - Clipboard Data",
+        "component": "---",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenClipboard"
+        ]
+      },
+      {
         "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
         "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
@@ -560,6 +560,16 @@
         "matches": 1,
         "apis": [
           "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Clears Windows Event Log Entries/Files",
+        "tag": "Defense Evasion:T1070.001",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "ClearEventlogW"
         ]
       }
     ]

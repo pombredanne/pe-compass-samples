@@ -312,8 +312,8 @@
     "ssdeep": "3072:Ef+gaJhsUH0u9Xfak2Ya9JUdoRXT1W0TM25I/2oJW:mY/akSaa79T/I/4"
   },
   "intent": {
-    "intentions": 4,
-    "uniq_apis_matched": 5,
+    "intentions": 6,
+    "uniq_apis_matched": 12,
     "results": [
       {
         "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
@@ -323,6 +323,31 @@
         "matches": 1,
         "apis": [
           "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 67,
+        "matches": 6,
+        "apis": [
+          "CryptAcquireContextW",
+          "CryptCreateHash",
+          "CryptDestroyHash",
+          "CryptGetHashParam",
+          "CryptHashData",
+          "CryptReleaseContext"
         ]
       },
       {
@@ -337,6 +362,16 @@
         ]
       },
       {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
         "intent": "Queries And Discovers Windows Registry Configuration Settings",
         "tag": "Discovery:T1012 - Query Registry",
         "component": "Registry",
@@ -344,16 +379,6 @@
         "matches": 1,
         "apis": [
           "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 1,
-        "apis": [
-          "RegOpenKeyExW"
         ]
       }
     ]

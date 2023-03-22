@@ -452,17 +452,32 @@
     "ssdeep": "1536:LWJ/T6AArwgxS386Oj1OSiXk6DsH99fIzMuu4K2SyIBFwAN3ep3tM:6wrwgSMfBOC6oH99iMuw9yInwx3W"
   },
   "intent": {
-    "intentions": 5,
-    "uniq_apis_matched": 13,
+    "intentions": 6,
+    "uniq_apis_matched": 14,
     "results": [
       {
-        "intent": "Has Ability To Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
         "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
+        "inputs": 11,
+        "matches": 3,
         "apis": [
-          "RegEnumValueW"
+          "RegGetValueW",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 4,
+        "apis": [
+          "RegCreateKeyExW",
+          "RegCreateKeyTransactedW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
@@ -478,7 +493,7 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate System Services",
+        "intent": "Can Create/Manipulate System Services",
         "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
         "component": "Services",
         "inputs": 19,
@@ -489,28 +504,23 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
-        "inputs": 33,
-        "matches": 4,
+        "inputs": 6,
+        "matches": 1,
         "apis": [
-          "RegCreateKeyExW",
-          "RegCreateKeyTransactedW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "RegEnumValueW"
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 3,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
         "apis": [
-          "RegGetValueW",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
+          "TerminateProcess"
         ]
       }
     ]

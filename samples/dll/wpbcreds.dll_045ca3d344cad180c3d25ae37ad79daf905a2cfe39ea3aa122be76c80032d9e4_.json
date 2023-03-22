@@ -328,11 +328,33 @@
     "ssdeep": "1536:ng3b1vHkHUghZH3TEY4129etcpiyvMiAOqms0c/vTX7IT:ngr1f6UgrQWsyvMgqB0c3TX"
   },
   "intent": {
-    "intentions": 5,
-    "uniq_apis_matched": 11,
+    "intentions": 7,
+    "uniq_apis_matched": 30,
     "results": [
       {
-        "intent": "Has Ability To Enumerate The Windows Registry",
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 3,
+        "apis": [
+          "RegGetValueA",
+          "RegGetValueW",
+          "RegQueryInfoKeyW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
         "component": "Registry",
         "inputs": 6,
@@ -342,14 +364,30 @@
         ]
       },
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 67,
+        "matches": 18,
         "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "BCryptCloseAlgorithmProvider",
+          "BCryptCreateHash",
+          "BCryptDecrypt",
+          "BCryptDeriveKeyPBKDF2",
+          "BCryptDestroyHash",
+          "BCryptDestroyKey",
+          "BCryptEncrypt",
+          "BCryptExportKey",
+          "BCryptFinalizeKeyPair",
+          "BCryptFinishHash",
+          "BCryptFreeBuffer",
+          "BCryptGenRandom",
+          "BCryptGenerateKeyPair",
+          "BCryptGenerateSymmetricKey",
+          "BCryptGetProperty",
+          "BCryptHashData",
+          "BCryptOpenAlgorithmProvider",
+          "BCryptSetProperty"
         ]
       },
       {
@@ -363,7 +401,18 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -373,18 +422,6 @@
           "RegOpenKeyExW",
           "RegOpenKeyW",
           "RegSetKeyValueW"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 3,
-        "apis": [
-          "RegGetValueA",
-          "RegGetValueW",
-          "RegQueryInfoKeyW"
         ]
       }
     ]

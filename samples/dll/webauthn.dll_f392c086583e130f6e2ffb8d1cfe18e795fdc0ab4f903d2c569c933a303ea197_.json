@@ -495,21 +495,11 @@
     "ssdeep": "12288:+/2tlzH0K6RE/PcSCHI3ZRQ0+duQUceugWqA:+/2tlzHR6RuE7HKZRIsQUceugv"
   },
   "intent": {
-    "intentions": 5,
-    "uniq_apis_matched": 14,
+    "intentions": 6,
+    "uniq_apis_matched": 34,
     "results": [
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetThreadToken"
-        ]
-      },
-      {
-        "intent": "Has Ability To Delay Loading of DLLs Until Runtime/Process Execution",
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
         "tag": "Expert Input:IBO.0005 - Load DLL Resources With Delay During Runtime",
         "component": "Memory",
         "inputs": 2,
@@ -520,7 +510,18 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.00020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
         "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
@@ -532,6 +533,16 @@
           "RegOpenKeyExW",
           "RegSetValueExA",
           "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
         ]
       },
       {
@@ -547,14 +558,32 @@
         ]
       },
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.00020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 67,
+        "matches": 20,
         "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "BCryptCloseAlgorithmProvider",
+          "BCryptCreateHash",
+          "BCryptDecrypt",
+          "BCryptDeriveKey",
+          "BCryptDestroyHash",
+          "BCryptDestroyKey",
+          "BCryptDestroySecret",
+          "BCryptEncrypt",
+          "BCryptExportKey",
+          "BCryptFinalizeKeyPair",
+          "BCryptFinishHash",
+          "BCryptGenerateKeyPair",
+          "BCryptGenerateSymmetricKey",
+          "BCryptHashData",
+          "BCryptImportKeyPair",
+          "BCryptOpenAlgorithmProvider",
+          "BCryptSecretAgreement",
+          "BCryptSetProperty",
+          "BCryptSignHash",
+          "BCryptVerifySignature"
         ]
       }
     ]

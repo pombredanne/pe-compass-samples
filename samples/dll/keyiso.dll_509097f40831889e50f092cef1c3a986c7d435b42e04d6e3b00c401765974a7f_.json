@@ -242,21 +242,21 @@
     "ssdeep": "1536:6nEXCFQKapSJMn4UaG+LhEMD1OMCkoFeb:6gKiCMn45uMpOMCHFe"
   },
   "intent": {
-    "intentions": 5,
-    "uniq_apis_matched": 7,
+    "intentions": 6,
+    "uniq_apis_matched": 12,
     "results": [
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
         "matches": 1,
         "apis": [
-          "RegOpenKeyExW"
+          "NtAdjustPrivilegesToken"
         ]
       },
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
+        "intent": "Can Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -267,14 +267,13 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 2,
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
         "apis": [
-          "RegisterServiceCtrlHandlerExW",
-          "SetServiceStatus"
+          "RegOpenKeyExW"
         ]
       },
       {
@@ -288,13 +287,28 @@
         ]
       },
       {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.0007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
         "apis": [
-          "NtAdjustPrivilegesToken"
+          "RegisterServiceCtrlHandlerExW",
+          "SetServiceStatus"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 67,
+        "matches": 5,
+        "apis": [
+          "BCryptDestroyKey",
+          "BCryptExportKey",
+          "BCryptFinalizeKeyPair",
+          "BCryptFreeBuffer",
+          "BCryptGenerateKeyPair"
         ]
       }
     ]

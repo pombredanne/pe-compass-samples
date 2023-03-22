@@ -191,11 +191,21 @@
     "ssdeep": "384:bUbO8ECS8LxxvAm2j7D2GzMZ18mBMzMHLzU+ZP7WYZfIxIWZ4WiDBRJMlQKX:bUdECLtqD2B78EnhZgF01PM"
   },
   "intent": {
-    "intentions": 4,
-    "uniq_apis_matched": 6,
+    "intentions": 5,
+    "uniq_apis_matched": 7,
     "results": [
       {
-        "intent": "Has Ability To Access And Read Windows Tokens",
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.00020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
@@ -206,13 +216,14 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
         "apis": [
-          "FindFirstFileW"
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
@@ -226,14 +237,13 @@
         ]
       },
       {
-        "intent": "Has Ability To Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 2,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
         "apis": [
-          "RegOpenKeyExW",
-          "RegSetValueExW"
+          "TerminateProcess"
         ]
       }
     ]

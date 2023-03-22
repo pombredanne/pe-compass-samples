@@ -672,27 +672,38 @@
     "ssdeep": "12288:03UaWqLKOgjN1fYkNu12qW6rZyJfzgUgt7hKWjVHO5G:oWqLETZNj6rZqfgt7JVHO5G"
   },
   "intent": {
-    "intentions": 5,
-    "uniq_apis_matched": 6,
+    "intentions": 6,
+    "uniq_apis_matched": 7,
     "results": [
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
+        "inputs": 5,
+        "matches": 2,
         "apis": [
-          "DeleteFileW"
+          "FindFirstFileW",
+          "ZwQueryDirectoryFile"
         ]
       },
       {
-        "intent": "Has Ability To Execute or Spawn New Processes On The Target System",
+        "intent": "Can Execute or Spawn New Processes On The Target System",
         "tag": "Expert Input:IBO.0002 - Spawn New Process",
         "component": "Processes",
         "inputs": 7,
         "matches": 1,
         "apis": [
-          "CreateProcessw"
+          "CreateProcessW"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "---",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
         ]
       },
       {
@@ -716,14 +727,13 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
+        "inputs": 2,
+        "matches": 1,
         "apis": [
-          "FindFirstFileW",
-          "ZwQueryDirectoryFile"
+          "DeleteFileW"
         ]
       }
     ]
