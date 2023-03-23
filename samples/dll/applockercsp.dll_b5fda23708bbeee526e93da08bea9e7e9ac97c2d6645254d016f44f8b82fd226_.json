@@ -527,19 +527,33 @@
     "uniq_apis_matched": 22,
     "results": [
       {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 7,
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "BCryptCloseAlgorithmProvider",
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptGenRandom",
-          "BCryptHashData",
-          "BCryptOpenAlgorithmProvider"
+          "FindFirstFileExW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
+        "tag": "Impact:T1529 - System Shutdown/Reboot",
+        "component": "---",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "InitiateSystemShutdownExW"
         ]
       },
       {
@@ -556,33 +570,30 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 7,
         "apis": [
-          "FindFirstFileExW"
+          "BCryptCloseAlgorithmProvider",
+          "BCryptCreateHash",
+          "BCryptDestroyHash",
+          "BCryptFinishHash",
+          "BCryptGenRandom",
+          "BCryptHashData",
+          "BCryptOpenAlgorithmProvider"
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 1,
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
         "apis": [
-          "RegGetValueW"
-        ]
-      },
-      {
-        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
-        "tag": "Impact:T1529 - System Shutdown/Reboot",
-        "component": "---",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "InitiateSystemShutdownExW"
+          "CloseServiceHandle",
+          "StartServiceW"
         ]
       },
       {
@@ -599,14 +610,13 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 2,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
         "apis": [
-          "CloseServiceHandle",
-          "StartServiceW"
+          "RegGetValueW"
         ]
       },
       {
@@ -617,16 +627,6 @@
         "matches": 1,
         "apis": [
           "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
         ]
       }
     ]

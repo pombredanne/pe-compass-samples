@@ -510,25 +510,27 @@
     "uniq_apis_matched": 34,
     "results": [
       {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
         "apis": [
-          "AdjustTokenPrivileges"
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 4,
         "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "EnumDependentServicesW",
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceStatus"
         ]
       },
       {
@@ -548,7 +550,7 @@
       },
       {
         "intent": "Can Coordinate Scheduled Jobs/Tasks",
-        "tag": "Expert Input:IBO.0023 - Windows Access Control Lists",
+        "tag": "Expert Input:IBO.0023 - Windows OS Object Syncronization",
         "component": "ScheduledTasks",
         "inputs": 6,
         "matches": 1,
@@ -557,23 +559,36 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
         "apis": [
-          "FindFirstFileW"
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Can Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.0021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
         "matches": 1,
         "apis": [
-          "DeleteFileW"
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "DuplicateToken",
+          "ImpersonateLoggedOnUser"
         ]
       },
       {
@@ -585,6 +600,16 @@
         "apis": [
           "RegEnumKeyExW",
           "RegEnumKeyW"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
         ]
       },
       {
@@ -602,27 +627,23 @@
         ]
       },
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
         "inputs": 5,
-        "matches": 2,
+        "matches": 1,
         "apis": [
-          "DuplicateToken",
-          "ImpersonateLoggedOnUser"
+          "FindFirstFileW"
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 4,
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
         "apis": [
-          "EnumDependentServicesW",
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceStatus"
+          "__wgetmainargs"
         ]
       },
       {
@@ -637,13 +658,13 @@
         ]
       },
       {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
-        "tag": "Expert Input:IBO.001 - Accepts CommandLine Arguments",
-        "component": "Processes",
-        "inputs": 3,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "__wgetmainargs"
+          "DeleteFileW"
         ]
       },
       {
@@ -657,34 +678,13 @@
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.0021 - Windows Access Control Lists",
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
         "component": "Privileges",
-        "inputs": 15,
+        "inputs": 4,
         "matches": 1,
         "apis": [
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
+          "AdjustTokenPrivileges"
         ]
       }
     ]

@@ -596,24 +596,46 @@
     "uniq_apis_matched": 20,
     "results": [
       {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "RtlGetVersion"
+          "DeleteFileW"
         ]
       },
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
         "matches": 2,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 3,
+        "apis": [
+          "RegGetValueW",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
         ]
       },
       {
@@ -627,14 +649,13 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
         "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "RtlGetVersion"
         ]
       },
       {
@@ -674,35 +695,14 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 3,
-        "apis": [
-          "RegGetValueW",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
         "inputs": 2,
-        "matches": 1,
+        "matches": 2,
         "apis": [
-          "DeleteFileW"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       }
     ]

@@ -635,13 +635,24 @@
     "uniq_apis_matched": 23,
     "results": [
       {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
         "matches": 1,
         "apis": [
-          "GetNativeSystemInfo"
+          "RegEnumValueW"
         ]
       },
       {
@@ -656,6 +667,36 @@
           "RegDeleteValueW",
           "RegOpenKeyExW",
           "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "CheckTokenMembership"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 1,
+        "apis": [
+          "GetAdaptersInfo"
         ]
       },
       {
@@ -674,34 +715,13 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
         "matches": 1,
         "apis": [
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 1,
-        "apis": [
-          "GetAdaptersInfo"
+          "GetNativeSystemInfo"
         ]
       },
       {
@@ -712,37 +732,6 @@
         "matches": 1,
         "apis": [
           "CreateProcessW"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "CheckTokenMembership"
         ]
       },
       {
@@ -763,6 +752,17 @@
         "matches": 1,
         "apis": [
           "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       }
     ]

@@ -818,26 +818,44 @@
     "uniq_apis_matched": 26,
     "results": [
       {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 4,
+        "intent": "Can Conduct DNS Queries",
+        "tag": "Expert Input:IBO.0014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 1,
         "apis": [
-          "BCryptCreateHash",
-          "BCryptDestroyHash",
-          "BCryptFinishHash",
-          "BCryptHashData"
+          "DnsValidateName_W"
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
         "matches": 1,
         "apis": [
-          "FindFirstFileExW"
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -852,24 +870,35 @@
         ]
       },
       {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
+        "intent": "Can Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.0021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 3,
         "apis": [
-          "TerminateProcess"
+          "AddAccessAllowedAce",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
         "component": "Privileges",
         "inputs": 4,
-        "matches": 2,
+        "matches": 1,
         "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "AdjustTokenPrivileges"
         ]
       },
       {
@@ -898,66 +927,37 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumKeyExW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.0021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 3,
-        "apis": [
-          "AddAccessAllowedAce",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.0014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
-        "matches": 1,
-        "apis": [
-          "DnsValidateName_W"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
         "component": "Privileges",
         "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "AdjustTokenPrivileges"
+          "FindFirstFileExW"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 4,
+        "apis": [
+          "BCryptCreateHash",
+          "BCryptDestroyHash",
+          "BCryptFinishHash",
+          "BCryptHashData"
         ]
       }
     ]

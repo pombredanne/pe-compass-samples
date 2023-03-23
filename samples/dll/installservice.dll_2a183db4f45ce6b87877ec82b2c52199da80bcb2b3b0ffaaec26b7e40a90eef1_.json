@@ -901,16 +901,14 @@
     "uniq_apis_matched": 37,
     "results": [
       {
-        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
-        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
+        "intent": "Can Discover Network Proxy Configuration",
+        "tag": "Expert Input:IBO.0017 - Network Layer-7 HTTP",
         "component": "Networking",
-        "inputs": 21,
-        "matches": 4,
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "WinHttpConnect",
-          "WinHttpGetProxyForUrl",
-          "WinHttpOpenRequest",
-          "WinHttpSendRequest"
+          "WinHttpGetDefaultProxyConfiguration",
+          "WinHttpGetIEProxyConfigForCurrentUser"
         ]
       },
       {
@@ -924,24 +922,35 @@
         ]
       },
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
         "matches": 1,
         "apis": [
-          "DeleteFileW"
+          "RegGetValueW"
         ]
       },
       {
-        "intent": "Can Discover Network Proxy Configuration",
-        "tag": "Expert Input:IBO.0017 - Network Layer-7 HTTP",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 2,
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 3,
         "apis": [
-          "WinHttpGetDefaultProxyConfiguration",
-          "WinHttpGetIEProxyConfigForCurrentUser"
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceStatus"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
         ]
       },
       {
@@ -953,6 +962,52 @@
         "apis": [
           "OpenProcessToken",
           "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 6,
+        "apis": [
+          "CryptAcquireContextW",
+          "CryptCreateHash",
+          "CryptDestroyHash",
+          "CryptGetHashParam",
+          "CryptHashData",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumValueW"
         ]
       },
       {
@@ -972,74 +1027,6 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 6,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptCreateHash",
-          "CryptDestroyHash",
-          "CryptGetHashParam",
-          "CryptHashData",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 3,
-        "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceStatus"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 1,
-        "apis": [
-          "RegGetValueW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
         "intent": "Can Create/Manipulate System Services",
         "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
         "component": "Services",
@@ -1050,6 +1037,19 @@
           "RegisterServiceCtrlHandlerExW",
           "SetServiceStatus",
           "StartServiceW"
+        ]
+      },
+      {
+        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
+        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
+        "component": "Networking",
+        "inputs": 21,
+        "matches": 4,
+        "apis": [
+          "WinHttpConnect",
+          "WinHttpGetProxyForUrl",
+          "WinHttpOpenRequest",
+          "WinHttpSendRequest"
         ]
       },
       {

@@ -521,45 +521,15 @@
     "uniq_apis_matched": 29,
     "results": [
       {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 2,
-        "apis": [
-          "GetNativeSystemInfo",
-          "RtlGetVersion"
-        ]
-      },
-      {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
-        "tag": "Expert Input:IBO.001 - Accepts CommandLine Arguments",
-        "component": "Processes",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "CommandLineToArgvW"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
         "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
+        "inputs": 6,
+        "matches": 3,
         "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Enumerates Running Processes/Applications",
-        "tag": "Discovery:T1057 - Process Discovery",
-        "component": "Processes",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "CreateToolHelp32Snapshot"
+          "RegEnumKeyExW",
+          "RegEnumKeyW",
+          "RegEnumValueW"
         ]
       },
       {
@@ -571,16 +541,6 @@
         "apis": [
           "InternetCrackUrlW",
           "InternetCreateUrlW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CreateProcessAsUserW"
         ]
       },
       {
@@ -596,29 +556,6 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 3,
-        "apis": [
-          "CreateProcessW",
-          "ShellExecuteExW",
-          "ShellExecuteW"
-        ]
-      },
-      {
-        "intent": "Can Coordinate Scheduled Jobs/Tasks",
-        "tag": "Expert Input:IBO.0023 - Windows Access Control Lists",
-        "component": "ScheduledTasks",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "CreateTimerQueueTimer",
-          "DeleteTimerQueueTimer"
-        ]
-      },
-      {
         "intent": "Can Access And Read Windows Tokens",
         "tag": "Expert Input:IBO.0020 - Windows Token Access",
         "component": "Privileges",
@@ -626,48 +563,6 @@
         "matches": 1,
         "apis": [
           "OpenProcessToken"
-        ]
-      },
-      {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetTokenInformation"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 3,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumKeyW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "FindFirstFileW"
         ]
       },
       {
@@ -682,6 +577,111 @@
           "RegDeleteValueW",
           "RegOpenKeyExW",
           "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Enumerates Running Processes/Applications",
+        "tag": "Discovery:T1057 - Process Discovery",
+        "component": "Processes",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "CreateToolHelp32Snapshot"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "GetNativeSystemInfo",
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.001 - Accepts CommandLine Arguments",
+        "component": "Processes",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "CommandLineToArgvW"
+        ]
+      },
+      {
+        "intent": "Can Coordinate Scheduled Jobs/Tasks",
+        "tag": "Expert Input:IBO.0023 - Windows OS Object Syncronization",
+        "component": "ScheduledTasks",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "CreateTimerQueueTimer",
+          "DeleteTimerQueueTimer"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetTokenInformation"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 3,
+        "apis": [
+          "CreateProcessW",
+          "ShellExecuteExW",
+          "ShellExecuteW"
         ]
       }
     ]

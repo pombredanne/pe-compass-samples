@@ -902,27 +902,6 @@
     "uniq_apis_matched": 34,
     "results": [
       {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "GetTimeZoneInformation"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "AdjustTokenPrivileges",
-          "NtAdjustPrivilegesToken"
-        ]
-      },
-      {
         "intent": "Can Terminate Processes On The Target System",
         "tag": "Expert Input:IBO.0025",
         "component": "Processes",
@@ -933,14 +912,48 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 2,
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
         "apis": [
-          "CreateProcessA",
-          "CreateProcessW"
+          "GetTimeZoneInformation"
+        ]
+      },
+      {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 1,
+        "apis": [
+          "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "NtDuplicateToken"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 6,
+        "apis": [
+          "CryptAcquireContextA",
+          "CryptCreateHash",
+          "CryptDestroyHash",
+          "CryptGetHashParam",
+          "CryptHashData",
+          "CryptReleaseContext"
         ]
       },
       {
@@ -955,23 +968,14 @@
         ]
       },
       {
-        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
-        "tag": "Impact:T1529 - System Shutdown/Reboot",
-        "component": "---",
-        "inputs": 6,
-        "matches": 1,
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
         "apis": [
-          "InitiateSystemShutdownExW"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 1,
-        "apis": [
-          "RegQueryValueExW"
+          "AdjustTokenPrivileges",
+          "NtAdjustPrivilegesToken"
         ]
       },
       {
@@ -986,6 +990,52 @@
           "RegDeleteValueW",
           "RegOpenKeyExW",
           "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Coordinates System Reboots Resulting In Loss of Attack Evidence Present in System Memory",
+        "tag": "Impact:T1529 - System Shutdown/Reboot",
+        "component": "---",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "InitiateSystemShutdownExW"
+        ]
+      },
+      {
+        "intent": "Can Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.0021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 4,
+        "apis": [
+          "AddAccessAllowedAce",
+          "AddAccessAllowedAceEx",
+          "InitializeAcl",
+          "SetSecurityDescriptorDacl"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 2,
+        "apis": [
+          "CreateProcessA",
+          "CreateProcessW"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
@@ -1010,19 +1060,6 @@
         ]
       },
       {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.0021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 4,
-        "apis": [
-          "AddAccessAllowedAce",
-          "AddAccessAllowedAceEx",
-          "InitializeAcl",
-          "SetSecurityDescriptorDacl"
-        ]
-      },
-      {
         "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
         "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
@@ -1031,43 +1068,6 @@
         "apis": [
           "DeleteFileA",
           "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 6,
-        "apis": [
-          "CryptAcquireContextA",
-          "CryptCreateHash",
-          "CryptDestroyHash",
-          "CryptGetHashParam",
-          "CryptHashData",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
-        "apis": [
-          "NtDuplicateToken"
         ]
       }
     ]

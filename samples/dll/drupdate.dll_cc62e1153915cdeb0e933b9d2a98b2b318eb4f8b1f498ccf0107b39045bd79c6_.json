@@ -557,6 +557,17 @@
     "uniq_apis_matched": 25,
     "results": [
       {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "RegEnumKeyExW",
+          "RegEnumKeyW"
+        ]
+      },
+      {
         "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
         "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
@@ -564,17 +575,6 @@
         "matches": 1,
         "apis": [
           "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "AdjustTokenPrivileges",
-          "NtAdjustPrivilegesToken"
         ]
       },
       {
@@ -592,24 +592,13 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
         "component": "Privileges",
-        "inputs": 5,
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "NtDuplicateToken"
+          "SetThreadToken"
         ]
       },
       {
@@ -623,6 +612,27 @@
         ]
       },
       {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "CloseServiceHandle",
+          "ControlService"
+        ]
+      },
+      {
         "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
         "tag": "Expert Input:IBO.006 - Enumerate System Services",
         "component": "Services",
@@ -631,6 +641,27 @@
         "apis": [
           "OpenSCManagerW",
           "OpenServiceW"
+        ]
+      },
+      {
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "AdjustTokenPrivileges",
+          "NtAdjustPrivilegesToken"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "NtDuplicateToken"
         ]
       },
       {
@@ -646,38 +677,6 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumKeyW"
-        ]
-      },
-      {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 2,
-        "apis": [
-          "CloseServiceHandle",
-          "ControlService"
-        ]
-      },
-      {
         "intent": "Queries and Discovers General Attributes From The Target System",
         "tag": "Discovery:T1082 - System Information Discovery",
         "component": "---",
@@ -689,13 +688,14 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
         "apis": [
-          "FindFirstFileW"
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
         ]
       }
     ]

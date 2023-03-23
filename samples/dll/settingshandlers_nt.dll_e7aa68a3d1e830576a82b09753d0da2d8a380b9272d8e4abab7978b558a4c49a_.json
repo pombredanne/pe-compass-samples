@@ -1342,25 +1342,57 @@
     "uniq_apis_matched": 44,
     "results": [
       {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 3,
         "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
+          "GetDynamicTimeZoneInformation",
+          "GetTimeZoneInformation",
+          "GetTimeZoneInformationForYear"
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
         "matches": 2,
         "apis": [
-          "CreateProcessW",
-          "ShellExecuteExW"
+          "FindFirstFileExW",
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 1,
+        "apis": [
+          "CloseServiceHandle"
+        ]
+      },
+      {
+        "intent": "Enumerates LoadedModules (DLLs) From Running Processes",
+        "tag": "Discovery:T1057 - Process Discovery",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "K32EnumProcessModules",
+          "K32EnumProcesses"
+        ]
+      },
+      {
+        "intent": "Can Discover Network Proxy Configuration",
+        "tag": "Expert Input:IBO.0017 - Network Layer-7 HTTP",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "WinHttpGetIEProxyConfigForCurrentUser"
         ]
       },
       {
@@ -1377,35 +1409,24 @@
         ]
       },
       {
-        "intent": "Enumerates LoadedModules (DLLs) From Running Processes",
-        "tag": "Discovery:T1057 - Process Discovery",
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 2,
+        "apis": [
+          "GetNativeSystemInfo",
+          "RtlGetVersion"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
         "component": "Processes",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "K32EnumProcessModules",
-          "K32EnumProcesses"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "DuplicateToken",
-          "ImpersonateLoggedOnUser"
-        ]
-      },
-      {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
+        "inputs": 1,
         "matches": 1,
         "apis": [
-          "NtAdjustPrivilegesToken"
+          "TerminateProcess"
         ]
       },
       {
@@ -1422,35 +1443,45 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
+        "component": "Privileges",
+        "inputs": 4,
         "matches": 1,
         "apis": [
-          "CloseServiceHandle"
+          "NtAdjustPrivilegesToken"
         ]
       },
       {
-        "intent": "Can Discover Network Proxy Configuration",
-        "tag": "Expert Input:IBO.0017 - Network Layer-7 HTTP",
-        "component": "Networking",
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 2,
+        "apis": [
+          "CreateProcessW",
+          "ShellExecuteExW"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
         "inputs": 2,
         "matches": 1,
         "apis": [
-          "WinHttpGetIEProxyConfigForCurrentUser"
+          "DeleteFileW"
         ]
       },
       {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 3,
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
         "apis": [
-          "GetDynamicTimeZoneInformation",
-          "GetTimeZoneInformation",
-          "GetTimeZoneInformationForYear"
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -1466,14 +1497,16 @@
         ]
       },
       {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 2,
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 4,
         "apis": [
-          "GetNativeSystemInfo",
-          "RtlGetVersion"
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceConfigW",
+          "QueryServiceStatus"
         ]
       },
       {
@@ -1493,50 +1526,6 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "FindFirstFileExW",
-          "FindFirstFileW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 4,
-        "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceConfigW",
-          "QueryServiceStatus"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "DeleteFileW"
-        ]
-      },
-      {
         "intent": "Can Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
         "component": "Registry",
@@ -1545,6 +1534,17 @@
         "apis": [
           "RegEnumKeyExW",
           "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "DuplicateToken",
+          "ImpersonateLoggedOnUser"
         ]
       }
     ]

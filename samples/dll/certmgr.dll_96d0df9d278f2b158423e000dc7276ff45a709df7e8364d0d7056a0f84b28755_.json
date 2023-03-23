@@ -961,6 +961,17 @@
     "uniq_apis_matched": 38,
     "results": [
       {
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 2,
+        "apis": [
+          "RegQueryValueExA",
+          "RegQueryValueExW"
+        ]
+      },
+      {
         "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
         "tag": "Collection:T1115 - Clipboard Data",
         "component": "---",
@@ -971,14 +982,39 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
+        "intent": "Discovers and Manipulates the Windows `SAFER Security Level` To Coerce Global Application Execution",
+        "tag": "Persistence:T1546.009 - AppCert DLLs",
+        "component": "---",
+        "inputs": 8,
+        "matches": 6,
+        "apis": [
+          "SaferCloseLevel",
+          "SaferCreateLevel",
+          "SaferGetLevelInformation",
+          "SaferGetPolicyInformation",
+          "SaferSetLevelInformation",
+          "SaferSetPolicyInformation"
+        ]
+      },
+      {
+        "intent": "Discovers The Owner/Active User On The Target System",
+        "tag": "Discovery:T1057 - System Owner/User Discovery",
+        "component": "Identities",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetUserNameExW"
+        ]
+      },
+      {
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
         "matches": 2,
         "apis": [
-          "RegQueryValueExA",
-          "RegQueryValueExW"
+          "GetServiceDisplayNameW",
+          "OpenSCManagerW"
         ]
       },
       {
@@ -1002,28 +1038,6 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken"
-        ]
-      },
-      {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 2,
-        "apis": [
-          "GetServiceDisplayNameW",
-          "OpenSCManagerW"
-        ]
-      },
-      {
         "intent": "Can Terminate Processes On The Target System",
         "tag": "Expert Input:IBO.0025",
         "component": "Processes",
@@ -1031,6 +1045,18 @@
         "matches": 1,
         "apis": [
           "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
+        "matches": 3,
+        "apis": [
+          "DsGetDcNameW",
+          "DsRoleGetPrimaryDomainInformation",
+          "NetServerGetInfo"
         ]
       },
       {
@@ -1050,6 +1076,17 @@
         ]
       },
       {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken"
+        ]
+      },
+      {
         "intent": "Can Enumerate The Windows Registry",
         "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
         "component": "Registry",
@@ -1060,31 +1097,6 @@
         ]
       },
       {
-        "intent": "Discovers The Owner/Active User On The Target System",
-        "tag": "Discovery:T1057 - System Owner/User Discovery",
-        "component": "Identities",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "GetUserNameExW"
-        ]
-      },
-      {
-        "intent": "Discovers and Manipulates the Windows `SAFER Security Level` To Coerce Global Application Execution",
-        "tag": "Persistence:T1546.009 - AppCert DLLs",
-        "component": "---",
-        "inputs": 8,
-        "matches": 6,
-        "apis": [
-          "SaferCloseLevel",
-          "SaferCreateLevel",
-          "SaferGetLevelInformation",
-          "SaferGetPolicyInformation",
-          "SaferSetLevelInformation",
-          "SaferSetPolicyInformation"
-        ]
-      },
-      {
         "intent": "Can Create/Manipulate System Services",
         "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
         "component": "Services",
@@ -1092,18 +1104,6 @@
         "matches": 1,
         "apis": [
           "CloseServiceHandle"
-        ]
-      },
-      {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
-        "component": "---",
-        "inputs": 24,
-        "matches": 3,
-        "apis": [
-          "DsGetDcNameW",
-          "DsRoleGetPrimaryDomainInformation",
-          "NetServerGetInfo"
         ]
       }
     ]

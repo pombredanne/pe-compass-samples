@@ -581,30 +581,6 @@
     "uniq_apis_matched": 40,
     "results": [
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 5,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegDeleteKeyW",
-          "RegDeleteValueW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "GetNativeSystemInfo"
-        ]
-      },
-      {
         "intent": "Can Create/Manipulate System Services",
         "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
         "component": "Services",
@@ -620,13 +596,13 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
         "inputs": 5,
         "matches": 1,
         "apis": [
-          "FindFirstFileW"
+          "DuplicateToken"
         ]
       },
       {
@@ -642,13 +618,15 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 1,
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
         "apis": [
-          "CreateProcessW"
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
@@ -659,6 +637,16 @@
         "matches": 1,
         "apis": [
           "InitiateSystemShutdownExW"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 1,
+        "apis": [
+          "BCryptCloseAlgorithmProvider"
         ]
       },
       {
@@ -678,6 +666,26 @@
         ]
       },
       {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessW"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
+        ]
+      },
+      {
         "intent": "Manipulates Windows Tokens",
         "tag": "Defense Evasion:T1134 - Access Token Manipulation",
         "component": "Privileges",
@@ -688,26 +696,33 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 1,
         "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
+          "DeleteFileW"
         ]
       },
       {
-        "intent": "Can Coordinate Scheduled Jobs/Tasks",
-        "tag": "Expert Input:IBO.0023 - Windows Access Control Lists",
-        "component": "ScheduledTasks",
-        "inputs": 6,
-        "matches": 2,
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
         "apis": [
-          "CreateTimerQueueTimer",
-          "DeleteTimerQueueTimer"
+          "SetThreadToken"
+        ]
+      },
+      {
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
+        "matches": 1,
+        "apis": [
+          "TerminateProcess"
         ]
       },
       {
@@ -721,13 +736,13 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
+        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.003 - Spawn New Process As Different User",
+        "component": "Processes",
         "inputs": 2,
         "matches": 1,
         "apis": [
-          "SetThreadToken"
+          "CreateProcessAsUserW"
         ]
       },
       {
@@ -742,53 +757,38 @@
         ]
       },
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 5,
         "apis": [
-          "DeleteFileW"
+          "RegCreateKeyExW",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
+        "intent": "Can Coordinate Scheduled Jobs/Tasks",
+        "tag": "Expert Input:IBO.0023 - Windows OS Object Syncronization",
+        "component": "ScheduledTasks",
+        "inputs": 6,
+        "matches": 2,
+        "apis": [
+          "CreateTimerQueueTimer",
+          "DeleteTimerQueueTimer"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
         "inputs": 5,
         "matches": 1,
         "apis": [
-          "DuplicateToken"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CreateProcessAsUserW"
-        ]
-      },
-      {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 1,
-        "apis": [
-          "BCryptCloseAlgorithmProvider"
+          "FindFirstFileW"
         ]
       }
     ]

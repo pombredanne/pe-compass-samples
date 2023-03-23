@@ -1641,65 +1641,26 @@
     "uniq_apis_matched": 61,
     "results": [
       {
-        "intent": "Enumerates LoadedModules (DLLs) From Running Processes",
-        "tag": "Discovery:T1057 - Process Discovery",
-        "component": "Processes",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "CreateToolHelp32Snapshot",
-          "K32EnumProcessModules"
-        ]
-      },
-      {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "SetTokenInformation"
-        ]
-      },
-      {
-        "intent": "Discovers The Owner/Active User On The Target System",
-        "tag": "Discovery:T1057 - System Owner/User Discovery",
-        "component": "Identities",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "GetUserNameExW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "CreateProcessAsUserW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "intent": "Manipulates Windows Tokens",
+        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
         "component": "Privileges",
         "inputs": 4,
         "matches": 1,
         "apis": [
-          "OpenProcessToken"
+          "AdjustTokenPrivileges"
+        ]
+      },
+      {
+        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
+        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
+        "component": "Networking",
+        "inputs": 21,
+        "matches": 4,
+        "apis": [
+          "WinHttpConnect",
+          "WinHttpGetProxyForUrl",
+          "WinHttpOpenRequest",
+          "WinHttpSendRequest"
         ]
       },
       {
@@ -1714,43 +1675,6 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 6,
-        "apis": [
-          "CloseServiceHandle",
-          "ControlService",
-          "RegisterServiceCtrlHandlerExW",
-          "SetServiceStatus",
-          "StartServiceCtrlDispatcherW",
-          "StartServiceW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 3,
-        "apis": [
-          "RegCreateKeyExW",
-          "RegOpenKeyExW",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
-        "matches": 1,
-        "apis": [
-          "GetAdaptersAddresses"
-        ]
-      },
-      {
         "intent": "Can Communicate via NamedPipes",
         "tag": "Expert Input:IBO.004 - Implement Named Pipes",
         "component": "Processes",
@@ -1758,37 +1682,6 @@
         "matches": 1,
         "apis": [
           "CreatePipe"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Can Conduct DNS Queries",
-        "tag": "Expert Input:IBO.0014 - Network Layer-7 DNS Usage",
-        "component": "Networking",
-        "inputs": 31,
-        "matches": 2,
-        "apis": [
-          "DnsQuery_W",
-          "GetNameInfoW"
-        ]
-      },
-      {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.0012 - Network TCP Sockets",
-        "component": "Networking",
-        "inputs": 15,
-        "matches": 1,
-        "apis": [
-          "InetNtopW"
         ]
       },
       {
@@ -1802,13 +1695,13 @@
         ]
       },
       {
-        "intent": "Manipulates Windows Tokens",
-        "tag": "Defense Evasion:T1134 - Access Token Manipulation",
-        "component": "Privileges",
-        "inputs": 4,
+        "intent": "Can Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.0012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
         "matches": 1,
         "apis": [
-          "AdjustTokenPrivileges"
+          "InetNtopW"
         ]
       },
       {
@@ -1837,26 +1730,57 @@
         ]
       },
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 1,
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 3,
         "apis": [
-          "DeleteFileW"
+          "RegCreateKeyExW",
+          "RegOpenKeyExW",
+          "RegSetValueExW"
         ]
       },
       {
-        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
-        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
-        "component": "Networking",
-        "inputs": 21,
-        "matches": 4,
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
         "apis": [
-          "WinHttpConnect",
-          "WinHttpGetProxyForUrl",
-          "WinHttpOpenRequest",
-          "WinHttpSendRequest"
+          "RegEnumKeyExW",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Discovers The Owner/Active User On The Target System",
+        "tag": "Discovery:T1057 - System Owner/User Discovery",
+        "component": "Identities",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetUserNameExW"
+        ]
+      },
+      {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetTokenInformation"
+        ]
+      },
+      {
+        "intent": "Enumerates LoadedModules (DLLs) From Running Processes",
+        "tag": "Discovery:T1057 - Process Discovery",
+        "component": "Processes",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "CreateToolHelp32Snapshot",
+          "K32EnumProcessModules"
         ]
       },
       {
@@ -1871,6 +1795,66 @@
         ]
       },
       {
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 6,
+        "apis": [
+          "CloseServiceHandle",
+          "ControlService",
+          "RegisterServiceCtrlHandlerExW",
+          "SetServiceStatus",
+          "StartServiceCtrlDispatcherW",
+          "StartServiceW"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 5,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceConfig2W",
+          "QueryServiceConfigW",
+          "QueryServiceStatus"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Can Discover Network Proxy Configuration",
+        "tag": "Expert Input:IBO.0017 - Network Layer-7 HTTP",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "WinHttpGetDefaultProxyConfiguration",
+          "WinHttpGetIEProxyConfigForCurrentUser"
+        ]
+      },
+      {
         "intent": "Steals Tokens To Impersonate Windows Identities",
         "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
         "component": "Privileges",
@@ -1878,6 +1862,17 @@
         "matches": 1,
         "apis": [
           "ImpersonateLoggedOnUser"
+        ]
+      },
+      {
+        "intent": "Can Conduct DNS Queries",
+        "tag": "Expert Input:IBO.0014 - Network Layer-7 DNS Usage",
+        "component": "Networking",
+        "inputs": 31,
+        "matches": 2,
+        "apis": [
+          "DnsQuery_W",
+          "GetNameInfoW"
         ]
       },
       {
@@ -1893,28 +1888,33 @@
         ]
       },
       {
-        "intent": "Can Discover Network Proxy Configuration",
-        "tag": "Expert Input:IBO.0017 - Network Layer-7 HTTP",
-        "component": "Networking",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
         "inputs": 2,
-        "matches": 2,
+        "matches": 1,
         "apis": [
-          "WinHttpGetDefaultProxyConfiguration",
-          "WinHttpGetIEProxyConfigForCurrentUser"
+          "DeleteFileW"
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 5,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
+        "matches": 1,
         "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceConfig2W",
-          "QueryServiceConfigW",
-          "QueryServiceStatus"
+          "TerminateProcess"
+        ]
+      },
+      {
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 1,
+        "apis": [
+          "GetAdaptersAddresses"
         ]
       }
     ]

@@ -782,13 +782,16 @@
     "uniq_apis_matched": 33,
     "results": [
       {
-        "intent": "Can Coordinate Scheduled Jobs/Tasks",
-        "tag": "Expert Input:IBO.0023 - Windows Access Control Lists",
-        "component": "ScheduledTasks",
-        "inputs": 6,
-        "matches": 1,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 4,
         "apis": [
-          "CreateWaitableTimerW"
+          "RegGetValueW",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExA",
+          "RegQueryValueExW"
         ]
       },
       {
@@ -803,6 +806,67 @@
         ]
       },
       {
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 3,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceA",
+          "QueryServiceStatus"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
+        "matches": 2,
+        "apis": [
+          "CloseServiceHandle",
+          "StartServiceW"
+        ]
+      },
+      {
+        "intent": "Can Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.0012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
+        "matches": 1,
+        "apis": [
+          "WSAStringToAddressW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 9,
+        "apis": [
+          "RegCreateKeyExA",
+          "RegCreateKeyExW",
+          "RegDeleteKeyExW",
+          "RegDeleteValueW",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegOpenKeyW",
+          "RegSetValueExA",
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "RtlGetNtProductType"
+        ]
+      },
+      {
         "intent": "Discovers Network Settings On The Target System",
         "tag": "Discovery:T1016 - System Network Configuration Discovery",
         "component": "Networking",
@@ -811,6 +875,29 @@
         "apis": [
           "GetAdaptersAddresses",
           "GetIpAddrTable"
+        ]
+      },
+      {
+        "intent": "Can Coordinate Scheduled Jobs/Tasks",
+        "tag": "Expert Input:IBO.0023 - Windows OS Object Syncronization",
+        "component": "ScheduledTasks",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "CreateWaitableTimerW"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 4,
+        "apis": [
+          "CryptAcquireContextA",
+          "CryptAcquireContextW",
+          "CryptGenRandom",
+          "CryptReleaseContext"
         ]
       },
       {
@@ -835,36 +922,6 @@
         ]
       },
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 3,
-        "apis": [
-          "OpenSCManagerW",
-          "OpenServiceA",
-          "QueryServiceStatus"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 9,
-        "apis": [
-          "RegCreateKeyExA",
-          "RegCreateKeyExW",
-          "RegDeleteKeyExW",
-          "RegDeleteValueW",
-          "RegOpenKeyExA",
-          "RegOpenKeyExW",
-          "RegOpenKeyW",
-          "RegSetValueExA",
-          "RegSetValueExW"
-        ]
-      },
-      {
         "intent": "Can Conduct DNS Queries",
         "tag": "Expert Input:IBO.0014 - Network Layer-7 DNS Usage",
         "component": "Networking",
@@ -872,63 +929,6 @@
         "matches": 1,
         "apis": [
           "GetAddrInfoW"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 4,
-        "apis": [
-          "RegGetValueW",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExA",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 4,
-        "apis": [
-          "CryptAcquireContextA",
-          "CryptAcquireContextW",
-          "CryptGenRandom",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "RtlGetNtProductType"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
-        "matches": 2,
-        "apis": [
-          "CloseServiceHandle",
-          "StartServiceW"
-        ]
-      },
-      {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.0012 - Network TCP Sockets",
-        "component": "Networking",
-        "inputs": 15,
-        "matches": 1,
-        "apis": [
-          "WSAStringToAddressW"
         ]
       }
     ]

@@ -3539,14 +3539,14 @@
     "uniq_apis_matched": 58,
     "results": [
       {
-        "intent": "Can Coordinate Scheduled Jobs/Tasks",
-        "tag": "Expert Input:IBO.0023 - Windows Access Control Lists",
-        "component": "ScheduledTasks",
-        "inputs": 6,
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
         "matches": 2,
         "apis": [
-          "CreateTimerQueueTimer",
-          "DeleteTimerQueueTimer"
+          "CreateProcessA",
+          "CreateProcessW"
         ]
       },
       {
@@ -3561,37 +3561,13 @@
         ]
       },
       {
-        "intent": "Enumerates Running Processes/Applications",
-        "tag": "Discovery:T1057 - Process Discovery",
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
         "component": "Processes",
-        "inputs": 5,
-        "matches": 3,
+        "inputs": 1,
+        "matches": 1,
         "apis": [
-          "K32EnumProcessModules",
-          "K32EnumProcesses",
-          "PssCaptureSnapshot"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 13,
-        "apis": [
-          "RegCopyTreeW",
-          "RegCreateKeyExA",
-          "RegCreateKeyExW",
-          "RegDeleteKeyExA",
-          "RegDeleteKeyExW",
-          "RegDeleteValueA",
-          "RegDeleteValueW",
-          "RegDisablePredefinedCacheEx",
-          "RegOpenCurrentUser",
-          "RegOpenKeyExA",
-          "RegOpenKeyExW",
-          "RegSetValueExA",
-          "RegSetValueExW"
+          "TerminateProcess"
         ]
       },
       {
@@ -3613,30 +3589,6 @@
         ]
       },
       {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 4,
-        "apis": [
-          "RegEnumKeyExA",
-          "RegEnumKeyExW",
-          "RegEnumValueA",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
-        "tag": "Expert Input:IBO.003 - Spawn New Process As Different User",
-        "component": "Processes",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "CreateProcessAsUserA",
-          "CreateProcessAsUserW"
-        ]
-      },
-      {
         "intent": "Enumerates Files or Directories on the Target System",
         "tag": "Discovery:T1083 - File and Directory Discovery",
         "component": "Filesystem",
@@ -3648,16 +3600,6 @@
           "FindFirstFileExW",
           "FindFirstFileW",
           "ZwQueryDirectoryFile"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
         ]
       },
       {
@@ -3684,13 +3626,36 @@
         ]
       },
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Can Coordinate Scheduled Jobs/Tasks",
+        "tag": "Expert Input:IBO.0023 - Windows OS Object Syncronization",
+        "component": "ScheduledTasks",
+        "inputs": 6,
+        "matches": 2,
         "apis": [
-          "DuplicateToken"
+          "CreateTimerQueueTimer",
+          "DeleteTimerQueueTimer"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 13,
+        "apis": [
+          "RegCopyTreeW",
+          "RegCreateKeyExA",
+          "RegCreateKeyExW",
+          "RegDeleteKeyExA",
+          "RegDeleteKeyExW",
+          "RegDeleteValueA",
+          "RegDeleteValueW",
+          "RegDisablePredefinedCacheEx",
+          "RegOpenCurrentUser",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegSetValueExA",
+          "RegSetValueExW"
         ]
       },
       {
@@ -3705,14 +3670,28 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
-        "matches": 2,
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 4,
         "apis": [
-          "CreateProcessA",
-          "CreateProcessW"
+          "RegEnumKeyExA",
+          "RegEnumKeyExW",
+          "RegEnumValueA",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Enumerates Running Processes/Applications",
+        "tag": "Discovery:T1057 - Process Discovery",
+        "component": "Processes",
+        "inputs": 5,
+        "matches": 3,
+        "apis": [
+          "K32EnumProcessModules",
+          "K32EnumProcesses",
+          "PssCaptureSnapshot"
         ]
       },
       {
@@ -3723,6 +3702,27 @@
         "matches": 1,
         "apis": [
           "OpenProcessToken"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System As Another User Identity",
+        "tag": "Expert Input:IBO.003 - Spawn New Process As Different User",
+        "component": "Processes",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "CreateProcessAsUserA",
+          "CreateProcessAsUserW"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "DuplicateToken"
         ]
       },
       {

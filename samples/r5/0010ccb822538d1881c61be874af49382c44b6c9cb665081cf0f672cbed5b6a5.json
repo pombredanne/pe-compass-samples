@@ -277,23 +277,54 @@
     "uniq_apis_matched": 29,
     "results": [
       {
-        "intent": "Discovers Network Settings On The Target System",
-        "tag": "Discovery:T1016 - System Network Configuration Discovery",
-        "component": "Networking",
-        "inputs": 41,
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
         "matches": 1,
         "apis": [
-          "GetAdaptersInfo"
+          "RegOpenKeyExA"
         ]
       },
       {
-        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
-        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
-        "component": "Networking",
-        "inputs": 21,
-        "matches": 1,
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 10,
         "apis": [
-          "InternetOpenUrlA"
+          "CryptAcquireContextA",
+          "CryptCreateHash",
+          "CryptDestroyHash",
+          "CryptDestroyKey",
+          "CryptEncrypt",
+          "CryptGenRandom",
+          "CryptGetHashParam",
+          "CryptHashData",
+          "CryptImportKey",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Can Discover Network Proxy Configuration",
+        "tag": "Expert Input:IBO.0017 - Network Layer-7 HTTP",
+        "component": "Networking",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "WinHttpGetDefaultProxyConfiguration",
+          "WinHttpGetIEProxyConfigForCurrentUser"
         ]
       },
       {
@@ -318,13 +349,23 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
+        "intent": "Can Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.0012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
         "matches": 1,
         "apis": [
-          "FindFirstFileExW"
+          "freeaddrinfo"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
+        "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
         ]
       },
       {
@@ -339,17 +380,6 @@
         ]
       },
       {
-        "intent": "Can Discover Network Proxy Configuration",
-        "tag": "Expert Input:IBO.0017 - Network Layer-7 HTTP",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "WinHttpGetDefaultProxyConfiguration",
-          "WinHttpGetIEProxyConfigForCurrentUser"
-        ]
-      },
-      {
         "intent": "Discovers Time Configuration Settings On The Target System",
         "tag": "Discovery:T1124 - System Time Discovery",
         "component": "---",
@@ -357,17 +387,6 @@
         "matches": 1,
         "apis": [
           "GetTimeZoneInformation"
-        ]
-      },
-      {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.004 - Implement Named Pipes",
-        "component": "Processes",
-        "inputs": 13,
-        "matches": 2,
-        "apis": [
-          "CreatePipe",
-          "PeekNamedPipe"
         ]
       },
       {
@@ -381,63 +400,44 @@
         ]
       },
       {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.0012 - Network TCP Sockets",
-        "component": "Networking",
-        "inputs": 15,
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "freeaddrinfo"
+          "FindFirstFileExW"
         ]
       },
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Connects Over HTTP, HTTPS To Download Content On The Target System",
+        "tag": "Command And Control:T1105 - Ingress Tool Transfer",
+        "component": "Networking",
+        "inputs": 21,
+        "matches": 1,
+        "apis": [
+          "InternetOpenUrlA"
+        ]
+      },
+      {
+        "intent": "Discovers Network Settings On The Target System",
+        "tag": "Discovery:T1016 - System Network Configuration Discovery",
+        "component": "Networking",
+        "inputs": 41,
+        "matches": 1,
+        "apis": [
+          "GetAdaptersInfo"
+        ]
+      },
+      {
+        "intent": "Can Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
         "matches": 2,
         "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 1,
-        "apis": [
-          "RegOpenKeyExA"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
-        "component": "---",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "GetNativeSystemInfo"
-        ]
-      },
-      {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 10,
-        "apis": [
-          "CryptAcquireContextA",
-          "CryptCreateHash",
-          "CryptDestroyHash",
-          "CryptDestroyKey",
-          "CryptEncrypt",
-          "CryptGenRandom",
-          "CryptGetHashParam",
-          "CryptHashData",
-          "CryptImportKey",
-          "CryptReleaseContext"
+          "CreatePipe",
+          "PeekNamedPipe"
         ]
       }
     ]

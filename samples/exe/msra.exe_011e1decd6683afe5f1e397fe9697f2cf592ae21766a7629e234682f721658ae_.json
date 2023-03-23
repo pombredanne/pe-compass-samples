@@ -612,20 +612,19 @@
     "uniq_apis_matched": 40,
     "results": [
       {
-        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
-        "tag": "Expert Input:IBO.006 - Enumerate System Services",
-        "component": "Services",
-        "inputs": 28,
-        "matches": 3,
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
         "apis": [
-          "OpenSCManagerW",
-          "OpenServiceW",
-          "QueryServiceStatus"
+          "RegEnumKeyExW",
+          "RegEnumKeyW"
         ]
       },
       {
         "intent": "Can Coordinate Scheduled Jobs/Tasks",
-        "tag": "Expert Input:IBO.0023 - Windows Access Control Lists",
+        "tag": "Expert Input:IBO.0023 - Windows OS Object Syncronization",
         "component": "ScheduledTasks",
         "inputs": 6,
         "matches": 3,
@@ -633,6 +632,17 @@
           "CreateTimerQueueTimer",
           "CreateWaitableTimerW",
           "DeleteTimerQueueTimer"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
         ]
       },
       {
@@ -646,32 +656,13 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
         "component": "Processes",
-        "inputs": 7,
+        "inputs": 1,
         "matches": 1,
         "apis": [
-          "ShellExecuteW"
-        ]
-      },
-      {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 10,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptCreateHash",
-          "CryptDestroyHash",
-          "CryptDestroyKey",
-          "CryptEncrypt",
-          "CryptGenRandom",
-          "CryptGetHashParam",
-          "CryptHashData",
-          "CryptImportKey",
-          "CryptReleaseContext"
+          "TerminateProcess"
         ]
       },
       {
@@ -697,14 +688,56 @@
         ]
       },
       {
-        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
-        "tag": "Expert Input:IBO.001 - Accepts CommandLine Arguments",
-        "component": "Processes",
-        "inputs": 3,
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 10,
+        "apis": [
+          "CryptAcquireContextW",
+          "CryptCreateHash",
+          "CryptDestroyHash",
+          "CryptDestroyKey",
+          "CryptEncrypt",
+          "CryptGenRandom",
+          "CryptGetHashParam",
+          "CryptHashData",
+          "CryptImportKey",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Can Enumerate/Discover System Services And Their Configuration Data",
+        "tag": "Expert Input:IBO.006 - Enumerate System Services",
+        "component": "Services",
+        "inputs": 28,
+        "matches": 3,
+        "apis": [
+          "OpenSCManagerW",
+          "OpenServiceW",
+          "QueryServiceStatus"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate System Services",
+        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
+        "component": "Services",
+        "inputs": 19,
         "matches": 2,
         "apis": [
-          "CommandLineToArgvW",
-          "__wgetmainargs"
+          "CloseServiceHandle",
+          "StartServiceW"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken"
         ]
       },
       {
@@ -721,49 +754,6 @@
         ]
       },
       {
-        "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
-        "tag": "Collection:T1115 - Clipboard Data",
-        "component": "---",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "OpenClipboard"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyExW",
-          "RegEnumKeyW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken"
-        ]
-      },
-      {
         "intent": "Discovers The Owner/Active User On The Target System",
         "tag": "Discovery:T1057 - System Owner/User Discovery",
         "component": "Identities",
@@ -771,6 +761,26 @@
         "matches": 1,
         "apis": [
           "GetUserNameExW"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "ShellExecuteW"
+        ]
+      },
+      {
+        "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
+        "tag": "Collection:T1115 - Clipboard Data",
+        "component": "---",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "OpenClipboard"
         ]
       },
       {
@@ -784,24 +794,14 @@
         ]
       },
       {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
+        "intent": "Can Be Invoked With CommandLine Arguments From a Console/Terminal",
+        "tag": "Expert Input:IBO.001 - Accepts CommandLine Arguments",
         "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate System Services",
-        "tag": "Expert Input:IBO.007 - Create/Manipulate System Services",
-        "component": "Services",
-        "inputs": 19,
+        "inputs": 3,
         "matches": 2,
         "apis": [
-          "CloseServiceHandle",
-          "StartServiceW"
+          "CommandLineToArgvW",
+          "__wgetmainargs"
         ]
       }
     ]

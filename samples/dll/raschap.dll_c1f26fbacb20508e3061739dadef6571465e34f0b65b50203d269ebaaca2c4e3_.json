@@ -505,13 +505,34 @@
     "uniq_apis_matched": 18,
     "results": [
       {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "TerminateProcess"
+          "ImpersonateLoggedOnUser"
+        ]
+      },
+      {
+        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
+        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
+        "component": "Memory",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DelayLoadFailureHook",
+          "ResolveDelayLoadedAPI"
+        ]
+      },
+      {
+        "intent": "Discovers The Owner/Active User On The Target System",
+        "tag": "Discovery:T1057 - System Owner/User Discovery",
+        "component": "Identities",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetUserNameExW"
         ]
       },
       {
@@ -526,24 +547,13 @@
         ]
       },
       {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 2,
-        "apis": [
-          "RegOpenKeyExA",
-          "RegOpenKeyExW"
-        ]
-      },
-      {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
         "matches": 1,
         "apis": [
-          "ImpersonateLoggedOnUser"
+          "TerminateProcess"
         ]
       },
       {
@@ -569,27 +579,6 @@
         ]
       },
       {
-        "intent": "Discovers The Owner/Active User On The Target System",
-        "tag": "Discovery:T1057 - System Owner/User Discovery",
-        "component": "Identities",
-        "inputs": 3,
-        "matches": 1,
-        "apis": [
-          "GetUserNameExW"
-        ]
-      },
-      {
-        "intent": "Can Delay Loading of DLLs Until Runtime/Process Execution",
-        "tag": "Expert Input:IBO.005 - Load DLL Resources With Delay During Runtime",
-        "component": "Memory",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DelayLoadFailureHook",
-          "ResolveDelayLoadedAPI"
-        ]
-      },
-      {
         "intent": "Can Conduct Cryptographic Operations",
         "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
         "component": "Crypto",
@@ -601,6 +590,17 @@
           "BCryptFinishHash",
           "BCryptHashData",
           "CryptDecodeObjectEx"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 2,
+        "apis": [
+          "RegOpenKeyExA",
+          "RegOpenKeyExW"
         ]
       }
     ]

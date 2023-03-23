@@ -943,24 +943,26 @@
     "uniq_apis_matched": 53,
     "results": [
       {
-        "intent": "Can Transmit/Receive Data Over The Network",
-        "tag": "Expert Input:IBO.0011 - Network Socket Send/Receive",
-        "component": "Networking",
-        "inputs": 16,
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
         "matches": 2,
         "apis": [
-          "WSARecv",
-          "WSASend"
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
+        "matches": 3,
         "apis": [
-          "DuplicateToken"
+          "RegGetValueW",
+          "RegQueryInfoKeyW",
+          "RegQueryValueExW"
         ]
       },
       {
@@ -998,25 +1000,13 @@
         ]
       },
       {
-        "intent": "Can Communicate via NamedPipes",
-        "tag": "Expert Input:IBO.004 - Implement Named Pipes",
-        "component": "Processes",
-        "inputs": 13,
-        "matches": 2,
+        "intent": "Enumerates Credentials From The Windows Credential Manager Password Store",
+        "tag": "Credential Access:T1555.004 - Windows Credential Manager",
+        "component": "Filesystem",
+        "inputs": 4,
+        "matches": 1,
         "apis": [
-          "ConnectNamedPipe",
-          "DisconnectNamedPipe"
-        ]
-      },
-      {
-        "intent": "Can Work With The TCP Network Protocol",
-        "tag": "Expert Input:IBO.0012 - Network TCP Sockets",
-        "component": "Networking",
-        "inputs": 15,
-        "matches": 2,
-        "apis": [
-          "WSAAddressToStringW",
-          "WSAStringToAddressW"
+          "AcquireCredentialsHandleW"
         ]
       },
       {
@@ -1032,48 +1022,35 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 2,
-        "apis": [
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
-        "intent": "Can Coordinate Scheduled Jobs/Tasks",
-        "tag": "Expert Input:IBO.0023 - Windows Access Control Lists",
-        "component": "ScheduledTasks",
-        "inputs": 6,
-        "matches": 3,
-        "apis": [
-          "CreateTimerQueueTimer",
-          "CreateWaitableTimerW",
-          "DeleteTimerQueueTimer"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 3,
-        "apis": [
-          "RegGetValueW",
-          "RegQueryInfoKeyW",
-          "RegQueryValueExW"
-        ]
-      },
-      {
-        "intent": "Queries and Discovers General Attributes From The Target System",
-        "tag": "Discovery:T1082 - System Information Discovery",
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
         "component": "---",
-        "inputs": 3,
+        "inputs": 5,
         "matches": 1,
         "apis": [
-          "GetNativeSystemInfo"
+          "GetTimeZoneInformation"
+        ]
+      },
+      {
+        "intent": "Can Work With The TCP Network Protocol",
+        "tag": "Expert Input:IBO.0012 - Network TCP Sockets",
+        "component": "Networking",
+        "inputs": 15,
+        "matches": 2,
+        "apis": [
+          "WSAAddressToStringW",
+          "WSAStringToAddressW"
+        ]
+      },
+      {
+        "intent": "Can Transmit/Receive Data Over The Network",
+        "tag": "Expert Input:IBO.0011 - Network Socket Send/Receive",
+        "component": "Networking",
+        "inputs": 16,
+        "matches": 2,
+        "apis": [
+          "WSARecv",
+          "WSASend"
         ]
       },
       {
@@ -1085,36 +1062,6 @@
         "apis": [
           "GetAddrInfoW",
           "GetNameInfoW"
-        ]
-      },
-      {
-        "intent": "Enumerates Credentials From The Windows Credential Manager Password Store",
-        "tag": "Credential Access:T1555.004 - Windows Credential Manager",
-        "component": "Filesystem",
-        "inputs": 4,
-        "matches": 1,
-        "apis": [
-          "AcquireCredentialsHandleW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumKeyExW"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 1,
-        "apis": [
-          "RegOpenKeyExW"
         ]
       },
       {
@@ -1139,13 +1086,66 @@
         ]
       },
       {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
+        "intent": "Can Communicate via NamedPipes",
+        "tag": "Expert Input:IBO.004 - Implement Named Pipes",
+        "component": "Processes",
+        "inputs": 13,
+        "matches": 2,
+        "apis": [
+          "ConnectNamedPipe",
+          "DisconnectNamedPipe"
+        ]
+      },
+      {
+        "intent": "Can Coordinate Scheduled Jobs/Tasks",
+        "tag": "Expert Input:IBO.0023 - Windows OS Object Syncronization",
+        "component": "ScheduledTasks",
+        "inputs": 6,
+        "matches": 3,
+        "apis": [
+          "CreateTimerQueueTimer",
+          "CreateWaitableTimerW",
+          "DeleteTimerQueueTimer"
+        ]
+      },
+      {
+        "intent": "Queries and Discovers General Attributes From The Target System",
+        "tag": "Discovery:T1082 - System Information Discovery",
         "component": "---",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetNativeSystemInfo"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 1,
+        "apis": [
+          "RegOpenKeyExW"
+        ]
+      },
+      {
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
+        "component": "Privileges",
         "inputs": 5,
         "matches": 1,
         "apis": [
-          "GetTimeZoneInformation"
+          "DuplicateToken"
         ]
       }
     ]

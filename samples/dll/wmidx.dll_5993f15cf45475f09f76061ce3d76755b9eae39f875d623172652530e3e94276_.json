@@ -203,14 +203,14 @@
     "uniq_apis_matched": 14,
     "results": [
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
+        "component": "Registry",
+        "inputs": 11,
         "matches": 2,
         "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
+          "RegQueryInfoKeyA",
+          "RegQueryValueExA"
         ]
       },
       {
@@ -222,6 +222,29 @@
         "apis": [
           "RegEnumKeyExA",
           "RegEnumValueA"
+        ]
+      },
+      {
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
+        "component": "Filesystem",
+        "inputs": 2,
+        "matches": 2,
+        "apis": [
+          "DeleteFileA",
+          "DeleteFileW"
+        ]
+      },
+      {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 3,
+        "apis": [
+          "CryptAcquireContextA",
+          "CryptGenRandom",
+          "CryptReleaseContext"
         ]
       },
       {
@@ -245,29 +268,6 @@
         "matches": 1,
         "apis": [
           "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 3,
-        "apis": [
-          "CryptAcquireContextA",
-          "CryptGenRandom",
-          "CryptReleaseContext"
-        ]
-      },
-      {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
-        "component": "Registry",
-        "inputs": 11,
-        "matches": 2,
-        "apis": [
-          "RegQueryInfoKeyA",
-          "RegQueryValueExA"
         ]
       }
     ]

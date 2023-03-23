@@ -1102,28 +1102,6 @@
     "uniq_apis_matched": 29,
     "results": [
       {
-        "intent": "Enumerates Available Network Shares",
-        "tag": "Discovery:T1135 - Network Share Discovery",
-        "component": "Networking",
-        "inputs": 2,
-        "matches": 1,
-        "apis": [
-          "NetShareGetInfo"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
         "intent": "Can Terminate Processes On The Target System",
         "tag": "Expert Input:IBO.0025",
         "component": "Processes",
@@ -1134,36 +1112,27 @@
         ]
       },
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.002 - Spawn New Process",
-        "component": "Processes",
-        "inputs": 7,
+        "intent": "Enumerates Available Network Shares",
+        "tag": "Discovery:T1135 - Network Share Discovery",
+        "component": "Networking",
+        "inputs": 2,
         "matches": 1,
         "apis": [
-          "CreateProcessA"
+          "NetShareGetInfo"
         ]
       },
       {
-        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
-        "tag": "Defense Evasion:T1070.004 - File Deletion",
-        "component": "Filesystem",
-        "inputs": 2,
-        "matches": 2,
-        "apis": [
-          "DeleteFileA",
-          "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "intent": "Queries And Discovers Windows Registry Configuration Settings",
+        "tag": "Discovery:T1012 - Query Registry",
         "component": "Registry",
-        "inputs": 6,
-        "matches": 3,
+        "inputs": 11,
+        "matches": 5,
         "apis": [
-          "RegEnumKeyExA",
-          "RegEnumValueA",
-          "RegEnumValueW"
+          "RegGetValueA",
+          "RegGetValueW",
+          "RegQueryInfoKeyA",
+          "RegQueryValueExA",
+          "RegQueryValueExW"
         ]
       },
       {
@@ -1194,17 +1163,48 @@
         ]
       },
       {
-        "intent": "Queries And Discovers Windows Registry Configuration Settings",
-        "tag": "Discovery:T1012 - Query Registry",
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
         "component": "Registry",
-        "inputs": 11,
-        "matches": 5,
+        "inputs": 6,
+        "matches": 3,
         "apis": [
-          "RegGetValueA",
-          "RegGetValueW",
-          "RegQueryInfoKeyA",
-          "RegQueryValueExA",
-          "RegQueryValueExW"
+          "RegEnumKeyExA",
+          "RegEnumValueA",
+          "RegEnumValueW"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileA",
+          "FindFirstFileW"
+        ]
+      },
+      {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 1,
+        "apis": [
+          "CreateProcessA"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
         ]
       },
       {
@@ -1219,14 +1219,14 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
+        "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
-        "inputs": 5,
+        "inputs": 2,
         "matches": 2,
         "apis": [
-          "FindFirstFileA",
-          "FindFirstFileW"
+          "DeleteFileA",
+          "DeleteFileW"
         ]
       }
     ]

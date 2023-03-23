@@ -1603,27 +1603,55 @@
     "uniq_apis_matched": 59,
     "results": [
       {
-        "intent": "Can Execute or Spawn New Processes On The Target System",
-        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "intent": "Enumerates Running Processes/Applications",
+        "tag": "Discovery:T1057 - Process Discovery",
         "component": "Processes",
-        "inputs": 7,
-        "matches": 5,
+        "inputs": 5,
+        "matches": 3,
         "apis": [
-          "CreateProcessA",
-          "CreateProcessW",
-          "ShellExecuteA",
-          "ShellExecuteExW",
-          "ShellExecuteW"
+          "CreateToolHelp32Snapshot",
+          "K32EnumProcessModules",
+          "K32EnumProcesses"
         ]
       },
       {
-        "intent": "Discovers Time Configuration Settings On The Target System",
-        "tag": "Discovery:T1124 - System Time Discovery",
-        "component": "---",
-        "inputs": 5,
-        "matches": 1,
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 9,
         "apis": [
-          "GetTimeZoneInformationForYear"
+          "CryptAcquireContextW",
+          "CryptCreateHash",
+          "CryptDestroyHash",
+          "CryptDestroyKey",
+          "CryptEncrypt",
+          "CryptGenRandom",
+          "CryptGetHashParam",
+          "CryptHashData",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Can Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
+        "component": "Registry",
+        "inputs": 33,
+        "matches": 13,
+        "apis": [
+          "RegCreateKeyA",
+          "RegCreateKeyExA",
+          "RegCreateKeyExW",
+          "RegDeleteKeyA",
+          "RegDeleteKeyW",
+          "RegDeleteValueW",
+          "RegOpenCurrentUser",
+          "RegOpenKeyExA",
+          "RegOpenKeyExW",
+          "RegOpenKeyW",
+          "RegSetKeyValueW",
+          "RegSetValueExA",
+          "RegSetValueExW"
         ]
       },
       {
@@ -1637,15 +1665,13 @@
         ]
       },
       {
-        "intent": "Enumerates Running Processes/Applications",
-        "tag": "Discovery:T1057 - Process Discovery",
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
         "component": "Processes",
-        "inputs": 5,
-        "matches": 3,
+        "inputs": 1,
+        "matches": 1,
         "apis": [
-          "CreateToolHelp32Snapshot",
-          "K32EnumProcessModules",
-          "K32EnumProcesses"
+          "TerminateProcess"
         ]
       },
       {
@@ -1662,8 +1688,30 @@
         ]
       },
       {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 3,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenProcessToken",
+          "OpenThreadToken"
+        ]
+      },
+      {
+        "intent": "Discovers Time Configuration Settings On The Target System",
+        "tag": "Discovery:T1124 - System Time Discovery",
+        "component": "---",
+        "inputs": 5,
+        "matches": 1,
+        "apis": [
+          "GetTimeZoneInformationForYear"
+        ]
+      },
+      {
         "intent": "Can Coordinate Scheduled Jobs/Tasks",
-        "tag": "Expert Input:IBO.0023 - Windows Access Control Lists",
+        "tag": "Expert Input:IBO.0023 - Windows OS Object Syncronization",
         "component": "ScheduledTasks",
         "inputs": 6,
         "matches": 3,
@@ -1674,6 +1722,44 @@
         ]
       },
       {
+        "intent": "Can Execute or Spawn New Processes On The Target System",
+        "tag": "Expert Input:IBO.002 - Spawn New Process",
+        "component": "Processes",
+        "inputs": 7,
+        "matches": 5,
+        "apis": [
+          "CreateProcessA",
+          "CreateProcessW",
+          "ShellExecuteA",
+          "ShellExecuteExW",
+          "ShellExecuteW"
+        ]
+      },
+      {
+        "intent": "Can Manipulate Access Control Mechanisms",
+        "tag": "Expert Input:IBO.0021 - Windows Access Control Lists",
+        "component": "Privileges",
+        "inputs": 15,
+        "matches": 4,
+        "apis": [
+          "AddAccessAllowedAceEx",
+          "AddAce",
+          "DeleteAce",
+          "InitializeAcl"
+        ]
+      },
+      {
+        "intent": "Enumerates Files or Directories on the Target System",
+        "tag": "Discovery:T1083 - File and Directory Discovery",
+        "component": "Filesystem",
+        "inputs": 5,
+        "matches": 2,
+        "apis": [
+          "FindFirstFileExW",
+          "FindFirstFileW"
+        ]
+      },
+      {
         "intent": "Queries and Discovers General Attributes From The Target System",
         "tag": "Discovery:T1082 - System Information Discovery",
         "component": "---",
@@ -1681,16 +1767,6 @@
         "matches": 1,
         "apis": [
           "GetNativeSystemInfo"
-        ]
-      },
-      {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
         ]
       },
       {
@@ -1718,18 +1794,6 @@
         ]
       },
       {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
-        "component": "Privileges",
-        "inputs": 4,
-        "matches": 3,
-        "apis": [
-          "CheckTokenMembership",
-          "OpenProcessToken",
-          "OpenThreadToken"
-        ]
-      },
-      {
         "intent": "Collects information through the Clipboard Buffers From Desktop Environment",
         "tag": "Collection:T1115 - Clipboard Data",
         "component": "---",
@@ -1741,17 +1805,6 @@
         ]
       },
       {
-        "intent": "Enumerates Files or Directories on the Target System",
-        "tag": "Discovery:T1083 - File and Directory Discovery",
-        "component": "Filesystem",
-        "inputs": 5,
-        "matches": 2,
-        "apis": [
-          "FindFirstFileExW",
-          "FindFirstFileW"
-        ]
-      },
-      {
         "intent": "Deletes Files From Disk Potentially Erasing Important Evidence To Cover Attack Activity",
         "tag": "Defense Evasion:T1070.004 - File Deletion",
         "component": "Filesystem",
@@ -1759,59 +1812,6 @@
         "matches": 1,
         "apis": [
           "DeleteFileW"
-        ]
-      },
-      {
-        "intent": "Can Manipulate Access Control Mechanisms",
-        "tag": "Expert Input:IBO.0021 - Windows Access Control Lists",
-        "component": "Privileges",
-        "inputs": 15,
-        "matches": 4,
-        "apis": [
-          "AddAccessAllowedAceEx",
-          "AddAce",
-          "DeleteAce",
-          "InitializeAcl"
-        ]
-      },
-      {
-        "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
-        "component": "Registry",
-        "inputs": 33,
-        "matches": 13,
-        "apis": [
-          "RegCreateKeyA",
-          "RegCreateKeyExA",
-          "RegCreateKeyExW",
-          "RegDeleteKeyA",
-          "RegDeleteKeyW",
-          "RegDeleteValueW",
-          "RegOpenCurrentUser",
-          "RegOpenKeyExA",
-          "RegOpenKeyExW",
-          "RegOpenKeyW",
-          "RegSetKeyValueW",
-          "RegSetValueExA",
-          "RegSetValueExW"
-        ]
-      },
-      {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 71,
-        "matches": 9,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptCreateHash",
-          "CryptDestroyHash",
-          "CryptDestroyKey",
-          "CryptEncrypt",
-          "CryptGenRandom",
-          "CryptGetHashParam",
-          "CryptHashData",
-          "CryptReleaseContext"
         ]
       }
     ]

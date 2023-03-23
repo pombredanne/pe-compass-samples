@@ -491,6 +491,16 @@
     "uniq_apis_matched": 22,
     "results": [
       {
+        "intent": "Creates Token To Impersonate",
+        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
+        "component": "Privileges",
+        "inputs": 2,
+        "matches": 1,
+        "apis": [
+          "SetThreadToken"
+        ]
+      },
+      {
         "intent": "Queries And Discovers Windows Registry Configuration Settings",
         "tag": "Discovery:T1012 - Query Registry",
         "component": "Registry",
@@ -499,6 +509,27 @@
         "apis": [
           "RegGetValueW",
           "RegQueryValueExW"
+        ]
+      },
+      {
+        "intent": "Discovers Local User Accounts on the Target System",
+        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
+        "component": "Identities",
+        "inputs": 4,
+        "matches": 1,
+        "apis": [
+          "LookupAccountSidLocalW"
+        ]
+      },
+      {
+        "intent": "Can Access And Read Windows Tokens",
+        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "component": "Privileges",
+        "inputs": 4,
+        "matches": 2,
+        "apis": [
+          "CheckTokenMembership",
+          "OpenThreadToken"
         ]
       },
       {
@@ -513,46 +544,14 @@
         ]
       },
       {
-        "intent": "Can Terminate Processes On The Target System",
-        "tag": "Expert Input:IBO.0025",
-        "component": "Processes",
-        "inputs": 1,
-        "matches": 1,
-        "apis": [
-          "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 2,
-        "apis": [
-          "RegEnumKeyW",
-          "RegEnumValueW"
-        ]
-      },
-      {
-        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
-        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
-        "component": "---",
-        "inputs": 24,
-        "matches": 2,
-        "apis": [
-          "DsBindWithSpnExW",
-          "DsGetDcNameW"
-        ]
-      },
-      {
-        "intent": "Can Access And Read Windows Tokens",
-        "tag": "Expert Input:IBO.0020 - Windows Token Access",
+        "intent": "Steals Tokens To Impersonate Windows Identities",
+        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
         "component": "Privileges",
-        "inputs": 4,
+        "inputs": 5,
         "matches": 2,
         "apis": [
-          "CheckTokenMembership",
-          "OpenThreadToken"
+          "DuplicateToken",
+          "ImpersonateLoggedOnUser"
         ]
       },
       {
@@ -581,34 +580,35 @@
         ]
       },
       {
-        "intent": "Creates Token To Impersonate",
-        "tag": "Privilege Escalation:T1134.003 - Make and Impersonate Token",
-        "component": "Privileges",
-        "inputs": 2,
+        "intent": "Can Terminate Processes On The Target System",
+        "tag": "Expert Input:IBO.0025",
+        "component": "Processes",
+        "inputs": 1,
         "matches": 1,
         "apis": [
-          "SetThreadToken"
+          "TerminateProcess"
         ]
       },
       {
-        "intent": "Steals Tokens To Impersonate Windows Identities",
-        "tag": "Privilege Escalation:T1134.001 - Token Impersonation/Theft",
-        "component": "Privileges",
-        "inputs": 5,
+        "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
+        "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
+        "component": "---",
+        "inputs": 24,
         "matches": 2,
         "apis": [
-          "DuplicateToken",
-          "ImpersonateLoggedOnUser"
+          "DsBindWithSpnExW",
+          "DsGetDcNameW"
         ]
       },
       {
-        "intent": "Discovers Local User Accounts on the Target System",
-        "tag": "Discovery:T1087.001 - Account Discovery (Windows)",
-        "component": "Identities",
-        "inputs": 4,
-        "matches": 1,
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 2,
         "apis": [
-          "LookupAccountSidLocalW"
+          "RegEnumKeyW",
+          "RegEnumValueW"
         ]
       }
     ]
