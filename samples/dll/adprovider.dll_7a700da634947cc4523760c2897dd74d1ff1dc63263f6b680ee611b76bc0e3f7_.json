@@ -354,9 +354,19 @@
     "ssdeep": "768:Xn/gl5tFh1YNi7X277LXPdDXv+JtmOKZp9rw71aad4/qWnaycMwGlqesRtgjEJZZ:XngTFcNi7gXPdDXv+JtmbrQ1aadIqxya"
   },
   "intent": {
-    "intentions": 6,
-    "uniq_apis_matched": 13,
+    "intentions": 7,
+    "uniq_apis_matched": 14,
     "results": [
+      {
+        "intent": "Discovers The Owner/Active User On The Target System",
+        "tag": "Discovery:T1057 - System Owner/User Discovery",
+        "component": "Identities",
+        "inputs": 3,
+        "matches": 1,
+        "apis": [
+          "GetUserNameExW"
+        ]
+      },
       {
         "intent": "Discovers Configuration Attributes of the Windows Enterprise Domain",
         "tag": "Reconnaissance:T1590.001 - Domain Properties (Windows Enterprise)",
@@ -368,8 +378,30 @@
         ]
       },
       {
+        "intent": "Can Conduct Cryptographic Operations",
+        "tag": "Expert Input:IBO.0022 - Windows Cryptography Facilities",
+        "component": "Crypto",
+        "inputs": 71,
+        "matches": 3,
+        "apis": [
+          "CryptAcquireContextW",
+          "CryptDestroyKey",
+          "CryptReleaseContext"
+        ]
+      },
+      {
+        "intent": "Can Enumerate The Windows Registry",
+        "tag": "Expert Input:IBO.009 - Enumerate The Windows Registry",
+        "component": "Registry",
+        "inputs": 6,
+        "matches": 1,
+        "apis": [
+          "RegEnumKeyExW"
+        ]
+      },
+      {
         "intent": "Can Create/Manipulate The Windows Registry",
-        "tag": "Expert Input:IBO.0008 - Create/Manipulate The Windows Registry",
+        "tag": "Expert Input:IBO.008 - Create/Manipulate The Windows Registry",
         "component": "Registry",
         "inputs": 33,
         "matches": 5,
@@ -393,35 +425,13 @@
         ]
       },
       {
-        "intent": "Can Conduct Cryptographic Operations",
-        "tag": "Expert Input:IBO.00022 - Windows Cryptography Facilities",
-        "component": "Crypto",
-        "inputs": 67,
-        "matches": 3,
-        "apis": [
-          "CryptAcquireContextW",
-          "CryptDestroyKey",
-          "CryptReleaseContext"
-        ]
-      },
-      {
         "intent": "Can Terminate Processes On The Target System",
         "tag": "Expert Input:IBO.0025",
-        "component": "---",
+        "component": "Processes",
         "inputs": 1,
         "matches": 1,
         "apis": [
           "TerminateProcess"
-        ]
-      },
-      {
-        "intent": "Can Enumerate The Windows Registry",
-        "tag": "Expert Input:IBO.0009 - Enumerate The Windows Registry",
-        "component": "Registry",
-        "inputs": 6,
-        "matches": 1,
-        "apis": [
-          "RegEnumKeyExW"
         ]
       }
     ]
